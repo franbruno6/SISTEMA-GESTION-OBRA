@@ -1,0 +1,11 @@
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaControladora.dll
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaControladora.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaDatos.dll
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaEntidad.dll
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaDatos.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\bin\Debug\CapaEntidad.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.AssemblyReference.cache
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.CoreCompileInputs.cache
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.CopyComplete
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.dll
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.pdb

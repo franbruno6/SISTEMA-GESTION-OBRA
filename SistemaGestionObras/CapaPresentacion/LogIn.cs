@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CapaControladora;
+using CapaEntidad;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,12 +25,24 @@ namespace CapaPresentacion
         }
         private void btningresar_Click(object sender, EventArgs e)
         {
-            Inicio inicio = new Inicio();
+            //List < Usuario > TEST = new CC_Usuario().ListarUsuarios();
 
-            inicio.Show();
-            this.Hide();
 
-            inicio.FormClosing += frm_closing;
+            Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.oPersona.Documento == txtnumerodocumento.Text && u.Clave == txtclave.Text).FirstOrDefault();
+            
+            if (oUsuario != null)
+            {
+                Inicio inicio = new Inicio();
+
+                inicio.Show();
+                this.Hide();
+
+                inicio.FormClosing += frm_closing;
+            }
+            else
+            {
+                MessageBox.Show("Usuario o clave incorrectos","Mensaje",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
+            }
         }
         private void frm_closing(object sender, FormClosingEventArgs e)
         {
