@@ -10,3 +10,15 @@ C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionOb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CopyComplete
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.exe
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaPresentacion.exe.config
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaPresentacion.exe
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaPresentacion.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\FontAwesome.Sharp.dll
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.AssemblyReference.cache
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Inicio.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Properties.Resources.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.GenerateResource.cache
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CoreCompileInputs.cache
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.csproj.CopyComplete
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.exe
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.pdb
