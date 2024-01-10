@@ -9,3 +9,14 @@ D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaContr
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.CopyComplete
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.dll
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaControladora.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaControladora.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaDatos.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaEntidad.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaDatos.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\bin\Debug\CapaEntidad.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.AssemblyReference.cache
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.CoreCompileInputs.cache
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.csproj.CopyComplete
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaControladora\obj\Debug\CapaControladora.pdb

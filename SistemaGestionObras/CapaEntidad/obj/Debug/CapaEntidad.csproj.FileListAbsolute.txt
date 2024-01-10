@@ -4,3 +4,9 @@ D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaEntid
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.csproj.CoreCompileInputs.cache
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.dll
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\bin\Debug\CapaEntidad.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\bin\Debug\CapaEntidad.pdb
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.csproj.AssemblyReference.cache
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.csproj.CoreCompileInputs.cache
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaEntidad\obj\Debug\CapaEntidad.pdb

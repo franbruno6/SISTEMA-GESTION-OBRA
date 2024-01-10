@@ -43,7 +43,7 @@ namespace CapaDatos
 
                         listaPermisos.Add(permiso);
                     }
-                    DataAccessObject.CerrarConexion();
+                    //DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
