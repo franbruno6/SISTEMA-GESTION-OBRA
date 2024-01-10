@@ -10,7 +10,7 @@ namespace CapaDatos
 {
     public class CD_Permiso
     {
-        public List<Permiso> ObtenerPermisos(int idUsuario)
+        public List<Permiso> ListarPermisos(int idUsuario)
         {
             List<Componente> listaComponentes = new List<Componente>();
 

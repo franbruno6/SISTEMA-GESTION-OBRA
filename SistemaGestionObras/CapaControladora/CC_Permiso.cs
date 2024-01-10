@@ -14,10 +14,7 @@ namespace CapaControladora
         private CD_Permiso oCD_Permiso = new CD_Permiso();
         public List<Permiso> ListarPermisos(int idUsuario)
         {
-            //List<Permiso> lista = new List<Permiso>();
-            //return objetoCD.ListarPermisos(idUsuario);
-            //return oCD_Permiso.ObtenerPermisosyGrupos(idUsuario, 0, lista);
-            return oCD_Permiso.ObtenerPermisos(idUsuario);
+            return oCD_Permiso.ListarPermisos(idUsuario);
         }
     }
 }

@@ -41,10 +41,12 @@
             this.lblusuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
             this.menu.SuspendLayout();
+            this.contenedor.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
             // 
+            this.menu.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuusuario,
             this.menupermiso,
@@ -52,11 +54,12 @@
             this.menuproducto,
             this.menupresupuesto,
             this.menucomprobante});
-            this.menu.Location = new System.Drawing.Point(0, 74);
+            this.menu.Location = new System.Drawing.Point(0, 0);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1584, 64);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
+            this.menu.Paint += new System.Windows.Forms.PaintEventHandler(this.menu_Paint);
             // 
             // menuusuario
             // 
@@ -151,7 +154,7 @@
             // menutitulo
             // 
             this.menutitulo.AutoSize = false;
-            this.menutitulo.BackColor = System.Drawing.Color.Goldenrod;
+            this.menutitulo.BackColor = System.Drawing.Color.Khaki;
             this.menutitulo.Location = new System.Drawing.Point(0, 0);
             this.menutitulo.Name = "menutitulo";
             this.menutitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -162,7 +165,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Goldenrod;
+            this.label1.BackColor = System.Drawing.Color.Khaki;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(12, 24);
@@ -174,7 +177,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Goldenrod;
+            this.label2.BackColor = System.Drawing.Color.Khaki;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(1330, 31);
             this.label2.Name = "label2";
@@ -185,7 +188,7 @@
             // lblusuario
             // 
             this.lblusuario.AutoSize = true;
-            this.lblusuario.BackColor = System.Drawing.Color.Goldenrod;
+            this.lblusuario.BackColor = System.Drawing.Color.Khaki;
             this.lblusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblusuario.Location = new System.Drawing.Point(1391, 31);
             this.lblusuario.Name = "lblusuario";
@@ -195,10 +198,11 @@
             // 
             // contenedor
             // 
+            this.contenedor.Controls.Add(this.menu);
             this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contenedor.Location = new System.Drawing.Point(0, 138);
+            this.contenedor.Location = new System.Drawing.Point(0, 74);
             this.contenedor.Name = "contenedor";
-            this.contenedor.Size = new System.Drawing.Size(1584, 623);
+            this.contenedor.Size = new System.Drawing.Size(1584, 687);
             this.contenedor.TabIndex = 5;
             // 
             // Inicio
@@ -210,7 +214,6 @@
             this.Controls.Add(this.lblusuario);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.menu);
             this.Controls.Add(this.menutitulo);
             this.MainMenuStrip = this.menu;
             this.Name = "Inicio";
@@ -219,6 +222,8 @@
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.contenedor.ResumeLayout(false);
+            this.contenedor.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

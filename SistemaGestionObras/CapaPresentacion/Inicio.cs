@@ -19,10 +19,18 @@ namespace CapaPresentacion
         private static IconMenuItem menuActivo = null;
         private static Form formularioActivo = null;
 
-        public Inicio(Usuario oUsuario)
+        public Inicio(Usuario oUsuario = null)
         {
-            usuarioActual = oUsuario;
-            
+            if (oUsuario == null)
+            {
+                usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
+            }
+            else
+            {
+                usuarioActual = oUsuario;
+            }
+            //usuarioActual = oUsuario;
+
             InitializeComponent();
         }
         private void Inicio_Load(object sender, EventArgs e)
@@ -49,7 +57,7 @@ namespace CapaPresentacion
         {
             if(menuActivo != null)
             {
-                menuActivo.BackColor = Color.White;
+                menuActivo.BackColor = Color.PaleGoldenrod;
             }
             menu.BackColor = Color.Silver;
             menuActivo = menu;
@@ -64,7 +72,7 @@ namespace CapaPresentacion
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;
-            formulario.BackColor = Color.Goldenrod;
+            formulario.BackColor = Color.Khaki;
 
             //AGREGO EL FORMULARIO AL CONTENEDOR
             contenedor.Controls.Add(formulario);
@@ -99,6 +107,15 @@ namespace CapaPresentacion
         private void menucomprobantes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmComprobante());
+        }
+
+        private void menu_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, menu.ClientRectangle,
+                Color.Black, 0, ButtonBorderStyle.None,
+                Color.Black, 0, ButtonBorderStyle.None,
+                Color.Black, 0, ButtonBorderStyle.None,
+                Color.Black, 1, ButtonBorderStyle.Solid);
         }
     }
 }
