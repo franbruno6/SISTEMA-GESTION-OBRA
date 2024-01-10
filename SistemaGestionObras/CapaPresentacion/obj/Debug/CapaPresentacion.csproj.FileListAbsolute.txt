@@ -29,3 +29,9 @@ D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPrese
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaControladora.pdb
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaEntidad.pdb
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaDatos.pdb
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmUsuario.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmCliente.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmComprobante.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmPermiso.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmPresupuesto.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmProducto.resources

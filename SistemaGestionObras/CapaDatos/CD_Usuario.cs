@@ -12,17 +12,17 @@ namespace CapaDatos
     {
         public List<Usuario> ListarUsuarios()
         {
-            List<Usuario> usuarios = new List<Usuario>();
+            List<Usuario> listaUsuarios = new List<Usuario>();
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.Append("select IdUsuario,Clave,Estado,FechaRegistro,");
-                    query.Append("Persona.IdPersona,Persona.NombreCompleto,Persona.Correo,Persona.Documento ");
-                    query.Append("from Usuario ");
-                    query.Append("inner join Persona on Usuario.IdPersona = Persona.IdPersona");
+                    query.AppendLine("select IdUsuario,Clave,Estado,FechaRegistro,");
+                    query.AppendLine("Persona.IdPersona,Persona.NombreCompleto,Persona.Correo,Persona.Documento ");
+                    query.AppendLine("from Usuario ");
+                    query.AppendLine("inner join Persona on Usuario.IdPersona = Persona.IdPersona");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     cmd.CommandType = System.Data.CommandType.Text;
@@ -35,21 +35,20 @@ namespace CapaDatos
                         usuario.Clave = dr["Clave"].ToString();
                         usuario.Estado = Convert.ToBoolean(dr["Estado"]);
                         usuario.FechaRegistro = dr["FechaRegistro"].ToString();
+                        usuario.NombreCompleto = dr["NombreCompleto"].ToString();
+                        usuario.Correo = dr["Correo"].ToString();
+                        usuario.Documento = dr["Documento"].ToString();
 
-                        usuario.oPersona.IdPersona = Convert.ToInt32(dr["IdPersona"]);
-                        usuario.oPersona.NombreCompleto = dr["NombreCompleto"].ToString();
-                        usuario.oPersona.Correo = dr["Correo"].ToString();
-                        usuario.oPersona.Documento = dr["Documento"].ToString();
-
-                        usuarios.Add(usuario);
+                        listaUsuarios.Add(usuario);
                     }
+                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
-                    usuarios = new List<Usuario>();
+                    listaUsuarios = new List<Usuario>();
                 }
             }
-            return usuarios;
+            return listaUsuarios;
         }
     }
 }

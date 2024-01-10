@@ -28,11 +28,11 @@ namespace CapaPresentacion
             //List < Usuario > TEST = new CC_Usuario().ListarUsuarios();
 
 
-            Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.oPersona.Documento == txtnumerodocumento.Text && u.Clave == txtclave.Text).FirstOrDefault();
+            Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text && u.Clave == txtclave.Text).FirstOrDefault();
             
             if (oUsuario != null)
             {
-                Inicio inicio = new Inicio();
+                Inicio inicio = new Inicio(oUsuario);
 
                 inicio.Show();
                 this.Hide();
@@ -48,7 +48,7 @@ namespace CapaPresentacion
         {
             txtnumerodocumento.Text = "";
             txtclave.Text = "";
-
+            txtnumerodocumento.Select();
             this.Show();
         }
 

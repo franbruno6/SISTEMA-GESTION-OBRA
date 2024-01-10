@@ -29,31 +29,124 @@
         private void InitializeComponent()
         {
             this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuusuario = new FontAwesome.Sharp.IconMenuItem();
+            this.menupermiso = new FontAwesome.Sharp.IconMenuItem();
+            this.menucliente = new FontAwesome.Sharp.IconMenuItem();
+            this.menuproducto = new FontAwesome.Sharp.IconMenuItem();
+            this.menupresupuesto = new FontAwesome.Sharp.IconMenuItem();
+            this.menucomprobante = new FontAwesome.Sharp.IconMenuItem();
             this.menutitulo = new System.Windows.Forms.MenuStrip();
             this.label1 = new System.Windows.Forms.Label();
-            this.menucomprobantes = new FontAwesome.Sharp.IconMenuItem();
-            this.menupresupuestos = new FontAwesome.Sharp.IconMenuItem();
-            this.menuproductos = new FontAwesome.Sharp.IconMenuItem();
-            this.menuclientes = new FontAwesome.Sharp.IconMenuItem();
-            this.menupermisos = new FontAwesome.Sharp.IconMenuItem();
-            this.menuusarios = new FontAwesome.Sharp.IconMenuItem();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblusuario = new System.Windows.Forms.Label();
+            this.contenedor = new System.Windows.Forms.Panel();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // menu
             // 
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuusarios,
-            this.menupermisos,
-            this.menuclientes,
-            this.menuproductos,
-            this.menupresupuestos,
-            this.menucomprobantes});
+            this.menuusuario,
+            this.menupermiso,
+            this.menucliente,
+            this.menuproducto,
+            this.menupresupuesto,
+            this.menucomprobante});
             this.menu.Location = new System.Drawing.Point(0, 74);
             this.menu.Name = "menu";
             this.menu.Size = new System.Drawing.Size(1584, 64);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
+            // 
+            // menuusuario
+            // 
+            this.menuusuario.AutoSize = false;
+            this.menuusuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuusuario.IconChar = FontAwesome.Sharp.IconChar.UserGear;
+            this.menuusuario.IconColor = System.Drawing.Color.Black;
+            this.menuusuario.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menuusuario.IconSize = 40;
+            this.menuusuario.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuusuario.Name = "menuusuario";
+            this.menuusuario.Size = new System.Drawing.Size(122, 60);
+            this.menuusuario.Text = "Usuarios";
+            this.menuusuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuusuario.Click += new System.EventHandler(this.menuusarios_Click);
+            // 
+            // menupermiso
+            // 
+            this.menupermiso.AutoSize = false;
+            this.menupermiso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menupermiso.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.menupermiso.IconColor = System.Drawing.Color.Black;
+            this.menupermiso.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menupermiso.IconSize = 40;
+            this.menupermiso.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menupermiso.Name = "menupermiso";
+            this.menupermiso.Size = new System.Drawing.Size(122, 60);
+            this.menupermiso.Text = "Permisos";
+            this.menupermiso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menupermiso.Click += new System.EventHandler(this.menupermisos_Click);
+            // 
+            // menucliente
+            // 
+            this.menucliente.AutoSize = false;
+            this.menucliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menucliente.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
+            this.menucliente.IconColor = System.Drawing.Color.Black;
+            this.menucliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menucliente.IconSize = 40;
+            this.menucliente.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menucliente.Name = "menucliente";
+            this.menucliente.Size = new System.Drawing.Size(122, 60);
+            this.menucliente.Text = "Clientes";
+            this.menucliente.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menucliente.Click += new System.EventHandler(this.menuclientes_Click);
+            // 
+            // menuproducto
+            // 
+            this.menuproducto.AutoSize = false;
+            this.menuproducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuproducto.IconChar = FontAwesome.Sharp.IconChar.Tools;
+            this.menuproducto.IconColor = System.Drawing.Color.Black;
+            this.menuproducto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menuproducto.IconSize = 40;
+            this.menuproducto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menuproducto.Name = "menuproducto";
+            this.menuproducto.Size = new System.Drawing.Size(122, 60);
+            this.menuproducto.Text = "Productos";
+            this.menuproducto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menuproducto.Click += new System.EventHandler(this.menuproductos_Click);
+            // 
+            // menupresupuesto
+            // 
+            this.menupresupuesto.AutoSize = false;
+            this.menupresupuesto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menupresupuesto.IconChar = FontAwesome.Sharp.IconChar.Tag;
+            this.menupresupuesto.IconColor = System.Drawing.Color.Black;
+            this.menupresupuesto.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menupresupuesto.IconSize = 40;
+            this.menupresupuesto.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menupresupuesto.Name = "menupresupuesto";
+            this.menupresupuesto.Size = new System.Drawing.Size(122, 60);
+            this.menupresupuesto.Text = "Presupuestos";
+            this.menupresupuesto.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menupresupuesto.Click += new System.EventHandler(this.menupresupuestos_Click);
+            // 
+            // menucomprobante
+            // 
+            this.menucomprobante.AutoSize = false;
+            this.menucomprobante.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menucomprobante.IconChar = FontAwesome.Sharp.IconChar.FileCircleCheck;
+            this.menucomprobante.IconColor = System.Drawing.Color.Black;
+            this.menucomprobante.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menucomprobante.IconSize = 40;
+            this.menucomprobante.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menucomprobante.Name = "menucomprobante";
+            this.menucomprobante.Size = new System.Drawing.Size(122, 60);
+            this.menucomprobante.Text = "Comprobantes";
+            this.menucomprobante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menucomprobante.Click += new System.EventHandler(this.menucomprobantes_Click);
             // 
             // menutitulo
             // 
@@ -78,95 +171,44 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Sistema Gestión de Obras";
             // 
-            // menucomprobantes
+            // label2
             // 
-            this.menucomprobantes.AutoSize = false;
-            this.menucomprobantes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menucomprobantes.IconChar = FontAwesome.Sharp.IconChar.FileCircleCheck;
-            this.menucomprobantes.IconColor = System.Drawing.Color.Black;
-            this.menucomprobantes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menucomprobantes.IconSize = 40;
-            this.menucomprobantes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menucomprobantes.Name = "menucomprobantes";
-            this.menucomprobantes.Size = new System.Drawing.Size(122, 60);
-            this.menucomprobantes.Text = "Comprobantes";
-            this.menucomprobantes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.Goldenrod;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(1330, 31);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(64, 18);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Usuario:";
             // 
-            // menupresupuestos
+            // lblusuario
             // 
-            this.menupresupuestos.AutoSize = false;
-            this.menupresupuestos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menupresupuestos.IconChar = FontAwesome.Sharp.IconChar.Tag;
-            this.menupresupuestos.IconColor = System.Drawing.Color.Black;
-            this.menupresupuestos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menupresupuestos.IconSize = 40;
-            this.menupresupuestos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menupresupuestos.Name = "menupresupuestos";
-            this.menupresupuestos.Size = new System.Drawing.Size(122, 60);
-            this.menupresupuestos.Text = "Presupuestos";
-            this.menupresupuestos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.lblusuario.AutoSize = true;
+            this.lblusuario.BackColor = System.Drawing.Color.Goldenrod;
+            this.lblusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblusuario.Location = new System.Drawing.Point(1391, 31);
+            this.lblusuario.Name = "lblusuario";
+            this.lblusuario.Size = new System.Drawing.Size(71, 18);
+            this.lblusuario.TabIndex = 4;
+            this.lblusuario.Text = "lblusuario";
             // 
-            // menuproductos
+            // contenedor
             // 
-            this.menuproductos.AutoSize = false;
-            this.menuproductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuproductos.IconChar = FontAwesome.Sharp.IconChar.Tools;
-            this.menuproductos.IconColor = System.Drawing.Color.Black;
-            this.menuproductos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuproductos.IconSize = 40;
-            this.menuproductos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuproductos.Name = "menuproductos";
-            this.menuproductos.Size = new System.Drawing.Size(122, 60);
-            this.menuproductos.Text = "Productos";
-            this.menuproductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuclientes
-            // 
-            this.menuclientes.AutoSize = false;
-            this.menuclientes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuclientes.IconChar = FontAwesome.Sharp.IconChar.UserGroup;
-            this.menuclientes.IconColor = System.Drawing.Color.Black;
-            this.menuclientes.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuclientes.IconSize = 40;
-            this.menuclientes.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuclientes.Name = "menuclientes";
-            this.menuclientes.Size = new System.Drawing.Size(122, 60);
-            this.menuclientes.Text = "Clientes";
-            this.menuclientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menupermisos
-            // 
-            this.menupermisos.AutoSize = false;
-            this.menupermisos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menupermisos.IconChar = FontAwesome.Sharp.IconChar.Gear;
-            this.menupermisos.IconColor = System.Drawing.Color.Black;
-            this.menupermisos.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menupermisos.IconSize = 40;
-            this.menupermisos.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menupermisos.Name = "menupermisos";
-            this.menupermisos.Size = new System.Drawing.Size(122, 60);
-            this.menupermisos.Text = "Permisos";
-            this.menupermisos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menuusarios
-            // 
-            this.menuusarios.AutoSize = false;
-            this.menuusarios.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuusarios.IconChar = FontAwesome.Sharp.IconChar.UserGear;
-            this.menuusarios.IconColor = System.Drawing.Color.Black;
-            this.menuusarios.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menuusarios.IconSize = 40;
-            this.menuusarios.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menuusarios.Name = "menuusarios";
-            this.menuusarios.Size = new System.Drawing.Size(122, 60);
-            this.menuusarios.Text = "Usuarios";
-            this.menuusarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contenedor.Location = new System.Drawing.Point(0, 138);
+            this.contenedor.Name = "contenedor";
+            this.contenedor.Size = new System.Drawing.Size(1584, 623);
+            this.contenedor.TabIndex = 5;
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 761);
+            this.Controls.Add(this.contenedor);
+            this.Controls.Add(this.lblusuario);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menu);
             this.Controls.Add(this.menutitulo);
@@ -174,6 +216,7 @@
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Gestion de Obras";
+            this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
             this.ResumeLayout(false);
@@ -186,12 +229,15 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.MenuStrip menutitulo;
         private System.Windows.Forms.Label label1;
-        private FontAwesome.Sharp.IconMenuItem menucomprobantes;
-        private FontAwesome.Sharp.IconMenuItem menuusarios;
-        private FontAwesome.Sharp.IconMenuItem menupermisos;
-        private FontAwesome.Sharp.IconMenuItem menuclientes;
-        private FontAwesome.Sharp.IconMenuItem menuproductos;
-        private FontAwesome.Sharp.IconMenuItem menupresupuestos;
+        private FontAwesome.Sharp.IconMenuItem menucomprobante;
+        private FontAwesome.Sharp.IconMenuItem menuusuario;
+        private FontAwesome.Sharp.IconMenuItem menupermiso;
+        private FontAwesome.Sharp.IconMenuItem menucliente;
+        private FontAwesome.Sharp.IconMenuItem menuproducto;
+        private FontAwesome.Sharp.IconMenuItem menupresupuesto;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblusuario;
+        private System.Windows.Forms.Panel contenedor;
     }
 }
 

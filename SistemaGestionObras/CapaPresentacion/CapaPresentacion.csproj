@@ -53,6 +53,42 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmCliente.Designer.cs">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmComprobante.Designer.cs">
+      <DependentUpon>frmComprobante.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPermiso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPermiso.Designer.cs">
+      <DependentUpon>frmPermiso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPresupuesto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPresupuesto.Designer.cs">
+      <DependentUpon>frmPresupuesto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmProducto.Designer.cs">
+      <DependentUpon>frmProducto.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmUsuario.Designer.cs">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -67,6 +103,24 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="frmCliente.resx">
+      <DependentUpon>frmCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmComprobante.resx">
+      <DependentUpon>frmComprobante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPermiso.resx">
+      <DependentUpon>frmPermiso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPresupuesto.resx">
+      <DependentUpon>frmPresupuesto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmProducto.resx">
+      <DependentUpon>frmProducto.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmUsuario.resx">
+      <DependentUpon>frmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Inicio.resx">
       <DependentUpon>Inicio.cs</DependentUpon>
     </EmbeddedResource>

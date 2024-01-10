@@ -6,22 +6,15 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class GrupoPermiso
+    public class GrupoPermiso : Componente
     {
-        #region Constructor
-        public GrupoPermiso()
-        {
-            oComponente = new Componente();
-        }
-        #endregion
-
         #region Variables Privadas
-        private Componente componente;
+        private int idGrupoPermiso;
         private string nombreGrupo;
         #endregion
 
         #region Propiedades
-        public Componente oComponente { get { return componente; } set { componente = value; } }
+        public int IdGrupoPermiso { get { return idGrupoPermiso; } set { idGrupoPermiso = value; } }
         public string NombreGrupo { get {  return nombreGrupo; } set {  nombreGrupo = value; } }
         #endregion
     }

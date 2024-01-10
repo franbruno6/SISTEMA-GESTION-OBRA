@@ -6,17 +6,11 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class Usuario
+    public class Usuario : Persona
     {
-        #region Constructor
-        public Usuario() { 
-            oPersona = new Persona();
-        }
-        #endregion
-
         #region Variables Privadas
         private int idUsuario;
-        private Persona persona;
+        private List<Componente> componentes { get; set; }
         private string clave;
         private bool estado;
         private string fecharegistro;
@@ -24,7 +18,7 @@ namespace CapaEntidad
 
         #region Propiedades
         public int IdUsuario { get { return idUsuario; } set { idUsuario = value; } }
-        public Persona oPersona { get { return persona; } set {  persona = value; } }
+        public List<Componente> Componentes { get { return componentes; } set { componentes = value; } }
         public string Clave { get {  return clave; } set {  clave = value; } }
         public bool Estado { get { return estado; } set {  estado = value; } }
         public string FechaRegistro { get {  return fecharegistro; } set {  fecharegistro = value; } }
