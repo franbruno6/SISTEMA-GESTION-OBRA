@@ -51,7 +51,6 @@ namespace CapaDatos
         }
         private List<Permiso> DiferenciarComponentes(List<Componente> listaComponentes)
         {
-            List<Componente> listaComponentesDiferenciados = new List<Componente>();
             List<Permiso> listaPermisos = new List<Permiso>();
             List<Componente> listaPermisoComponente = new List<Componente>();
             List<Componente> listaGrupoPermisoComponente = new List<Componente>();
@@ -73,41 +72,38 @@ namespace CapaDatos
 
                 foreach (Componente componentePermiso in listaPermisoComponente)
                 {
-                    if (componentePermiso.TipoComponente == "Permiso")
+                    using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
                     {
-                        using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+                        try
                         {
-                            try
+                            StringBuilder query = new StringBuilder();
+                            query.AppendLine("select IdPermiso, NombreMenu ");
+                            query.AppendLine("from Permiso ");
+                            query.AppendLine("inner join Componente on Permiso.IdPermiso = Componente.IdComponente ");
+                            query.AppendLine("where IdPermiso = @IdPermiso");
+
+                            SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                            cmd.Parameters.AddWithValue("IdPermiso", componentePermiso.IdComponente);
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
                             {
-                                StringBuilder query = new StringBuilder();
-                                query.AppendLine("select IdPermiso, NombreMenu ");
-                                query.AppendLine("from Permiso ");
-                                query.AppendLine("inner join Componente on Permiso.IdPermiso = Componente.IdComponente ");
-                                query.AppendLine("where IdPermiso = @IdPermiso");
-
-                                SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                                cmd.Parameters.AddWithValue("IdPermiso", componentePermiso.IdComponente);
-
-                                SqlDataReader dr = cmd.ExecuteReader();
-                                while (dr.Read())
+                                Permiso permiso = new Permiso()
                                 {
-                                    Permiso permiso = new Permiso()
-                                    {
-                                        IdComponente = componentePermiso.IdComponente,
-                                        Nombre = componentePermiso.Nombre,
-                                        TipoComponente = componentePermiso.TipoComponente,
-                                        Estado = componentePermiso.Estado,
-                                        IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
-                                        NombreMenu = dr["NombreMenu"].ToString()
-                                    };
-                                    listaPermisos.Add(permiso);
-                                }
-                                DataAccessObject.CerrarConexion();
+                                    IdComponente = componentePermiso.IdComponente,
+                                    Nombre = componentePermiso.Nombre,
+                                    TipoComponente = componentePermiso.TipoComponente,
+                                    Estado = componentePermiso.Estado,
+                                    IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
+                                    NombreMenu = dr["NombreMenu"].ToString()
+                                };
+                                listaPermisos.Add(permiso);
                             }
-                            catch (Exception ex)
-                            {
-                                throw new Exception("Hay un error en la base de datos " + ex.Message);
-                            }
+                            DataAccessObject.CerrarConexion();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Hay un error en la base de datos " + ex.Message);
                         }
                     }
                 }
