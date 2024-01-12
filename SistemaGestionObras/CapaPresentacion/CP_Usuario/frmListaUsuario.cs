@@ -51,5 +51,38 @@ namespace CapaPresentacion
                     );
             }
         }
+
+        private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                e.PaintBackground(e.ClipBounds, true);
+
+                var w = Properties.Resources.check.Width;
+                var h = Properties.Resources.check.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+
+        private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int indice = e.RowIndex;
+
+            if (indice >= 0)
+            {
+                txtid.Text = datagridview.Rows[indice].Cells["idUsuario"].Value.ToString();
+            }
+        }
     }
 }
