@@ -23,5 +23,27 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
+        public int AgregarUsuario(Usuario oUsuario, out string mensaje)
+        {
+            try
+            {
+                return oCD_Usuario.AgregarUsuario(oUsuario, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool EditarUsuario(Usuario oUsuario, out string mensaje)
+        {
+            try
+            {
+                return oCD_Usuario.EditarUsuario(oUsuario, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

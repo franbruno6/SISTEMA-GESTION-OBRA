@@ -1,12 +1,12 @@
-create database SistemaGestionObra
+create database DB_SGO
 go
 
-use SistemaGestionObra
+use DB_SGO
 go
 
 create table Persona(
 IdPersona int primary key identity,
-NombreCompleto nvarchar(100) not null,
+NombreCompleto nvarchar(100),
 Correo nvarchar(100),
 Documento nvarchar(60)
 )
@@ -15,35 +15,36 @@ go
 /*--------MODULO DE SEGURIDAD--------*/
 create table Usuario(
 IdUsuario int primary key identity,
-IdPersona int not null,
-Clave nvarchar(400) not null,
+IdPersona int,
+Clave nvarchar(400),
 Estado bit,
-FechaRegistro datetime default getdate(),
 foreign key (IdPersona) references Persona(IdPersona)
 )
 go
 
 create table Componente(
 IdComponente int primary key identity,
-Nombre nvarchar(60) not null,
-TipoComponente nvarchar(20) not null,
+Nombre nvarchar(60),
+TipoComponente nvarchar(20),
 Estado bit
 )
 go
 
 --TABLA PERMISO (HEREDA DE COMPONENTE)--
 create table Permiso(
-IdPermiso int primary key,
+IdPermiso int primary key identity,
+IdComponente int,
 NombreMenu nvarchar(100) not null,
-foreign key (IdPermiso) references Componente(IdComponente)
+foreign key (IdComponente) references Componente(IdComponente)
 )
 go
 
 --TABLA GRUPOPERMISO (HEREDA DE COMPONENTE)--
 create table GrupoPermiso(
-IdGrupoPermiso int primary key,
-NombreGrupo nvarchar(60) not null
-foreign key (IdGrupoPermiso) references Componente(IdComponente)
+IdGrupoPermiso int primary key identity,
+IdComponente int,
+NombreGrupo nvarchar(60)
+foreign key (IdComponente) references Componente(IdComponente)
 )
 go
 

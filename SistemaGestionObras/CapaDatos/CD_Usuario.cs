@@ -19,7 +19,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdUsuario,Clave,Estado,FechaRegistro,");
+                    query.AppendLine("select IdUsuario,Clave,Estado,");
                     query.AppendLine("Persona.IdPersona,Persona.NombreCompleto,Persona.Correo,Persona.Documento ");
                     query.AppendLine("from Usuario ");
                     query.AppendLine("inner join Persona on Usuario.IdPersona = Persona.IdPersona");
@@ -34,7 +34,7 @@ namespace CapaDatos
                         usuario.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
                         usuario.Clave = dr["Clave"].ToString();
                         usuario.Estado = Convert.ToBoolean(dr["Estado"]);
-                        usuario.FechaRegistro = dr["FechaRegistro"].ToString();
+                        usuario.IdPersona = Convert.ToInt32(dr["IdPersona"]);
                         usuario.NombreCompleto = dr["NombreCompleto"].ToString();
                         usuario.Correo = dr["Correo"].ToString();
                         usuario.Documento = dr["Documento"].ToString();
@@ -49,6 +49,84 @@ namespace CapaDatos
                 }
             }
             return listaUsuarios;
+        }
+        public int AgregarUsuario(Usuario oUsuario, out string mensaje)
+        {
+            int idUsuarioRegistrado = 0;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_RegistrarUsuario", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("NombreCompleto", oUsuario.NombreCompleto);
+                    cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
+                    cmd.Parameters.AddWithValue("Documento", oUsuario.Documento);
+                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
+                    //PARAMETRO DE SALIDA
+                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("IdUsuarioRegistrado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    //TIPO DE COMANDO
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+
+                    idUsuarioRegistrado = Convert.ToInt32(cmd.Parameters["IdUsuarioRegistrado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                    DataAccessObject.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+                    idUsuarioRegistrado = 0;
+                    mensaje = ex.Message;
+                }
+            }
+            return idUsuarioRegistrado;
+        }
+        public bool EditarUsuario(Usuario oUsuario, out string mensaje)
+        {
+            bool usuarioEditado = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EditarUsuario", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdUsuario", oUsuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("IdPersona", oUsuario.IdPersona);
+                    cmd.Parameters.AddWithValue("NombreCompleto", oUsuario.NombreCompleto);
+                    cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
+                    cmd.Parameters.AddWithValue("Documento", oUsuario.Documento);
+                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
+                    //PARAMETRO DE SALIDA
+                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    //TIPO DE COMANDO
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+
+                    usuarioEditado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                    DataAccessObject.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+                    usuarioEditado = false;
+                    mensaje = ex.Message;
+                }
+            }
+            return usuarioEditado;
         }
     }
 }

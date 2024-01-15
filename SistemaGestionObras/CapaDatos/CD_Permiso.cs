@@ -1,5 +1,6 @@
 ﻿using CapaEntidad;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -79,11 +80,11 @@ namespace CapaDatos
                             StringBuilder query = new StringBuilder();
                             query.AppendLine("select IdPermiso, NombreMenu ");
                             query.AppendLine("from Permiso ");
-                            query.AppendLine("inner join Componente on Permiso.IdPermiso = Componente.IdComponente ");
-                            query.AppendLine("where IdPermiso = @IdPermiso");
+                            query.AppendLine("inner join Componente on Permiso.IdComponente = Componente.IdComponente ");
+                            query.AppendLine("where Permiso.IdComponente = @IdComponente");
 
                             SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                            cmd.Parameters.AddWithValue("IdPermiso", componentePermiso.IdComponente);
+                            cmd.Parameters.AddWithValue("IdComponente", componentePermiso.IdComponente);
 
                             SqlDataReader dr = cmd.ExecuteReader();
                             while (dr.Read())
@@ -110,6 +111,33 @@ namespace CapaDatos
 
                 foreach (Componente componenteGrupoPermiso in listaGrupoPermisoComponente)
                 {
+                    string idGrupoPermiso = "";
+                    using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+                    {
+                        try
+                        {
+
+                            StringBuilder query = new StringBuilder();
+                            query.AppendLine("select GrupoPermiso.IdGrupoPermiso, Nombre ");
+                            query.AppendLine("from GrupoPermiso ");
+                            query.AppendLine("inner join Componente on GrupoPermiso.IdComponente = Componente.IdComponente ");
+                            query.AppendLine("where GrupoPermiso.IdComponente = @IdComponente");
+
+                            SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                            cmd.Parameters.AddWithValue("IdComponente", componenteGrupoPermiso.IdComponente);
+
+                            SqlDataReader dr = cmd.ExecuteReader();
+                            while (dr.Read())
+                            {
+                                idGrupoPermiso = dr["IdGrupoPermiso"].ToString();
+                            }
+                            DataAccessObject.CerrarConexion();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception("Hay un error en la base de datos " + ex.Message);
+                        }
+                    }
                     using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
                     {
                         try
@@ -117,11 +145,11 @@ namespace CapaDatos
                             StringBuilder query = new StringBuilder();
                             query.AppendLine("select Componente.IdComponente, Nombre, TipoComponente, Estado ");
                             query.AppendLine("from Componente ");
-                            query.AppendLine("inner join GrupoPermisoComponente on Componente.IdComponente = GrupoPermisoComponente.IdComponente ");
-                            query.AppendLine("where IdGrupoPermiso = @IdComponente");
+                            query.AppendLine("inner join GrupoPermisoComponente on GrupoPermisoComponente.IdComponente = Componente.IdComponente ");
+                            query.AppendLine("where GrupoPermisoComponente.IdGrupoPermiso = @IdGrupoPermiso ");
 
                             SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                            cmd.Parameters.AddWithValue("IdComponente", componenteGrupoPermiso.IdComponente);
+                            cmd.Parameters.AddWithValue("IdGrupoPermiso", idGrupoPermiso);
 
                             SqlDataReader dr = cmd.ExecuteReader();
                             while (dr.Read())

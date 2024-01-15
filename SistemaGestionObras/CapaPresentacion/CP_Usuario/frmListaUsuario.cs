@@ -19,7 +19,7 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
+        public event EventHandler<string> UsuarioSeleccionado;
         private void frmListaUsuario_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -50,8 +50,10 @@ namespace CapaPresentacion
                     oUsuario.Estado == true ? "Activo" : "Inactivo" 
                     );
             }
-        }
 
+            //CONFIGURA QUE NO ESTE SELECCIONADA NINGUNA FILA
+            datagridview.ClearSelection();
+        }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
             if (e.RowIndex < 0)
@@ -74,7 +76,6 @@ namespace CapaPresentacion
                 e.Handled = true;
             }
         }
-
         private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             int indice = e.RowIndex;
@@ -82,6 +83,7 @@ namespace CapaPresentacion
             if (indice >= 0)
             {
                 txtid.Text = datagridview.Rows[indice].Cells["idUsuario"].Value.ToString();
+                UsuarioSeleccionado?.Invoke(this, txtid.Text);
             }
         }
     }
