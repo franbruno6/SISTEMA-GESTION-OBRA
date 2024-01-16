@@ -135,5 +135,48 @@ go
 
 
 --PROCEDURE ELIMINAR USUARIO--
-select * from Persona
-select * from Usuario
+create procedure SP_EliminarUsuario(
+@IdUsuario int,
+@IdPersona int,
+@Mensaje nvarchar(400) output,
+@Resultado bit output
+)
+as
+begin
+	set @Resultado = 0;
+    set @Mensaje = '';
+	declare @pasoreglas bit = 1
+
+	if exists (
+		select * from Presupuesto
+		inner join Usuario on Presupuesto.IdUsuario = Usuario.IdUsuario
+		where Presupuesto.IdUsuario = @IdUsuario
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El usuario se encuentra ligado a un presupuesto.\n'
+		set @pasoreglas = 0
+	end
+
+	if exists (
+		select * from ComprobanteObra
+		inner join Usuario on ComprobanteObra.IdUsuario = Usuario.IdUsuario
+		where ComprobanteObra.IdUsuario = @IdUsuario
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El usuario se encuentra ligado a un comprobante de obra.\n'
+		set @pasoreglas = 0
+	end
+
+	if (@pasoreglas = 1)
+	begin
+		delete from Usuario where IdUsuario = @IdUsuario
+		delete from Persona where IdPersona = @IdPersona
+		set @Resultado = 1
+	end
+end;
+go
+
+
+

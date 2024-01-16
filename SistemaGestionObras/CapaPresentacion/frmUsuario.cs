@@ -39,25 +39,7 @@ namespace CapaPresentacion
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
 
-            //MOSTRAR LOS USUARIOS
-            List<Usuario> listaUsuarios = new CC_Usuario().ListarUsuarios();
-
-            foreach (Usuario oUsuario in listaUsuarios)
-            {
-                datagridview.Rows.Add(
-                    "",
-                    oUsuario.IdUsuario,
-                    oUsuario.NombreCompleto,
-                    oUsuario.Correo,
-                    oUsuario.Documento,
-                    oUsuario.Clave,
-                    oUsuario.Estado == true ? 1 : 0,
-                    oUsuario.Estado == true ? "Activo" : "Inactivo"
-                    );
-            }
-
-            //CONFIGURA QUE NO ESTE SELECCIONADA NINGUNA FILA
-            datagridview.ClearSelection();
+            btnactualizar_Click(sender, e);
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -88,6 +70,7 @@ namespace CapaPresentacion
             if (indice >= 0)
             {
                 txtid.Text = datagridview.Rows[indice].Cells["idUsuario"].Value.ToString();
+                txtidpersona.Text = datagridview.Rows[indice].Cells["idPersona"].Value.ToString();
             }
         }
         private void AbrirFormulario(Form formulario)
@@ -120,12 +103,10 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void menuagregarusuario_Click(object sender, EventArgs e)
         {
             AbrirFormulario(new frmDetalleUsuario("Agregar", 0));
         }
-
         private void menumodificarusuario_Click(object sender, EventArgs e)
         {
             if (txtid.Text != "")
@@ -137,7 +118,40 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
+        private void menurestablecerclave_Click(object sender, EventArgs e)
+        {
+            if(txtid.Text != "")
+            {
+                AbrirFormulario(new frmDetalleUsuario("RestablacerClave", Convert.ToInt32(txtid.Text)));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void menueliminarusuario_Click(object sender, EventArgs e)
+        {
+            if(txtid.Text != "")
+            {
+                if (MessageBox.Show("¿Está seguro de eliminar el usuario?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
 
+                    bool eliminado = new CC_Usuario().EliminarUsuario(Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpersona.Text), out mensaje);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Usuario eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(sender, e);
+                        txtid.Text = "";
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
@@ -150,10 +164,10 @@ namespace CapaPresentacion
                 datagridview.Rows.Add(
                     "",
                     oUsuario.IdUsuario,
+                    oUsuario.IdPersona,
                     oUsuario.NombreCompleto,
                     oUsuario.Correo,
                     oUsuario.Documento,
-                    oUsuario.Clave,
                     oUsuario.Estado == true ? 1 : 0,
                     oUsuario.Estado == true ? "Activo" : "Inactivo"
                     );
@@ -161,22 +175,40 @@ namespace CapaPresentacion
 
             //CONFIGURA QUE NO ESTE SELECCIONADA NINGUNA FILA
             datagridview.ClearSelection();
-        }
 
+            txtid.Text = "";
+        }
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-        }
+            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
 
-        private void menurestablecerclave_Click(object sender, EventArgs e)
+            if (datagridview.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in datagridview.Rows)
+                {
+                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                    {
+                        fila.Visible = true;
+                    }
+                    else
+                    {
+                        fila.Visible = false;
+                    }
+                }
+            }
+        }
+        private void btnlimpiar_Click(object sender, EventArgs e)
         {
-            if(txtid.Text != "")
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
             {
-                AbrirFormulario(new frmDetalleUsuario("RestablacerClave", Convert.ToInt32(txtid.Text)));
+                fila.Visible = true;
             }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            }
+        }
+        private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            menuverusuario_Click(sender, e);
         }
     }
 }

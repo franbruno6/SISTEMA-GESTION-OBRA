@@ -25,12 +25,11 @@ namespace CapaPresentacion
         }
         private void btningresar_Click(object sender, EventArgs e)
         {
-
             Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text).FirstOrDefault();
 
             if (oUsuario != null)
             {
-                bool claveCorrecta = Usuario.VerificarClaveHash(txtclave.Text, oUsuario.Clave);
+                bool claveCorrecta = oUsuario.VerificarClave(txtclave.Text);
 
                 if (claveCorrecta)
                 {

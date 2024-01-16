@@ -23,11 +23,11 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
-        public int AgregarUsuario(Usuario oUsuario, out string mensaje)
+        public int AgregarUsuario(Usuario oUsuario, string clave, out string mensaje)
         {
             try
             {
-                return oCD_Usuario.AgregarUsuario(oUsuario, out mensaje);
+                return oCD_Usuario.AgregarUsuario(oUsuario, clave, out mensaje);
             }
             catch (Exception ex)
             {
@@ -50,6 +50,17 @@ namespace CapaControladora
             try
             {
                 return oCD_Usuario.RestablecerClave(idUsuario, clave, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool EliminarUsuario(int idUsuario, int idPersona, out string mensaje)
+        {
+            try
+            {
+                return oCD_Usuario.EliminarUsuario(idUsuario, idPersona, out mensaje);
             }
             catch (Exception ex)
             {

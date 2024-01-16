@@ -28,7 +28,7 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void frmDetalleUsuario_Load(object sender, EventArgs e)
         {
-            configurarFormulario();
+            ConfigurarFormulario();
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
@@ -47,68 +47,78 @@ namespace CapaPresentacion.CP_Usuario
                     return;
                 }
             }
-            if (_tipoFormulario == "Agregar")
+            switch (_tipoFormulario)
             {
-                string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
-                
-                int idUsuarioRegistrado = oCC_Usuario.AgregarUsuario(new Usuario()
-                {
-                    NombreCompleto = txtnombrecompleto.Text,
-                    Documento = txtdocumento.Text,
-                    Correo = txtcorreo.Text,
-                    Clave = claveHash,
-                    Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
-                }, out string mensaje);
-
-                if (idUsuarioRegistrado > 0)
-                {
-                    MessageBox.Show("Usuario registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            if (_tipoFormulario == "Editar")
-            {
-                bool usuarioEditado = oCC_Usuario.EditarUsuario(new Usuario()
-                {
-                    IdUsuario = _idUsuario,
-                    IdPersona = oUsuario.IdPersona,
-                    NombreCompleto = txtnombrecompleto.Text,
-                    Documento = txtdocumento.Text,
-                    Correo = txtcorreo.Text,
-                    Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
-                }, out string mensaje);
-
-                if (usuarioEditado)
-                {
-                    MessageBox.Show("Usuario editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            if (_tipoFormulario == "RestablacerClave")
-            {
-                string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
-                bool claveRestablecida = oCC_Usuario.RestablecerClave(_idUsuario, claveHash, out string mensaje);
-
-                if (claveRestablecida)
-                {
-                    MessageBox.Show("Clave restablecida correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                case "Agregar":
+                    AgregarUsuario();
+                    break;
+                case "Editar":
+                    EditarUsuario();
+                    break;
+                case "RestablacerClave":
+                    RestablecerClave();
+                    break;
             }
         }
-        private void configurarFormulario()
+        private void AgregarUsuario() {
+            string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
+
+            int idUsuarioRegistrado = oCC_Usuario.AgregarUsuario(new Usuario()
+            {
+                NombreCompleto = txtnombrecompleto.Text,
+                Documento = txtdocumento.Text,
+                Correo = txtcorreo.Text,
+                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
+            }, claveHash, out string mensaje);
+
+            if (idUsuarioRegistrado > 0)
+            {
+                MessageBox.Show("Usuario registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void EditarUsuario()
+        {
+            bool usuarioEditado = oCC_Usuario.EditarUsuario(new Usuario()
+            {
+                IdUsuario = _idUsuario,
+                IdPersona = oUsuario.IdPersona,
+                NombreCompleto = txtnombrecompleto.Text,
+                Documento = txtdocumento.Text,
+                Correo = txtcorreo.Text,
+                Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
+            }, out string mensaje);
+
+            if (usuarioEditado)
+            {
+                MessageBox.Show("Usuario editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void RestablecerClave()
+        {
+            string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
+            bool claveRestablecida = oCC_Usuario.RestablecerClave(_idUsuario, claveHash, out string mensaje);
+
+            if (claveRestablecida)
+            {
+                MessageBox.Show("Clave restablecida correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ConfigurarFormulario()
         {
             cboestado.Items.Add(new OpcionCombo(1, "Activo"));
             cboestado.Items.Add(new OpcionCombo(0, "Inactivo"));
@@ -116,77 +126,88 @@ namespace CapaPresentacion.CP_Usuario
             cboestado.DisplayMember = "Texto";
             cboestado.ValueMember = "Valor";
 
-            if (_tipoFormulario == "VerDetalle")
+            switch (_tipoFormulario)
             {
-                txtnombrecompleto.Enabled = false;
-                txtdocumento.Enabled = false;
-                txtcorreo.Enabled = false;
-                cboestado.Enabled = false;
-                btnaccion.Visible = false;
+                case "VerDetalle":
+                    ConfigurarVerDetalle();
+                    break;
+                case "Agregar":
+                    ConfigurarAgregar();
+                    break;
+                case "Editar":
+                    ConfigurarEditar();
+                    break;
+                case "RestablacerClave":
+                    ConfigurarRestablecerClave();
+                    break;
+            }
+        }
+        private void ConfigurarVerDetalle()
+        {
+            txtnombrecompleto.Enabled = false;
+            txtdocumento.Enabled = false;
+            txtcorreo.Enabled = false;
+            cboestado.Enabled = false;
+            btnaccion.Visible = false;
 
-                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
-                txtdocumento.Text = oUsuario.Documento.ToString();
-                txtcorreo.Text = oUsuario.Correo.ToString();
-                foreach (OpcionCombo opcion in cboestado.Items)
+            txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
+            txtdocumento.Text = oUsuario.Documento.ToString();
+            txtcorreo.Text = oUsuario.Correo.ToString();
+            foreach (OpcionCombo opcion in cboestado.Items)
+            {
+                if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
                 {
-                    if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
-                    {
-                        int indiceCombo = cboestado.Items.IndexOf(opcion);
-                        cboestado.SelectedIndex = indiceCombo;
-                        break;
-                    }
+                    int indiceCombo = cboestado.Items.IndexOf(opcion);
+                    cboestado.SelectedIndex = indiceCombo;
+                    break;
                 }
-                return;
             }
-            if (_tipoFormulario == "Agregar")
-            {
-                lblsubtitulo.Text = "Agregar Usuario";
-                panelclave.Visible = true;
-                btnaccion.Text = "Agregar";
-                return;
-            }
-            if (_tipoFormulario == "Editar")
-            {
-                lblsubtitulo.Text = "Editar Usuario";
-                btnaccion.Text = "Editar";
+        }
+        private void ConfigurarAgregar()
+        {
+            lblsubtitulo.Text = "Agregar Usuario";
+            panelclave.Visible = true;
+            btnaccion.Text = "Agregar";
+        }
+        private void ConfigurarEditar()
+        {
+            lblsubtitulo.Text = "Editar Usuario";
+            btnaccion.Text = "Editar";
 
-                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
-                txtdocumento.Text = oUsuario.Documento.ToString();
-                txtcorreo.Text = oUsuario.Correo.ToString();
-                foreach (OpcionCombo opcion in cboestado.Items)
+            txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
+            txtdocumento.Text = oUsuario.Documento.ToString();
+            txtcorreo.Text = oUsuario.Correo.ToString();
+            foreach (OpcionCombo opcion in cboestado.Items)
+            {
+                if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
                 {
-                    if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
-                    {
-                        int indiceCombo = cboestado.Items.IndexOf(opcion);
-                        cboestado.SelectedIndex = indiceCombo;
-                        break;
-                    }
+                    int indiceCombo = cboestado.Items.IndexOf(opcion);
+                    cboestado.SelectedIndex = indiceCombo;
+                    break;
                 }
-                return;
             }
-            if (_tipoFormulario == "RestablacerClave")
-            {
-                lblsubtitulo.Text = "Restablecer Clave";
+        }
+        private void ConfigurarRestablecerClave()
+        {
+            lblsubtitulo.Text = "Restablecer Clave";
 
-                panelclave.Visible = true;
-                btnaccion.Text = "Restablecer Clave";
-                panelclave.BringToFront();
-                panelclave.Location = new Point(13, 194);
-                btnaccion.BringToFront();
+            panelclave.Visible = true;
+            btnaccion.Text = "Restablecer Clave";
+            panelclave.BringToFront();
+            panelclave.Location = new Point(13, 194);
+            btnaccion.BringToFront();
 
-                txtnombrecompleto.Visible = false;
-                txtcorreo.Visible= false;
-                txtdocumento.Visible = false;
-                cboestado.Visible = false;
-                lblnombrecompleto.Visible = false;
-                lbldocumento.Visible = false;
-                lblcorreo.Visible = false;
-                lblestado.Visible = false;
+            txtnombrecompleto.Visible = false;
+            txtcorreo.Visible = false;
+            txtdocumento.Visible = false;
+            cboestado.Visible = false;
+            lblnombrecompleto.Visible = false;
+            lbldocumento.Visible = false;
+            lblcorreo.Visible = false;
+            lblestado.Visible = false;
 
-                btnaccion.IconChar = FontAwesome.Sharp.IconChar.Key;
-                btnaccion.Text = "Restablecer Contraseña";
-                return;
-            }
+            btnaccion.IconChar = FontAwesome.Sharp.IconChar.Key;
+            btnaccion.Text = "Restablecer Contraseña";
         }
         private bool ValidarCamposClaves()
         {

@@ -32,7 +32,7 @@ namespace CapaDatos
                     {
                         Usuario usuario = new Usuario();
                         usuario.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                        usuario.Clave = (dr["Clave"].ToString());
+                        usuario.SetClave(dr["Clave"].ToString());
                         usuario.Estado = Convert.ToBoolean(dr["Estado"]);
                         usuario.IdPersona = Convert.ToInt32(dr["IdPersona"]);
                         usuario.NombreCompleto = dr["NombreCompleto"].ToString();
@@ -50,7 +50,7 @@ namespace CapaDatos
             }
             return listaUsuarios;
         }
-        public int AgregarUsuario(Usuario oUsuario, out string mensaje)
+        public int AgregarUsuario(Usuario oUsuario, string clave, out string mensaje)
         {
             int idUsuarioRegistrado = 0;
             mensaje = string.Empty;
@@ -65,7 +65,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("NombreCompleto", oUsuario.NombreCompleto);
                     cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
                     cmd.Parameters.AddWithValue("Documento", oUsuario.Documento);
-                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
+                    cmd.Parameters.AddWithValue("Clave", clave);
                     cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
                     //PARAMETRO DE SALIDA
                     cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
@@ -161,6 +161,41 @@ namespace CapaDatos
                 }
             }
             return claveRestablecida;
+        }
+        public bool EliminarUsuario (int idUsuario, int idPersona, out string mensaje)
+        {
+            bool usuarioEliminado = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EliminarUsuario", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("IdPersona", idPersona);
+                    //PARAMETRO DE SALIDA
+                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    //TIPO DE COMANDO
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+
+                    usuarioEliminado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                    DataAccessObject.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+                    usuarioEliminado = false;
+                    mensaje = ex.Message;
+                }
+            }
+            return usuarioEliminado;
         }
     }
 }

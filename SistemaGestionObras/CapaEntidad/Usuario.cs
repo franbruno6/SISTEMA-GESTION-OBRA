@@ -17,29 +17,13 @@ namespace CapaEntidad
 
         #region Propiedades
         public int IdUsuario { get { return idUsuario; } set { idUsuario = value; } }
-        //public void SetClave(string clave)
-        //{
-        //    this.clave = clave;
-        //}
-
-        public string Clave { get { return clave; } set { clave = value; } }
+        public void SetClave(string clave)
+        {
+            this.clave = clave;
+        }
         public bool Estado { get { return estado; } set {  estado = value; } }
         #endregion
 
-        private static string GenerarSaltoAleatorio()
-        {
-            string salto = string.Empty;
-            //RANDOM GENERA NUMEROS ALEATORIOS
-            Random r = new Random();
-            //GENERA ALEATORIAMENTE ENTRE 10 Y 19 CARACTERES
-            int longitud = r.Next(10, 20);
-            //GENERA ALEATORIAMENTE ENTRE 33 Y 126 CARACTERES CARACTERES IMPRIMIBLES ASCII
-            for (int i = 0; i < longitud; i++)
-            {
-                salto += (char)r.Next(33, 126);
-            }
-            return salto;
-        }
         public static string GenerarClaveHash(string clave)
         {
             //GENERAR UN SALTO UNICO PARA LA CLAVE
@@ -64,9 +48,10 @@ namespace CapaEntidad
                 return builder.ToString() + "|" + salto;
             }
         }
-        public static bool VerificarClaveHash(string clave, string claveHash)
+        public bool VerificarClave(string claveIngresada)
         {
             //SEPARA EL HASH DEL SALTO
+            string claveHash = this.clave;
             string[] claveHashSplit = claveHash.Split('|');
             string claveHashSinSalto = string.Empty;
             string salto = string.Empty;
@@ -83,7 +68,7 @@ namespace CapaEntidad
             }
 
             //GENERA UN HASH CON LA CLAVE Y EL SALTO
-            string claveSalto = clave + salto;
+            string claveSalto = claveIngresada + salto;
 
             using (SHA256 sha256Hash = SHA256.Create())
             {
@@ -99,6 +84,20 @@ namespace CapaEntidad
                 }
                 return builder.ToString() == claveHashSinSalto;
             }
+        }
+        private static string GenerarSaltoAleatorio()
+        {
+            string salto = string.Empty;
+            //RANDOM GENERA NUMEROS ALEATORIOS
+            Random r = new Random();
+            //GENERA ALEATORIAMENTE ENTRE 10 Y 19 CARACTERES
+            int longitud = r.Next(10, 20);
+            //GENERA ALEATORIAMENTE ENTRE 33 Y 126 CARACTERES CARACTERES IMPRIMIBLES ASCII
+            for (int i = 0; i < longitud; i++)
+            {
+                salto += (char)r.Next(33, 126);
+            }
+            return salto;
         }
     }
 }
