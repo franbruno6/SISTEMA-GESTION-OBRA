@@ -17,6 +17,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     StringBuilder query = new StringBuilder();
@@ -40,14 +41,15 @@ namespace CapaDatos
 
                         listaComponentes.Add(componente);
                     }
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
                     List<Permiso> listaPermisos = new List<Permiso>();
+                    DataAccessObject.CerrarConexion();
                     return listaPermisos;
                 }
             }
+            DataAccessObject.CerrarConexion();
             return DiferenciarComponentes(listaComponentes);
         }
         private List<Permiso> DiferenciarComponentes(List<Componente> listaComponentes)
@@ -75,6 +77,7 @@ namespace CapaDatos
                 {
                     using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
                     {
+                        DataAccessObject.ObtenerConexion();
                         try
                         {
                             StringBuilder query = new StringBuilder();
@@ -100,12 +103,12 @@ namespace CapaDatos
                                 };
                                 listaPermisos.Add(permiso);
                             }
-                            DataAccessObject.CerrarConexion();
                         }
                         catch (Exception ex)
                         {
                             throw new Exception("Hay un error en la base de datos " + ex.Message);
                         }
+                        DataAccessObject.CerrarConexion();
                     }
                 }
 
@@ -114,9 +117,9 @@ namespace CapaDatos
                     string idGrupoPermiso = "";
                     using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
                     {
+                        DataAccessObject.ObtenerConexion();
                         try
                         {
-
                             StringBuilder query = new StringBuilder();
                             query.AppendLine("select GrupoPermiso.IdGrupoPermiso, Nombre ");
                             query.AppendLine("from GrupoPermiso ");
@@ -131,15 +134,16 @@ namespace CapaDatos
                             {
                                 idGrupoPermiso = dr["IdGrupoPermiso"].ToString();
                             }
-                            DataAccessObject.CerrarConexion();
                         }
                         catch (Exception ex)
                         {
                             throw new Exception("Hay un error en la base de datos " + ex.Message);
                         }
+                        DataAccessObject.CerrarConexion();
                     }
                     using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
                     {
+                        DataAccessObject.ObtenerConexion();
                         try
                         {
                             StringBuilder query = new StringBuilder();
@@ -169,6 +173,7 @@ namespace CapaDatos
                         {
                             throw new Exception("Hay un error en la base de datos " + ex.Message);
                         }
+                        DataAccessObject.CerrarConexion();
                     }
                 }
 
@@ -176,7 +181,7 @@ namespace CapaDatos
                 listaGrupoPermisoComponente.Clear();
 
             }
-            while (listaComponentes.Count != 0) ;
+            while (listaComponentes.Count != 0);
 
             return listaPermisos;
         }

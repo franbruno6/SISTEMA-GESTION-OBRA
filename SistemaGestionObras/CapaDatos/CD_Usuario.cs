@@ -16,6 +16,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     StringBuilder query = new StringBuilder();
@@ -41,13 +42,13 @@ namespace CapaDatos
 
                         listaUsuarios.Add(usuario);
                     }
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
                     listaUsuarios = new List<Usuario>();
                 }
             }
+            DataAccessObject.CerrarConexion();
             return listaUsuarios;
         }
         public int AgregarUsuario(Usuario oUsuario, string clave, out string mensaje)
@@ -57,6 +58,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SP_RegistrarUsuario", conexion);
@@ -77,8 +79,6 @@ namespace CapaDatos
 
                     idUsuarioRegistrado = Convert.ToInt32(cmd.Parameters["IdUsuarioRegistrado"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
@@ -86,6 +86,7 @@ namespace CapaDatos
                     mensaje = ex.Message;
                 }
             }
+            DataAccessObject.CerrarConexion();
             return idUsuarioRegistrado;
         }
         public bool EditarUsuario(Usuario oUsuario, out string mensaje)
@@ -95,6 +96,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SP_EditarUsuario", conexion);
@@ -116,8 +118,6 @@ namespace CapaDatos
 
                     usuarioEditado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
@@ -125,6 +125,7 @@ namespace CapaDatos
                     mensaje = ex.Message;
                 }
             }
+            DataAccessObject.CerrarConexion();
             return usuarioEditado;
         }
         public bool RestablecerClave(int idUsuario, string clave, out string mensaje)
@@ -134,6 +135,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SP_RestablecerClave", conexion);
@@ -151,8 +153,6 @@ namespace CapaDatos
 
                     claveRestablecida = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
@@ -160,6 +160,7 @@ namespace CapaDatos
                     mensaje = ex.Message;
                 }
             }
+            DataAccessObject.CerrarConexion();
             return claveRestablecida;
         }
         public bool EliminarUsuario (int idUsuario, int idPersona, out string mensaje)
@@ -169,6 +170,7 @@ namespace CapaDatos
 
             using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
             {
+                DataAccessObject.ObtenerConexion();
                 try
                 {
                     SqlCommand cmd = new SqlCommand("SP_EliminarUsuario", conexion);
@@ -186,8 +188,6 @@ namespace CapaDatos
 
                     usuarioEliminado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
                     mensaje = cmd.Parameters["Mensaje"].Value.ToString();
-
-                    DataAccessObject.CerrarConexion();
                 }
                 catch (Exception ex)
                 {
@@ -195,6 +195,7 @@ namespace CapaDatos
                     mensaje = ex.Message;
                 }
             }
+            DataAccessObject.CerrarConexion();
             return usuarioEliminado;
         }
     }

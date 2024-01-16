@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace CapaDatos
         {
             try
             {
-                if (conexion == null)
+                if (conexion == null || conexion.State == ConnectionState.Closed)
                 {
                     conexion = new SqlConnection(cadena);
                     conexion.Open();
@@ -32,11 +33,10 @@ namespace CapaDatos
         {
             try
             {
-                if (conexion != null)
+                if (conexion != null && conexion.State == ConnectionState.Open)
                 {
                     conexion.Close();
                     conexion.Dispose();
-                    conexion = null;
                 }
             }
             catch (Exception ex)

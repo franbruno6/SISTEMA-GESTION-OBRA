@@ -24,6 +24,7 @@ namespace CapaEntidad
         public bool Estado { get { return estado; } set {  estado = value; } }
         #endregion
 
+        #region Metodos
         public static string GenerarClaveHash(string clave)
         {
             //GENERAR UN SALTO UNICO PARA LA CLAVE
@@ -99,5 +100,6 @@ namespace CapaEntidad
             }
             return salto;
         }
+        #endregion
     }
 }

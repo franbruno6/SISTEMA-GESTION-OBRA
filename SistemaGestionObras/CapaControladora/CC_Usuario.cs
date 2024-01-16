@@ -45,7 +45,7 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
-        public bool RestablecerClave(int idUsuario, string clave, out string mensaje)
+        public bool RestablecerClave(int idUsuario, string clave, out string mensaje)   
         {
             try
             {
