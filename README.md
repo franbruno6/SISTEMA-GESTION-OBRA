@@ -11,7 +11,7 @@ La aplicación desarrollada es una aplicación de C# en Windows Forms, utilizand
 La arquitectura es de 4 capas las cuales son:
 - Capa de Presentación: Esta capa se encarga de presentar la información al usuario y de recibir las interacciones del usuario.
 - Capa de Entidad: Esta capa se utiliza para definir las entidades que representan los objetos del mundo real en la aplicación.
-- Capa de Negocio: En esta capa, se encuentra la lógica de negocio de la aplicación.
+- Capa Controladora: En esta capa, se encuentra la lógica de negocio de la aplicación.
 - Capa de Datos: Esta capa se encarga de interactuar con la base de datos.
 
 ## Autor

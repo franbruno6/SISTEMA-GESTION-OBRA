@@ -25,19 +25,32 @@ namespace CapaPresentacion
         }
         private void btningresar_Click(object sender, EventArgs e)
         {
-            //List < Usuario > TEST = new CC_Usuario().ListarUsuarios();
 
+            Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text).FirstOrDefault();
 
-            Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text && u.Clave == txtclave.Text).FirstOrDefault();
-            
             if (oUsuario != null)
             {
-                Inicio inicio = new Inicio(oUsuario);
+                bool claveCorrecta = Usuario.VerificarClaveHash(txtclave.Text, oUsuario.Clave);
 
-                inicio.Show();
-                this.Hide();
+                if (claveCorrecta)
+                {
+                    if (oUsuario.Estado == false)
+                    {
+                        MessageBox.Show("El usuario se encuentra inactivo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        return;
+                    }
+                    
+                    Inicio inicio = new Inicio(oUsuario);
 
-                inicio.FormClosing += frm_closing;
+                    inicio.Show();
+                    this.Hide();
+
+                    inicio.FormClosing += frm_closing;
+                }
+                else
+                {
+                    MessageBox.Show("Usuario o clave incorrectos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
             }
             else
             {

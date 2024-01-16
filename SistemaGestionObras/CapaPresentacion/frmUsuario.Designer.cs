@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuverusuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menuagregarusuario = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,6 +41,7 @@
             this.txtid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
+            this.btnactualizar = new FontAwesome.Sharp.IconButton();
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.txtbusqueda = new System.Windows.Forms.TextBox();
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
@@ -57,7 +58,7 @@
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.btnactualizar = new FontAwesome.Sharp.IconButton();
+            this.menurestablecerclave = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -72,13 +73,14 @@
             this.menuverusuario,
             this.menuagregarusuario,
             this.menumodificarusuario,
+            this.menurestablecerclave,
             this.menueliminarusuario});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 430);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 370);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(235, 216);
+            this.menuStrip1.Size = new System.Drawing.Size(235, 276);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -166,6 +168,25 @@
             this.contenedor.Size = new System.Drawing.Size(1333, 646);
             this.contenedor.TabIndex = 2;
             // 
+            // btnactualizar
+            // 
+            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
+            this.btnactualizar.IconColor = System.Drawing.Color.Black;
+            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnactualizar.IconSize = 19;
+            this.btnactualizar.Location = new System.Drawing.Point(1072, 94);
+            this.btnactualizar.Name = "btnactualizar";
+            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
+            this.btnactualizar.TabIndex = 16;
+            this.btnactualizar.Text = "Actualizar Lista";
+            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnactualizar.UseVisualStyleBackColor = false;
+            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
+            // 
             // btnlimpiar
             // 
             this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
@@ -231,15 +252,15 @@
             // 
             this.datagridview.AllowUserToAddRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnseleccionar,
@@ -251,31 +272,31 @@
             this.estado,
             this.estadoValor,
             this.fechaRegistro});
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.DefaultCellStyle = dataGridViewCellStyle6;
             this.datagridview.EnableHeadersVisualStyles = false;
             this.datagridview.GridColor = System.Drawing.SystemColors.Control;
             this.datagridview.Location = new System.Drawing.Point(16, 133);
             this.datagridview.MultiSelect = false;
             this.datagridview.Name = "datagridview";
             this.datagridview.ReadOnly = true;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
-            dataGridViewCellStyle12.Padding = new System.Windows.Forms.Padding(3);
-            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(3);
+            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -360,24 +381,15 @@
             this.lblsubtitulo.Text = "Lista de Usuarios";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btnactualizar
+            // menurestablecerclave
             // 
-            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
-            this.btnactualizar.IconColor = System.Drawing.Color.Black;
-            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnactualizar.IconSize = 19;
-            this.btnactualizar.Location = new System.Drawing.Point(1072, 94);
-            this.btnactualizar.Name = "btnactualizar";
-            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
-            this.btnactualizar.TabIndex = 16;
-            this.btnactualizar.Text = "Actualizar Lista";
-            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnactualizar.UseVisualStyleBackColor = false;
-            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
+            this.menurestablecerclave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menurestablecerclave.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menurestablecerclave.Name = "menurestablecerclave";
+            this.menurestablecerclave.Padding = new System.Windows.Forms.Padding(4);
+            this.menurestablecerclave.Size = new System.Drawing.Size(228, 33);
+            this.menurestablecerclave.Text = "Restablecer Contraseña";
+            this.menurestablecerclave.Click += new System.EventHandler(this.menurestablecerclave_Click);
             // 
             // frmUsuario
             // 
@@ -430,5 +442,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fechaRegistro;
         private System.Windows.Forms.Label lblsubtitulo;
         private FontAwesome.Sharp.IconButton btnactualizar;
+        private System.Windows.Forms.ToolStripMenuItem menurestablecerclave;
     }
 }

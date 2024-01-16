@@ -45,5 +45,16 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
+        public bool RestablecerClave(int idUsuario, string clave, out string mensaje)
+        {
+            try
+            {
+                return oCD_Usuario.RestablecerClave(idUsuario, clave, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

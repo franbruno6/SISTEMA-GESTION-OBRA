@@ -56,36 +56,34 @@ create procedure SP_EditarUsuario(
 @NombreCompleto nvarchar(100),
 @Correo nvarchar(100),
 @Documento nvarchar(100),
-@Clave nvarchar(400),
 @Estado bit,
 @Mensaje nvarchar(400) output,
 @Resultado bit output
 )
 as
 begin
-    begin TRY
+    begin try
         set @Resultado = 0;
         set @Mensaje = '';
 
-        begin TRANSACTION editar;
+        begin transaction editar;
 
-        IF NOT EXISTS (
-                SELECT *
-                FROM Usuario
-                         INNER JOIN Persona ON Usuario.IdPersona = Persona.IdPersona
-                WHERE Persona.Documento = @Documento AND IdUsuario != @IdUsuario
+        if not exists (
+                select *
+                from Usuario
+                         inner join Persona on Usuario.IdPersona = Persona.IdPersona
+                where Persona.Documento = @Documento and IdUsuario != @IdUsuario
         )
         begin
-            UPDATE Persona set
+            update Persona set
                 NombreCompleto = @NombreCompleto,
                 Correo = @Correo,
                 Documento = @Documento
-            WHERE IdPersona = @IdPersona;
+            where IdPersona = @IdPersona;
 
-            UPDATE Usuario set
-                Clave = @Clave,
+            update Usuario set
                 Estado = @Estado
-            WHERE IdUsuario = @IdUsuario;
+            where IdUsuario = @IdUsuario;
 
             set @Resultado = 1;
         end
@@ -94,11 +92,48 @@ begin
 			set @Mensaje = 'Ya existe un usuario con ese numero de documento'
 		end
 
-        COMMIT TRANSACTION editar;
-    end TRY
+        commit transaction editar;
+    end try
     begin catch
         set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
-        ROLLBACK TRANSACTION editar;
+        rollback transaction editar;
     end catch
 end;
 go
+
+--PROCEDURE RESTABLECER CLAVE--
+create procedure SP_RestablecerClave(
+@IdUsuario int,
+@Clave nvarchar(400),
+@Mensaje nvarchar(400) output,
+@Resultado bit output
+)
+as
+begin
+    begin try
+        set @Resultado = 0;
+        set @Mensaje = '';
+
+        begin transaction restablecerclave;
+
+        begin
+            update Usuario set
+                Clave = @Clave
+            where IdUsuario = @IdUsuario;
+
+            set @Resultado = 1;
+        end
+        commit transaction restablecerclave;
+    end try
+    begin catch
+        set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
+        rollback transaction restablecerclave;
+    end catch
+end;
+go
+
+
+
+--PROCEDURE ELIMINAR USUARIO--
+select * from Persona
+select * from Usuario

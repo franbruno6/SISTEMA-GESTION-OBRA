@@ -32,7 +32,7 @@ namespace CapaDatos
                     {
                         Usuario usuario = new Usuario();
                         usuario.IdUsuario = Convert.ToInt32(dr["IdUsuario"]);
-                        usuario.Clave = dr["Clave"].ToString();
+                        usuario.Clave = (dr["Clave"].ToString());
                         usuario.Estado = Convert.ToBoolean(dr["Estado"]);
                         usuario.IdPersona = Convert.ToInt32(dr["IdPersona"]);
                         usuario.NombreCompleto = dr["NombreCompleto"].ToString();
@@ -105,7 +105,6 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("NombreCompleto", oUsuario.NombreCompleto);
                     cmd.Parameters.AddWithValue("Correo", oUsuario.Correo);
                     cmd.Parameters.AddWithValue("Documento", oUsuario.Documento);
-                    cmd.Parameters.AddWithValue("Clave", oUsuario.Clave);
                     cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
                     //PARAMETRO DE SALIDA
                     cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
@@ -127,6 +126,41 @@ namespace CapaDatos
                 }
             }
             return usuarioEditado;
+        }
+        public bool RestablecerClave(int idUsuario, string clave, out string mensaje)
+        {
+            bool claveRestablecida = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_RestablecerClave", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
+                    cmd.Parameters.AddWithValue("Clave", clave);
+                    //PARAMETRO DE SALIDA
+                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    //TIPO DE COMANDO
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.ExecuteNonQuery();
+
+                    claveRestablecida = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                    mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                    DataAccessObject.CerrarConexion();
+                }
+                catch (Exception ex)
+                {
+                    claveRestablecida = false;
+                    mensaje = ex.Message;
+                }
+            }
+            return claveRestablecida;
         }
     }
 }

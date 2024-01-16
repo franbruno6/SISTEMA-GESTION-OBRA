@@ -18,71 +18,45 @@ namespace CapaPresentacion.CP_Usuario
         private readonly string _tipoFormulario;
         private int _idUsuario;
         private Usuario oUsuario;
+        private CC_Usuario oCC_Usuario = new CC_Usuario();
         public frmDetalleUsuario(string tipoFormulario,int idUsuario)
         {
             _idUsuario = idUsuario;
             _tipoFormulario = tipoFormulario;
-            oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.IdUsuario == _idUsuario).FirstOrDefault();
+            oUsuario = oCC_Usuario.ListarUsuarios().Where(u => u.IdUsuario == _idUsuario).FirstOrDefault();
             InitializeComponent();
         }
-
         private void frmDetalleUsuario_Load(object sender, EventArgs e)
         {
             configurarFormulario();
         }
-        private void configurarFormulario()
-        {
-            cboestado.Items.Add(new OpcionCombo("1", "Activo"));
-            cboestado.Items.Add(new OpcionCombo("0", "Inactivo"));
-            cboestado.SelectedIndex = 0;
-            cboestado.DisplayMember = "Texto";
-            cboestado.ValueMember = "Valor";
-
-            if (_tipoFormulario == "VerDetalle")
-            {
-                txtnombrecompleto.Enabled = false;
-                txtdocumento.Enabled = false;
-                txtcorreo.Enabled = false;
-                cboestado.Enabled = false;
-
-                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
-                txtdocumento.Text = oUsuario.Documento.ToString();
-                txtcorreo.Text = oUsuario.Correo.ToString();
-                cboestado.SelectedValue = oUsuario.Estado == true ? "1" : "0";
-            }
-            if (_tipoFormulario == "Agregar")
-            {
-                lblsubtitulo.Text = "Agregar Usuario";
-                gboxclave.Visible = true;
-                btnaccion.Text = "Agregar";
-            }
-            if (_tipoFormulario == "Editar")
-            {
-                lblsubtitulo.Text = "Editar Usuario";
-                gboxclave.Visible = true;
-                btnaccion.Text = "Editar";
-
-                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
-                txtdocumento.Text = oUsuario.Documento.ToString();
-                txtcorreo.Text = oUsuario.Correo.ToString();
-                cboestado.SelectedValue = oUsuario.Estado == true ? "1" : "0";
-                txtclave.Text = oUsuario.Clave.ToString();
-            }
-        }
-        private void btnvolver_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
         private void btnaccion_Click(object sender, EventArgs e)
         {
+            if (_tipoFormulario != "RestablacerClave")
+            {
+                if (!ValidarTextosVacios())
+                {
+                    MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+            }
+            if (panelclave.Visible == true)
+            {
+                if (!ValidarCamposClaves())
+                {
+                    return;
+                }
+            }
             if (_tipoFormulario == "Agregar")
             {
-                int idUsuarioRegistrado = new CC_Usuario().AgregarUsuario(new Usuario()
+                string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
+                
+                int idUsuarioRegistrado = oCC_Usuario.AgregarUsuario(new Usuario()
                 {
                     NombreCompleto = txtnombrecompleto.Text,
                     Documento = txtdocumento.Text,
                     Correo = txtcorreo.Text,
-                    Clave = txtclave.Text,
+                    Clave = claveHash,
                     Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
                 }, out string mensaje);
 
@@ -98,14 +72,13 @@ namespace CapaPresentacion.CP_Usuario
             }
             if (_tipoFormulario == "Editar")
             {
-                bool usuarioEditado = new CC_Usuario().EditarUsuario(new Usuario()
+                bool usuarioEditado = oCC_Usuario.EditarUsuario(new Usuario()
                 {
                     IdUsuario = _idUsuario,
                     IdPersona = oUsuario.IdPersona,
                     NombreCompleto = txtnombrecompleto.Text,
                     Documento = txtdocumento.Text,
                     Correo = txtcorreo.Text,
-                    Clave = txtclave.Text,
                     Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
                 }, out string mensaje);
 
@@ -119,6 +92,151 @@ namespace CapaPresentacion.CP_Usuario
                     MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            if (_tipoFormulario == "RestablacerClave")
+            {
+                string claveHash = Usuario.GenerarClaveHash(txtclave.Text);
+                bool claveRestablecida = oCC_Usuario.RestablecerClave(_idUsuario, claveHash, out string mensaje);
+
+                if (claveRestablecida)
+                {
+                    MessageBox.Show("Clave restablecida correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+        private void configurarFormulario()
+        {
+            cboestado.Items.Add(new OpcionCombo(1, "Activo"));
+            cboestado.Items.Add(new OpcionCombo(0, "Inactivo"));
+            cboestado.SelectedIndex = 0;
+            cboestado.DisplayMember = "Texto";
+            cboestado.ValueMember = "Valor";
+
+            if (_tipoFormulario == "VerDetalle")
+            {
+                txtnombrecompleto.Enabled = false;
+                txtdocumento.Enabled = false;
+                txtcorreo.Enabled = false;
+                cboestado.Enabled = false;
+                btnaccion.Visible = false;
+
+                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
+                txtdocumento.Text = oUsuario.Documento.ToString();
+                txtcorreo.Text = oUsuario.Correo.ToString();
+                foreach (OpcionCombo opcion in cboestado.Items)
+                {
+                    if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
+                    {
+                        int indiceCombo = cboestado.Items.IndexOf(opcion);
+                        cboestado.SelectedIndex = indiceCombo;
+                        break;
+                    }
+                }
+                return;
+            }
+            if (_tipoFormulario == "Agregar")
+            {
+                lblsubtitulo.Text = "Agregar Usuario";
+                panelclave.Visible = true;
+                btnaccion.Text = "Agregar";
+                return;
+            }
+            if (_tipoFormulario == "Editar")
+            {
+                lblsubtitulo.Text = "Editar Usuario";
+                btnaccion.Text = "Editar";
+
+                txtnombrecompleto.Text = oUsuario.NombreCompleto.ToString();
+                txtdocumento.Text = oUsuario.Documento.ToString();
+                txtcorreo.Text = oUsuario.Correo.ToString();
+                foreach (OpcionCombo opcion in cboestado.Items)
+                {
+                    if (Convert.ToInt32(opcion.Valor) == (oUsuario.Estado == true ? 1 : 0))
+                    {
+                        int indiceCombo = cboestado.Items.IndexOf(opcion);
+                        cboestado.SelectedIndex = indiceCombo;
+                        break;
+                    }
+                }
+                return;
+            }
+            if (_tipoFormulario == "RestablacerClave")
+            {
+                lblsubtitulo.Text = "Restablecer Clave";
+
+                panelclave.Visible = true;
+                btnaccion.Text = "Restablecer Clave";
+                panelclave.BringToFront();
+                panelclave.Location = new Point(13, 194);
+                btnaccion.BringToFront();
+
+                txtnombrecompleto.Visible = false;
+                txtcorreo.Visible= false;
+                txtdocumento.Visible = false;
+                cboestado.Visible = false;
+                lblnombrecompleto.Visible = false;
+                lbldocumento.Visible = false;
+                lblcorreo.Visible = false;
+                lblestado.Visible = false;
+
+                btnaccion.IconChar = FontAwesome.Sharp.IconChar.Key;
+                btnaccion.Text = "Restablecer Contraseña";
+                return;
+            }
+        }
+        private bool ValidarCamposClaves()
+        {
+            if (txtclave.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Debe completar la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (txtconfirmarclave.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Debe completar la confirmacion de la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            if (txtclave.Text != txtconfirmarclave.Text)
+            {
+                MessageBox.Show("Las claves no coinciden", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+        private bool ValidarTextosVacios()
+        {
+            if (txtnombrecompleto.Text.Trim() == string.Empty)
+            {
+                return false;
+            }
+            if (txtdocumento.Text.Trim() == string.Empty)
+            {
+                return false;
+            }
+            if (txtcorreo.Text.Trim() == string.Empty)
+            {
+                return false;
+            }
+
+            return true;
+        }
+        private void btnvolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        private void btnverclave_MouseDown(object sender, MouseEventArgs e)
+        {
+            txtclave.PasswordChar = '\0';
+            txtconfirmarclave.PasswordChar = '\0';
+        }
+        private void btnverclave_MouseUp(object sender, MouseEventArgs e)
+        {
+            txtclave.PasswordChar = '*';
+            txtconfirmarclave.PasswordChar = '*';
         }
     }
 }

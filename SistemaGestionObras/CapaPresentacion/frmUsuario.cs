@@ -128,7 +128,14 @@ namespace CapaPresentacion
 
         private void menumodificarusuario_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new frmDetalleUsuario("Editar", Convert.ToInt32(txtid.Text)));
+            if (txtid.Text != "")
+            {
+                AbrirFormulario(new frmDetalleUsuario("Editar", Convert.ToInt32(txtid.Text)));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void btnactualizar_Click(object sender, EventArgs e)
@@ -158,6 +165,18 @@ namespace CapaPresentacion
 
         private void btnbuscar_Click(object sender, EventArgs e)
         {
+        }
+
+        private void menurestablecerclave_Click(object sender, EventArgs e)
+        {
+            if(txtid.Text != "")
+            {
+                AbrirFormulario(new frmDetalleUsuario("RestablacerClave", Convert.ToInt32(txtid.Text)));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
     }
 }
