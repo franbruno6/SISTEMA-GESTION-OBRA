@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion.CP_Usuario
 {
-    partial class frmDetalleUsuario
+    partial class mdDetalleUsuario
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.lblnombrecompleto = new System.Windows.Forms.Label();
             this.txtnombrecompleto = new System.Windows.Forms.TextBox();
             this.txtdocumento = new System.Windows.Forms.TextBox();
@@ -39,15 +38,14 @@
             this.lblestado = new System.Windows.Forms.Label();
             this.cboestado = new System.Windows.Forms.ComboBox();
             this.btnvolver = new FontAwesome.Sharp.IconButton();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.panelclave = new System.Windows.Forms.Panel();
             this.btnverclave = new FontAwesome.Sharp.IconButton();
             this.txtconfirmarclave = new System.Windows.Forms.TextBox();
+            this.txtclave = new System.Windows.Forms.TextBox();
             this.lblclave = new System.Windows.Forms.Label();
             this.lblconfirmarclave = new System.Windows.Forms.Label();
-            this.txtclave = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnaccion = new FontAwesome.Sharp.IconButton();
-            this.panelclave = new System.Windows.Forms.Panel();
-            this.panel1.SuspendLayout();
             this.panelclave.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -55,7 +53,7 @@
             // 
             this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsubtitulo.Location = new System.Drawing.Point(12, 87);
+            this.lblsubtitulo.Location = new System.Drawing.Point(12, 40);
             this.lblsubtitulo.Name = "lblsubtitulo";
             this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
             this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
@@ -63,23 +61,12 @@
             this.lblsubtitulo.Text = "Detalle del Usuario";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 143);
-            this.label3.Name = "label3";
-            this.label3.Padding = new System.Windows.Forms.Padding(20, 12, 0, 0);
-            this.label3.Size = new System.Drawing.Size(1228, 149);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Información del usuario";
-            // 
             // lblnombrecompleto
             // 
             this.lblnombrecompleto.AutoSize = true;
             this.lblnombrecompleto.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnombrecompleto.Location = new System.Drawing.Point(36, 221);
+            this.lblnombrecompleto.Location = new System.Drawing.Point(36, 174);
             this.lblnombrecompleto.Name = "lblnombrecompleto";
             this.lblnombrecompleto.Size = new System.Drawing.Size(117, 16);
             this.lblnombrecompleto.TabIndex = 17;
@@ -88,25 +75,25 @@
             // txtnombrecompleto
             // 
             this.txtnombrecompleto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrecompleto.Location = new System.Drawing.Point(39, 249);
+            this.txtnombrecompleto.Location = new System.Drawing.Point(39, 202);
             this.txtnombrecompleto.Name = "txtnombrecompleto";
             this.txtnombrecompleto.Size = new System.Drawing.Size(171, 22);
-            this.txtnombrecompleto.TabIndex = 18;
+            this.txtnombrecompleto.TabIndex = 1;
             // 
             // txtdocumento
             // 
             this.txtdocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdocumento.Location = new System.Drawing.Point(265, 249);
+            this.txtdocumento.Location = new System.Drawing.Point(265, 202);
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(171, 22);
-            this.txtdocumento.TabIndex = 20;
+            this.txtdocumento.TabIndex = 2;
             // 
             // lbldocumento
             // 
             this.lbldocumento.AutoSize = true;
             this.lbldocumento.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lbldocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbldocumento.Location = new System.Drawing.Point(262, 221);
+            this.lbldocumento.Location = new System.Drawing.Point(262, 174);
             this.lbldocumento.Name = "lbldocumento";
             this.lbldocumento.Size = new System.Drawing.Size(146, 16);
             this.lbldocumento.TabIndex = 19;
@@ -115,17 +102,17 @@
             // txtcorreo
             // 
             this.txtcorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcorreo.Location = new System.Drawing.Point(493, 249);
+            this.txtcorreo.Location = new System.Drawing.Point(493, 202);
             this.txtcorreo.Name = "txtcorreo";
             this.txtcorreo.Size = new System.Drawing.Size(171, 22);
-            this.txtcorreo.TabIndex = 22;
+            this.txtcorreo.TabIndex = 3;
             // 
             // lblcorreo
             // 
             this.lblcorreo.AutoSize = true;
             this.lblcorreo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblcorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblcorreo.Location = new System.Drawing.Point(490, 221);
+            this.lblcorreo.Location = new System.Drawing.Point(490, 174);
             this.lblcorreo.Name = "lblcorreo";
             this.lblcorreo.Size = new System.Drawing.Size(118, 16);
             this.lblcorreo.TabIndex = 21;
@@ -136,7 +123,7 @@
             this.lblestado.AutoSize = true;
             this.lblestado.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblestado.Location = new System.Drawing.Point(710, 221);
+            this.lblestado.Location = new System.Drawing.Point(710, 174);
             this.lblestado.Name = "lblestado";
             this.lblestado.Size = new System.Drawing.Size(50, 16);
             this.lblestado.TabIndex = 23;
@@ -148,10 +135,10 @@
             this.cboestado.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboestado.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboestado.FormattingEnabled = true;
-            this.cboestado.Location = new System.Drawing.Point(713, 249);
+            this.cboestado.Location = new System.Drawing.Point(713, 202);
             this.cboestado.Name = "cboestado";
             this.cboestado.Size = new System.Drawing.Size(173, 24);
-            this.cboestado.TabIndex = 24;
+            this.cboestado.TabIndex = 4;
             // 
             // btnvolver
             // 
@@ -163,7 +150,7 @@
             this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnvolver.IconSize = 18;
             this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnvolver.Location = new System.Drawing.Point(1065, 101);
+            this.btnvolver.Location = new System.Drawing.Point(1065, 54);
             this.btnvolver.Name = "btnvolver";
             this.btnvolver.Size = new System.Drawing.Size(115, 25);
             this.btnvolver.TabIndex = 25;
@@ -173,16 +160,19 @@
             this.btnvolver.UseVisualStyleBackColor = false;
             this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
-            // panel1
+            // panelclave
             // 
-            this.panel1.BackColor = System.Drawing.Color.Khaki;
-            this.panel1.Controls.Add(this.panelclave);
-            this.panel1.Controls.Add(this.btnaccion);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1409, 873);
-            this.panel1.TabIndex = 26;
+            this.panelclave.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.panelclave.Controls.Add(this.btnverclave);
+            this.panelclave.Controls.Add(this.txtconfirmarclave);
+            this.panelclave.Controls.Add(this.txtclave);
+            this.panelclave.Controls.Add(this.lblclave);
+            this.panelclave.Controls.Add(this.lblconfirmarclave);
+            this.panelclave.Location = new System.Drawing.Point(12, 276);
+            this.panelclave.Name = "panelclave";
+            this.panelclave.Size = new System.Drawing.Size(1228, 100);
+            this.panelclave.TabIndex = 32;
+            this.panelclave.Visible = false;
             // 
             // btnverclave
             // 
@@ -195,7 +185,7 @@
             this.btnverclave.IconColor = System.Drawing.Color.Black;
             this.btnverclave.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnverclave.IconSize = 18;
-            this.btnverclave.Location = new System.Drawing.Point(401, 50);
+            this.btnverclave.Location = new System.Drawing.Point(430, 50);
             this.btnverclave.Name = "btnverclave";
             this.btnverclave.Size = new System.Drawing.Size(39, 27);
             this.btnverclave.TabIndex = 32;
@@ -208,11 +198,20 @@
             // txtconfirmarclave
             // 
             this.txtconfirmarclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtconfirmarclave.Location = new System.Drawing.Point(224, 52);
+            this.txtconfirmarclave.Location = new System.Drawing.Point(253, 52);
             this.txtconfirmarclave.Name = "txtconfirmarclave";
             this.txtconfirmarclave.PasswordChar = '*';
             this.txtconfirmarclave.Size = new System.Drawing.Size(171, 22);
-            this.txtconfirmarclave.TabIndex = 30;
+            this.txtconfirmarclave.TabIndex = 6;
+            // 
+            // txtclave
+            // 
+            this.txtclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtclave.Location = new System.Drawing.Point(22, 52);
+            this.txtclave.Name = "txtclave";
+            this.txtclave.PasswordChar = '*';
+            this.txtclave.Size = new System.Drawing.Size(171, 22);
+            this.txtclave.TabIndex = 5;
             // 
             // lblclave
             // 
@@ -230,20 +229,22 @@
             this.lblconfirmarclave.AutoSize = true;
             this.lblconfirmarclave.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblconfirmarclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblconfirmarclave.Location = new System.Drawing.Point(218, 21);
+            this.lblconfirmarclave.Location = new System.Drawing.Point(247, 21);
             this.lblconfirmarclave.Name = "lblconfirmarclave";
             this.lblconfirmarclave.Size = new System.Drawing.Size(136, 16);
             this.lblconfirmarclave.TabIndex = 29;
             this.lblconfirmarclave.Text = "Confirmar Contraseña";
             // 
-            // txtclave
+            // label3
             // 
-            this.txtclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtclave.Location = new System.Drawing.Point(22, 52);
-            this.txtclave.Name = "txtclave";
-            this.txtclave.PasswordChar = '*';
-            this.txtclave.Size = new System.Drawing.Size(171, 22);
-            this.txtclave.TabIndex = 28;
+            this.label3.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(12, 108);
+            this.label3.Name = "label3";
+            this.label3.Padding = new System.Windows.Forms.Padding(20, 12, 0, 0);
+            this.label3.Size = new System.Drawing.Size(1228, 149);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Información del usuario";
             // 
             // btnaccion
             // 
@@ -255,35 +256,24 @@
             this.btnaccion.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnaccion.IconSize = 18;
             this.btnaccion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnaccion.Location = new System.Drawing.Point(935, 246);
+            this.btnaccion.Location = new System.Drawing.Point(976, 200);
             this.btnaccion.Name = "btnaccion";
             this.btnaccion.Size = new System.Drawing.Size(173, 27);
-            this.btnaccion.TabIndex = 27;
+            this.btnaccion.TabIndex = 7;
             this.btnaccion.Text = "Accion";
             this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnaccion.UseVisualStyleBackColor = false;
             this.btnaccion.Click += new System.EventHandler(this.btnaccion_Click);
             // 
-            // panelclave
-            // 
-            this.panelclave.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.panelclave.Controls.Add(this.btnverclave);
-            this.panelclave.Controls.Add(this.txtconfirmarclave);
-            this.panelclave.Controls.Add(this.txtclave);
-            this.panelclave.Controls.Add(this.lblclave);
-            this.panelclave.Controls.Add(this.lblconfirmarclave);
-            this.panelclave.Location = new System.Drawing.Point(13, 330);
-            this.panelclave.Name = "panelclave";
-            this.panelclave.Size = new System.Drawing.Size(1228, 100);
-            this.panelclave.TabIndex = 32;
-            this.panelclave.Visible = false;
-            // 
-            // frmDetalleUsuario
+            // mdDetalleUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1317, 668);
+            this.BackColor = System.Drawing.Color.Khaki;
+            this.ClientSize = new System.Drawing.Size(1317, 514);
+            this.Controls.Add(this.panelclave);
+            this.Controls.Add(this.btnaccion);
             this.Controls.Add(this.btnvolver);
             this.Controls.Add(this.cboestado);
             this.Controls.Add(this.lblestado);
@@ -294,11 +284,12 @@
             this.Controls.Add(this.txtnombrecompleto);
             this.Controls.Add(this.lblnombrecompleto);
             this.Controls.Add(this.lblsubtitulo);
-            this.Controls.Add(this.panel1);
-            this.Name = "frmDetalleUsuario";
-            this.Text = "frmDetalleUsuario";
+            this.Controls.Add(this.label3);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.Name = "mdDetalleUsuario";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "mdDetalleUsuario";
             this.Load += new System.EventHandler(this.frmDetalleUsuario_Load);
-            this.panel1.ResumeLayout(false);
             this.panelclave.ResumeLayout(false);
             this.panelclave.PerformLayout();
             this.ResumeLayout(false);
@@ -308,7 +299,6 @@
 
         #endregion
         private System.Windows.Forms.Label lblsubtitulo;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblnombrecompleto;
         private System.Windows.Forms.TextBox txtnombrecompleto;
         private System.Windows.Forms.TextBox txtdocumento;
@@ -318,13 +308,13 @@
         private System.Windows.Forms.Label lblestado;
         private System.Windows.Forms.ComboBox cboestado;
         private FontAwesome.Sharp.IconButton btnvolver;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panelclave;
+        private FontAwesome.Sharp.IconButton btnverclave;
         private System.Windows.Forms.TextBox txtconfirmarclave;
+        private System.Windows.Forms.TextBox txtclave;
         private System.Windows.Forms.Label lblclave;
         private System.Windows.Forms.Label lblconfirmarclave;
-        private System.Windows.Forms.TextBox txtclave;
-        private FontAwesome.Sharp.IconButton btnverclave;
+        private System.Windows.Forms.Label label3;
         private FontAwesome.Sharp.IconButton btnaccion;
-        private System.Windows.Forms.Panel panelclave;
     }
 }

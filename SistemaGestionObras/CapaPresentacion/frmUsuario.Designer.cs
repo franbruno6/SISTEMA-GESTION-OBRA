@@ -39,6 +39,7 @@
             this.menurestablecerclave = new System.Windows.Forms.ToolStripMenuItem();
             this.menueliminarusuario = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtidpersona = new System.Windows.Forms.TextBox();
             this.txtid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
@@ -49,7 +50,6 @@
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdPersona = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,7 +58,7 @@
             this.documento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtidpersona = new System.Windows.Forms.TextBox();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -147,12 +147,21 @@
             this.panel1.Size = new System.Drawing.Size(235, 646);
             this.panel1.TabIndex = 1;
             // 
+            // txtidpersona
+            // 
+            this.txtidpersona.Location = new System.Drawing.Point(75, 278);
+            this.txtidpersona.Name = "txtidpersona";
+            this.txtidpersona.Size = new System.Drawing.Size(100, 20);
+            this.txtidpersona.TabIndex = 3;
+            this.txtidpersona.Visible = false;
+            // 
             // txtid
             // 
             this.txtid.Location = new System.Drawing.Point(75, 216);
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 2;
+            this.txtid.Visible = false;
             // 
             // label1
             // 
@@ -318,18 +327,6 @@
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
-            // lblsubtitulo
-            // 
-            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsubtitulo.Location = new System.Drawing.Point(16, 79);
-            this.lblsubtitulo.Name = "lblsubtitulo";
-            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
-            this.lblsubtitulo.TabIndex = 8;
-            this.lblsubtitulo.Text = "Lista de Usuarios";
-            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // btnseleccionar
             // 
             this.btnseleccionar.HeaderText = "";
@@ -387,12 +384,17 @@
             this.estadoValor.Name = "estadoValor";
             this.estadoValor.ReadOnly = true;
             // 
-            // txtidpersona
+            // lblsubtitulo
             // 
-            this.txtidpersona.Location = new System.Drawing.Point(75, 278);
-            this.txtidpersona.Name = "txtidpersona";
-            this.txtidpersona.Size = new System.Drawing.Size(100, 20);
-            this.txtidpersona.TabIndex = 3;
+            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsubtitulo.Location = new System.Drawing.Point(16, 79);
+            this.lblsubtitulo.Name = "lblsubtitulo";
+            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
+            this.lblsubtitulo.TabIndex = 8;
+            this.lblsubtitulo.Text = "Lista de Usuarios";
+            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmUsuario
             // 

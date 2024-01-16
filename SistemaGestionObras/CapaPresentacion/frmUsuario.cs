@@ -17,16 +17,12 @@ namespace CapaPresentacion
 {
     public partial class frmUsuario : Form
     {
-        private static Form formularioActivo = null;
-
         public frmUsuario()
         {
             InitializeComponent();
         }
         private void frmUsuario_Load(object sender, EventArgs e)
         {
-            //AbrirFormulario(formListaUsuario);
-
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
             foreach (DataGridViewColumn columna in datagridview.Columns)
             {
@@ -73,30 +69,23 @@ namespace CapaPresentacion
                 txtidpersona.Text = datagridview.Rows[indice].Cells["idPersona"].Value.ToString();
             }
         }
-        private void AbrirFormulario(Form formulario)
+        private void AbrirModal(string tipoModal, int idUsuario)
         {
-            if (formularioActivo != null)
+            using (var modal = new mdDetalleUsuario(tipoModal, idUsuario))
             {
-                formularioActivo.Close();
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    btnactualizar_Click(null, null);
+                }
             }
-
-            //CONFIGURO EL FORMULARIO
-            formularioActivo = formulario;
-            formulario.TopLevel = false;
-            formulario.FormBorderStyle = FormBorderStyle.None;
-            formulario.Dock = DockStyle.Fill;
-            formulario.BackColor = Color.Khaki;
-
-            //AGREGO EL FORMULARIO AL CONTENEDOR
-            contenedor.Controls.Add(formulario);
-            formulario.Show();
-            formulario.BringToFront();
         }
         private void menuverusuario_Click(object sender, EventArgs e)
         {
             if (txtid.Text != "")
             {
-                AbrirFormulario(new frmDetalleUsuario("VerDetalle", Convert.ToInt32(txtid.Text)));
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
             }
             else
             {
@@ -105,13 +94,13 @@ namespace CapaPresentacion
         }
         private void menuagregarusuario_Click(object sender, EventArgs e)
         {
-            AbrirFormulario(new frmDetalleUsuario("Agregar", 0));
+            AbrirModal("Agregar", 0);
         }
         private void menumodificarusuario_Click(object sender, EventArgs e)
         {
             if (txtid.Text != "")
             {
-                AbrirFormulario(new frmDetalleUsuario("Editar", Convert.ToInt32(txtid.Text)));
+                AbrirModal("Editar", Convert.ToInt32(txtid.Text));
             }
             else
             {
@@ -122,7 +111,7 @@ namespace CapaPresentacion
         {
             if(txtid.Text != "")
             {
-                AbrirFormulario(new frmDetalleUsuario("RestablacerClave", Convert.ToInt32(txtid.Text)));
+                AbrirModal("RestablacerClave", Convert.ToInt32(txtid.Text));
             }
             else
             {

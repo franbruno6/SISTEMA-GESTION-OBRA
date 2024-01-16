@@ -41,9 +41,9 @@ inner join GrupoPermisoComponente on Componente.IdComponente = GrupoPermisoCompo
 where IdGrupoPermiso = @IdGrupoPermiso
 go
 
-select * from Componente
-select * from GrupoPermiso
-select * from GrupoPermisoComponente
-select * from UsuarioComponente
-select * from Usuario
-select * from Persona
+--SELECT LISTA CLIENTES--
+select Persona.IdPersona, NombreCompleto, Correo, Documento,
+IdCliente, Telefono, Direccion, Estado
+from Persona
+inner join Cliente on Persona.IdPersona = Cliente.IdPersona
+

@@ -13,26 +13,26 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion.CP_Usuario
 {
-    public partial class frmDetalleUsuario : Form
+    public partial class mdDetalleUsuario : Form
     {
-        private readonly string _tipoFormulario;
+        private readonly string _tipoModal;
         private int _idUsuario;
         private Usuario oUsuario;
         private CC_Usuario oCC_Usuario = new CC_Usuario();
-        public frmDetalleUsuario(string tipoFormulario,int idUsuario)
+        public mdDetalleUsuario(string tipoModal,int idUsuario)
         {
             _idUsuario = idUsuario;
-            _tipoFormulario = tipoFormulario;
+            _tipoModal = tipoModal;
             oUsuario = oCC_Usuario.ListarUsuarios().Where(u => u.IdUsuario == _idUsuario).FirstOrDefault();
             InitializeComponent();
         }
         private void frmDetalleUsuario_Load(object sender, EventArgs e)
         {
-            ConfigurarFormulario();
+            ConfigurarModal();
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (_tipoFormulario != "RestablacerClave")
+            if (_tipoModal != "RestablacerClave")
             {
                 if (!ValidarTextosVacios())
                 {
@@ -47,7 +47,7 @@ namespace CapaPresentacion.CP_Usuario
                     return;
                 }
             }
-            switch (_tipoFormulario)
+            switch (_tipoModal)
             {
                 case "Agregar":
                     AgregarUsuario();
@@ -74,6 +74,7 @@ namespace CapaPresentacion.CP_Usuario
             if (idUsuarioRegistrado > 0)
             {
                 MessageBox.Show("Usuario registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
@@ -96,6 +97,7 @@ namespace CapaPresentacion.CP_Usuario
             if (usuarioEditado)
             {
                 MessageBox.Show("Usuario editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
@@ -111,6 +113,7 @@ namespace CapaPresentacion.CP_Usuario
             if (claveRestablecida)
             {
                 MessageBox.Show("Clave restablecida correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
@@ -118,7 +121,7 @@ namespace CapaPresentacion.CP_Usuario
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void ConfigurarFormulario()
+        private void ConfigurarModal()
         {
             cboestado.Items.Add(new OpcionCombo(1, "Activo"));
             cboestado.Items.Add(new OpcionCombo(0, "Inactivo"));
@@ -126,7 +129,7 @@ namespace CapaPresentacion.CP_Usuario
             cboestado.DisplayMember = "Texto";
             cboestado.ValueMember = "Valor";
 
-            switch (_tipoFormulario)
+            switch (_tipoModal)
             {
                 case "VerDetalle":
                     ConfigurarVerDetalle();
@@ -144,6 +147,7 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void ConfigurarVerDetalle()
         {
+            this.Text = "Ver Detalle";
             txtnombrecompleto.Enabled = false;
             txtdocumento.Enabled = false;
             txtcorreo.Enabled = false;
@@ -165,12 +169,14 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void ConfigurarAgregar()
         {
+            this.Text = "Agregar Usuario";
             lblsubtitulo.Text = "Agregar Usuario";
             panelclave.Visible = true;
             btnaccion.Text = "Agregar";
         }
         private void ConfigurarEditar()
         {
+            this.Text = "Editar Usuario";
             lblsubtitulo.Text = "Editar Usuario";
             btnaccion.Text = "Editar";
 
@@ -189,12 +195,13 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void ConfigurarRestablecerClave()
         {
+            this.Text = "Restablecer Clave";
             lblsubtitulo.Text = "Restablecer Clave";
 
             panelclave.Visible = true;
             btnaccion.Text = "Restablecer Clave";
             panelclave.BringToFront();
-            panelclave.Location = new Point(13, 194);
+            panelclave.Location = new Point(13, 160);
             btnaccion.BringToFront();
 
             txtnombrecompleto.Visible = false;

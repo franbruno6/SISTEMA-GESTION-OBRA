@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CC_Cliente.cs" />
     <Compile Include="CC_Usuario.cs" />
     <Compile Include="CC_Permiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,8 +29,11 @@ insert into UsuarioComponente(IdUsuario,IdComponente)
 values (1,1),(1,2),(1,3),(1,4),(1,5),(1,6),(2,9)
 go
 
-select * from GrupoPermisoComponente
-select * from Componente
-select * from GrupoPermiso
+insert into Persona(NombreCompleto,Correo,Documento)
+values ('Cliente prueba','cliente@gmail.com',88)
+select * from Persona
 
+insert into Cliente(IdPersona,Telefono,Direccion,Estado)
+values (7,'341cliente','direccion cliente',1)
+select * from Cliente
 

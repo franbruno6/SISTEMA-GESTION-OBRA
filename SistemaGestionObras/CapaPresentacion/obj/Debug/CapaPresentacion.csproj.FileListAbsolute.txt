@@ -49,3 +49,5 @@ C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionOb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmUsuario.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.LogIn.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.CP_Usuario.frmDetalleUsuario.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.CP_Usuario.mdDetalleUsuario.resources
+D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleCliente.resources
