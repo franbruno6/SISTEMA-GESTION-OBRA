@@ -64,6 +64,7 @@
             this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnaccion.UseVisualStyleBackColor = false;
+            this.btnaccion.Click += new System.EventHandler(this.btnaccion_Click);
             // 
             // btnvolver
             // 
@@ -83,6 +84,7 @@
             this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnvolver.UseVisualStyleBackColor = false;
+            this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
             // cboestado
             // 
@@ -250,6 +252,7 @@
             this.Name = "mdDetalleCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetalleCliente";
+            this.Load += new System.EventHandler(this.mdDetalleCliente_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

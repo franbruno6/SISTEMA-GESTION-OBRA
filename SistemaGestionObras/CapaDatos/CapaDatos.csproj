@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CD_Cliente.cs" />
-    <Compile Include="CD_Componente.cs" />
     <Compile Include="CD_Permiso.cs" />
     <Compile Include="CD_Usuario.cs" />
     <Compile Include="DataAccessObject.cs" />

@@ -24,6 +24,7 @@ namespace CapaPresentacion
             if (oUsuario == null)
             {
                 usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
+                usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(usuarioActual.IdUsuario));
             }
             else
             {
@@ -35,7 +36,9 @@ namespace CapaPresentacion
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-            List<Permiso> listaPermisos = new CC_Permiso().ListarPermisos(usuarioActual.IdUsuario);
+            List<Permiso> listaPermisos = usuarioActual.GetPermisos();
+            
+            //List<Permiso> listaPermisos = new CC_Permiso().ListarPermisos(usuarioActual.IdUsuario);
 
             foreach (IconMenuItem iconmenu in menu.Items)
             {

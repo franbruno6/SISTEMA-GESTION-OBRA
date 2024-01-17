@@ -13,6 +13,7 @@ namespace CapaEntidad
         private int idUsuario;
         private string clave;
         private bool estado;
+        private List<Permiso> permisos;
         #endregion
 
         #region Propiedades
@@ -22,6 +23,14 @@ namespace CapaEntidad
             this.clave = clave;
         }
         public bool Estado { get { return estado; } set {  estado = value; } }
+        public void SetPermisos(List<Permiso> permisos)
+        {
+            this.permisos = permisos;
+        }
+        public List<Permiso> GetPermisos()
+        {
+            return this.permisos;
+        }
         #endregion
 
         #region Metodos
@@ -100,6 +109,10 @@ namespace CapaEntidad
             }
             return salto;
         }
+        //public List<Permiso> ObtenerPermisos()
+        //{
+            
+        //}
         #endregion
     }
 }

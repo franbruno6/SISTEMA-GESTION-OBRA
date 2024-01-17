@@ -38,6 +38,66 @@ namespace CapaPresentacion
 
             btnactualizar_Click(sender, e);
         }
+        private void AbrirModal(string tipoModal, int idCliente)
+        {
+            using (var modal = new mdDetalleCliente(tipoModal, idCliente))
+            {
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    btnactualizar_Click(null, null);
+                }
+            }
+        }
+        private void menuvercliente_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "")
+            {
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void menuagregarcliente_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Agregar", 0);
+        }
+        private void menumodificarcliente_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "")
+            {
+                AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void menueliminarcliente_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "")
+            {
+                if (MessageBox.Show("¿Está seguro de eliminar el cliente?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+
+                    bool eliminado = oCC_Cliente.EliminarCliente(Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpersona.Text), out mensaje);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Cliente eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
@@ -65,6 +125,34 @@ namespace CapaPresentacion
             datagridview.ClearSelection();
 
             txtid.Text = "";
+        }
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+
+            if (datagridview.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in datagridview.Rows)
+                {
+                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                    {
+                        fila.Visible = true;
+                    }
+                    else
+                    {
+                        fila.Visible = false;
+                    }
+                }
+            }
+        }
+        private void btnlimpiar_Click(object sender, EventArgs e)
+        {
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                fila.Visible = true;
+            }
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -98,17 +186,9 @@ namespace CapaPresentacion
                 txtidpersona.Text = datagridview.Rows[indice].Cells["idPersona"].Value.ToString();
             }
         }
-        private void AbrirModal(string tipoModal, int idCliente)
+        private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            using (var modal = new mdDetalleCliente(tipoModal, idCliente))
-            {
-                var resultado = modal.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    btnactualizar_Click(null, null);
-                }
-            }
+            menuvercliente_Click(sender, e);
         }
     }
 }

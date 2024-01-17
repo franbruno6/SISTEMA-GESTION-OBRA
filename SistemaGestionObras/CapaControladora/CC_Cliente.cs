@@ -24,5 +24,40 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
+        public int AgregarCliente(Cliente oCliente, out string mensaje)
+        {
+            try
+            {
+                return oCD_Cliente.AgregarCliente(oCliente, out mensaje);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool EditarCliente(Cliente oCliente, out string mensaje)
+        {
+            try
+            {
+                return oCD_Cliente.EditarCliente(oCliente, out mensaje);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool EliminarCliente(int idCliente, int idPersona, out string mensaje)
+        {
+            try
+            {
+                return oCD_Cliente.EliminarCliente(idCliente, idPersona, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
