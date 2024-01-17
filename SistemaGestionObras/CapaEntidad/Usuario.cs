@@ -109,10 +109,6 @@ namespace CapaEntidad
             }
             return salto;
         }
-        //public List<Permiso> ObtenerPermisos()
-        //{
-            
-        //}
         #endregion
     }
 }

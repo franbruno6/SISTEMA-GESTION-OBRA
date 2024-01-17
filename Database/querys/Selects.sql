@@ -26,3 +26,9 @@ select Persona.IdPersona, NombreCompleto, Correo, Documento,
 IdCliente, Telefono, Direccion, Estado
 from Persona
 inner join Cliente on Persona.IdPersona = Cliente.IdPersona
+
+--SELECT LISTA GRUPO PERMISOS COMPLETA--
+select Componente.IdComponente, Nombre, Estado,
+GrupoPermiso.IdGrupoPermiso
+from Componente
+inner join GrupoPermiso on Componente.IdComponente = GrupoPermiso.IdComponente

@@ -15,30 +15,31 @@ namespace CapaPresentacion
 {
     public partial class Inicio : Form
     {
-        private static Usuario usuarioActual;
-        private static IconMenuItem menuActivo = null;
-        private static Form formularioActivo = null;
+        private static Usuario _usuarioActual;
+        private static IconMenuItem _menuActivo = null;
+        private static Form _formularioActivo = null;
 
         public Inicio(Usuario oUsuario = null)
         {
             if (oUsuario == null)
             {
-                usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
-                usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(usuarioActual.IdUsuario));
+                _usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
+                _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario));
             }
             else
             {
-                usuarioActual = oUsuario;
+                _usuarioActual = oUsuario;
             }
-            //usuarioActual = oUsuario;
+            //_usuarioActual = oUsuario;
+            //_usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario));
 
             InitializeComponent();
         }
         private void Inicio_Load(object sender, EventArgs e)
         {
-            List<Permiso> listaPermisos = usuarioActual.GetPermisos();
+            List<Permiso> listaPermisos = _usuarioActual.GetPermisos();
             
-            //List<Permiso> listaPermisos = new CC_Permiso().ListarPermisos(usuarioActual.IdUsuario);
+            //List<Permiso> listaPermisos = new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario);
 
             foreach (IconMenuItem iconmenu in menu.Items)
             {
@@ -54,24 +55,24 @@ namespace CapaPresentacion
                 }
             }
             
-            lblusuario.Text = usuarioActual.NombreCompleto;
+            lblusuario.Text = _usuarioActual.NombreCompleto;
         }
         private void AbrirFormulario(IconMenuItem menu, Form formulario)
         {
-            if(menuActivo != null)
+            if(_menuActivo != null)
             {
-                menuActivo.BackColor = Color.PaleGoldenrod;
+                _menuActivo.BackColor = Color.PaleGoldenrod;
             }
             menu.BackColor = Color.Silver;
-            menuActivo = menu;
+            _menuActivo = menu;
 
-            if (formularioActivo != null)
+            if (_formularioActivo != null)
             {
-                formularioActivo.Close();
+                _formularioActivo.Close();
             }
 
             //CONFIGURO EL FORMULARIO
-            formularioActivo = formulario;
+            _formularioActivo = formulario;
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;

@@ -185,5 +185,45 @@ namespace CapaDatos
 
             return listaPermisos;
         }
+        //public List<Permiso> ListarPermisosCompleta()
+        //{
+        //    List<Permiso> listaPermisos = new List<Permiso>();
+
+        //    using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+        //    {
+        //        DataAccessObject.ObtenerConexion();
+        //        try
+        //        {
+        //            StringBuilder query = new StringBuilder();
+        //            query.AppendLine("select IdPermiso, NombreMenu, ");
+        //            query.AppendLine("Componente.IdComponente, Nombre, TipoComponente, Estado");
+        //            query.AppendLine("from Permiso ");
+        //            query.AppendLine("inner join Componente on Permiso.IdComponente = Componente.IdComponente ");
+
+        //            SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+
+        //            SqlDataReader dr = cmd.ExecuteReader();
+        //            while (dr.Read())
+        //            {
+        //                Permiso permiso = new Permiso()
+        //                {
+        //                    IdComponente = Convert.ToInt32(dr["IdComponente"]),
+        //                    Nombre = dr["Nombre"].ToString(),
+        //                    TipoComponente = dr["TipoComponente"].ToString(),
+        //                    Estado = Convert.ToBoolean(dr["Estado"]),
+        //                    IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
+        //                    NombreMenu = dr["NombreMenu"].ToString()
+        //                };
+        //                listaPermisos.Add(permiso);
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            throw new Exception("Hay un error en la base de datos " + ex.Message);
+        //        }
+        //    }
+        //    DataAccessObject.CerrarConexion();
+        //    return listaPermisos;
+        //}
     }
 }

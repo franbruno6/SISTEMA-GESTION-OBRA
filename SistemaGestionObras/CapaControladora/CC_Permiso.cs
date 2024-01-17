@@ -15,5 +15,9 @@ namespace CapaControladora
         {
             return oCD_Permiso.ListarPermisos(idUsuario);
         }
+        //public List<Permiso> ListarPermisosCompleta()
+        //{
+        //    return oCD_Permiso.ListarPermisosCompleta();
+        //}
     }
 }
