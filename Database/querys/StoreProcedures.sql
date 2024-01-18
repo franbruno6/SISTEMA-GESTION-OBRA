@@ -366,12 +366,12 @@ select @Mensaje
 select * from Permiso
 go
 
+--PROCEDURE REGISTRAR GRUPO PERMISO--
 --USO ESTO COMO UN PARAMETRO PARA CREAR UN GRUPO PERMISO-- PARTE 15 MINTUO 44
 create type [dbo].[EListaComponentes] as table(
 	[IdComponente] int null
 )
 go
-
 create procedure SP_RegistrarGrupoPermiso(
 @NombreGrupo nvarchar(60),
 @Estado bit,
@@ -410,5 +410,94 @@ begin
 		set @Mensaje = ERROR_MESSAGE()
 		rollback transaction registro
 	end catch
+end
+go
+
+--PROCEDURE EDITAR GRUPO PERMISO--
+create procedure SP_EditarGrupoPermiso(
+    @IdGrupoPermiso int,
+	@IdComponente int,
+    @NombreGrupo nvarchar(60),
+    @Estado bit,
+    @Componentes [EListaComponentes] readonly,
+    @Resultado bit output,
+    @Mensaje nvarchar(500) output
+)
+as
+begin
+    begin try
+        set @Resultado = 1
+        set @Mensaje = ''
+        --set @IdComponente int = 0
+        declare @TipoComponente nvarchar(20) = 'GrupoPermiso'
+
+        begin transaction edicion
+
+            -- Actualizar el nombre y estado del componente asociado al grupo
+            update Componente
+            set Nombre = @NombreGrupo, Estado = @Estado
+            where IdComponente = @IdComponente
+
+            -- Actualizar el nombre del grupo en la tabla GrupoPermiso
+            update GrupoPermiso
+            set NombreGrupo = @NombreGrupo
+            where IdGrupoPermiso = @IdGrupoPermiso
+
+            -- Eliminar las asociaciones existentes de componentes con el grupo
+            delete from GrupoPermisoComponente
+            where IdGrupoPermiso = @IdGrupoPermiso
+
+            -- Insertar las nuevas asociaciones de componentes con el grupo
+            insert into GrupoPermisoComponente(IdGrupoPermiso, IdComponente)
+            select @IdGrupoPermiso, IdComponente
+            from @Componentes
+
+        commit transaction edicion
+    end try
+    begin catch
+        set @Resultado = 0
+        set @Mensaje = ERROR_MESSAGE()
+        rollback transaction edicion
+    end catch
+end
+go
+
+--PROCEDURE ELIMINAR GRUPO PERMISO--
+create procedure SP_EliminarGrupoPermiso(
+    @IdGrupoPermiso int,
+	@IdComponente int,
+    @Resultado bit output,
+    @Mensaje nvarchar(500) output
+)
+as
+begin
+    begin try
+        set @Resultado = 1
+        set @Mensaje = ''
+
+        begin transaction eliminacion
+			-- Eliminar las relaciones del grupo con usuarios
+			delete from UsuarioComponente
+			where IdComponente = @IdComponente
+
+            -- Eliminar las relaciones del grupo con componentes
+            delete from GrupoPermisoComponente
+            where IdGrupoPermiso = @IdGrupoPermiso
+
+            -- Eliminar el grupo de permisos
+            delete from GrupoPermiso
+            where IdGrupoPermiso = @IdGrupoPermiso
+
+            -- Eliminar el componente asociado al grupo
+            delete from Componente
+            where IdComponente = @IdComponente
+
+        commit transaction eliminacion
+    end try
+    begin catch
+        set @Resultado = 0
+        set @Mensaje = ERROR_MESSAGE()
+        rollback transaction eliminacion
+    end catch
 end
 go

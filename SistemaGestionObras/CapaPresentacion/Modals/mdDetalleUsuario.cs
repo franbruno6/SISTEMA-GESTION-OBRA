@@ -221,16 +221,19 @@ namespace CapaPresentacion.CP_Usuario
             if (txtclave.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Debe completar la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtclave.Focus();
                 return false;
             }
             if (txtconfirmarclave.Text.Trim() == string.Empty)
             {
                 MessageBox.Show("Debe completar la confirmacion de la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtconfirmarclave.Focus();
                 return false;
             }
             if (txtclave.Text != txtconfirmarclave.Text)
             {
                 MessageBox.Show("Las claves no coinciden", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtclave.Focus();
                 return false;
             }
             return true;
@@ -239,14 +242,17 @@ namespace CapaPresentacion.CP_Usuario
         {
             if (txtnombrecompleto.Text.Trim() == string.Empty)
             {
+                txtnombrecompleto.Focus();
                 return false;
             }
             if (txtdocumento.Text.Trim() == string.Empty)
             {
+                txtdocumento.Focus();
                 return false;
             }
             if (txtcorreo.Text.Trim() == string.Empty)
             {
+                txtcorreo.Focus();
                 return false;
             }
 

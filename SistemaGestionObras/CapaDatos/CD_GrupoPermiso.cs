@@ -139,5 +139,80 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return resultado    ;
         }
+        public bool EditarGrupoPermiso(GrupoPermiso oGrupoPermiso, DataTable listaComponentes, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EditarGrupoPermiso", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdGrupoPermiso", oGrupoPermiso.IdGrupoPermiso);
+                    cmd.Parameters.AddWithValue("IdComponente", oGrupoPermiso.IdComponente);
+                    cmd.Parameters.AddWithValue("NombreGrupo", oGrupoPermiso.NombreGrupo);
+                    cmd.Parameters.AddWithValue("Estado", oGrupoPermiso.Estado);
+                    cmd.Parameters.AddWithValue("Componentes", listaComponentes);
+
+                    //PARAMETROS DE SALIDA
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+
+                    //EJECUTAR COMANDO
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    //OBTENER PARAMETROS DE SALIDA
+                    resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.Message;
+                    resultado = false;
+                }
+            }
+            DataAccessObject.CerrarConexion();
+            return resultado;
+        }
+        public bool EliminarGrupoPermiso(GrupoPermiso oGrupoPermiso, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EliminarGrupoPermiso", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdGrupoPermiso", oGrupoPermiso.IdGrupoPermiso);
+                    cmd.Parameters.AddWithValue("IdComponente", oGrupoPermiso.IdComponente);
+
+                    //PARAMETROS DE SALIDA
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+
+                    //EJECUTAR COMANDO
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    //OBTENER PARAMETROS DE SALIDA
+                    resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.Message;
+                    resultado = false;
+                }
+            }
+            DataAccessObject.CerrarConexion();
+            return resultado;
+        }
     }
 }

@@ -45,5 +45,27 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
+        public bool EditarGrupoPermiso(GrupoPermiso oGrupoPermiso, DataTable listaComponentes, out string mensaje)
+        {
+            try
+            {
+                return oCD_GrupoPermiso.EditarGrupoPermiso(oGrupoPermiso, listaComponentes, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        public bool EliminarGrupoPermiso(GrupoPermiso oGrupoPermiso, out string mensaje)
+        {
+            try
+            {
+                return oCD_GrupoPermiso.EliminarGrupoPermiso(oGrupoPermiso, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -175,22 +175,27 @@ namespace CapaPresentacion.Modals
         {
             if (txtnombrecompleto.Text.Trim() == string.Empty)
             {
+                txtnombrecompleto.Focus();
                 return false;
             }
             if (txtdocumento.Text.Trim() == string.Empty)
             {
+                txtdocumento.Focus();
                 return false;
             }
             if (txtcorreo.Text.Trim() == string.Empty)
             {
+                txtcorreo.Focus();
+                return false;
+            }
+            if (txttelefono.Text.Trim() == string.Empty)
+            {
+                txttelefono.Focus();
                 return false;
             }
             if (txtdireccion.Text.Trim() == string.Empty)
             {
-                return false;
-            }
-            if (txtdireccion.Text.Trim() == string.Empty)
-            {
+                txtdireccion.Focus();
                 return false;
             }
             return true;

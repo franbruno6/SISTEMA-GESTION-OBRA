@@ -17,13 +17,13 @@ namespace CapaPresentacion.Modals
     {
         private readonly string _tipoModal;
         private int _idGrupoPermiso;
-        private GrupoPermiso oGrupoPermiso;
+        private GrupoPermiso _oGrupoPermiso;
         private CC_GrupoPermiso oCC_GrupoPermiso = new CC_GrupoPermiso();
         public mdDetalleGrupoPermiso(string tipoModal, int idGrupoPermiso)
         {
             _tipoModal = tipoModal;
             _idGrupoPermiso = idGrupoPermiso;
-            oGrupoPermiso = oCC_GrupoPermiso.ListarGrupoPermisos().Where(c => c.IdGrupoPermiso == _idGrupoPermiso).FirstOrDefault();
+            _oGrupoPermiso = oCC_GrupoPermiso.ListarGrupoPermisos().Where(c => c.IdGrupoPermiso == _idGrupoPermiso).FirstOrDefault();
             InitializeComponent();
         }
         private void ConfigurarModal()
@@ -45,14 +45,14 @@ namespace CapaPresentacion.Modals
                     ConfigurarAgregar();
                     break;
                 case "Editar":
-                    //ConfigurarEditar();
+                    ConfigurarEditar();
                     break;
             };
         }
         private void ConfigurarVerDetalle()
         {
             this.Text = "Ver Detalle";
-            txtnombregrupo.Text = oGrupoPermiso.Nombre.ToString();
+            txtnombregrupo.Text = _oGrupoPermiso.Nombre.ToString();
             txtnombregrupo.Enabled = false;
             cboestado.Enabled = false;
             btnagregar.Visible = false;
@@ -61,7 +61,7 @@ namespace CapaPresentacion.Modals
 
             foreach (OpcionCombo opcion in cboestado.Items)
             {
-                if (Convert.ToInt32(opcion.Valor) == (oGrupoPermiso.Estado == true ? 1 : 0))
+                if (Convert.ToInt32(opcion.Valor) == (_oGrupoPermiso.Estado == true ? 1 : 0))
                 {
                     int indiceCombo = cboestado.Items.IndexOf(opcion);
                     cboestado.SelectedIndex = indiceCombo;
@@ -76,6 +76,26 @@ namespace CapaPresentacion.Modals
             this.Text = "Agregar Grupo";
             lblsubtitulo.Text = "Agregar Grupo";
             btnaccion.Text = "Agregar";
+        }
+        private void ConfigurarEditar()
+        {
+            this.Text = "Editar Grupo";
+            lblsubtitulo.Text = "Editar Grupo";
+            btnaccion.Text = "Editar";
+
+            txtnombregrupo.Text = _oGrupoPermiso.Nombre.ToString();
+            
+            foreach(OpcionCombo opcion in cboestado.Items)
+            {
+                if (Convert.ToInt32(opcion.Valor) == (_oGrupoPermiso.Estado == true ? 1 : 0))
+                {
+                    int indiceCombo = cboestado.Items.IndexOf(opcion);
+                    cboestado.SelectedIndex = indiceCombo;
+                    break;
+                }
+            }
+
+            MostrarPermisos();
         }
         private void MostrarPermisos()
         {
@@ -119,9 +139,9 @@ namespace CapaPresentacion.Modals
                 NombreGrupo = txtnombregrupo.Text,
                 Estado = Convert.ToBoolean(((OpcionCombo)cboestado.SelectedItem).Valor)
             };
-            
+
             bool resultado = oCC_GrupoPermiso.AgregarGrupoPermiso(oGrupoPermiso, listaComponentes, out string mensaje);
-            
+
             if (resultado)
             {
                 MessageBox.Show("Grupo registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -132,7 +152,44 @@ namespace CapaPresentacion.Modals
             {
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+        }
+        private void EditarGrupo()
+        {
+            if (datagridview.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un permiso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            DataTable listaComponentes = new DataTable();
+
+            listaComponentes.Columns.Add("IdComponente", typeof(int));
+
+            foreach (DataGridViewRow row in datagridview.Rows)
+            {
+                listaComponentes.Rows.Add(Convert.ToInt32(row.Cells["IdComponente"].Value));
+            }
+
+            GrupoPermiso oGrupoPermiso = new GrupoPermiso()
+            {
+                IdGrupoPermiso = _idGrupoPermiso,
+                IdComponente = _oGrupoPermiso.IdComponente,
+                NombreGrupo = txtnombregrupo.Text.Trim(),
+                Estado = Convert.ToBoolean(((OpcionCombo)cboestado.SelectedItem).Valor)
+            };
+
+            bool resultado = oCC_GrupoPermiso.EditarGrupoPermiso(oGrupoPermiso, listaComponentes, out string mensaje);
+
+            if (resultado)
+            {
+                MessageBox.Show("Grupo editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
         private void mdDetalleGrupoPermiso_Load(object sender, EventArgs e)
         {
@@ -140,13 +197,20 @@ namespace CapaPresentacion.Modals
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            switch(_tipoModal)
+            if (txtnombregrupo.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtnombregrupo.Focus();
+                return;
+            }
+
+            switch (_tipoModal)
             {
                 case "Agregar":
                     AgregarGrupo();
                     break;
                 case "Editar":
-                    //EditarGrupo();
+                    EditarGrupo();
                     break;
             }
         }

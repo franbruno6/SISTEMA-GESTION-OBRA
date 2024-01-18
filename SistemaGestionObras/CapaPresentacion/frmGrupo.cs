@@ -61,6 +61,7 @@ namespace CapaPresentacion
             datagridview.ClearSelection();
 
             txtid.Text = "";
+            txtidcomponente.Text = "";
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -91,6 +92,7 @@ namespace CapaPresentacion
             if (indice >= 0)
             {
                 txtid.Text = datagridview.Rows[indice].Cells["IdGrupoPermiso"].Value.ToString();
+                txtidcomponente.Text = datagridview.Rows[indice].Cells["IdComponente"].Value.ToString();
             }
         }
         private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -117,6 +119,10 @@ namespace CapaPresentacion
         private void menuagregargrupo_Click(object sender, EventArgs e)
         {
             AbrirModal("Agregar", 0);
+        }
+        private void menumodificargrupo_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Editar", Convert.ToInt32(txtid.Text));
         }
         private void AbrirModal(string tipoModal, int idGrupoPermiso)
         {
@@ -156,6 +162,37 @@ namespace CapaPresentacion
             foreach (DataGridViewRow fila in datagridview.Rows)
             {
                 fila.Visible = true;
+            }
+        }
+        private void menueliminargrupo_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "" && txtidcomponente.Text != "")
+            {
+                DialogResult resultado = MessageBox.Show("¿Está seguro de eliminar el grupo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    GrupoPermiso oGrupoPermiso = new GrupoPermiso();
+                    oGrupoPermiso.IdGrupoPermiso = Convert.ToInt32(txtid.Text);
+                    oGrupoPermiso.IdComponente = Convert.ToInt32(txtidcomponente.Text);
+
+                    string mensaje;
+                    bool respuesta = oCC_GrupoPermiso.EliminarGrupoPermiso(oGrupoPermiso, out mensaje);
+
+                    if (respuesta)
+                    {
+                        MessageBox.Show("Grupo eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }
