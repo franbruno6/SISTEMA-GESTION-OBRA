@@ -32,3 +32,10 @@ select Componente.IdComponente, Nombre, Estado,
 GrupoPermiso.IdGrupoPermiso
 from Componente
 inner join GrupoPermiso on Componente.IdComponente = GrupoPermiso.IdComponente
+
+--SELECT LISTA GRUPO COMPONENTES MEDIANTE IDGRUPOPERMISO--
+select Nombre, TipoComponente, Estado, Componente.IdComponente
+from GrupoPermisoComponente
+inner join GrupoPermiso on GrupoPermisoComponente.IdGrupoPermiso = GrupoPermiso.IdGrupoPermiso
+inner join Componente on GrupoPermisoComponente.IdComponente = Componente.IdComponente
+where GrupoPermisoComponente.IdGrupoPermiso = @IdGrupoPermiso

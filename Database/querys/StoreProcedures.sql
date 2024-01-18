@@ -309,8 +309,106 @@ begin
         set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
 	end catch
 end;
+go
 
+--PROCEDURE CREAR PERMISO (USO SOLO EN BASE DE DATOS NO LO USO EN EL CODIGO)--
+create procedure SP_RegistrarPermiso(
+@Nombre nvarchar(100),
+@NombreMenu nvarchar(100),
+@Mensaje nvarchar(400) output,
+@IdPermisoRegistrado int output
+)
+as
+begin
+	begin try
+		set @IdPermisoRegistrado = 0
+		set @Mensaje = ''
+		declare @IdComponente int = 0
+		declare @TipoComponente nvarchar(60) = 'Permiso'
+		declare @Estado bit = 1
 
+		begin transaction registro
+		
+			insert into Componente(Nombre,TipoComponente,Estado) values
+			(@Nombre,@TipoComponente,@Estado)
 
+			set @IdComponente = SCOPE_IDENTITY()
 
+			if (@IdComponente != 0)
+			begin
+				insert into Permiso(IdComponente,NombreMenu) values
+				(@IdComponente,@NombreMenu)
 
+				set @IdPermisoRegistrado = SCOPE_IDENTITY()
+			end
+		commit transaction registro
+	end try
+	begin catch
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
+end
+go
+
+--EXEC DEL PROCEDURE AGREGAR PERMISO--
+declare @IdPermisoRegistrado int
+declare @Mensaje nvarchar(500)
+
+exec SP_RegistrarPermiso 'Agregar Usuario','menuagregarusuario',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Modificar Usuario','menumodificarusuario',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Restablecer Clave','menurestablecerclave',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Eliminar Usuario','menueliminarusuario',@IdPermisoRegistrado output,@Mensaje output
+
+select @IdPermisoRegistrado
+
+select @Mensaje
+
+select * from Permiso
+go
+
+--USO ESTO COMO UN PARAMETRO PARA CREAR UN GRUPO PERMISO-- PARTE 15 MINTUO 44
+create type [dbo].[EListaComponentes] as table(
+	[IdComponente] int null
+)
+go
+
+create procedure SP_RegistrarGrupoPermiso(
+@NombreGrupo nvarchar(60),
+@Estado bit,
+@Componentes [EListaComponentes] readonly,
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+	begin try
+		declare @IdGrupoPermiso int = 0
+		declare @IdComponente int = 0
+		set @Resultado = 1
+		set @Mensaje = ''
+		declare @TipoComponente nvarchar(20) = 'GrupoPermiso'
+
+		begin transaction registro
+			
+			insert into Componente(Nombre,TipoComponente,Estado)
+			values (@NombreGrupo,@TipoComponente,@Estado)
+
+			set @IdComponente = SCOPE_IDENTITY()
+
+			insert into GrupoPermiso(NombreGrupo,IdComponente)
+			values (@NombreGrupo,@IdComponente)
+
+			set @IdGrupoPermiso = SCOPE_IDENTITY()
+
+			insert into GrupoPermisoComponente(IdGrupoPermiso,IdComponente)
+			select @IdGrupoPermiso,IdComponente from @Componentes
+
+		commit transaction registro
+	end try
+	begin catch
+		set @Resultado = 0
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
+end
+go

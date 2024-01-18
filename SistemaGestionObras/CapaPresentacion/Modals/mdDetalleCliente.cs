@@ -197,7 +197,10 @@ namespace CapaPresentacion.Modals
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if(MessageBox.Show("¿Está seguro que desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
     }
 }

@@ -254,7 +254,10 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {
-            this.Close();
+            if (MessageBox.Show("¿Está seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
         private void btnverclave_MouseDown(object sender, MouseEventArgs e)
         {

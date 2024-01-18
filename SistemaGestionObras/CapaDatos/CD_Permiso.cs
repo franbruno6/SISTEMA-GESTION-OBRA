@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace CapaDatos
 {
@@ -28,7 +29,7 @@ namespace CapaDatos
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
-                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandType = CommandType.Text;
 
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())

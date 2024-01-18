@@ -188,7 +188,13 @@ namespace CapaPresentacion
         }
         private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            menuvercliente_Click(sender, e);
+            int indiceFila = e.RowIndex;
+            int indiceColumna = e.ColumnIndex;
+
+            if (indiceFila >= 0 && indiceColumna >= 0)
+            {
+                menuvercliente_Click(sender, e);
+            }
         }
     }
 }

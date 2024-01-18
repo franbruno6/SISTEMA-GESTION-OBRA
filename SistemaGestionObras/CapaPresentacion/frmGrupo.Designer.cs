@@ -1,6 +1,6 @@
 ﻿namespace CapaPresentacion
 {
-    partial class frmPermiso
+    partial class frmGrupo
     {
         /// <summary>
         /// Required designer variable.
@@ -33,30 +33,28 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtbusqueda = new System.Windows.Forms.TextBox();
-            this.btnactualizar = new FontAwesome.Sharp.IconButton();
-            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
-            this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.txtidpersona = new System.Windows.Forms.TextBox();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menuverusuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuagregarusuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.menumodificarusuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.menurestablecerclave = new System.Windows.Forms.ToolStripMenuItem();
-            this.menueliminarusuario = new System.Windows.Forms.ToolStripMenuItem();
-            this.contenedor = new System.Windows.Forms.Panel();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdGrupoPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menuvergrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuagregargrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menumodificargrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menueliminargrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.contenedor = new System.Windows.Forms.Panel();
+            this.btnactualizar = new FontAwesome.Sharp.IconButton();
+            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
+            this.btnbuscar = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -70,40 +68,6 @@
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
-            // 
-            // btnactualizar
-            // 
-            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
-            this.btnactualizar.IconColor = System.Drawing.Color.Black;
-            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnactualizar.IconSize = 19;
-            this.btnactualizar.Location = new System.Drawing.Point(1312, 94);
-            this.btnactualizar.Name = "btnactualizar";
-            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
-            this.btnactualizar.TabIndex = 16;
-            this.btnactualizar.Text = "Actualizar Lista";
-            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnactualizar.UseVisualStyleBackColor = false;
-            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
-            // 
-            // btnlimpiar
-            // 
-            this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.btnlimpiar.IconColor = System.Drawing.Color.Black;
-            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnlimpiar.IconSize = 19;
-            this.btnlimpiar.Location = new System.Drawing.Point(1252, 94);
-            this.btnlimpiar.Name = "btnlimpiar";
-            this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
-            this.btnlimpiar.TabIndex = 15;
-            this.btnlimpiar.UseVisualStyleBackColor = false;
             // 
             // cbobusqueda
             // 
@@ -126,21 +90,6 @@
             this.lblbuscarpor.Size = new System.Drawing.Size(72, 16);
             this.lblbuscarpor.TabIndex = 11;
             this.lblbuscarpor.Text = "Buscar por";
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnbuscar.IconColor = System.Drawing.Color.Black;
-            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnbuscar.IconSize = 19;
-            this.btnbuscar.Location = new System.Drawing.Point(1192, 94);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(54, 24);
-            this.btnbuscar.TabIndex = 14;
-            this.btnbuscar.UseVisualStyleBackColor = false;
             // 
             // datagridview
             // 
@@ -197,136 +146,6 @@
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
-            // lblsubtitulo
-            // 
-            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsubtitulo.Location = new System.Drawing.Point(256, 79);
-            this.lblsubtitulo.Name = "lblsubtitulo";
-            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
-            this.lblsubtitulo.TabIndex = 8;
-            this.lblsubtitulo.Text = "Lista de Grupos";
-            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtidpersona
-            // 
-            this.txtidpersona.Location = new System.Drawing.Point(75, 278);
-            this.txtidpersona.Name = "txtidpersona";
-            this.txtidpersona.Size = new System.Drawing.Size(100, 20);
-            this.txtidpersona.TabIndex = 3;
-            this.txtidpersona.Visible = false;
-            // 
-            // txtid
-            // 
-            this.txtid.Location = new System.Drawing.Point(75, 216);
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(100, 20);
-            this.txtid.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(0, 91);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(235, 23);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Grupos";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.panel1.Controls.Add(this.txtidpersona);
-            this.panel1.Controls.Add(this.txtid);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.menuStrip1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 646);
-            this.panel1.TabIndex = 3;
-            // 
-            // menuStrip1
-            // 
-            this.menuStrip1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menuverusuario,
-            this.menuagregarusuario,
-            this.menumodificarusuario,
-            this.menurestablecerclave,
-            this.menueliminarusuario});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 389);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(235, 257);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
-            // 
-            // menuverusuario
-            // 
-            this.menuverusuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuverusuario.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menuverusuario.Name = "menuverusuario";
-            this.menuverusuario.Padding = new System.Windows.Forms.Padding(4);
-            this.menuverusuario.Size = new System.Drawing.Size(228, 33);
-            this.menuverusuario.Text = "Ver Detalle";
-            // 
-            // menuagregarusuario
-            // 
-            this.menuagregarusuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuagregarusuario.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menuagregarusuario.Name = "menuagregarusuario";
-            this.menuagregarusuario.Padding = new System.Windows.Forms.Padding(4);
-            this.menuagregarusuario.Size = new System.Drawing.Size(228, 33);
-            this.menuagregarusuario.Text = "Agregar";
-            // 
-            // menumodificarusuario
-            // 
-            this.menumodificarusuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menumodificarusuario.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menumodificarusuario.Name = "menumodificarusuario";
-            this.menumodificarusuario.Padding = new System.Windows.Forms.Padding(4);
-            this.menumodificarusuario.Size = new System.Drawing.Size(228, 33);
-            this.menumodificarusuario.Text = "Modificar";
-            // 
-            // menurestablecerclave
-            // 
-            this.menurestablecerclave.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menurestablecerclave.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menurestablecerclave.Name = "menurestablecerclave";
-            this.menurestablecerclave.Padding = new System.Windows.Forms.Padding(4);
-            this.menurestablecerclave.Size = new System.Drawing.Size(228, 33);
-            this.menurestablecerclave.Text = "Restablecer Contraseña";
-            // 
-            // menueliminarusuario
-            // 
-            this.menueliminarusuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menueliminarusuario.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menueliminarusuario.Name = "menueliminarusuario";
-            this.menueliminarusuario.Padding = new System.Windows.Forms.Padding(4);
-            this.menueliminarusuario.Size = new System.Drawing.Size(228, 33);
-            this.menueliminarusuario.Text = "Eliminar";
-            // 
-            // contenedor
-            // 
-            this.contenedor.Controls.Add(this.btnactualizar);
-            this.contenedor.Controls.Add(this.btnlimpiar);
-            this.contenedor.Controls.Add(this.txtbusqueda);
-            this.contenedor.Controls.Add(this.cbobusqueda);
-            this.contenedor.Controls.Add(this.lblbuscarpor);
-            this.contenedor.Controls.Add(this.btnbuscar);
-            this.contenedor.Controls.Add(this.datagridview);
-            this.contenedor.Controls.Add(this.lblsubtitulo);
-            this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.contenedor.Location = new System.Drawing.Point(0, 0);
-            this.contenedor.Name = "contenedor";
-            this.contenedor.Size = new System.Drawing.Size(1568, 646);
-            this.contenedor.TabIndex = 4;
-            // 
             // btnseleccionar
             // 
             this.btnseleccionar.HeaderText = "";
@@ -371,15 +190,179 @@
             this.estadoValor.ReadOnly = true;
             this.estadoValor.Width = 150;
             // 
-            // frmPermiso
+            // lblsubtitulo
+            // 
+            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsubtitulo.Location = new System.Drawing.Point(256, 79);
+            this.lblsubtitulo.Name = "lblsubtitulo";
+            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
+            this.lblsubtitulo.TabIndex = 8;
+            this.lblsubtitulo.Text = "Lista de Grupos";
+            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtid
+            // 
+            this.txtid.Location = new System.Drawing.Point(75, 216);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(100, 20);
+            this.txtid.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 91);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(235, 23);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Grupos";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.panel1.Controls.Add(this.txtid);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Controls.Add(this.menuStrip1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(235, 646);
+            this.panel1.TabIndex = 3;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuvergrupo,
+            this.menuagregargrupo,
+            this.menumodificargrupo,
+            this.menueliminargrupo});
+            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.menuStrip1.Location = new System.Drawing.Point(0, 430);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
+            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.menuStrip1.Size = new System.Drawing.Size(235, 216);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // menuvergrupo
+            // 
+            this.menuvergrupo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuvergrupo.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menuvergrupo.Name = "menuvergrupo";
+            this.menuvergrupo.Padding = new System.Windows.Forms.Padding(4);
+            this.menuvergrupo.Size = new System.Drawing.Size(228, 33);
+            this.menuvergrupo.Text = "Ver Detalle";
+            this.menuvergrupo.Click += new System.EventHandler(this.menuvergrupo_Click);
+            // 
+            // menuagregargrupo
+            // 
+            this.menuagregargrupo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuagregargrupo.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menuagregargrupo.Name = "menuagregargrupo";
+            this.menuagregargrupo.Padding = new System.Windows.Forms.Padding(4);
+            this.menuagregargrupo.Size = new System.Drawing.Size(228, 33);
+            this.menuagregargrupo.Text = "Agregar";
+            this.menuagregargrupo.Click += new System.EventHandler(this.menuagregargrupo_Click);
+            // 
+            // menumodificargrupo
+            // 
+            this.menumodificargrupo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menumodificargrupo.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menumodificargrupo.Name = "menumodificargrupo";
+            this.menumodificargrupo.Padding = new System.Windows.Forms.Padding(4);
+            this.menumodificargrupo.Size = new System.Drawing.Size(228, 33);
+            this.menumodificargrupo.Text = "Modificar";
+            // 
+            // menueliminargrupo
+            // 
+            this.menueliminargrupo.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menueliminargrupo.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menueliminargrupo.Name = "menueliminargrupo";
+            this.menueliminargrupo.Padding = new System.Windows.Forms.Padding(4);
+            this.menueliminargrupo.Size = new System.Drawing.Size(228, 33);
+            this.menueliminargrupo.Text = "Eliminar";
+            // 
+            // contenedor
+            // 
+            this.contenedor.Controls.Add(this.btnactualizar);
+            this.contenedor.Controls.Add(this.btnlimpiar);
+            this.contenedor.Controls.Add(this.txtbusqueda);
+            this.contenedor.Controls.Add(this.cbobusqueda);
+            this.contenedor.Controls.Add(this.lblbuscarpor);
+            this.contenedor.Controls.Add(this.btnbuscar);
+            this.contenedor.Controls.Add(this.datagridview);
+            this.contenedor.Controls.Add(this.lblsubtitulo);
+            this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.contenedor.Location = new System.Drawing.Point(0, 0);
+            this.contenedor.Name = "contenedor";
+            this.contenedor.Size = new System.Drawing.Size(1568, 646);
+            this.contenedor.TabIndex = 4;
+            // 
+            // btnactualizar
+            // 
+            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
+            this.btnactualizar.IconColor = System.Drawing.Color.Black;
+            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnactualizar.IconSize = 19;
+            this.btnactualizar.Location = new System.Drawing.Point(1312, 94);
+            this.btnactualizar.Name = "btnactualizar";
+            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
+            this.btnactualizar.TabIndex = 16;
+            this.btnactualizar.Text = "Actualizar Lista";
+            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnactualizar.UseVisualStyleBackColor = false;
+            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
+            // 
+            // btnlimpiar
+            // 
+            this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            this.btnlimpiar.IconColor = System.Drawing.Color.Black;
+            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnlimpiar.IconSize = 19;
+            this.btnlimpiar.Location = new System.Drawing.Point(1252, 94);
+            this.btnlimpiar.Name = "btnlimpiar";
+            this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
+            this.btnlimpiar.TabIndex = 15;
+            this.btnlimpiar.UseVisualStyleBackColor = false;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnbuscar.IconColor = System.Drawing.Color.Black;
+            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnbuscar.IconSize = 19;
+            this.btnbuscar.Location = new System.Drawing.Point(1192, 94);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(54, 24);
+            this.btnbuscar.TabIndex = 14;
+            this.btnbuscar.UseVisualStyleBackColor = false;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            // 
+            // frmGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1568, 646);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.contenedor);
-            this.Name = "frmPermiso";
-            this.Text = "frmPermiso";
+            this.Name = "frmGrupo";
+            this.Text = "frmGrupo";
             this.Load += new System.EventHandler(this.frmPermiso_Load);
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.panel1.ResumeLayout(false);
@@ -402,16 +385,14 @@
         private FontAwesome.Sharp.IconButton btnbuscar;
         private System.Windows.Forms.DataGridView datagridview;
         private System.Windows.Forms.Label lblsubtitulo;
-        private System.Windows.Forms.TextBox txtidpersona;
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menuverusuario;
-        private System.Windows.Forms.ToolStripMenuItem menuagregarusuario;
-        private System.Windows.Forms.ToolStripMenuItem menumodificarusuario;
-        private System.Windows.Forms.ToolStripMenuItem menurestablecerclave;
-        private System.Windows.Forms.ToolStripMenuItem menueliminarusuario;
+        private System.Windows.Forms.ToolStripMenuItem menuvergrupo;
+        private System.Windows.Forms.ToolStripMenuItem menuagregargrupo;
+        private System.Windows.Forms.ToolStripMenuItem menumodificargrupo;
+        private System.Windows.Forms.ToolStripMenuItem menueliminargrupo;
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdGrupoPermiso;

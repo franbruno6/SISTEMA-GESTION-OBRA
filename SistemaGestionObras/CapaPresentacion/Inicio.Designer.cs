@@ -30,7 +30,7 @@
         {
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuusuario = new FontAwesome.Sharp.IconMenuItem();
-            this.menupermiso = new FontAwesome.Sharp.IconMenuItem();
+            this.menugrupo = new FontAwesome.Sharp.IconMenuItem();
             this.menucliente = new FontAwesome.Sharp.IconMenuItem();
             this.menuproducto = new FontAwesome.Sharp.IconMenuItem();
             this.menupresupuesto = new FontAwesome.Sharp.IconMenuItem();
@@ -49,7 +49,7 @@
             this.menu.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuusuario,
-            this.menupermiso,
+            this.menugrupo,
             this.menucliente,
             this.menuproducto,
             this.menupresupuesto,
@@ -76,20 +76,20 @@
             this.menuusuario.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menuusuario.Click += new System.EventHandler(this.menuusarios_Click);
             // 
-            // menupermiso
+            // menugrupo
             // 
-            this.menupermiso.AutoSize = false;
-            this.menupermiso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menupermiso.IconChar = FontAwesome.Sharp.IconChar.Gear;
-            this.menupermiso.IconColor = System.Drawing.Color.Black;
-            this.menupermiso.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menupermiso.IconSize = 40;
-            this.menupermiso.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menupermiso.Name = "menupermiso";
-            this.menupermiso.Size = new System.Drawing.Size(122, 60);
-            this.menupermiso.Text = "Permisos";
-            this.menupermiso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.menupermiso.Click += new System.EventHandler(this.menupermisos_Click);
+            this.menugrupo.AutoSize = false;
+            this.menugrupo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menugrupo.IconChar = FontAwesome.Sharp.IconChar.Gear;
+            this.menugrupo.IconColor = System.Drawing.Color.Black;
+            this.menugrupo.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menugrupo.IconSize = 40;
+            this.menugrupo.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menugrupo.Name = "menugrupo";
+            this.menugrupo.Size = new System.Drawing.Size(122, 60);
+            this.menugrupo.Text = "Grupos";
+            this.menugrupo.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menugrupo.Click += new System.EventHandler(this.menupermisos_Click);
             // 
             // menucliente
             // 
@@ -236,7 +236,7 @@
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconMenuItem menucomprobante;
         private FontAwesome.Sharp.IconMenuItem menuusuario;
-        private FontAwesome.Sharp.IconMenuItem menupermiso;
+        private FontAwesome.Sharp.IconMenuItem menugrupo;
         private FontAwesome.Sharp.IconMenuItem menucliente;
         private FontAwesome.Sharp.IconMenuItem menuproducto;
         private FontAwesome.Sharp.IconMenuItem menupresupuesto;

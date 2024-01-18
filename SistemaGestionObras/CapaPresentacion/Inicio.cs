@@ -90,7 +90,7 @@ namespace CapaPresentacion
 
         private void menupermisos_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmPermiso());
+            AbrirFormulario((IconMenuItem)sender, new frmGrupo());
         }
 
         private void menuclientes_Click(object sender, EventArgs e)

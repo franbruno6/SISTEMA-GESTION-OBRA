@@ -43,7 +43,6 @@ C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionOb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\CapaDatos.pdb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmCliente.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmComprobante.resources
-C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmPermiso.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmPresupuesto.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmProducto.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmUsuario.resources
@@ -52,3 +51,6 @@ D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPrese
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleCliente.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleCliente.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.CP_Usuario.mdDetalleUsuario.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleGrupoPermiso.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmGrupo.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdAgregarComponenteAGrupo.resources

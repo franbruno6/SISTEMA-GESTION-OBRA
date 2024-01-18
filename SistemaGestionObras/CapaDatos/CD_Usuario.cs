@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data;
 
 namespace CapaDatos
 {
@@ -70,10 +71,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Clave", clave);
                     cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("IdUsuarioRegistrado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("IdUsuarioRegistrado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 
@@ -109,10 +110,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Documento", oUsuario.Documento);
                     cmd.Parameters.AddWithValue("Estado", oUsuario.Estado);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 
@@ -144,10 +145,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
                     cmd.Parameters.AddWithValue("Clave", clave);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 
@@ -179,10 +180,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
                     cmd.Parameters.AddWithValue("IdPersona", idPersona);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 

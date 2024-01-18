@@ -14,7 +14,7 @@ values ('VerUsuario','Permiso',1),('VerPermiso','Permiso',1),('VerCliente','Perm
 go
 
 insert into Permiso(IdComponente,NombreMenu)
-values (1,'menuusuario'),(2,'menupermiso'),(3,'menucliente'),(4,'menuproducto'),(5,'menupresupuesto'),(6,'menucomprobante')
+values (1,'menuusuario'),(2,'menugrupo'),(3,'menucliente'),(4,'menuproducto'),(5,'menupresupuesto'),(6,'menucomprobante')
 go
 
 insert into GrupoPermiso(IdComponente,NombreGrupo)

@@ -1,5 +1,7 @@
 ﻿using CapaControladora;
 using CapaEntidad;
+using CapaPresentacion.CP_Usuario;
+using CapaPresentacion.Modals;
 using CapaPresentacion.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -13,14 +15,13 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class frmPermiso : Form
+    public partial class frmGrupo : Form
     {
         CC_GrupoPermiso oCC_GrupoPermiso = new CC_GrupoPermiso();
-        public frmPermiso()
+        public frmGrupo()
         {
             InitializeComponent();
         }
-
         private void frmPermiso_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -37,12 +38,11 @@ namespace CapaPresentacion
 
             btnactualizar_Click(sender, e);
         }
-
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
 
-            //MOSTRAR LOS USUARIOS
+            //MOSTRAR LOS GRUPOS
             List<GrupoPermiso> listaGrupoPermisos = oCC_GrupoPermiso.ListarGrupoPermisos();
 
             foreach (GrupoPermiso oGrupoPermiso in listaGrupoPermisos)
@@ -91,12 +91,72 @@ namespace CapaPresentacion
             if (indice >= 0)
             {
                 txtid.Text = datagridview.Rows[indice].Cells["IdGrupoPermiso"].Value.ToString();
-                //txtidpersona.Text = datagridview.Rows[indice].Cells["idPersona"].Value.ToString();
             }
         }
         private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            //menuverusuario_Click(sender, e);
+            int indiceFila = e.RowIndex;
+            int indiceColumna = e.ColumnIndex;
+
+            if (indiceFila >= 0 && indiceColumna >= 0)
+            {
+                menuvergrupo_Click(sender, e);
+            }
+        }
+        private void menuvergrupo_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "")
+            {
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void menuagregargrupo_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Agregar", 0);
+        }
+        private void AbrirModal(string tipoModal, int idGrupoPermiso)
+        {
+            using (var modal = new mdDetalleGrupoPermiso(tipoModal, idGrupoPermiso))
+            {
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    btnactualizar_Click(null, null);
+                }
+            }
+        }
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+
+            if (datagridview.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in datagridview.Rows)
+                {
+                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                    {
+                        fila.Visible = true;
+                    }
+                    else
+                    {
+                        fila.Visible = false;
+                    }
+                }
+            }
+        }
+        private void btnlimpiar_Click(object sender, EventArgs e)
+        {
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                fila.Visible = true;
+            }
         }
     }
 }
