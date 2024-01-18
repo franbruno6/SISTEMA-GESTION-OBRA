@@ -24,7 +24,7 @@ namespace CapaPresentacion
             if (oUsuario == null)
             {
                 _usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
-                _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario));
+                _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
             }
             else
             {
@@ -54,7 +54,21 @@ namespace CapaPresentacion
                     iconmenu.Visible = false;
                 }
             }
-            
+
+            foreach (ToolStripMenuItem menu in menupermiso.DropDownItems)
+            {
+                bool encontrado = listaPermisos.Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+
             lblusuario.Text = _usuarioActual.NombreCompleto;
         }
         private void AbrirFormulario(IconMenuItem menu, Form formulario)
@@ -87,32 +101,22 @@ namespace CapaPresentacion
         {
             AbrirFormulario((IconMenuItem)sender, new frmUsuario());
         }
-
-        private void menupermisos_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario((IconMenuItem)sender, new frmGrupo());
-        }
-
         private void menuclientes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmCliente());
         }
-
         private void menuproductos_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmProducto());
         }
-
         private void menupresupuestos_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmPresupuesto());
         }
-
         private void menucomprobantes_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmComprobante());
         }
-
         private void menu_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, menu.ClientRectangle,
@@ -120,6 +124,15 @@ namespace CapaPresentacion
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 1, ButtonBorderStyle.Solid);
+        }
+        private void menupermisosimple_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menupermiso, new frmPermiso());
+        }
+
+        private void menugrupo_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menupermiso, new frmGrupo());
         }
     }
 }

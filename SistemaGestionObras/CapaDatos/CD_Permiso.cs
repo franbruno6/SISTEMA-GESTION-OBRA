@@ -12,7 +12,7 @@ namespace CapaDatos
 {
     public class CD_Permiso
     {
-        public List<Permiso> ListarPermisos(int idUsuario)
+        public List<Permiso> ListarPermisosPorId(int idUsuario)
         {
             List<Componente> listaComponentes = new List<Componente>();
 
@@ -184,6 +184,46 @@ namespace CapaDatos
             }
             while (listaComponentes.Count != 0);
 
+            return listaPermisos;
+        }
+        public List<Permiso> ListarPermisos()
+        {
+            List<Permiso> listaPermisos = new List<Permiso>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select Componente.IdComponente, Nombre, Estado, ");
+                    query.AppendLine("Permiso.IdPermiso, Permiso.NombreMenu");
+                    query.AppendLine("from Componente ");
+                    query.AppendLine("inner join Permiso on Componente.IdComponente = Permiso.IdComponente ");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        Permiso permiso = new Permiso();
+                        permiso.IdComponente = Convert.ToInt32(dr["IdComponente"]);
+                        permiso.Nombre = dr["Nombre"].ToString();
+                        permiso.TipoComponente = "Permiso";
+                        permiso.Estado = Convert.ToBoolean(dr["Estado"]);
+                        permiso.IdPermiso = Convert.ToInt32(dr["IdPermiso"]);
+                        permiso.NombreMenu = dr["NombreMenu"].ToString();
+
+                        listaPermisos.Add(permiso);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    listaPermisos = new List<Permiso>();
+                }
+            }
+            DataAccessObject.CerrarConexion();
             return listaPermisos;
         }
         //public List<Permiso> ListarPermisosCompleta()

@@ -11,13 +11,27 @@ namespace CapaControladora
     public class CC_Permiso
     {
         private CD_Permiso oCD_Permiso = new CD_Permiso();
-        public List<Permiso> ListarPermisos(int idUsuario)
+        public List<Permiso> ListarPermisosPorId(int idUsuario)
         {
-            return oCD_Permiso.ListarPermisos(idUsuario);
+            try 
+            {
+                return oCD_Permiso.ListarPermisosPorId(idUsuario);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
-        //public List<Permiso> ListarPermisosCompleta()
-        //{
-        //    return oCD_Permiso.ListarPermisosCompleta();
-        //}
+        public List<Permiso> ListarPermisos()
+        {
+            try
+            {
+                return oCD_Permiso.ListarPermisos();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

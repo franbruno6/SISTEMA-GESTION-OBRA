@@ -17,6 +17,7 @@ namespace CapaPresentacion
 {
     public partial class frmUsuario : Form
     {
+        private CC_Usuario oCC_Usuario = new CC_Usuario();
         public frmUsuario()
         {
             InitializeComponent();
@@ -94,7 +95,7 @@ namespace CapaPresentacion
                 {
                     string mensaje = string.Empty;
 
-                    bool eliminado = new CC_Usuario().EliminarUsuario(Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpersona.Text), out mensaje);
+                    bool eliminado = oCC_Usuario.EliminarUsuario(Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpersona.Text), out mensaje);
 
                     if (eliminado)
                     {
@@ -113,7 +114,7 @@ namespace CapaPresentacion
             datagridview.Rows.Clear();
 
             //MOSTRAR LOS USUARIOS
-            List<Usuario> listaUsuarios = new CC_Usuario().ListarUsuarios();
+            List<Usuario> listaUsuarios = oCC_Usuario.ListarUsuarios();
 
             foreach (Usuario oUsuario in listaUsuarios)
             {
@@ -133,6 +134,7 @@ namespace CapaPresentacion
             datagridview.ClearSelection();
 
             txtid.Text = "";
+            txtidpersona.Text = "";
         }
         private void btnbuscar_Click(object sender, EventArgs e)
         {

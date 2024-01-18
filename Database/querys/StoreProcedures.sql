@@ -354,10 +354,13 @@ go
 declare @IdPermisoRegistrado int
 declare @Mensaje nvarchar(500)
 
-exec SP_RegistrarPermiso 'Agregar Usuario','menuagregarusuario',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Modificar Usuario','menumodificarusuario',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Restablecer Clave','menurestablecerclave',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Eliminar Usuario','menueliminarusuario',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Agregar Usuario','menuagregarusuario',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Modificar Usuario','menumodificarusuario',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Restablecer Clave','menurestablecerclave',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Eliminar Usuario','menueliminarusuario',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Ver Menu Permiso','menupermiso',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Ver Menu Permiso Simple','menupermisosimple',@IdPermisoRegistrado output,@Mensaje output
+
 
 select @IdPermisoRegistrado
 
@@ -365,6 +368,9 @@ select @Mensaje
 
 select * from Permiso
 go
+
+insert into UsuarioComponente (IdUsuario,IdComponente)
+values (1,22)
 
 --PROCEDURE REGISTRAR GRUPO PERMISO--
 --USO ESTO COMO UN PARAMETRO PARA CREAR UN GRUPO PERMISO-- PARTE 15 MINTUO 44

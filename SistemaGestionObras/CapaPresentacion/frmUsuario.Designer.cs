@@ -43,12 +43,9 @@
             this.txtid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.btnactualizar = new FontAwesome.Sharp.IconButton();
-            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.txtbusqueda = new System.Windows.Forms.TextBox();
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
-            this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +56,10 @@
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblsubtitulo = new System.Windows.Forms.Label();
+            this.menuadministrarpermisos = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnactualizar = new FontAwesome.Sharp.IconButton();
+            this.btnlimpiar = new FontAwesome.Sharp.IconButton();
+            this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -74,18 +75,20 @@
             this.menuagregarusuario,
             this.menumodificarusuario,
             this.menurestablecerclave,
+            this.menuadministrarpermisos,
             this.menueliminarusuario});
             this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 389);
+            this.menuStrip1.Location = new System.Drawing.Point(0, 329);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
             this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(235, 257);
+            this.menuStrip1.Size = new System.Drawing.Size(235, 317);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // menuverusuario
             // 
+            this.menuverusuario.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.menuverusuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menuverusuario.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
             this.menuverusuario.Name = "menuverusuario";
@@ -189,41 +192,6 @@
             this.contenedor.Size = new System.Drawing.Size(1333, 646);
             this.contenedor.TabIndex = 2;
             // 
-            // btnactualizar
-            // 
-            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
-            this.btnactualizar.IconColor = System.Drawing.Color.Black;
-            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnactualizar.IconSize = 19;
-            this.btnactualizar.Location = new System.Drawing.Point(1072, 94);
-            this.btnactualizar.Name = "btnactualizar";
-            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
-            this.btnactualizar.TabIndex = 16;
-            this.btnactualizar.Text = "Actualizar Lista";
-            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnactualizar.UseVisualStyleBackColor = false;
-            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
-            // 
-            // btnlimpiar
-            // 
-            this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
-            this.btnlimpiar.IconColor = System.Drawing.Color.Black;
-            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnlimpiar.IconSize = 19;
-            this.btnlimpiar.Location = new System.Drawing.Point(1012, 94);
-            this.btnlimpiar.Name = "btnlimpiar";
-            this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
-            this.btnlimpiar.TabIndex = 15;
-            this.btnlimpiar.UseVisualStyleBackColor = false;
-            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
-            // 
             // txtbusqueda
             // 
             this.txtbusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -253,22 +221,6 @@
             this.lblbuscarpor.Size = new System.Drawing.Size(72, 16);
             this.lblbuscarpor.TabIndex = 11;
             this.lblbuscarpor.Text = "Buscar por";
-            // 
-            // btnbuscar
-            // 
-            this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
-            this.btnbuscar.IconColor = System.Drawing.Color.Black;
-            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnbuscar.IconSize = 19;
-            this.btnbuscar.Location = new System.Drawing.Point(952, 94);
-            this.btnbuscar.Name = "btnbuscar";
-            this.btnbuscar.Size = new System.Drawing.Size(54, 24);
-            this.btnbuscar.TabIndex = 14;
-            this.btnbuscar.UseVisualStyleBackColor = false;
-            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // datagridview
             // 
@@ -396,6 +348,66 @@
             this.lblsubtitulo.Text = "Lista de Usuarios";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // menuadministrarpermisos
+            // 
+            this.menuadministrarpermisos.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuadministrarpermisos.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menuadministrarpermisos.Name = "menuadministrarpermisos";
+            this.menuadministrarpermisos.Padding = new System.Windows.Forms.Padding(4);
+            this.menuadministrarpermisos.Size = new System.Drawing.Size(228, 33);
+            this.menuadministrarpermisos.Text = "Administrar Permisos";
+            // 
+            // btnactualizar
+            // 
+            this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnactualizar.IconChar = FontAwesome.Sharp.IconChar.ClockRotateLeft;
+            this.btnactualizar.IconColor = System.Drawing.Color.Black;
+            this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnactualizar.IconSize = 19;
+            this.btnactualizar.Location = new System.Drawing.Point(1072, 94);
+            this.btnactualizar.Name = "btnactualizar";
+            this.btnactualizar.Size = new System.Drawing.Size(157, 24);
+            this.btnactualizar.TabIndex = 16;
+            this.btnactualizar.Text = "Actualizar Lista";
+            this.btnactualizar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnactualizar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnactualizar.UseVisualStyleBackColor = false;
+            this.btnactualizar.Click += new System.EventHandler(this.btnactualizar_Click);
+            // 
+            // btnlimpiar
+            // 
+            this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnlimpiar.IconChar = FontAwesome.Sharp.IconChar.Broom;
+            this.btnlimpiar.IconColor = System.Drawing.Color.Black;
+            this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnlimpiar.IconSize = 19;
+            this.btnlimpiar.Location = new System.Drawing.Point(1012, 94);
+            this.btnlimpiar.Name = "btnlimpiar";
+            this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
+            this.btnlimpiar.TabIndex = 15;
+            this.btnlimpiar.UseVisualStyleBackColor = false;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
+            // 
+            // btnbuscar
+            // 
+            this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnbuscar.IconChar = FontAwesome.Sharp.IconChar.MagnifyingGlass;
+            this.btnbuscar.IconColor = System.Drawing.Color.Black;
+            this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnbuscar.IconSize = 19;
+            this.btnbuscar.Location = new System.Drawing.Point(952, 94);
+            this.btnbuscar.Name = "btnbuscar";
+            this.btnbuscar.Size = new System.Drawing.Size(54, 24);
+            this.btnbuscar.TabIndex = 14;
+            this.btnbuscar.UseVisualStyleBackColor = false;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
+            // 
             // frmUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,5 +460,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
         private System.Windows.Forms.TextBox txtidpersona;
+        private System.Windows.Forms.ToolStripMenuItem menuadministrarpermisos;
     }
 }
