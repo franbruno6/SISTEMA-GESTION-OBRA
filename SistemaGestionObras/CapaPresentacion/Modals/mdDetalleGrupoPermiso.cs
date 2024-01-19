@@ -26,6 +26,10 @@ namespace CapaPresentacion.Modals
             _oGrupoPermiso = oCC_GrupoPermiso.ListarGrupoPermisos().Where(c => c.IdGrupoPermiso == _idGrupoPermiso).FirstOrDefault();
             InitializeComponent();
         }
+        private void mdDetalleGrupoPermiso_Load(object sender, EventArgs e)
+        {
+            ConfigurarModal();
+        }
         private void ConfigurarModal()
         {
             cboestado.Items.Add(new OpcionCombo(1, "Activo"));
@@ -75,7 +79,7 @@ namespace CapaPresentacion.Modals
         {
             this.Text = "Agregar Grupo";
             lblsubtitulo.Text = "Agregar Grupo";
-            btnaccion.Text = "Agregar";
+            btnaccion.Text = "Guardar";
         }
         private void ConfigurarEditar()
         {
@@ -182,43 +186,13 @@ namespace CapaPresentacion.Modals
 
             if (resultado)
             {
-                MessageBox.Show("Grupo editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Grupo editado correctamente.\nSe recomienda reiniciar el sistema", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
             else
             {
                 MessageBox.Show(mensaje, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-        private void mdDetalleGrupoPermiso_Load(object sender, EventArgs e)
-        {
-            ConfigurarModal();
-        }
-        private void btnaccion_Click(object sender, EventArgs e)
-        {
-            if (txtnombregrupo.Text.Trim() == "")
-            {
-                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtnombregrupo.Focus();
-                return;
-            }
-
-            switch (_tipoModal)
-            {
-                case "Agregar":
-                    AgregarGrupo();
-                    break;
-                case "Editar":
-                    EditarGrupo();
-                    break;
-            }
-        }
-        private void btnvolver_Click(object sender, EventArgs e)
-        {
-            if (MessageBox.Show("¿Está seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                this.Close();
             }
         }
         private void btnagregar_Click(object sender, EventArgs e)
@@ -264,6 +238,32 @@ namespace CapaPresentacion.Modals
 
             datagridview.ClearSelection();
             txtid.Text = "";
+        }
+        private void btnaccion_Click(object sender, EventArgs e)
+        {
+            if (txtnombregrupo.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtnombregrupo.Focus();
+                return;
+            }
+
+            switch (_tipoModal)
+            {
+                case "Agregar":
+                    AgregarGrupo();
+                    break;
+                case "Editar":
+                    EditarGrupo();
+                    break;
+            }
+        }
+        private void btnvolver_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Está seguro que desea salir?", "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Close();
+            }
         }
         private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
         {

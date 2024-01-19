@@ -18,8 +18,10 @@ namespace CapaPresentacion
     public partial class frmUsuario : Form
     {
         private CC_Usuario oCC_Usuario = new CC_Usuario();
-        public frmUsuario()
+        private Usuario _usuarioActual;
+        public frmUsuario(Usuario oUsuario)
         {
+            _usuarioActual = oUsuario;
             InitializeComponent();
         }
         private void frmUsuario_Load(object sender, EventArgs e)
@@ -36,6 +38,21 @@ namespace CapaPresentacion
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
 
+            foreach (ToolStripMenuItem menu in menu.Items)
+            {
+                bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+            menuverusuario.Visible = true;
+
             btnactualizar_Click(sender, e);
         }
         private void AbrirModal(string tipoModal, int idUsuario)
@@ -43,12 +60,8 @@ namespace CapaPresentacion
             using (var modal = new mdDetalleUsuario(tipoModal, idUsuario))
             {
                 var resultado = modal.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    btnactualizar_Click(null, null);
-                }
             }
+            btnactualizar_Click(null, null);
         }
         private void menuverusuario_Click(object sender, EventArgs e)
         {
@@ -67,7 +80,7 @@ namespace CapaPresentacion
         }
         private void menumodificarusuario_Click(object sender, EventArgs e)
         {
-            if (txtid.Text != "")
+            if (txtid.Text.Trim() != "")
             {
                 AbrirModal("Editar", Convert.ToInt32(txtid.Text));
             }
@@ -78,7 +91,7 @@ namespace CapaPresentacion
         }
         private void menurestablecerclave_Click(object sender, EventArgs e)
         {
-            if(txtid.Text != "")
+            if(txtid.Text.Trim() != "")
             {
                 AbrirModal("RestablacerClave", Convert.ToInt32(txtid.Text));
             }
@@ -89,7 +102,7 @@ namespace CapaPresentacion
         }
         private void menueliminarusuario_Click(object sender, EventArgs e)
         {
-            if(txtid.Text != "")
+            if(txtid.Text.Trim() != "")
             {
                 if (MessageBox.Show("¿Está seguro de eliminar el usuario?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
@@ -107,6 +120,10 @@ namespace CapaPresentacion
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void btnactualizar_Click(object sender, EventArgs e)
@@ -162,6 +179,22 @@ namespace CapaPresentacion
             foreach (DataGridViewRow fila in datagridview.Rows)
             {
                 fila.Visible = true;
+            }
+        }
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
             }
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

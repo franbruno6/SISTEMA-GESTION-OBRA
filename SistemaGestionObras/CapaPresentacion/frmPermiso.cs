@@ -1,5 +1,7 @@
 ﻿using CapaControladora;
 using CapaEntidad;
+using CapaPresentacion.CP_Usuario;
+using CapaPresentacion.Modals;
 using CapaPresentacion.Utilidades;
 using System;
 using System.Collections.Generic;
@@ -16,8 +18,10 @@ namespace CapaPresentacion
     public partial class frmPermiso : Form
     {
         private CC_Permiso oCCPermiso = new CC_Permiso();
-        public frmPermiso()
+        private Usuario _usuarioActual;
+        public frmPermiso(Usuario oUsuario)
         {
+            _usuarioActual = oUsuario;
             InitializeComponent();
         }
         private void frmPermiso_Load(object sender, EventArgs e)
@@ -34,7 +38,83 @@ namespace CapaPresentacion
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
 
+            foreach (ToolStripMenuItem menu in menu.Items)
+            {
+                bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+            menuverdetallepermisosimple.Visible = true;
+
             btnactualizar_Click(sender, e);
+        }
+        private void AbrirModal()
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                int idPermiso = Convert.ToInt32(txtid.Text);
+
+                using (var modal = new mdDetallePermisoSimple(idPermiso))
+                {
+                    var resultado = modal.ShowDialog();
+                }
+                btnactualizar_Click(null, null);
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un permiso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void menuverdetallepermisosimple_Click(object sender, EventArgs e)
+        {
+            AbrirModal();
+        }
+        private void menumodificarestadopermiso_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                string estado = datagridview.Rows[datagridview.CurrentRow.Index].Cells["estadoValor"].Value.ToString();
+                string nuevoEstado = string.Empty;
+                bool valorEstado = true;
+                if (estado == "Activo")
+                {
+                    nuevoEstado = "Inactivo";
+                    valorEstado = false;
+                }
+                else
+                {
+                    nuevoEstado = "Activo";
+                    valorEstado = true;
+                }
+
+                if (MessageBox.Show("¿Está seguro de cambiar el estado de permiso a " + nuevoEstado + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+
+                    bool editado = oCCPermiso.EditarEstado(Convert.ToInt32(txtidcomponente.Text), valorEstado, out mensaje);
+
+                    if (editado)
+                    {
+                        MessageBox.Show("Estado editado correctamente.\nSe recomienda reiniciar el sistema", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un permiso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
@@ -61,6 +141,50 @@ namespace CapaPresentacion
 
             txtid.Text = "";
             txtidcomponente.Text = "";
+        }
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+
+            if (datagridview.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in datagridview.Rows)
+                {
+                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                    {
+                        fila.Visible = true;
+                    }
+                    else
+                    {
+                        fila.Visible = false;
+                    }
+                }
+            }
+        }
+        private void btnlimpiar_Click(object sender, EventArgs e)
+        {
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                fila.Visible = true;
+            }
+        }
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -101,8 +225,9 @@ namespace CapaPresentacion
 
             if (indiceFila >= 0 && indiceColumna >= 0)
             {
-                //menuverusuario_Click(sender, e);
+                AbrirModal();
             }
+            
         }
     }
 }

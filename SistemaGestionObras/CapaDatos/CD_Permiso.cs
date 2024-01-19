@@ -63,12 +63,15 @@ namespace CapaDatos
             {
                 foreach (Componente componente in listaComponentes)
                 {
-                    if (componente.TipoComponente == "Permiso") {
-                        listaPermisoComponente.Add(componente);
-                    }
-                    else if (componente.TipoComponente == "GrupoPermiso")
+                    if (componente.Estado)
                     {
-                        listaGrupoPermisoComponente.Add(componente);
+                        if (componente.TipoComponente == "Permiso") {
+                            listaPermisoComponente.Add(componente);
+                        }
+                        else if (componente.TipoComponente == "GrupoPermiso")
+                        {
+                            listaGrupoPermisoComponente.Add(componente);
+                        }
                     }
                 }
 
@@ -226,45 +229,40 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return listaPermisos;
         }
-        //public List<Permiso> ListarPermisosCompleta()
-        //{
-        //    List<Permiso> listaPermisos = new List<Permiso>();
+        public bool EditarEstado(int idComponente, bool estado, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
 
-        //    using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
-        //    {
-        //        DataAccessObject.ObtenerConexion();
-        //        try
-        //        {
-        //            StringBuilder query = new StringBuilder();
-        //            query.AppendLine("select IdPermiso, NombreMenu, ");
-        //            query.AppendLine("Componente.IdComponente, Nombre, TipoComponente, Estado");
-        //            query.AppendLine("from Permiso ");
-        //            query.AppendLine("inner join Componente on Permiso.IdComponente = Componente.IdComponente ");
+                using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+                {
+                    DataAccessObject.ObtenerConexion();
+                    try
+                    {
+                        SqlCommand cmd = new SqlCommand("SP_EditarEstadoPermiso", conexion);
+                        
+                        //PARAMETROS DE ENTRADA
+                        cmd.Parameters.AddWithValue("IdComponente", idComponente);
+                        cmd.Parameters.AddWithValue("Estado", estado);
+                        //PARAMETRO DE SALIDA
+                        cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                        cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                        //TIPO DE COMANDO
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-        //            SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                        cmd.ExecuteNonQuery();
 
-        //            SqlDataReader dr = cmd.ExecuteReader();
-        //            while (dr.Read())
-        //            {
-        //                Permiso permiso = new Permiso()
-        //                {
-        //                    IdComponente = Convert.ToInt32(dr["IdComponente"]),
-        //                    Nombre = dr["Nombre"].ToString(),
-        //                    TipoComponente = dr["TipoComponente"].ToString(),
-        //                    Estado = Convert.ToBoolean(dr["Estado"]),
-        //                    IdPermiso = Convert.ToInt32(dr["IdPermiso"]),
-        //                    NombreMenu = dr["NombreMenu"].ToString()
-        //                };
-        //                listaPermisos.Add(permiso);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            throw new Exception("Hay un error en la base de datos " + ex.Message);
-        //        }
-        //    }
-        //    DataAccessObject.CerrarConexion();
-        //    return listaPermisos;
-        //}
+                        resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                        mensaje = cmd.Parameters["Mensaje"].Value.ToString();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        resultado = false;
+                    }
+                }
+                DataAccessObject.CerrarConexion();
+                return resultado;
+        }
     }
 }

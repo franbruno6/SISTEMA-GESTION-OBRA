@@ -36,6 +36,13 @@
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.idPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombremenu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contenedor = new System.Windows.Forms.Panel();
             this.btnactualizar = new FontAwesome.Sharp.IconButton();
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
@@ -45,19 +52,13 @@
             this.txtid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuverdetallepermisosimple = new System.Windows.Forms.ToolStripMenuItem();
             this.menumodificarestadopermiso = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.idPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombremenu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtbusqueda
@@ -67,6 +68,7 @@
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
+            this.txtbusqueda.TextChanged += new System.EventHandler(this.txtbusqueda_TextChanged);
             // 
             // cbobusqueda
             // 
@@ -78,6 +80,7 @@
             this.cbobusqueda.Name = "cbobusqueda";
             this.cbobusqueda.Size = new System.Drawing.Size(142, 24);
             this.cbobusqueda.TabIndex = 12;
+            this.cbobusqueda.SelectedIndexChanged += new System.EventHandler(this.cbobusqueda_SelectedIndexChanged);
             // 
             // lblbuscarpor
             // 
@@ -146,6 +149,56 @@
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
+            // btnseleccionar
+            // 
+            this.btnseleccionar.HeaderText = "";
+            this.btnseleccionar.Name = "btnseleccionar";
+            this.btnseleccionar.ReadOnly = true;
+            this.btnseleccionar.Width = 50;
+            // 
+            // idPermiso
+            // 
+            this.idPermiso.HeaderText = "IdPermiso";
+            this.idPermiso.Name = "idPermiso";
+            this.idPermiso.ReadOnly = true;
+            this.idPermiso.Visible = false;
+            this.idPermiso.Width = 120;
+            // 
+            // IdComponente
+            // 
+            this.IdComponente.HeaderText = "IdComponente";
+            this.IdComponente.Name = "IdComponente";
+            this.IdComponente.ReadOnly = true;
+            this.IdComponente.Visible = false;
+            // 
+            // nombre
+            // 
+            this.nombre.HeaderText = "Nombre Permiso";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            this.nombre.Width = 250;
+            // 
+            // nombremenu
+            // 
+            this.nombremenu.HeaderText = "NombreMenu";
+            this.nombremenu.Name = "nombremenu";
+            this.nombremenu.ReadOnly = true;
+            this.nombremenu.Width = 250;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.Visible = false;
+            this.estado.Width = 120;
+            // 
+            // estadoValor
+            // 
+            this.estadoValor.HeaderText = "Estado";
+            this.estadoValor.Name = "estadoValor";
+            this.estadoValor.ReadOnly = true;
+            // 
             // contenedor
             // 
             this.contenedor.Controls.Add(this.btnactualizar);
@@ -195,6 +248,7 @@
             this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
             this.btnlimpiar.TabIndex = 15;
             this.btnlimpiar.UseVisualStyleBackColor = false;
+            this.btnlimpiar.Click += new System.EventHandler(this.btnlimpiar_Click);
             // 
             // btnbuscar
             // 
@@ -210,6 +264,7 @@
             this.btnbuscar.Size = new System.Drawing.Size(54, 24);
             this.btnbuscar.TabIndex = 14;
             this.btnbuscar.UseVisualStyleBackColor = false;
+            this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
             // lblsubtitulo
             // 
@@ -229,6 +284,7 @@
             this.txtidcomponente.Name = "txtidcomponente";
             this.txtidcomponente.Size = new System.Drawing.Size(100, 20);
             this.txtidcomponente.TabIndex = 3;
+            this.txtidcomponente.Visible = false;
             // 
             // txtid
             // 
@@ -236,6 +292,7 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 2;
+            this.txtid.Visible = false;
             // 
             // label1
             // 
@@ -253,27 +310,38 @@
             this.panel1.Controls.Add(this.txtidcomponente);
             this.panel1.Controls.Add(this.txtid);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.menuStrip1);
+            this.panel1.Controls.Add(this.menu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(235, 646);
             this.panel1.TabIndex = 3;
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.menu.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuverdetallepermisosimple,
             this.menumodificarestadopermiso});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 553);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(235, 93);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.menu.Location = new System.Drawing.Point(0, 493);
+            this.menu.Name = "menu";
+            this.menu.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
+            this.menu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.menu.Size = new System.Drawing.Size(235, 153);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menuStrip1";
+            // 
+            // menuverdetallepermisosimple
+            // 
+            this.menuverdetallepermisosimple.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menuverdetallepermisosimple.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menuverdetallepermisosimple.Name = "menuverdetallepermisosimple";
+            this.menuverdetallepermisosimple.Padding = new System.Windows.Forms.Padding(4);
+            this.menuverdetallepermisosimple.Size = new System.Drawing.Size(228, 33);
+            this.menuverdetallepermisosimple.Text = "Ver Detalle";
+            this.menuverdetallepermisosimple.Click += new System.EventHandler(this.menuverdetallepermisosimple_Click);
             // 
             // menumodificarestadopermiso
             // 
@@ -283,56 +351,7 @@
             this.menumodificarestadopermiso.Padding = new System.Windows.Forms.Padding(4);
             this.menumodificarestadopermiso.Size = new System.Drawing.Size(228, 33);
             this.menumodificarestadopermiso.Text = "Modificar Estado";
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 50;
-            // 
-            // idPermiso
-            // 
-            this.idPermiso.HeaderText = "IdPermiso";
-            this.idPermiso.Name = "idPermiso";
-            this.idPermiso.ReadOnly = true;
-            this.idPermiso.Visible = false;
-            this.idPermiso.Width = 120;
-            // 
-            // IdComponente
-            // 
-            this.IdComponente.HeaderText = "IdComponente";
-            this.IdComponente.Name = "IdComponente";
-            this.IdComponente.ReadOnly = true;
-            this.IdComponente.Visible = false;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre Permiso";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 200;
-            // 
-            // nombremenu
-            // 
-            this.nombremenu.HeaderText = "NombreMenu";
-            this.nombremenu.Name = "nombremenu";
-            this.nombremenu.ReadOnly = true;
-            this.nombremenu.Width = 200;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.Visible = false;
-            this.estado.Width = 120;
-            // 
-            // estadoValor
-            // 
-            this.estadoValor.HeaderText = "Estado";
-            this.estadoValor.Name = "estadoValor";
-            this.estadoValor.ReadOnly = true;
+            this.menumodificarestadopermiso.Click += new System.EventHandler(this.menumodificarestadopermiso_Click);
             // 
             // frmPermiso
             // 
@@ -351,8 +370,8 @@
             this.contenedor.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -362,13 +381,6 @@
         private System.Windows.Forms.ComboBox cbobusqueda;
         private System.Windows.Forms.Label lblbuscarpor;
         private System.Windows.Forms.DataGridView datagridview;
-        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idPermiso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombremenu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
         private System.Windows.Forms.Panel contenedor;
         private FontAwesome.Sharp.IconButton btnactualizar;
         private FontAwesome.Sharp.IconButton btnlimpiar;
@@ -378,7 +390,15 @@
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menumodificarestadopermiso;
+        private System.Windows.Forms.ToolStripMenuItem menuverdetallepermisosimple;
+        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idPermiso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombremenu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
     }
 }

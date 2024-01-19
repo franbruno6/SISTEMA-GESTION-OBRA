@@ -99,11 +99,11 @@ namespace CapaPresentacion
 
         private void menuusarios_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmUsuario());
+            AbrirFormulario((IconMenuItem)sender, new frmUsuario(_usuarioActual));
         }
         private void menuclientes_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmCliente());
+            AbrirFormulario((IconMenuItem)sender, new frmCliente(_usuarioActual));
         }
         private void menuproductos_Click(object sender, EventArgs e)
         {
@@ -117,6 +117,18 @@ namespace CapaPresentacion
         {
             AbrirFormulario((IconMenuItem)sender, new frmComprobante());
         }
+        private void menupermisosimple_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menupermiso, new frmPermiso(_usuarioActual));
+        }
+        private void menugrupo_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menupermiso, new frmGrupo(_usuarioActual));
+        }
+        private void menupermisousuario_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menupermiso, new frmPermisoUsuario());
+        }
         private void menu_Paint(object sender, PaintEventArgs e)
         {
             ControlPaint.DrawBorder(e.Graphics, menu.ClientRectangle,
@@ -124,15 +136,6 @@ namespace CapaPresentacion
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 1, ButtonBorderStyle.Solid);
-        }
-        private void menupermisosimple_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario(menupermiso, new frmPermiso());
-        }
-
-        private void menugrupo_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario(menupermiso, new frmGrupo());
         }
     }
 }

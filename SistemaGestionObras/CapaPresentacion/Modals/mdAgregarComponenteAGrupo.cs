@@ -137,10 +137,21 @@ namespace CapaPresentacion.Modals
                 this.Close();
             }
         }
-
-        private void datagridview_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
-
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
         }
     }
 }

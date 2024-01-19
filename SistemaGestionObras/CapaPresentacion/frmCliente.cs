@@ -18,8 +18,10 @@ namespace CapaPresentacion
     public partial class frmCliente : Form
     {
         private CC_Cliente oCC_Cliente = new CC_Cliente();
-        public frmCliente()
+        private Usuario _usuarioActual;
+        public frmCliente(Usuario oUsuario)
         {
+            _usuarioActual = oUsuario;
             InitializeComponent();
         }
         private void frmCliente_Load(object sender, EventArgs e)
@@ -35,6 +37,21 @@ namespace CapaPresentacion
             cbobusqueda.SelectedIndex = 0;
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
+
+            foreach(ToolStripMenuItem menu in menu.Items)
+            {
+                bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+            menuvercliente.Visible = true;
 
             btnactualizar_Click(sender, e);
         }
@@ -58,7 +75,7 @@ namespace CapaPresentacion
             }
             else
             {
-                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void menuagregarcliente_Click(object sender, EventArgs e)
@@ -73,7 +90,7 @@ namespace CapaPresentacion
             }
             else
             {
-                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Seleccione un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
         private void menueliminarcliente_Click(object sender, EventArgs e)
@@ -97,12 +114,16 @@ namespace CapaPresentacion
                     }
                 }
             }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un cliente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
 
-            //MOSTRAR LOS USUARIOS
+            //MOSTRAR LOS CLIENTES
             List<Cliente> listaClientes = oCC_Cliente.ListarClientes();
 
             foreach (Cliente oCliente in listaClientes)
@@ -152,6 +173,22 @@ namespace CapaPresentacion
             foreach (DataGridViewRow fila in datagridview.Rows)
             {
                 fila.Visible = true;
+            }
+        }
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
             }
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)

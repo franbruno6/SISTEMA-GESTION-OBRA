@@ -45,6 +45,7 @@
     <Compile Include="CC_GrupoPermiso.cs" />
     <Compile Include="CC_Usuario.cs" />
     <Compile Include="CC_Permiso.cs" />
+    <Compile Include="CC_UsuarioPermiso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

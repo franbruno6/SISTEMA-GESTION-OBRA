@@ -47,7 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.txtidcomponente = new System.Windows.Forms.TextBox();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.menu = new System.Windows.Forms.MenuStrip();
             this.menuvergrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.menuagregargrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.menumodificargrupo = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,10 +56,9 @@
             this.btnactualizar = new FontAwesome.Sharp.IconButton();
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
-            this.menuverpermisossimples = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.panel1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
+            this.menu.SuspendLayout();
             this.contenedor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,6 +69,7 @@
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
+            this.txtbusqueda.TextChanged += new System.EventHandler(this.txtbusqueda_TextChanged);
             // 
             // cbobusqueda
             // 
@@ -81,6 +81,7 @@
             this.cbobusqueda.Name = "cbobusqueda";
             this.cbobusqueda.Size = new System.Drawing.Size(142, 24);
             this.cbobusqueda.TabIndex = 12;
+            this.cbobusqueda.SelectedIndexChanged += new System.EventHandler(this.cbobusqueda_SelectedIndexChanged);
             // 
             // lblbuscarpor
             // 
@@ -210,6 +211,7 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 2;
+            this.txtid.Visible = false;
             // 
             // label1
             // 
@@ -227,7 +229,7 @@
             this.panel1.Controls.Add(this.txtidcomponente);
             this.panel1.Controls.Add(this.txtid);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.menuStrip1);
+            this.panel1.Controls.Add(this.menu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
@@ -240,25 +242,25 @@
             this.txtidcomponente.Name = "txtidcomponente";
             this.txtidcomponente.Size = new System.Drawing.Size(100, 20);
             this.txtidcomponente.TabIndex = 3;
+            this.txtidcomponente.Visible = false;
             // 
-            // menuStrip1
+            // menu
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.menuStrip1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.menu.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.menu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menuvergrupo,
             this.menuagregargrupo,
             this.menumodificargrupo,
-            this.menueliminargrupo,
-            this.menuverpermisossimples});
-            this.menuStrip1.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menuStrip1.Location = new System.Drawing.Point(0, 370);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
-            this.menuStrip1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menuStrip1.Size = new System.Drawing.Size(235, 276);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.menueliminargrupo});
+            this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
+            this.menu.Location = new System.Drawing.Point(0, 411);
+            this.menu.Name = "menu";
+            this.menu.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
+            this.menu.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.menu.Size = new System.Drawing.Size(235, 235);
+            this.menu.TabIndex = 0;
+            this.menu.Text = "menuStrip1";
             // 
             // menuvergrupo
             // 
@@ -367,15 +369,6 @@
             this.btnbuscar.UseVisualStyleBackColor = false;
             this.btnbuscar.Click += new System.EventHandler(this.btnbuscar_Click);
             // 
-            // menuverpermisossimples
-            // 
-            this.menuverpermisossimples.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menuverpermisossimples.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menuverpermisossimples.Name = "menuverpermisossimples";
-            this.menuverpermisossimples.Padding = new System.Windows.Forms.Padding(4);
-            this.menuverpermisossimples.Size = new System.Drawing.Size(228, 33);
-            this.menuverpermisossimples.Text = "Ver Permisos Simples";
-            // 
             // frmGrupo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,8 +382,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.menu.ResumeLayout(false);
+            this.menu.PerformLayout();
             this.contenedor.ResumeLayout(false);
             this.contenedor.PerformLayout();
             this.ResumeLayout(false);
@@ -410,7 +403,7 @@
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menuvergrupo;
         private System.Windows.Forms.ToolStripMenuItem menuagregargrupo;
         private System.Windows.Forms.ToolStripMenuItem menumodificargrupo;
@@ -423,6 +416,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
         private System.Windows.Forms.TextBox txtidcomponente;
-        private System.Windows.Forms.ToolStripMenuItem menuverpermisossimples;
     }
 }

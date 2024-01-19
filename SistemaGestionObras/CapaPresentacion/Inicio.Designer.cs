@@ -31,6 +31,8 @@
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuusuario = new FontAwesome.Sharp.IconMenuItem();
             this.menupermiso = new FontAwesome.Sharp.IconMenuItem();
+            this.menupermisosimple = new System.Windows.Forms.ToolStripMenuItem();
+            this.menugrupo = new System.Windows.Forms.ToolStripMenuItem();
             this.menucliente = new FontAwesome.Sharp.IconMenuItem();
             this.menuproducto = new FontAwesome.Sharp.IconMenuItem();
             this.menupresupuesto = new FontAwesome.Sharp.IconMenuItem();
@@ -40,8 +42,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblusuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.menugrupo = new System.Windows.Forms.ToolStripMenuItem();
-            this.menupermisosimple = new System.Windows.Forms.ToolStripMenuItem();
+            this.menupermisousuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.contenedor.SuspendLayout();
             this.SuspendLayout();
@@ -83,7 +84,8 @@
             this.menupermiso.AutoSize = false;
             this.menupermiso.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.menupermisosimple,
-            this.menugrupo});
+            this.menugrupo,
+            this.menupermisousuario});
             this.menupermiso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.menupermiso.IconChar = FontAwesome.Sharp.IconChar.Gear;
             this.menupermiso.IconColor = System.Drawing.Color.Black;
@@ -94,6 +96,20 @@
             this.menupermiso.Size = new System.Drawing.Size(122, 60);
             this.menupermiso.Text = "Permisos";
             this.menupermiso.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // menupermisosimple
+            // 
+            this.menupermisosimple.Name = "menupermisosimple";
+            this.menupermisosimple.Size = new System.Drawing.Size(217, 24);
+            this.menupermisosimple.Text = "Permisos Simples";
+            this.menupermisosimple.Click += new System.EventHandler(this.menupermisosimple_Click);
+            // 
+            // menugrupo
+            // 
+            this.menugrupo.Name = "menugrupo";
+            this.menugrupo.Size = new System.Drawing.Size(217, 24);
+            this.menugrupo.Text = "Grupos";
+            this.menugrupo.Click += new System.EventHandler(this.menugrupo_Click);
             // 
             // menucliente
             // 
@@ -209,19 +225,12 @@
             this.contenedor.Size = new System.Drawing.Size(1584, 687);
             this.contenedor.TabIndex = 5;
             // 
-            // menugrupo
+            // menupermisousuario
             // 
-            this.menugrupo.Name = "menugrupo";
-            this.menugrupo.Size = new System.Drawing.Size(192, 24);
-            this.menugrupo.Text = "Grupos";
-            this.menugrupo.Click += new System.EventHandler(this.menugrupo_Click);
-            // 
-            // menupermisosimple
-            // 
-            this.menupermisosimple.Name = "menupermisosimple";
-            this.menupermisosimple.Size = new System.Drawing.Size(192, 24);
-            this.menupermisosimple.Text = "Permisos Simples";
-            this.menupermisosimple.Click += new System.EventHandler(this.menupermisosimple_Click);
+            this.menupermisousuario.Name = "menupermisousuario";
+            this.menupermisousuario.Size = new System.Drawing.Size(217, 24);
+            this.menupermisousuario.Text = "Permisos de Usuarios";
+            this.menupermisousuario.Click += new System.EventHandler(this.menupermisousuario_Click);
             // 
             // Inicio
             // 
@@ -263,6 +272,7 @@
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.ToolStripMenuItem menupermisosimple;
         private System.Windows.Forms.ToolStripMenuItem menugrupo;
+        private System.Windows.Forms.ToolStripMenuItem menupermisousuario;
     }
 }
 

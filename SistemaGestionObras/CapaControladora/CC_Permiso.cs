@@ -33,5 +33,16 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public bool EditarEstado(int idComponente, bool estado, out string mensaje)
+        {
+            try
+            {
+                return oCD_Permiso.EditarEstado(idComponente, estado, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

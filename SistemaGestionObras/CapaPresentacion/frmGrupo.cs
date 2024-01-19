@@ -18,8 +18,10 @@ namespace CapaPresentacion
     public partial class frmGrupo : Form
     {
         CC_GrupoPermiso oCC_GrupoPermiso = new CC_GrupoPermiso();
-        public frmGrupo()
+        private Usuario _usuarioActual;
+        public frmGrupo(Usuario oUsuario)
         {
+            _usuarioActual = oUsuario;
             InitializeComponent();
         }
         private void frmPermiso_Load(object sender, EventArgs e)
@@ -35,6 +37,21 @@ namespace CapaPresentacion
             cbobusqueda.SelectedIndex = 0;
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
+
+            foreach (ToolStripMenuItem menu in menu.Items)
+            {
+                bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+            menuvergrupo.Visible = true;
 
             btnactualizar_Click(sender, e);
         }
@@ -193,6 +210,22 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
             }
         }
     }
