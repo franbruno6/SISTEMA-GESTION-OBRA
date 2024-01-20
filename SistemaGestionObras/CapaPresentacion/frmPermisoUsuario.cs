@@ -121,6 +121,10 @@ namespace CapaPresentacion
             {
                 fila.Visible = true;
             }
+
+            datagridview.ClearSelection();
+            txtid.Text = "";
+            txtidpersona.Text = "";
         }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {

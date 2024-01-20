@@ -76,7 +76,7 @@
             this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnvolver.IconSize = 18;
             this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnvolver.Location = new System.Drawing.Point(1065, 54);
+            this.btnvolver.Location = new System.Drawing.Point(771, 54);
             this.btnvolver.Name = "btnvolver";
             this.btnvolver.Size = new System.Drawing.Size(115, 25);
             this.btnvolver.TabIndex = 43;
@@ -172,7 +172,7 @@
             this.lblsubtitulo.Location = new System.Drawing.Point(12, 40);
             this.lblsubtitulo.Name = "lblsubtitulo";
             this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
+            this.lblsubtitulo.Size = new System.Drawing.Size(898, 47);
             this.lblsubtitulo.TabIndex = 33;
             this.lblsubtitulo.Text = "Detalle del Cliente";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,7 +184,7 @@
             this.label3.Location = new System.Drawing.Point(12, 108);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(20, 12, 0, 0);
-            this.label3.Size = new System.Drawing.Size(1228, 233);
+            this.label3.Size = new System.Drawing.Size(898, 233);
             this.label3.TabIndex = 34;
             this.label3.Text = "Información del usuario";
             // 
@@ -231,7 +231,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(1317, 514);
+            this.ClientSize = new System.Drawing.Size(928, 358);
             this.Controls.Add(this.txtdireccion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txttelefono);

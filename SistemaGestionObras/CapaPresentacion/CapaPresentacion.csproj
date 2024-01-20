@@ -89,6 +89,12 @@
     <Compile Include="Modals\mdDetallePermisoUsuario.Designer.cs">
       <DependentUpon>mdDetallePermisoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\mdDetalleProducto.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\mdDetalleProducto.Designer.cs">
+      <DependentUpon>mdDetalleProducto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\mdDetalleUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -169,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdDetallePermisoUsuario.resx">
       <DependentUpon>mdDetallePermisoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\mdDetalleProducto.resx">
+      <DependentUpon>mdDetalleProducto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdDetalleUsuario.resx">
       <DependentUpon>mdDetalleUsuario.cs</DependentUpon>

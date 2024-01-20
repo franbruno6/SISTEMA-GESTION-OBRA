@@ -75,7 +75,7 @@ namespace CapaPresentacion.Modals
         {
             this.Text = "Administrar permisos del usuario";
             lblsubtitulo.Text = "Administrar permisos del usuario";
-            btnaccion.Text = "Guradar";
+            btnaccion.Text = "Guardar";
 
             txtnombrecompleto.Text = _oUsuario.NombreCompleto.ToString();
             txtnombrecompleto.Enabled = false;

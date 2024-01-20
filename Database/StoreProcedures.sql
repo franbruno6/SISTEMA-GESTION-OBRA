@@ -366,10 +366,12 @@ declare @Mensaje nvarchar(500)
 --exec SP_RegistrarPermiso 'Eliminar Grupo','menueliminargrupo',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Estado de Permiso','menumodificarestadopermiso',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Permisos del Usuario','menueditarpermisousuario',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Agregar Cliente','menuagregarcliente',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Modificar Cliente','menumodificarcliente',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Eliminar Cliente','menueliminarcliente',@IdPermisoRegistrado output,@Mensaje output
-
+--exec SP_RegistrarPermiso 'Agregar Cliente','menuagregarcliente',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Modificar Cliente','menumodificarcliente',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Eliminar Cliente','menueliminarcliente',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Agregar Producto','menuagregarproducto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Modificar Producto','menumodificarproducto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Eliminar Producto','menueliminarproducto',@IdPermisoRegistrado output,@Mensaje output
 
 select @IdPermisoRegistrado
 
@@ -381,9 +383,6 @@ go
 
 
 
-insert into UsuarioComponente (IdUsuario,IdComponente)
-values (1,24)
-go
 
 --PROCEDURE REGISTRAR GRUPO PERMISO--
 --USO ESTO COMO UN PARAMETRO PARA CREAR UN GRUPO PERMISO-- PARTE 15 MINTUO 44
@@ -589,4 +588,136 @@ begin
         rollback transaction edicion
     end catch
 end
+go
+
+--PROCEDURE REGISTRAR PRODUCTO--
+create procedure SP_RegistrarProducto(
+@Nombre nvarchar(60),
+@Codigo nvarchar(60),
+@Descripcion nvarchar(100),
+@Categoria nvarchar(60),
+@Precio decimal(18,2),
+@Estado bit,
+@Mensaje nvarchar(400) output,
+@IdProductoRegistrado int output
+)
+as
+begin
+	begin try
+		set @IdProductoRegistrado = 0
+		set @Mensaje = ''
+
+		begin transaction registro
+		
+			if not exists (select * from Producto where Codigo = @Codigo)
+			begin
+			insert into Producto(Nombre,Codigo,Descripcion,Categoria,Precio,Estado) values
+			(@Nombre,@Codigo,@Descripcion,@Categoria,@Precio,@Estado)
+
+			set @IdProductoRegistrado = SCOPE_IDENTITY()
+			end
+			else
+			begin
+			set @Mensaje = 'Numero de codigo ya registrado'
+			end
+		commit transaction registro
+	end try
+	begin catch
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
+end
+go
+
+--PROCEDURE EDITAR PRODUCTO--
+create procedure SP_EditarProducto(
+@IdProducto int,
+@Nombre nvarchar(60),
+@Codigo nvarchar(60),
+@Descripcion nvarchar(100),
+@Categoria nvarchar(60),
+@Precio decimal(18,2),
+@Estado bit,
+@Mensaje nvarchar(400) output,
+@Resultado bit output
+)
+as
+begin
+    begin try
+        set @Resultado = 0;
+        set @Mensaje = '';
+
+        begin transaction editar;
+
+        if not exists (
+                select *
+                from Producto
+                where Codigo = @Codigo and IdProducto != @IdProducto
+        )
+        begin
+            update Producto set
+                Nombre = @Nombre,
+				Codigo = @Codigo,
+				Descripcion = @Descripcion,
+				Categoria = @Categoria,
+				Precio = @Precio,
+				Estado = @Estado
+            where IdProducto = @IdProducto;
+
+            set @Resultado = 1;
+        end
+		else
+		begin
+			set @Mensaje = 'Ya existe un producto con ese numero de codigo'
+		end
+
+        commit transaction editar;
+    end try
+    begin catch
+        set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
+        rollback transaction editar;
+    end catch
+end;
+go
+
+--PROCEDURE ELIMINAR PRODUCTO--
+create procedure SP_EliminarProducto(
+@IdProducto int,
+@Mensaje nvarchar(400) output,
+@Resultado bit output
+)
+as
+begin
+	set @Resultado = 0;
+    set @Mensaje = '';
+	declare @pasoreglas bit = 1
+
+	if exists (
+		select * from Producto
+		inner join DetallePresupuesto on Producto.IdProducto = DetallePresupuesto.IdProducto
+		where DetallePresupuesto.IdProducto = @IdProducto
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El producto se encuentra ligado a un presupuesto.\n'
+		set @pasoreglas = 0
+	end
+
+	if exists (
+		select * from Producto
+		inner join DetalleComprobanteObra on Producto.IdProducto = DetalleComprobanteObra.IdProducto
+		where DetalleComprobanteObra.IdProducto = @IdProducto
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El producto se encuentra ligado a un comprobante de obra.\n'
+		set @pasoreglas = 0
+	end
+
+	if (@pasoreglas = 1)
+	begin
+		delete from Producto where IdProducto = @IdProducto
+		set @Resultado = 1
+	end
+end;
 go

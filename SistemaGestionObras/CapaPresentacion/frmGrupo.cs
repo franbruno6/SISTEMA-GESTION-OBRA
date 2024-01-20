@@ -180,6 +180,10 @@ namespace CapaPresentacion
             {
                 fila.Visible = true;
             }
+
+            datagridview.ClearSelection();
+            txtid.Text = "";
+            txtidcomponente.Text = "";
         }
         private void menueliminargrupo_Click(object sender, EventArgs e)
         {

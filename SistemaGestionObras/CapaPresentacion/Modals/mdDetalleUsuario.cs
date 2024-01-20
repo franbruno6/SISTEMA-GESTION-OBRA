@@ -255,7 +255,6 @@ namespace CapaPresentacion.CP_Usuario
                 txtcorreo.Focus();
                 return false;
             }
-
             return true;
         }
         private void btnvolver_Click(object sender, EventArgs e)
@@ -274,6 +273,17 @@ namespace CapaPresentacion.CP_Usuario
         {
             txtclave.PasswordChar = '*';
             txtconfirmarclave.PasswordChar = '*';
+        }
+        private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }
