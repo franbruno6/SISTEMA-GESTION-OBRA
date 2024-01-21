@@ -73,6 +73,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS USUARIOS
             List<Usuario> listaUsuarios = oCC_Usuario.ListarUsuarios();
+            listaUsuarios = listaUsuarios.OrderBy(p => p.NombreCompleto).ToList();
 
             foreach (Usuario oUsuario in listaUsuarios)
             {

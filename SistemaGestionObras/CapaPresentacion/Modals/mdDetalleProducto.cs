@@ -26,7 +26,6 @@ namespace CapaPresentacion.Modals
             _oProducto = oCC_Producto.ListarProductos().Where(u => u.IdProducto == _idProducto).FirstOrDefault();
             InitializeComponent();
         }
-
         private void mdDetalleProducto_Load(object sender, EventArgs e)
         {
             cboestado.Items.Add(new OpcionCombo(1, "Activo"));
@@ -103,7 +102,7 @@ namespace CapaPresentacion.Modals
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (!ValidarTextosVacios())
+            if (!Validaciones.ValidarCamposVacios(Controls))
             {
                 MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -146,6 +145,7 @@ namespace CapaPresentacion.Modals
         {
             bool productoEditado = oCC_Producto.EditarProducto(new Producto()
             {
+                IdProducto = _idProducto,
                 Nombre = txtnombre.Text,
                 Codigo = txtcodigo.Text,
                 Descripcion = txtdescripcion.Text,
@@ -164,35 +164,6 @@ namespace CapaPresentacion.Modals
             {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-        private bool ValidarTextosVacios()
-        {
-            if (txtnombre.Text.Trim() == string.Empty)
-            {
-                txtnombre.Focus();
-                return false;
-            }
-            if (txtcodigo.Text.Trim() == string.Empty)
-            {
-                txtcodigo.Focus();
-                return false;
-            }
-            if (txtcategoria.Text.Trim() == string.Empty)
-            {
-                txtcategoria.Focus();
-                return false;
-            }
-            if (txtdescripcion.Text.Trim() == string.Empty)
-            {
-                txtdescripcion.Focus();
-                return false;
-            }
-            if (txtprecio.Text.Trim() == string.Empty)
-            {
-                txtprecio.Focus();
-                return false;
-            }
-            return true;
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {

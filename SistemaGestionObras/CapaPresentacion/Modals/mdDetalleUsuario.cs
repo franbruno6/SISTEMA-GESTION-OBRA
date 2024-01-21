@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CapaPresentacion.CP_Usuario
 {
     public partial class mdDetalleUsuario : Form
@@ -34,7 +35,7 @@ namespace CapaPresentacion.CP_Usuario
         {
             if (_tipoModal != "RestablacerClave")
             {
-                if (!ValidarTextosVacios())
+                if (!Validaciones.ValidarCamposVacios(Controls))
                 {
                     MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
@@ -42,7 +43,7 @@ namespace CapaPresentacion.CP_Usuario
             }
             if (panelclave.Visible == true)
             {
-                if (!ValidarCamposClaves())
+                if (!Validaciones.ValidarClaves(txtclave.Text, txtconfirmarclave.Text))
                 {
                     return;
                 }
@@ -215,47 +216,6 @@ namespace CapaPresentacion.CP_Usuario
 
             btnaccion.IconChar = FontAwesome.Sharp.IconChar.Key;
             btnaccion.Text = "Restablecer Contraseña";
-        }
-        private bool ValidarCamposClaves()
-        {
-            if (txtclave.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Debe completar la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtclave.Focus();
-                return false;
-            }
-            if (txtconfirmarclave.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Debe completar la confirmacion de la clave", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtconfirmarclave.Focus();
-                return false;
-            }
-            if (txtclave.Text != txtconfirmarclave.Text)
-            {
-                MessageBox.Show("Las claves no coinciden", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtclave.Focus();
-                return false;
-            }
-            return true;
-        }
-        private bool ValidarTextosVacios()
-        {
-            if (txtnombrecompleto.Text.Trim() == string.Empty)
-            {
-                txtnombrecompleto.Focus();
-                return false;
-            }
-            if (txtdocumento.Text.Trim() == string.Empty)
-            {
-                txtdocumento.Focus();
-                return false;
-            }
-            if (txtcorreo.Text.Trim() == string.Empty)
-            {
-                txtcorreo.Focus();
-                return false;
-            }
-            return true;
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {

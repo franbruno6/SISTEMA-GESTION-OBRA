@@ -158,6 +158,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\OpcionCombo.cs" />
+    <Compile Include="Utilidades\Validaciones.cs" />
     <EmbeddedResource Include="frmPermiso.resx">
       <DependentUpon>frmPermiso.cs</DependentUpon>
     </EmbeddedResource>

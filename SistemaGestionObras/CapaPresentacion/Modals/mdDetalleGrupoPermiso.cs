@@ -241,10 +241,9 @@ namespace CapaPresentacion.Modals
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (txtnombregrupo.Text.Trim() == "")
+            if (!Validaciones.ValidarCamposVacios(Controls))
             {
-                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txtnombregrupo.Focus();
+                MessageBox.Show("Debe completar todos los campos", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 

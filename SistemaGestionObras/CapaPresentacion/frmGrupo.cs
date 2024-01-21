@@ -61,6 +61,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS GRUPOS
             List<GrupoPermiso> listaGrupoPermisos = oCC_GrupoPermiso.ListarGrupoPermisos();
+            listaGrupoPermisos = listaGrupoPermisos.OrderBy(p => p.Nombre).ToList();
 
             foreach (GrupoPermiso oGrupoPermiso in listaGrupoPermisos)
             {

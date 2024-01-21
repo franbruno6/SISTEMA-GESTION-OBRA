@@ -33,7 +33,7 @@ namespace CapaPresentacion.Modals
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (!ValidarTextosVacios())
+            if (!Validaciones.ValidarCamposVacios(Controls))
             {
                 MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;

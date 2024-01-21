@@ -64,6 +64,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS USUARIOS
             List<Producto> listaProductos = oCC_Producto.ListarProductos();
+            listaProductos = listaProductos.OrderBy(p => p.Codigo).ToList();
 
             foreach (Producto oProducto in listaProductos)
             {

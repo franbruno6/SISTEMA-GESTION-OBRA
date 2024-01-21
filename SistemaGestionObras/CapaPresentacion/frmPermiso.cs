@@ -122,6 +122,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS PERMISOS
             List<Permiso> listaPermisos = oCCPermiso.ListarPermisos();
+            listaPermisos = listaPermisos.OrderBy(p => p.Nombre).ToList();
 
             foreach (Permiso oPermiso in listaPermisos)
             {
