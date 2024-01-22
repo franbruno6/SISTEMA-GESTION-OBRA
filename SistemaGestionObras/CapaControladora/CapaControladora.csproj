@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="CC_Cliente.cs" />
     <Compile Include="CC_GrupoPermiso.cs" />
+    <Compile Include="CC_Presupuesto.cs" />
     <Compile Include="CC_Producto.cs" />
     <Compile Include="CC_Usuario.cs" />
     <Compile Include="CC_Permiso.cs" />

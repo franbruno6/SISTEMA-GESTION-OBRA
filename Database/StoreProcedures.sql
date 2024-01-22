@@ -369,9 +369,12 @@ declare @Mensaje nvarchar(500)
 --exec SP_RegistrarPermiso 'Agregar Cliente','menuagregarcliente',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Cliente','menumodificarcliente',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Eliminar Cliente','menueliminarcliente',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Agregar Producto','menuagregarproducto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Modificar Producto','menumodificarproducto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Eliminar Producto','menueliminarproducto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Agregar Producto','menuagregarproducto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Modificar Producto','menumodificarproducto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Eliminar Producto','menueliminarproducto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Agregar Presupuesto','menuagregarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Modificar Presupuesto','menumodificarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Eliminar Presupuesto','menueliminarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
 
 select @IdPermisoRegistrado
 
@@ -380,9 +383,6 @@ select @Mensaje
 select * from Permiso
 inner join Componente on Permiso.IdComponente = Componente.IdComponente
 go
-
-
-
 
 --PROCEDURE REGISTRAR GRUPO PERMISO--
 --USO ESTO COMO UN PARAMETRO PARA CREAR UN GRUPO PERMISO-- PARTE 15 MINTUO 44
@@ -720,4 +720,53 @@ begin
 		set @Resultado = 1
 	end
 end;
+go
+
+--PROCEDURE REGISTRAR PRESUPUESTO--
+--USO ESTO COMO UN PARAMETRO PARA CREAR UN PRESUPUESTO-- PARTE 15 MINTUO 44
+create type [dbo].[EDetallePresupuesto] as table(
+	[IdProducto] int null,
+	[Precio] decimal(18,2) null,
+	[Cantidad] int null,
+	[MontoTotal] decimal(18,2) null
+)
+go
+
+create procedure SP_RegistrarPresupuesto(
+@IdUsuario int,
+@NumeroPresupuesto nvarchar(60),
+@NombreCliente nvarchar(60),
+@TelefonoCliente nvarchar(60),
+@Direccion nvarchar(100),
+@Localidad nvarchar(60),
+@MontoTotal decimal(18,2),
+@DetallePresupuesto [EDetallePresupuesto] readonly,
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+	begin try
+		declare @IdPresupuesto int = 0
+		set @Resultado = 1
+		set @Mensaje = ''
+
+		begin transaction registro
+			
+			insert into Presupuesto(IdUsuario,NumeroPresupuesto,NombreCliente,TelefonoCliente,Direccion,Localidad,MontoTotal)
+			values(@IdUsuario,@NumeroPresupuesto,@NombreCliente,@TelefonoCliente,@Direccion,@Localidad,@MontoTotal)
+
+			set @IdPresupuesto = SCOPE_IDENTITY()
+
+			insert into DetallePresupuesto(IdPresupuesto,IdProducto,Precio,Cantidad,MontoTotal)
+			select @IdPresupuesto,IdProducto,Precio,Cantidad,MontoTotal from @DetallePresupuesto
+
+		commit transaction registro
+	end try
+	begin catch
+		set @Resultado = 0
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
+end
 go

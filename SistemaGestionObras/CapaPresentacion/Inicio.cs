@@ -111,7 +111,7 @@ namespace CapaPresentacion
         }
         private void menupresupuestos_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmPresupuesto());
+            AbrirFormulario((IconMenuItem)sender, new frmPresupuesto(_usuarioActual));
         }
         private void menucomprobantes_Click(object sender, EventArgs e)
         {

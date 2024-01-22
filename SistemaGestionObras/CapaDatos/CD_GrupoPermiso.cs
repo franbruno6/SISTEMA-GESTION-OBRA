@@ -137,7 +137,7 @@ namespace CapaDatos
                 }
             }
             DataAccessObject.CerrarConexion();
-            return resultado    ;
+            return resultado;
         }
         public bool EditarGrupoPermiso(GrupoPermiso oGrupoPermiso, DataTable listaComponentes, out string mensaje)
         {

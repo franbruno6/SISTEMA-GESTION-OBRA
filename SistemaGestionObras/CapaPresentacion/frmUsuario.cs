@@ -188,11 +188,7 @@ namespace CapaPresentacion
         }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
-            btnbuscar_Click(sender, e);
-            if (txtbusqueda.Text.Trim() == "")
-            {
-                btnlimpiar_Click(sender, e);
-            }
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
         }
         private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {

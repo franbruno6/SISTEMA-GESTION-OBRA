@@ -66,3 +66,6 @@ D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPrese
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleProducto.resources
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.frmGrupo.resources
 D:\UAI\Ingeniería de Software\SistemaGestionObras\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetallePermisoSimple.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetallePresupuesto.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdAgregarClienteAPresupuesto.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdAgregarProductoAPresupuesto.resources

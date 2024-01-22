@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnaccion = new FontAwesome.Sharp.IconButton();
-            this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.cboestado = new System.Windows.Forms.ComboBox();
             this.lblestado = new System.Windows.Forms.Label();
             this.txtcorreo = new System.Windows.Forms.TextBox();
@@ -44,47 +42,9 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtdireccion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnaccion = new FontAwesome.Sharp.IconButton();
+            this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
-            // 
-            // btnaccion
-            // 
-            this.btnaccion.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnaccion.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
-            this.btnaccion.IconColor = System.Drawing.Color.Black;
-            this.btnaccion.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnaccion.IconSize = 18;
-            this.btnaccion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnaccion.Location = new System.Drawing.Point(713, 281);
-            this.btnaccion.Name = "btnaccion";
-            this.btnaccion.Size = new System.Drawing.Size(173, 27);
-            this.btnaccion.TabIndex = 7;
-            this.btnaccion.Text = "Accion";
-            this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnaccion.UseVisualStyleBackColor = false;
-            this.btnaccion.Click += new System.EventHandler(this.btnaccion_Click);
-            // 
-            // btnvolver
-            // 
-            this.btnvolver.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnvolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnvolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnvolver.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            this.btnvolver.IconColor = System.Drawing.Color.Black;
-            this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnvolver.IconSize = 18;
-            this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnvolver.Location = new System.Drawing.Point(771, 54);
-            this.btnvolver.Name = "btnvolver";
-            this.btnvolver.Size = new System.Drawing.Size(115, 25);
-            this.btnvolver.TabIndex = 43;
-            this.btnvolver.Text = "Volver";
-            this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnvolver.UseVisualStyleBackColor = false;
-            this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
             // cboestado
             // 
@@ -134,6 +94,7 @@
             this.txtdocumento.Name = "txtdocumento";
             this.txtdocumento.Size = new System.Drawing.Size(171, 22);
             this.txtdocumento.TabIndex = 2;
+            this.txtdocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             // 
             // lbldocumento
             // 
@@ -195,6 +156,7 @@
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(171, 22);
             this.txttelefono.TabIndex = 5;
+            this.txttelefono.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtdocumento_KeyPress);
             // 
             // label1
             // 
@@ -225,6 +187,46 @@
             this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 48;
             this.label2.Text = "Dirección";
+            // 
+            // btnaccion
+            // 
+            this.btnaccion.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnaccion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnaccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnaccion.IconChar = FontAwesome.Sharp.IconChar.FloppyDisk;
+            this.btnaccion.IconColor = System.Drawing.Color.Black;
+            this.btnaccion.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnaccion.IconSize = 18;
+            this.btnaccion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnaccion.Location = new System.Drawing.Point(713, 281);
+            this.btnaccion.Name = "btnaccion";
+            this.btnaccion.Size = new System.Drawing.Size(173, 27);
+            this.btnaccion.TabIndex = 7;
+            this.btnaccion.Text = "Accion";
+            this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnaccion.UseVisualStyleBackColor = false;
+            this.btnaccion.Click += new System.EventHandler(this.btnaccion_Click);
+            // 
+            // btnvolver
+            // 
+            this.btnvolver.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnvolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnvolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnvolver.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.btnvolver.IconColor = System.Drawing.Color.Black;
+            this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnvolver.IconSize = 18;
+            this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnvolver.Location = new System.Drawing.Point(771, 54);
+            this.btnvolver.Name = "btnvolver";
+            this.btnvolver.Size = new System.Drawing.Size(115, 25);
+            this.btnvolver.TabIndex = 43;
+            this.btnvolver.Text = "Volver";
+            this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnvolver.UseVisualStyleBackColor = false;
+            this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
             // mdDetalleCliente
             // 
