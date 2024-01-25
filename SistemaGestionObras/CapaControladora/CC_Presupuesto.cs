@@ -45,5 +45,38 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public List<DetallePresupuesto> ListarDetalle(int idPresupuesto)
+        {
+            try
+            {
+                return oCD_Presupuesto.ListarDetalle(idPresupuesto);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool EditarPresupuesto(Presupuesto oPresupuesto, DataTable listaDetalle, out string mensaje)
+        {
+            try
+            {
+                return oCD_Presupuesto.EditarPresupuesto(oPresupuesto, listaDetalle, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public bool EliminarPresupuesto(int idPresupuesto, out string mensaje)
+        {
+            try
+            {
+                return oCD_Presupuesto.EliminarPresupuesto(idPresupuesto, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

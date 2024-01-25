@@ -24,7 +24,6 @@ namespace CapaPresentacion
             _usuarioActual = oUsuario;
             InitializeComponent();
         }
-
         private void frmPresupuesto_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -72,9 +71,11 @@ namespace CapaPresentacion
                     oPresupuesto.oUsuario.IdUsuario,
                     oPresupuesto.NumeroPresupuesto,
                     oPresupuesto.NombreCliente,
+                    oPresupuesto.TelefonoCliente,
                     oPresupuesto.Direccion,
+                    oPresupuesto.Localidad,
                     oPresupuesto.MontoTotal,
-                    oPresupuesto.FechaRegistro
+                    oPresupuesto.FechaRegistro.ToString("dd-MM-yyyy")
                     );
             }
 
@@ -155,14 +156,13 @@ namespace CapaPresentacion
         {
             if (txtid.Text.Trim() != "")
             {
-
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
             }
             else
             {
                 MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }   
         }
-
         private void menuagregarpresupuesto_Click(object sender, EventArgs e)
         {
             AbrirModal("Agregar",0);
@@ -174,6 +174,36 @@ namespace CapaPresentacion
                 var resultado = modal.ShowDialog();
             }
             btnactualizar_Click(null, null);
+        }
+        private void menumodificarpresupuesto_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+        }
+        private void menueliminarpresupuesto_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                if (MessageBox.Show("¿Está seguro de eliminar el presupuesto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+
+                    bool eliminado = oCC_Presupuesto.EliminarPresupuesto(Convert.ToInt32(txtid.Text), out mensaje);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Usuario eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
     }
 }

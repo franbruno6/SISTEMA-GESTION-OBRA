@@ -74,6 +74,7 @@ IdCliente int primary key identity,
 IdPersona int,
 Telefono nvarchar(60),
 Direccion nvarchar(100),
+Localidad nvarchar(60),
 Estado bit,
 foreign key (IdPersona) references Persona(IdPersona)
 )
@@ -99,7 +100,7 @@ TelefonoCliente nvarchar(60),
 Direccion nvarchar(100),
 Localidad nvarchar(60),
 MontoTotal decimal(18,2),
-FechaRegistro datetime default getdate(),
+FechaRegistro date default getdate(),
 foreign key (IdUsuario) references Usuario(IdUsuario)
 )
 go
@@ -119,16 +120,21 @@ go
 create table ComprobanteObra(
 IdComprobanteObra int primary key identity,
 IdPresupuesto int,
+IdCliente int,
 IdUsuario int,
 NumeroComprobante nvarchar(60),
 NombreCliente nvarchar(100),
-DocumentoCliente nvarchar(60),
+TelefonoCliente nvarchar(60),
+Localidad nvarchar(60),
 Direccion nvarchar(100),
 MontoTotal decimal(18,2),
+Adelanto decimal(18,2),
+Saldo decimal(18,2),
 EstadoObra nvarchar(60),
-FechaRegistro datetime default getdate(),
+FechaRegistro date default getdate(),
 foreign key (IdPresupuesto) references Presupuesto(IdPresupuesto),
-foreign key (IdUsuario) references Usuario(IdUsuario)
+foreign key (IdUsuario) references Usuario(IdUsuario),
+foreign key (IdCliente) references Cliente(IdCliente)
 )
 go
 

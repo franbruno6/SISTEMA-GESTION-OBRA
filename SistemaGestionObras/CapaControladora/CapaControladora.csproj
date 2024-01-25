@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CC_Cliente.cs" />
+    <Compile Include="CC_ComprobanteObra.cs" />
     <Compile Include="CC_GrupoPermiso.cs" />
     <Compile Include="CC_Presupuesto.cs" />
     <Compile Include="CC_Producto.cs" />

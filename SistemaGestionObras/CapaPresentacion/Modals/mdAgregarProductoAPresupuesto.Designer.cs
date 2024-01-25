@@ -38,7 +38,6 @@
             this.lblsubtitulo = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtid = new System.Windows.Forms.TextBox();
-            this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,6 +45,7 @@
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.categoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnvolver = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -109,25 +109,6 @@
             this.txtid.TabIndex = 65;
             this.txtid.Visible = false;
             // 
-            // btnvolver
-            // 
-            this.btnvolver.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btnvolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnvolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnvolver.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
-            this.btnvolver.IconColor = System.Drawing.Color.Black;
-            this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btnvolver.IconSize = 18;
-            this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnvolver.Location = new System.Drawing.Point(718, 40);
-            this.btnvolver.Name = "btnvolver";
-            this.btnvolver.Size = new System.Drawing.Size(115, 25);
-            this.btnvolver.TabIndex = 63;
-            this.btnvolver.Text = "Volver";
-            this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnvolver.UseVisualStyleBackColor = false;
-            // 
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
@@ -154,8 +135,8 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkKhaki;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.EnableHeadersVisualStyles = false;
@@ -225,6 +206,25 @@
             this.precio.Name = "precio";
             this.precio.ReadOnly = true;
             this.precio.Width = 150;
+            // 
+            // btnvolver
+            // 
+            this.btnvolver.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btnvolver.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnvolver.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnvolver.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.btnvolver.IconColor = System.Drawing.Color.Black;
+            this.btnvolver.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnvolver.IconSize = 18;
+            this.btnvolver.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btnvolver.Location = new System.Drawing.Point(718, 40);
+            this.btnvolver.Name = "btnvolver";
+            this.btnvolver.Size = new System.Drawing.Size(115, 25);
+            this.btnvolver.TabIndex = 63;
+            this.btnvolver.Text = "Volver";
+            this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnvolver.UseVisualStyleBackColor = false;
             // 
             // mdAgregarProductoAPresupuesto
             // 

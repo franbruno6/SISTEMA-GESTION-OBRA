@@ -56,11 +56,11 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
-        public bool EliminarUsuario(int idUsuario, int idPersona, out string mensaje)
+        public bool EliminarUsuario(int idUsuario, out string mensaje)
         {
             try
             {
-                return oCD_Usuario.EliminarUsuario(idUsuario, idPersona, out mensaje);
+                return oCD_Usuario.EliminarUsuario(idUsuario, out mensaje);
             }
             catch (Exception ex)
             {

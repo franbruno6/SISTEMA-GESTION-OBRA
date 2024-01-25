@@ -44,6 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnaccion = new FontAwesome.Sharp.IconButton();
             this.btnvolver = new FontAwesome.Sharp.IconButton();
+            this.txtlocalidad = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cboestado
@@ -201,7 +203,7 @@
             this.btnaccion.Location = new System.Drawing.Point(713, 281);
             this.btnaccion.Name = "btnaccion";
             this.btnaccion.Size = new System.Drawing.Size(173, 27);
-            this.btnaccion.TabIndex = 7;
+            this.btnaccion.TabIndex = 8;
             this.btnaccion.Text = "Accion";
             this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -228,12 +230,33 @@
             this.btnvolver.UseVisualStyleBackColor = false;
             this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
+            // txtlocalidad
+            // 
+            this.txtlocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtlocalidad.Location = new System.Drawing.Point(493, 286);
+            this.txtlocalidad.Name = "txtlocalidad";
+            this.txtlocalidad.Size = new System.Drawing.Size(171, 22);
+            this.txtlocalidad.TabIndex = 7;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(490, 258);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 16);
+            this.label4.TabIndex = 50;
+            this.label4.Text = "Localidad";
+            // 
             // mdDetalleCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
             this.ClientSize = new System.Drawing.Size(928, 358);
+            this.Controls.Add(this.txtlocalidad);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.txtdireccion);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txttelefono);
@@ -278,5 +301,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtdireccion;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox txtlocalidad;
+        private System.Windows.Forms.Label label4;
     }
 }

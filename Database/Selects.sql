@@ -45,9 +45,22 @@ where GrupoPermisoComponente.IdGrupoPermiso = @IdGrupoPermiso
 go
 
 --SELECT LISTA PRESUPUESTOS--
-select IdPresupuesto, NumeroPresupuesto, NombreCliente, Direccion, MontoTotal, FechaRegistro,
+select IdPresupuesto, NumeroPresupuesto, NombreCliente, Direccion, MontoTotal, FechaRegistro, Localidad, TelefonoCliente,
 Usuario.IdUsuario,
 Persona.IdPersona, Persona.NombreCompleto, Persona.Correo, Persona.Documento
 from Presupuesto
 inner join Usuario on Presupuesto.IdUsuario = Usuario.IdUsuario
 inner join Persona on Usuario.IdPersona = Persona.IdPersona
+go
+
+--SELECT LISTA DETALLE PRESUPUESTO MEDIANTE IDPRESUPUESTO--
+select DetallePresupuesto.IdProducto,DetallePresupuesto.Precio,Cantidad,MontoTotal,
+Nombre,Codigo
+from DetallePresupuesto
+inner join Producto on DetallePresupuesto.IdProducto = Producto.IdProducto
+where IdPresupuesto = @IdPresupuesto
+go
+
+--SELECT LISTA COMPROBANTES--
+select NumeroComprobante, NombreCliente, Direccion, MontoTotal, EstadoObra, TelefonoCliente, Localidad, FechaRegistro, Saldo, Adelanto
+from ComprobanteObra

@@ -28,43 +28,24 @@ namespace CapaPresentacion.Modals
             _oPresupuesto = oCC_Presupuesto.ListarPresupuestos().Where(p => p.IdPresupuesto == _idPresupuesto).FirstOrDefault();
             InitializeComponent();
         }
-
         private void mdDetallePresupuesto_Load(object sender, EventArgs e)
         {
             ConfigurarModal();
         }
-        private void ConfigurarModal()
+        private void btnaccion_Click(object sender, EventArgs e)
         {
-            datagridview.Rows.Clear();
-
             switch (_tipoModal)
             {
                 case "VerDetalle":
-                    ConfigurarVerDetalle();
+                    this.Close();
                     break;
                 case "Agregar":
-                    ConfigurarAgregar();
+                    AgregarPresupuesto();
                     break;
                 case "Editar":
-                    ConfigurarEditar();
+                    EditarPresupuesto();
                     break;
-            };
-        }
-        private void ConfigurarVerDetalle()
-        {
-
-        }
-        private void ConfigurarAgregar()
-        {
-            this.Text = "Agregar Presupuesto";
-            btnaccion.Text = "Agregar";
-            lblsubtitulo.Text = "Agregar Presupuesto";
-
-            datagridview.Columns["cantidad"].ReadOnly = false;
-        }
-        private void ConfigurarEditar()
-        {
-
+            }
         }
         private void AgregarPresupuesto()
         {
@@ -97,7 +78,7 @@ namespace CapaPresentacion.Modals
             }
 
             int idCorrelativo = oCC_Presupuesto.ObtenerCorrelativo();
-            string numeroPresupuesto = string.Format("{0}", idCorrelativo.ToString().PadLeft(6, '0'));
+            string numeroPresupuesto = string.Format("{0}", idCorrelativo.ToString().PadLeft(4, '0'));
 
             Presupuesto oPresupuesto = new Presupuesto()
             {
@@ -111,19 +92,205 @@ namespace CapaPresentacion.Modals
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
-                FechaRegistro = DateTime.Now.ToString("yyyy-MM-dd")
+                FechaRegistro = DateTime.Now
             };
 
             bool resultado = oCC_Presupuesto.AgregarPresupuesto(oPresupuesto, listaDetalle, out string mensaje);
 
             if (resultado)
             {
-                MessageBox.Show("Presupuesto numero " + numeroPresupuesto + "registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Presupuesto numero " + numeroPresupuesto + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
             else
             {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void EditarPresupuesto()
+        {
+            if (datagridview.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (!Validaciones.ValidarCamposVacios(Controls))
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DataTable listaDetalle = new DataTable();
+
+            listaDetalle.Columns.Add("IdProducto", typeof(int));
+            listaDetalle.Columns.Add("Precio", typeof(decimal));
+            listaDetalle.Columns.Add("Cantidad", typeof(int));
+            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                listaDetalle.Rows.Add(
+                    fila.Cells["idProducto"].Value,
+                    fila.Cells["precio"].Value,
+                    fila.Cells["cantidad"].Value,
+                    fila.Cells["subTotal"].Value
+                );
+            }
+
+            Presupuesto oPresupuesto = new Presupuesto()
+            {
+                oUsuario = new Usuario()
+                {
+                    IdUsuario = _usuarioActual.IdUsuario
+                },
+                IdPresupuesto = _idPresupuesto,
+                NombreCliente = txtnombrecliente.Text,
+                TelefonoCliente = txttelefono.Text,
+                Direccion = txtdireccion.Text,
+                Localidad = txtlocalidad.Text,
+                MontoTotal = Convert.ToDecimal(txtmontototal.Text),
+                FechaRegistro = DateTime.Now
+            };
+
+            bool resultado = oCC_Presupuesto.EditarPresupuesto(oPresupuesto, listaDetalle, out string mensaje);
+
+            if (resultado)
+            {
+                MessageBox.Show("Presupuesto numero " + _oPresupuesto.NumeroPresupuesto + " editado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ConfigurarModal()
+        {
+            datagridview.Rows.Clear();
+
+            txtcorreo.Enabled = false;
+            txttelefono.Enabled = false;
+            txtlocalidad.Enabled = false;
+            txtdireccion.Enabled = false;
+            txtnombrecliente.Enabled = false;
+
+            switch (_tipoModal)
+            {
+                case "VerDetalle":
+                    ConfigurarVerDetalle();
+                    break;
+                case "Agregar":
+                    ConfigurarAgregar();
+                    break;
+                case "Editar":
+                    ConfigurarEditar();
+                    break;
+            };
+        }
+        private void ConfigurarVerDetalle()
+        {
+            this.Text = "Detalle Presupuesto " + _oPresupuesto.NumeroPresupuesto;
+            btnaccion.Text = "Aceptar";
+            lblsubtitulo.Text = "Detalle Presupuesto";
+            btnaccion.Text = "Aceptar";
+            btnaccion.IconChar = FontAwesome.Sharp.IconChar.Check;
+            
+
+            txtdireccion.Enabled = false;
+            txtidcliente.Enabled = false;
+            txtnombrecliente.Enabled = false;
+            txttelefono.Enabled = false;
+            txtlocalidad.Enabled = false;
+            txtmontototal.Enabled = false;
+            txtcorreo.Enabled = false;
+
+            datagridview.Columns["cantidad"].ReadOnly = true;
+            datagridview.ReadOnly = true;
+            datagridview.Enabled = false;
+
+            btnagregar.Visible = false;
+            btnbuscarcliente.Visible = false;
+            btneliminar.Visible = false;
+
+            txtnombrecliente.Text = _oPresupuesto.NombreCliente;
+            txttelefono.Text = _oPresupuesto.TelefonoCliente;
+            txtdireccion.Text = _oPresupuesto.Direccion;
+            txtlocalidad.Text = _oPresupuesto.Localidad;
+            txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
+            txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
+
+            MostrarDetalle();
+        }
+        private void ConfigurarAgregar()
+        {
+            this.Text = "Agregar Presupuesto";
+            btnaccion.Text = "Agregar";
+            lblsubtitulo.Text = "Agregar Presupuesto";
+
+            datagridview.Columns["cantidad"].ReadOnly = false;
+        }
+        private void ConfigurarEditar()
+        {
+            this.Text = "Editar Presupuesto";
+            btnaccion.Text = "Editar";
+            lblsubtitulo.Text = "Editar Presupuesto";
+
+            txtnombrecliente.Text = _oPresupuesto.NombreCliente;
+            txttelefono.Text = _oPresupuesto.TelefonoCliente;
+            txtdireccion.Text = _oPresupuesto.Direccion;
+            txtlocalidad.Text = _oPresupuesto.Localidad;
+            txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
+            txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
+
+            MostrarDetalle();
+        }
+        private void MostrarDetalle()
+        {
+            List<DetallePresupuesto> listaDetalle = oCC_Presupuesto.ListarDetalle(_idPresupuesto);
+
+            foreach (DetallePresupuesto oDetalle in listaDetalle)
+            {
+                datagridview.Rows.Add(
+                    "",
+                    oDetalle.oProducto.IdProducto,
+                    oDetalle.oProducto.Codigo,
+                    oDetalle.oProducto.Nombre,
+                    oDetalle.Precio,
+                    oDetalle.Cantidad,
+                    oDetalle.MontoTotal
+                );
+            }
+
+            datagridview.ClearSelection();
+        }
+        private void CalcularMontoTotal()
+        {
+            decimal montoTotal = 0;
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                decimal subTotal = Convert.ToDecimal(fila.Cells["subTotal"].Value);
+
+                montoTotal += subTotal;
+                txtmontototal.Text = montoTotal.ToString();
+            }
+        }
+        private void btnbuscarcliente_Click(object sender, EventArgs e)
+        {
+            using (var modal = new mdAgregarClienteAPresupuesto())
+            {
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    txtidcliente.Text = modal.oCliente.IdCliente.ToString();
+
+                    txtnombrecliente.Text = modal.oCliente.NombreCompleto;
+                    txttelefono.Text = modal.oCliente.Telefono;
+                    txtdireccion.Text = modal.oCliente.Direccion;
+                    txtcorreo.Text = modal.oCliente.Correo;
+                    txtlocalidad.Text = modal.oCliente.Localidad;
+                }
             }
         }
         private void btnagregar_Click(object sender, EventArgs e)
@@ -160,24 +327,19 @@ namespace CapaPresentacion.Modals
                 txtid.Text = "";
             }
         }
-
-        private void btnbuscarcliente_Click(object sender, EventArgs e)
+        private void btneliminar_Click(object sender, EventArgs e)
         {
-            using (var modal = new mdAgregarClienteAPresupuesto())
+            int indice = datagridview.CurrentRow.Index;
+
+            if (indice >= 0)
             {
-                var resultado = modal.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    txtidcliente.Text = modal.oCliente.IdCliente.ToString();
-
-                    txtnombrecliente.Text = modal.oCliente.NombreCompleto;
-                    txttelefono.Text = modal.oCliente.Telefono;
-                    txtdireccion.Text = modal.oCliente.Direccion;
-                }
+                datagridview.Rows.RemoveAt(indice);
             }
-        }
 
+            datagridview.ClearSelection();
+            txtid.Text = "";
+            CalcularMontoTotal();
+        }
         private void btnvolver_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Está seguro que desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -185,31 +347,27 @@ namespace CapaPresentacion.Modals
                 this.Close();
             }
         }
-
         private void txtidcliente_TextChanged(object sender, EventArgs e)
         {
-            if (txtidcliente.Text.Trim() == "")
-            {
-                txtnombrecliente.Enabled = false;
-                txttelefono.Enabled = false;
-                txtdireccion.Enabled = false;
-                txtlocalidad.Enabled = false;
-            }
-            else
+            if (txtidcliente.Text.Trim() != "")
             {
                 txtnombrecliente.Enabled = true;
                 txttelefono.Enabled = true;
                 txtdireccion.Enabled = true;
                 txtlocalidad.Enabled = true;
+                txtcorreo.Enabled = true;
             }
         }
-
         private void datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
             {
                 if (datagridview.Columns[e.ColumnIndex].Name == "cantidad")
                 {
+                    if (datagridview.Rows[e.RowIndex].Cells["cantidad"].Value == null)
+                    {
+                        return;
+                    }
                     int cantidad = Convert.ToInt32(datagridview.Rows[e.RowIndex].Cells["cantidad"].Value);
                     decimal precio = Convert.ToDecimal(datagridview.Rows[e.RowIndex].Cells["precio"].Value);
 
@@ -217,19 +375,6 @@ namespace CapaPresentacion.Modals
 
                     CalcularMontoTotal();
                 }
-            }
-        }
-
-        private void CalcularMontoTotal()
-        {
-            decimal montoTotal = 0;
-
-            foreach (DataGridViewRow fila in datagridview.Rows)
-            {
-                decimal subTotal = Convert.ToDecimal(fila.Cells["subTotal"].Value);
-
-                montoTotal += subTotal;
-                txtmontototal.Text = montoTotal.ToString();
             }
         }
         private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -269,18 +414,31 @@ namespace CapaPresentacion.Modals
                 e.Handled = true;
             }
         }
-
-        private void btnaccion_Click(object sender, EventArgs e)
+        private void datagridview_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            switch (_tipoModal)
+            if (datagridview.CurrentCell.ColumnIndex == 5)
             {
-                case "Agregar":
-                    AgregarPresupuesto();
-                    break;
-                case "Editar":
-                    break;
+                TextBox textBox = e.Control as TextBox;
+
+                if (textBox != null)
+                {
+                    // Asociar el evento KeyPress al control TextBox
+                    textBox.KeyPress -= TextBox_KeyPress; // Asegurarse de eliminar el controlador existente
+                    textBox.KeyPress += TextBox_KeyPress;
+                }
             }
         }
-
+        private void TextBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo números y la tecla de retroceso (Backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+        private void txtmontototal_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

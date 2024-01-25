@@ -37,7 +37,7 @@ namespace CapaPresentacion.Modals
             cbobusqueda.ValueMember = "Valor";
 
 
-            List<Producto> listaProductos = oCC_Producto.ListarProductos().Where(p => p.Estado).ToList();
+            List<Producto> listaProductos = oCC_Producto.ListarProductos().OrderBy(p => p.Codigo).Where(p => p.Estado).ToList();
 
             foreach (Producto oProducto in listaProductos)
             {

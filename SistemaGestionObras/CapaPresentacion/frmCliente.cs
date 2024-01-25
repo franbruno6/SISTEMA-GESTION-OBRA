@@ -137,6 +137,7 @@ namespace CapaPresentacion
                     oCliente.Documento,
                     oCliente.Telefono,
                     oCliente.Direccion,
+                    oCliente.Localidad,
                     oCliente.Estado == true ? 1 : 0,
                     oCliente.Estado == true ? "Activo" : "Inactivo"
                     );

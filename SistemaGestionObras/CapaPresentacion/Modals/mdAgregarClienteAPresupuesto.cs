@@ -46,7 +46,9 @@ namespace CapaPresentacion.Modals
                     oCliente.IdCliente,
                     oCliente.NombreCompleto,
                     oCliente.Telefono,
-                    oCliente.Direccion
+                    oCliente.Direccion,
+                    oCliente.Localidad,
+                    oCliente.Correo
                     );
             }
 
@@ -98,14 +100,29 @@ namespace CapaPresentacion.Modals
                 oCliente.NombreCompleto = datagridview.Rows[indiceFila].Cells["nombreCompleto"].Value.ToString();
                 oCliente.Telefono = datagridview.Rows[indiceFila].Cells["telefono"].Value.ToString();
                 oCliente.Direccion = datagridview.Rows[indiceFila].Cells["direccion"].Value.ToString();
+                oCliente.Localidad = datagridview.Rows[indiceFila].Cells["localidad"].Value.ToString();
+                oCliente.Correo = datagridview.Rows[indiceFila].Cells["correo"].Value.ToString();
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
         }
-
         private void btnvolver_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+        private void btncrearcliente_Click(object sender, EventArgs e)
+        {
+            using (var modal = new mdDetalleCliente("Agregar",0))
+            {
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    oCliente = modal.oCliente;
+                    this.DialogResult = DialogResult.OK;
+                    this.Close();
+                }
+            }
         }
     }
 }

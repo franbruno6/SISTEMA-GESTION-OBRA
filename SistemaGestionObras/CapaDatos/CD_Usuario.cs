@@ -164,7 +164,7 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return claveRestablecida;
         }
-        public bool EliminarUsuario (int idUsuario, int idPersona, out string mensaje)
+        public bool EliminarUsuario (int idUsuario, out string mensaje)
         {
             bool usuarioEliminado = false;
             mensaje = string.Empty;
@@ -178,7 +178,6 @@ namespace CapaDatos
 
                     //PARAMETROS DE ENTRADA
                     cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
-                    cmd.Parameters.AddWithValue("IdPersona", idPersona);
                     //PARAMETRO DE SALIDA
                     cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
                     cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;

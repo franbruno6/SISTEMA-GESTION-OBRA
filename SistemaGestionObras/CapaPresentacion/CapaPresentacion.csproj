@@ -65,6 +65,7 @@
     <Compile Include="frmPermisoUsuario.Designer.cs">
       <DependentUpon>frmPermisoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\Comprobante.cs" />
     <Compile Include="Modals\mdAgregarClienteAPresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -88,6 +89,12 @@
     </Compile>
     <Compile Include="Modals\mdDetalleCliente.Designer.cs">
       <DependentUpon>mdDetalleCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\mdDetalleComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\mdDetalleComprobante.Designer.cs">
+      <DependentUpon>mdDetalleComprobante.cs</DependentUpon>
     </Compile>
     <Compile Include="Modals\mdDetalleGrupoPermiso.cs">
       <SubType>Form</SubType>
@@ -173,6 +180,12 @@
     <Compile Include="Modals\mdDetallePermisoSimple.Designer.cs">
       <DependentUpon>mdDetallePermisoSimple.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\mdListaPresupuestos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\mdListaPresupuestos.Designer.cs">
+      <DependentUpon>mdListaPresupuestos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utilidades\DataGridViewU.cs" />
@@ -195,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdDetalleCliente.resx">
       <DependentUpon>mdDetalleCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\mdDetalleComprobante.resx">
+      <DependentUpon>mdDetalleComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdDetalleGrupoPermiso.resx">
       <DependentUpon>mdDetalleGrupoPermiso.cs</DependentUpon>
@@ -237,6 +253,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdDetallePermisoSimple.resx">
       <DependentUpon>mdDetallePermisoSimple.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\mdListaPresupuestos.resx">
+      <DependentUpon>mdListaPresupuestos.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

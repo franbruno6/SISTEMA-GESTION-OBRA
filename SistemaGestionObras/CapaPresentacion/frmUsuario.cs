@@ -108,7 +108,7 @@ namespace CapaPresentacion
                 {
                     string mensaje = string.Empty;
 
-                    bool eliminado = oCC_Usuario.EliminarUsuario(Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpersona.Text), out mensaje);
+                    bool eliminado = oCC_Usuario.EliminarUsuario(Convert.ToInt32(txtid.Text), out mensaje);
 
                     if (eliminado)
                     {

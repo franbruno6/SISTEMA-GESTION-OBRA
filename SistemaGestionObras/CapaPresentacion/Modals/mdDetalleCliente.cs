@@ -17,14 +17,15 @@ namespace CapaPresentacion.Modals
     {
         private readonly string _tipoModal;
         private int _idCliente;
-        private Cliente oCliente;
+        private Cliente _oCliente;
         private CC_Cliente oCC_Cliente = new CC_Cliente();
+        public Cliente oCliente { get; set; }
         
         public mdDetalleCliente(string tipoModal, int idCliente)
         {
             _idCliente = idCliente;
             _tipoModal = tipoModal;
-            oCliente = oCC_Cliente.ListarClientes().Where(c => c.IdCliente == _idCliente).FirstOrDefault();
+            _oCliente = oCC_Cliente.ListarClientes().Where(c => c.IdCliente == _idCliente).FirstOrDefault();
             InitializeComponent();
         }
         private void mdDetalleCliente_Load(object sender, EventArgs e)
@@ -51,20 +52,23 @@ namespace CapaPresentacion.Modals
         }
         private void AgregarCliente()
         {
-            int idClienteRegistrado = oCC_Cliente.AgregarCliente(new Cliente()
+            Cliente cliente = new Cliente()
             {
                 NombreCompleto = txtnombrecompleto.Text.Trim(),
                 Documento = txtdocumento.Text.Trim(),
                 Correo = txtcorreo.Text.Trim(),
                 Telefono = txttelefono.Text.Trim(),
                 Direccion = txtdireccion.Text.Trim(),
+                Localidad = txtlocalidad.Text.Trim(),
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
-            }, out string mensaje);
+            };
+            int idClienteRegistrado = oCC_Cliente.AgregarCliente(cliente, out string mensaje);
 
             if (idClienteRegistrado != 0)
             {
                 MessageBox.Show("Cliente agregado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
+                oCliente = cliente;
                 this.Close();
             }
             else
@@ -77,12 +81,13 @@ namespace CapaPresentacion.Modals
             bool clienteEditado = oCC_Cliente.EditarCliente(new Cliente()
             {
                 IdCliente = _idCliente,
-                IdPersona = oCliente.IdPersona,
+                IdPersona = _oCliente.IdPersona,
                 NombreCompleto = txtnombrecompleto.Text.Trim(),
                 Documento = txtdocumento.Text.Trim(),
                 Correo = txtcorreo.Text.Trim(),
                 Telefono = txttelefono.Text.Trim(),
                 Direccion = txtdireccion.Text.Trim(),
+                Localidad = txtlocalidad.Text.Trim(),
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
             }, out string mensaje);
 
@@ -127,22 +132,24 @@ namespace CapaPresentacion.Modals
             cboestado.Enabled = false;
             txttelefono.Enabled = false;
             txtdireccion.Enabled = false;
+            txtlocalidad.Enabled = false;
             btnaccion.Visible = false;
 
-            txtnombrecompleto.Text = oCliente.NombreCompleto.ToString();
-            txtdocumento.Text = oCliente.Documento.ToString();
-            txtcorreo.Text = oCliente.Correo.ToString();
+            txtnombrecompleto.Text = _oCliente.NombreCompleto.ToString();
+            txtdocumento.Text = _oCliente.Documento.ToString();
+            txtcorreo.Text = _oCliente.Correo.ToString();
             foreach (OpcionCombo opcion in cboestado.Items)
             {
-                if (Convert.ToInt32(opcion.Valor) == (oCliente.Estado == true ? 1 : 0))
+                if (Convert.ToInt32(opcion.Valor) == (_oCliente.Estado == true ? 1 : 0))
                 {
                     int indiceCombo = cboestado.Items.IndexOf(opcion);
                     cboestado.SelectedIndex = indiceCombo;
                     break;
                 }
             }
-            txttelefono.Text = oCliente.Telefono.ToString();
-            txtdireccion.Text = oCliente.Direccion.ToString();
+            txttelefono.Text = _oCliente.Telefono.ToString();
+            txtdireccion.Text = _oCliente.Direccion.ToString();
+            txtlocalidad.Text = _oCliente.Localidad.ToString();
         }
         private void ConfigurarAgregar()
         {
@@ -156,49 +163,21 @@ namespace CapaPresentacion.Modals
             lblsubtitulo.Text = "Editar Cliente";
             btnaccion.Text = "Editar";
 
-            txtnombrecompleto.Text = oCliente.NombreCompleto.ToString();
-            txtdocumento.Text = oCliente.Documento.ToString();
-            txtcorreo.Text = oCliente.Correo.ToString();
+            txtnombrecompleto.Text = _oCliente.NombreCompleto.ToString();
+            txtdocumento.Text = _oCliente.Documento.ToString();
+            txtcorreo.Text = _oCliente.Correo.ToString();
             foreach (OpcionCombo opcion in cboestado.Items)
             {
-                if (Convert.ToInt32(opcion.Valor) == (oCliente.Estado == true ? 1 : 0))
+                if (Convert.ToInt32(opcion.Valor) == (_oCliente.Estado == true ? 1 : 0))
                 {
                     int indiceCombo = cboestado.Items.IndexOf(opcion);
                     cboestado.SelectedIndex = indiceCombo;
                     break;
                 }
             }
-            txttelefono.Text = oCliente.Telefono.ToString();
-            txtdireccion.Text = oCliente.Direccion.ToString();
-        }
-        private bool ValidarTextosVacios()
-        {
-            if (txtnombrecompleto.Text.Trim() == string.Empty)
-            {
-                txtnombrecompleto.Focus();
-                return false;
-            }
-            if (txtdocumento.Text.Trim() == string.Empty)
-            {
-                txtdocumento.Focus();
-                return false;
-            }
-            if (txtcorreo.Text.Trim() == string.Empty)
-            {
-                txtcorreo.Focus();
-                return false;
-            }
-            if (txttelefono.Text.Trim() == string.Empty)
-            {
-                txttelefono.Focus();
-                return false;
-            }
-            if (txtdireccion.Text.Trim() == string.Empty)
-            {
-                txtdireccion.Focus();
-                return false;
-            }
-            return true;
+            txttelefono.Text = _oCliente.Telefono.ToString();
+            txtdireccion.Text = _oCliente.Direccion.ToString();
+            txtlocalidad.Text = _oCliente.Localidad.ToString();
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {

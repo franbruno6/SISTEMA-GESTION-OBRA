@@ -47,6 +47,8 @@
     <Compile Include="DetalleComprobanteObra.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="GrupoPermiso.cs" />
+    <Compile Include="Observer\IObservadorCliente.cs" />
+    <Compile Include="Observer\ISujetoComprobante.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Presupuesto.cs" />
@@ -54,5 +56,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

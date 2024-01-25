@@ -115,7 +115,7 @@ namespace CapaPresentacion
         }
         private void menucomprobantes_Click(object sender, EventArgs e)
         {
-            AbrirFormulario((IconMenuItem)sender, new frmComprobante());
+            AbrirFormulario((IconMenuItem)sender, new frmComprobante(_usuarioActual));
         }
         private void menupermisosimple_Click(object sender, EventArgs e)
         {

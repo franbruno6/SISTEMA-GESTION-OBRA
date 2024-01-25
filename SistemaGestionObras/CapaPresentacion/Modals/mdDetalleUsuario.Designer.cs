@@ -260,7 +260,7 @@
             this.btnaccion.Location = new System.Drawing.Point(976, 200);
             this.btnaccion.Name = "btnaccion";
             this.btnaccion.Size = new System.Drawing.Size(173, 27);
-            this.btnaccion.TabIndex = 7;
+            this.btnaccion.TabIndex = 9;
             this.btnaccion.Text = "Accion";
             this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

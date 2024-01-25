@@ -46,7 +46,6 @@ namespace CapaDatos
                 catch (Exception ex)
                 {
                     List<Permiso> listaPermisos = new List<Permiso>();
-                    DataAccessObject.CerrarConexion();
                     return listaPermisos;
                 }
             }

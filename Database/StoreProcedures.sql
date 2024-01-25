@@ -20,12 +20,38 @@ begin
 
 		begin transaction registro
 		
-			if not exists(
+			if exists(
 				select * 
-				from Usuario
-				inner join Persona on Usuario.IdPersona = Persona.IdPersona
-				where Persona.Documento = @Documento
+				from Persona
+				where Documento = @Documento
 			)
+			begin
+				select @IdPersona = IdPersona
+				from Persona
+				where Documento = @Documento
+
+				if not exists(
+					select *
+					from Usuario
+					where IdPersona = @IdPersona
+				)
+				begin
+					update Persona
+					set NombreCompleto = @NombreCompleto,
+						Correo = @Correo
+					where Documento = @Documento
+				
+					insert into Usuario(IdPersona,Clave,Estado) values
+					(@IdPersona,@Clave,@Estado)				
+
+					set @IdUsuarioRegistrado = SCOPE_IDENTITY()
+				end
+				else
+				begin
+					set @Mensaje = 'Ya existe un usuario con ese número de documento'
+				end
+			end
+			else
 			begin
 				insert into Persona(NombreCompleto,Correo,Documento) values
 				(@NombreCompleto,@Correo,@Documento)
@@ -71,7 +97,7 @@ begin
         if not exists (
                 select *
                 from Usuario
-                         inner join Persona on Usuario.IdPersona = Persona.IdPersona
+                inner join Persona on Usuario.IdPersona = Persona.IdPersona
                 where Persona.Documento = @Documento and IdUsuario != @IdUsuario
         )
         begin
@@ -135,7 +161,6 @@ go
 --PROCEDURE ELIMINAR USUARIO--
 create procedure SP_EliminarUsuario(
 @IdUsuario int,
-@IdPersona int,
 @Mensaje nvarchar(400) output,
 @Resultado bit output
 )
@@ -170,7 +195,6 @@ begin
 	if (@pasoreglas = 1)
 	begin
 		delete from Usuario where IdUsuario = @IdUsuario
-		delete from Persona where IdPersona = @IdPersona
 		set @Resultado = 1
 	end
 end;
@@ -183,6 +207,7 @@ create procedure SP_RegistrarCliente(
 @Documento nvarchar(100),
 @Telefono nvarchar(60),
 @Direccion nvarchar(100),
+@Localidad nvarchar(60),
 @Estado bit,
 @Mensaje nvarchar(400) output,
 @IdClienteRegistrado int output
@@ -195,13 +220,38 @@ begin
 		declare @IdPersona int = 0
 
 		begin transaction registro
-		
-			if not exists(
+			if exists(
 				select * 
-				from Cliente
-				inner join Persona on Cliente.IdPersona = Persona.IdPersona
-				where Persona.Documento = @Documento
+				from Persona
+				where Documento = @Documento
 			)
+			begin
+				select @IdPersona = IdPersona
+				from Persona
+				where Documento = @Documento
+
+				if not exists(
+					select *
+					from Cliente
+					where IdPersona = @IdPersona
+				)
+				begin
+					update Persona
+					set NombreCompleto = @NombreCompleto,
+						Correo = @Correo
+					where Documento = @Documento
+
+					insert into Cliente(Direccion,Localidad,Telefono,Estado) values
+					(@Direccion,@Localidad,@Telefono,@Estado)
+
+					set @IdClienteRegistrado = SCOPE_IDENTITY()
+				end
+				else
+				begin
+					set @Mensaje = 'Ya existe un cliente con ese numero de documento'
+				end
+			end
+			else
 			begin
 				insert into Persona(NombreCompleto,Correo,Documento) values
 				(@NombreCompleto,@Correo,@Documento)
@@ -210,15 +260,11 @@ begin
 
 				if (@IdPersona != 0)
 				begin
-					insert into Cliente(IdPersona,Telefono,Direccion,Estado) values
-					(@IdPersona,@Telefono,@Direccion,@Estado)
+					insert into Cliente(IdPersona,Telefono,Direccion,Estado,Localidad) values
+					(@IdPersona,@Telefono,@Direccion,@Estado,@Localidad)
 
 					set @IdClienteRegistrado = SCOPE_IDENTITY()
 				end
-			end
-			else
-			begin
-				set @Mensaje = 'Ya existe un cliente con este documento'
 			end
 		commit transaction registro
 	end try
@@ -238,6 +284,7 @@ create procedure SP_EditarCliente(
 @Documento nvarchar(100),
 @Telefono nvarchar(60),
 @Direccion nvarchar(100),
+@Localidad nvarchar(60),
 @Estado bit,
 @Mensaje nvarchar(400) output,
 @Resultado bit output
@@ -253,7 +300,7 @@ begin
         if not exists (
                 select *
                 from Cliente
-                         inner join Persona on Cliente.IdPersona = Persona.IdPersona
+                inner join Persona on Cliente.IdPersona = Persona.IdPersona
                 where Persona.Documento = @Documento and IdCliente != @IdCliente
         )
         begin
@@ -265,6 +312,7 @@ begin
 
             update Cliente set
 				Direccion = @Direccion,
+				Localidad = @Localidad,
 				Telefono = @Telefono,
                 Estado = @Estado
             where IdCliente = @IdCliente;
@@ -288,7 +336,6 @@ go
 --PROCEDURE ELIMINAR CLIENTE--
 create procedure SP_EliminarCliente(
 @IdCliente int,
-@IdPersona int,
 @Mensaje nvarchar(400) output,
 @Resultado bit output
 )
@@ -296,18 +343,35 @@ as
 begin
 	set @Resultado = 0;
     set @Mensaje = '';
+	declare @pasoreglas bit = 1
 
-	begin try
-		begin transaction editar
-			delete from Cliente where IdCliente = @IdCliente;
-			delete from Persona where IdPersona = @IdPersona;
-		commit transaction editar
-			set @Resultado = 1
-	end try
-	begin catch
-		rollback transaction editar
-        set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
-	end catch
+	if exists(
+		select *
+		from Presupuesto
+		where IdCliente = @IdCliente
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El cliente se encuentra ligado a un presupuesto.\n'
+		set @pasoreglas = 0
+	end
+
+	if exists(
+		select *
+		from ComprobanteObra
+		where IdCliente = @IdCliente
+	)
+	begin
+		set @Resultado = 0
+		set @Mensaje = @Mensaje + 'No se puede eliminar. El cliente se encuentra ligado a un comprobante de obra.\n'
+		set @pasoreglas = 0
+	end
+
+	if (@pasoreglas = 1)
+	begin
+		delete from Cliente where IdCliente = @IdCliente
+		set @Resultado = 1
+	end
 end;
 go
 
@@ -740,6 +804,7 @@ create procedure SP_RegistrarPresupuesto(
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
 @MontoTotal decimal(18,2),
+@FechaRegistro date,
 @DetallePresupuesto [EDetallePresupuesto] readonly,
 @Resultado bit output,
 @Mensaje nvarchar(500) output
@@ -753,8 +818,8 @@ begin
 
 		begin transaction registro
 			
-			insert into Presupuesto(IdUsuario,NumeroPresupuesto,NombreCliente,TelefonoCliente,Direccion,Localidad,MontoTotal)
-			values(@IdUsuario,@NumeroPresupuesto,@NombreCliente,@TelefonoCliente,@Direccion,@Localidad,@MontoTotal)
+			insert into Presupuesto(IdUsuario,NumeroPresupuesto,NombreCliente,TelefonoCliente,Direccion,Localidad,MontoTotal,FechaRegistro)
+			values(@IdUsuario,@NumeroPresupuesto,@NombreCliente,@TelefonoCliente,@Direccion,@Localidad,@MontoTotal,@FechaRegistro)
 
 			set @IdPresupuesto = SCOPE_IDENTITY()
 
@@ -768,5 +833,82 @@ begin
 		set @Mensaje = ERROR_MESSAGE()
 		rollback transaction registro
 	end catch
+end
+go
+
+--PROCEDURE EDITAR PRESUPUESTO--
+create procedure SP_EditarPresupuesto(
+@IdUsuario int,
+@IdPresupuesto int,
+@NombreCliente nvarchar(60),
+@TelefonoCliente nvarchar(60),
+@Direccion nvarchar(100),
+@Localidad nvarchar(60),
+@MontoTotal decimal(18,2),
+@FechaRegistro date,
+@DetallePresupuesto [EDetallePresupuesto] readonly,
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+    begin try
+        set @Resultado = 1
+        set @Mensaje = ''
+
+        begin transaction edicion
+
+            update Presupuesto
+            set IdUsuario = @IdUsuario, NombreCliente = @NombreCliente, TelefonoCliente = @TelefonoCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
+            where IdPresupuesto = @IdPresupuesto
+
+            -- Eliminar las asociaciones existentes de componentes con el grupo
+            delete from DetallePresupuesto
+            where IdPresupuesto = @IdPresupuesto
+
+            -- Insertar las nuevas asociaciones de componentes con el grupo
+            insert into DetallePresupuesto(IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal)
+            select @IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal
+            from @DetallePresupuesto
+
+        commit transaction edicion
+    end try
+    begin catch
+        set @Resultado = 0
+        set @Mensaje = ERROR_MESSAGE()
+        rollback transaction edicion
+    end catch
+end
+go
+
+--PROCEDURE ELIMINAR PRESUPUESTO--
+create procedure SP_EliminarPresupuesto
+(
+@IdPresupuesto int,
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+    begin try
+        set @Resultado = 1
+        set @Mensaje = ''
+
+        begin transaction eliminar
+
+            -- Eliminar las asociaciones existentes de componentes con el grupo
+            delete from DetallePresupuesto
+            where IdPresupuesto = @IdPresupuesto
+
+            delete from Presupuesto
+            where IdPresupuesto = @IdPresupuesto
+
+        commit transaction eliminar
+    end try
+    begin catch
+        set @Resultado = 0
+        set @Mensaje = ERROR_MESSAGE()
+        rollback transaction eliminar
+    end catch
 end
 go

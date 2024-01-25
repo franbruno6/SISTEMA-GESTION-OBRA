@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaEntidad.Observer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,14 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class ComprobanteObra
+    public class ComprobanteObra : ISujetoComprobante
     {
         #region Constructor
         public ComprobanteObra()
         {
             oPresupuesto = new Presupuesto();
             oUsuario = new Usuario();
+            observadores = new List<IObservadorCliente>();
         }
         #endregion
 
@@ -21,11 +23,15 @@ namespace CapaEntidad
         private Presupuesto presupuesto;
         private Usuario usuario;
         private string numeroComprobante;
-        private string documentoCliente;
-        private string direccion;
         private decimal montoTotal;
         private string estadoObra;
-        private string fechaRegistro;
+        private DateTime fechaRegistro;
+        private string nombreCliente;
+        private string telefonoCliente;
+        private string direccion;
+        private string localidad;
+        private decimal adelanto;
+        private decimal saldo;
         #endregion
 
         #region Propiedades
@@ -33,11 +39,63 @@ namespace CapaEntidad
         public Presupuesto oPresupuesto { get { return presupuesto; } set { presupuesto = value; } }
         public Usuario oUsuario { get { return usuario; } set { usuario = value; } }
         public string NumeroComprobante { get {  return numeroComprobante; } set {  numeroComprobante = value; } }
-        public string DocumentoCliente { get {  return documentoCliente; } set {  documentoCliente = value; } }
+        public string NombreCliente { get {  return nombreCliente; } set {  nombreCliente = value; } }
+        public string TelefonoCliente { get {  return telefonoCliente; } set {  telefonoCliente = value; } }
         public string Direccion { get {  return direccion; } set {  direccion = value; } }
+        public string Localidad { get {  return localidad; } set {  localidad = value; } }
+        //public string NombreCliente { get {  return oPresupuesto.NombreCliente; } set {  oPresupuesto.NombreCliente = value; } }
+        //public string TelefonoCliente { get {  return oPresupuesto.TelefonoCliente; } set {  oPresupuesto.TelefonoCliente = value; } }
+        //public string Localidad { get {  return oPresupuesto.Localidad; } set {  oPresupuesto.Localidad = value; } }
+        //public string Direccion { get {  return oPresupuesto.Direccion; } set {  oPresupuesto.Direccion = value; } }
         public decimal MontoTotal { get {  return montoTotal; } set {  montoTotal = value; } }
-        public string EstadoObra { get {  return estadoObra; } set {  estadoObra = value; } }
-        public string FechaRegistro { get {  return fechaRegistro; } set {  fechaRegistro = value; } }
+        public decimal Adelanto { get {  return adelanto; } set {  adelanto = value; } }
+        public decimal Saldo { get {  return saldo; } set {  saldo = value; } }
+        public string EstadoObra { 
+            get 
+            {  
+                return estadoObra; 
+            } 
+            set
+            {  
+                estadoObra = value; 
+                this.NotificarObservadores();
+            } 
+        }
+        public DateTime FechaRegistro { get {  return fechaRegistro; } set {  fechaRegistro = value; } }
         #endregion
+
+        #region Observer
+        private List<IObservadorCliente> observadores;
+        public void AgregarObservador(IObservadorCliente observador)
+        {
+            if (!observadores.Contains(observador))
+            {
+                observadores.Add(observador);
+            }
+            else
+            {
+                throw new Exception("El cliente ya se encuentra registrado");
+            }
+        }
+        public void EliminarObservador(IObservadorCliente observador)
+        {
+            if (observadores.Contains(observador))
+            {
+                observadores.Remove(observador);
+            }
+            else
+            {
+                throw new Exception("El cliente no se encuentra registrado");
+            }
+        }
+        public void NotificarObservadores()
+        {
+            foreach (IObservadorCliente observador in observadores)
+            {
+                observador.Actualizar(this);
+            }
+        }
+        #endregion
+
     }
 }
