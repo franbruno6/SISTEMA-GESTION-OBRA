@@ -18,7 +18,9 @@ namespace CapaPresentacion.Modals
         private readonly string _tipoModal;
         private int _idPresupuesto;
         private Presupuesto _oPresupuesto;
+        private Cliente _oCliente;
         private CC_Presupuesto oCC_Presupuesto = new CC_Presupuesto();
+        private CC_Cliente oCC_Cliente = new CC_Cliente();
         private Usuario _usuarioActual;
         public mdDetallePresupuesto(string tipoModal, int idPresupuesto, Usuario oUsuario)
         {
@@ -203,7 +205,6 @@ namespace CapaPresentacion.Modals
             btnaccion.Text = "Aceptar";
             btnaccion.IconChar = FontAwesome.Sharp.IconChar.Check;
             
-
             txtdireccion.Enabled = false;
             txtidcliente.Enabled = false;
             txtnombrecliente.Enabled = false;
@@ -224,7 +225,7 @@ namespace CapaPresentacion.Modals
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
-            txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
+            txtcorreo.Text = _oPresupuesto.oCliente.Correo;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
 
             MostrarDetalle();
@@ -247,7 +248,7 @@ namespace CapaPresentacion.Modals
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
-            txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
+            txtcorreo.Text = _oPresupuesto.oCliente.Correo;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
 
             MostrarDetalle();
@@ -291,13 +292,15 @@ namespace CapaPresentacion.Modals
 
                 if (resultado == DialogResult.OK)
                 {
-                    txtidcliente.Text = modal.oCliente.IdCliente.ToString();
+                    txtidcliente.Text = modal.idcliente.ToString();
 
-                    txtnombrecliente.Text = modal.oCliente.NombreCompleto;
-                    txttelefono.Text = modal.oCliente.Telefono;
-                    txtdireccion.Text = modal.oCliente.Direccion;
-                    txtcorreo.Text = modal.oCliente.Correo;
-                    txtlocalidad.Text = modal.oCliente.Localidad;
+                    _oCliente = oCC_Cliente.ListarClientes().Where(c => c.IdCliente == modal.idcliente).FirstOrDefault();
+
+                    txtnombrecliente.Text = _oCliente.NombreCompleto;
+                    txttelefono.Text = _oCliente.Telefono;
+                    txtcorreo.Text = _oCliente.Correo;
+                    txtdireccion.Text = _oCliente.Direccion;
+                    txtlocalidad.Text = _oCliente.Localidad;
                 }
             }
         }
@@ -389,10 +392,6 @@ namespace CapaPresentacion.Modals
             if (indice >= 0)
             {
                 txtid.Text = datagridview.Rows[indice].Cells["idProducto"].Value.ToString();
-            }
-
-            if (indice >= 0)
-            {
                 datagridview.Rows[indice].Cells["cantidad"].ReadOnly = false;
                 datagridview.Rows[indice].Cells["cantidad"].Selected = true;
             }

@@ -78,7 +78,7 @@
             // 
             this.txtnombrecliente.Enabled = false;
             this.txtnombrecliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtnombrecliente.Location = new System.Drawing.Point(361, 133);
+            this.txtnombrecliente.Location = new System.Drawing.Point(169, 134);
             this.txtnombrecliente.Name = "txtnombrecliente";
             this.txtnombrecliente.Size = new System.Drawing.Size(207, 22);
             this.txtnombrecliente.TabIndex = 79;
@@ -88,7 +88,7 @@
             this.lblnombre.AutoSize = true;
             this.lblnombre.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblnombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblnombre.Location = new System.Drawing.Point(238, 136);
+            this.lblnombre.Location = new System.Drawing.Point(46, 137);
             this.lblnombre.Name = "lblnombre";
             this.lblnombre.Size = new System.Drawing.Size(122, 16);
             this.lblnombre.TabIndex = 80;
@@ -229,7 +229,7 @@
             // txtdireccion
             // 
             this.txtdireccion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtdireccion.Location = new System.Drawing.Point(361, 167);
+            this.txtdireccion.Location = new System.Drawing.Point(169, 168);
             this.txtdireccion.Name = "txtdireccion";
             this.txtdireccion.Size = new System.Drawing.Size(207, 22);
             this.txtdireccion.TabIndex = 87;
@@ -239,7 +239,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(238, 170);
+            this.label2.Location = new System.Drawing.Point(46, 171);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(64, 16);
             this.label2.TabIndex = 88;
@@ -268,7 +268,7 @@
             // txtlocalidad
             // 
             this.txtlocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlocalidad.Location = new System.Drawing.Point(655, 164);
+            this.txtlocalidad.Location = new System.Drawing.Point(463, 165);
             this.txtlocalidad.Name = "txtlocalidad";
             this.txtlocalidad.Size = new System.Drawing.Size(192, 22);
             this.txtlocalidad.TabIndex = 91;
@@ -278,7 +278,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(585, 167);
+            this.label5.Location = new System.Drawing.Point(393, 168);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 16);
             this.label5.TabIndex = 92;
@@ -288,7 +288,7 @@
             // 
             this.txttelefono.Enabled = false;
             this.txttelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txttelefono.Location = new System.Drawing.Point(655, 133);
+            this.txttelefono.Location = new System.Drawing.Point(463, 134);
             this.txttelefono.Name = "txttelefono";
             this.txttelefono.Size = new System.Drawing.Size(192, 22);
             this.txttelefono.TabIndex = 93;
@@ -298,7 +298,7 @@
             this.label6.AutoSize = true;
             this.label6.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(585, 136);
+            this.label6.Location = new System.Drawing.Point(393, 137);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(61, 16);
             this.label6.TabIndex = 94;
@@ -323,9 +323,9 @@
             this.btnbuscarcliente.IconColor = System.Drawing.Color.Black;
             this.btnbuscarcliente.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnbuscarcliente.IconSize = 19;
-            this.btnbuscarcliente.Location = new System.Drawing.Point(41, 133);
+            this.btnbuscarcliente.Location = new System.Drawing.Point(280, 89);
             this.btnbuscarcliente.Name = "btnbuscarcliente";
-            this.btnbuscarcliente.Size = new System.Drawing.Size(174, 33);
+            this.btnbuscarcliente.Size = new System.Drawing.Size(174, 27);
             this.btnbuscarcliente.TabIndex = 96;
             this.btnbuscarcliente.Text = "Buscar Cliente";
             this.btnbuscarcliente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -412,7 +412,7 @@
             // 
             this.txtcorreo.Enabled = false;
             this.txtcorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtcorreo.Location = new System.Drawing.Point(922, 133);
+            this.txtcorreo.Location = new System.Drawing.Point(730, 134);
             this.txtcorreo.Name = "txtcorreo";
             this.txtcorreo.Size = new System.Drawing.Size(192, 22);
             this.txtcorreo.TabIndex = 97;
@@ -422,7 +422,7 @@
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(868, 136);
+            this.label7.Location = new System.Drawing.Point(676, 137);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(48, 16);
             this.label7.TabIndex = 98;

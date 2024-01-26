@@ -22,7 +22,7 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,");
-                    query.AppendLine("NombreCompleto, Telefono, Documento ");
+                    query.AppendLine("NombreCompleto, Telefono, Documento, Correo ");
                     query.AppendLine("from Presupuesto ");
                     query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
                     query.AppendLine("inner join Persona on Cliente.IdPersona = Persona.IdPersona");
@@ -51,7 +51,8 @@ namespace CapaDatos
                                 IdCliente = Convert.ToInt32(dr["IdCliente"]),
                                 NombreCompleto = dr["NombreCompleto"].ToString(),
                                 Telefono = dr["Telefono"].ToString(),
-                                Documento = dr["Documento"].ToString()
+                                Documento = dr["Documento"].ToString(),
+                                Correo = dr["Correo"].ToString()
                             }
                         };
                         listaPresupuestos.Add(presupuesto);

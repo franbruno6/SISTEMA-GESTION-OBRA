@@ -46,7 +46,7 @@ go
 
 --SELECT LISTA PRESUPUESTOS--
 select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,
-NombreCompleto, Telefono, Documento
+NombreCompleto, Telefono, Documento, Correo
 from Presupuesto
 inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
 inner join Persona on Cliente.IdPersona = Persona.IdPersona

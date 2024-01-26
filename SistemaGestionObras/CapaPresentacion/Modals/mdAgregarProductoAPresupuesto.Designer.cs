@@ -225,6 +225,7 @@
             this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnvolver.UseVisualStyleBackColor = false;
+            this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
             // mdAgregarProductoAPresupuesto
             // 

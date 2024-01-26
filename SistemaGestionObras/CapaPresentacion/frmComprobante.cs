@@ -24,7 +24,6 @@ namespace CapaPresentacion
             _usuarioActual = oUsuario;
             InitializeComponent();
         }
-
         private void frmComprobante_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -58,7 +57,7 @@ namespace CapaPresentacion
         {
             datagridview.Rows.Clear();
 
-            //MOSTRAR LOS PRESUPUESTOS
+            //MOSTRAR LOS COMPROBANTES
             //List<ComprobanteObra> listaComprobante = oCC_ComprobanteObra.ListarComprobante();
             //listaPresupuestos = listaPresupuestos.OrderBy(p => p.NumeroPresupuesto).ToList();
 
@@ -84,7 +83,6 @@ namespace CapaPresentacion
             txtid.Text = "";
             txtidusuario.Text = "";
         }
-
         private void menuagregarcomprobante_Click(object sender, EventArgs e)
         {
             using (var modal = new mdListaPresupuestos())
@@ -93,14 +91,13 @@ namespace CapaPresentacion
 
                 if (resultado == DialogResult.OK)
                 {
-                    Presupuesto oPresupuesto = oCC_Presupuesto.ListarPresupuestos().Where(p => p.IdPresupuesto == modal.IdPresupuesto).FirstOrDefault();
-                    AbrirModal("Agregar", 0, _usuarioActual);
+                    AbrirModal("Agregar", 0, _usuarioActual, modal.IdPresupuesto);
                 }
             }
         }
-        private void AbrirModal(string tipoModal, int idComprobante, Usuario _usuarioActual)
+        private void AbrirModal(string tipoModal, int idComprobante, Usuario _usuarioActual, int idPresupuesto)
         {
-            using (var modal = new mdDetalleComprobante(tipoModal, idComprobante, _usuarioActual))
+            using (var modal = new mdDetalleComprobante(tipoModal, idComprobante, _usuarioActual, idPresupuesto))
             {
                 var resultado = modal.ShowDialog();
             }

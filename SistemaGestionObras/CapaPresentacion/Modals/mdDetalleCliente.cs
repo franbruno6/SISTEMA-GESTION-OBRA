@@ -19,7 +19,7 @@ namespace CapaPresentacion.Modals
         private int _idCliente;
         private Cliente _oCliente;
         private CC_Cliente oCC_Cliente = new CC_Cliente();
-        public Cliente oCliente { get; set; }
+        public int idCliente { get; set; }
         
         public mdDetalleCliente(string tipoModal, int idCliente)
         {
@@ -68,7 +68,7 @@ namespace CapaPresentacion.Modals
             {
                 MessageBox.Show("Cliente agregado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
-                oCliente = cliente;
+                idCliente = idClienteRegistrado;
                 this.Close();
             }
             else

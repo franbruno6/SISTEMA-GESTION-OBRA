@@ -21,7 +21,6 @@ namespace CapaPresentacion.Modals
         {
             InitializeComponent();
         }
-
         private void mdAgregarProductoAPresupuesto_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -97,6 +96,10 @@ namespace CapaPresentacion.Modals
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
+        }
+        private void btnvolver_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

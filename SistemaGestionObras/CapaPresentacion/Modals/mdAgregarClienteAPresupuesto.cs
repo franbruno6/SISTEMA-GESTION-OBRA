@@ -16,12 +16,11 @@ namespace CapaPresentacion.Modals
     public partial class mdAgregarClienteAPresupuesto : Form
     {
         private CC_Cliente oCC_Cliente = new CC_Cliente();
-        public Cliente oCliente { get; set; }
+        public int idcliente { get; set; }
         public mdAgregarClienteAPresupuesto()
         {
             InitializeComponent();
         }
-
         private void mdAgregarClienteAPresupuesto_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -95,13 +94,7 @@ namespace CapaPresentacion.Modals
 
             if (indiceFila >= 0 && indiceColumna >= 0)
             {
-                oCliente = new Cliente();
-                oCliente.IdCliente = Convert.ToInt32(datagridview.Rows[indiceFila].Cells["idCliente"].Value.ToString());
-                oCliente.NombreCompleto = datagridview.Rows[indiceFila].Cells["nombreCompleto"].Value.ToString();
-                oCliente.Telefono = datagridview.Rows[indiceFila].Cells["telefono"].Value.ToString();
-                oCliente.Direccion = datagridview.Rows[indiceFila].Cells["direccion"].Value.ToString();
-                oCliente.Localidad = datagridview.Rows[indiceFila].Cells["localidad"].Value.ToString();
-                oCliente.Correo = datagridview.Rows[indiceFila].Cells["correo"].Value.ToString();
+                idcliente = Convert.ToInt32(txtid.Text);
                 this.DialogResult = DialogResult.OK;
                 this.Close();
             }
@@ -118,7 +111,7 @@ namespace CapaPresentacion.Modals
 
                 if (resultado == DialogResult.OK)
                 {
-                    oCliente = modal.oCliente;
+                    idcliente = modal.idCliente;
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
