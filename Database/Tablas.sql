@@ -94,14 +94,14 @@ go
 create table Presupuesto(
 IdPresupuesto int primary key identity,
 IdUsuario int,
+IdCliente int,
 NumeroPresupuesto nvarchar(60),
-NombreCliente nvarchar(100),
-TelefonoCliente nvarchar(60),
 Direccion nvarchar(100),
 Localidad nvarchar(60),
 MontoTotal decimal(18,2),
 FechaRegistro date default getdate(),
 foreign key (IdUsuario) references Usuario(IdUsuario)
+foreign key (IdCliente) references Cliente(IdCliente)
 )
 go
 

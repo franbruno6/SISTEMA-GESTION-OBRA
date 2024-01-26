@@ -21,11 +21,11 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdPresupuesto, NumeroPresupuesto, NombreCliente, Direccion, MontoTotal, FechaRegistro, Localidad, TelefonoCliente,");
-                    query.AppendLine("Usuario.IdUsuario, Persona.IdPersona, Persona.NombreCompleto, Persona.Correo, Persona.Documento ");
+                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,");
+                    query.AppendLine("NombreCompleto, Telefono, Documento ");
                     query.AppendLine("from Presupuesto ");
-                    query.AppendLine("inner join Usuario on Presupuesto.IdUsuario = Usuario.IdUsuario ");
-                    query.AppendLine("inner join Persona on Usuario.IdPersona = Persona.IdPersona ");
+                    query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
+                    query.AppendLine("inner join Persona on Cliente.IdPersona = Persona.IdPersona");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     cmd.CommandType = CommandType.Text;
@@ -37,19 +37,20 @@ namespace CapaDatos
                         {
                             IdPresupuesto = Convert.ToInt32(dr["IdPresupuesto"]),
                             NumeroPresupuesto = dr["NumeroPresupuesto"].ToString(),
-                            NombreCliente = dr["NombreCliente"].ToString(),
                             Direccion = dr["Direccion"].ToString(),
                             Localidad = dr["Localidad"].ToString(),
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
-                            TelefonoCliente = dr["TelefonoCliente"].ToString(),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
 
                             oUsuario = new Usuario()
                             {
-                                IdUsuario = Convert.ToInt32(dr["IdUsuario"]),
-                                IdPersona = Convert.ToInt32(dr["IdPersona"]),
+                                IdUsuario = Convert.ToInt32(dr["IdUsuario"])
+                            },
+                            oCliente = new Cliente()
+                            {
+                                IdCliente = Convert.ToInt32(dr["IdCliente"]),
                                 NombreCompleto = dr["NombreCompleto"].ToString(),
-                                Correo = dr["Correo"].ToString(),
+                                Telefono = dr["Telefono"].ToString(),
                                 Documento = dr["Documento"].ToString()
                             }
                         };
@@ -103,9 +104,8 @@ namespace CapaDatos
 
                     //PARAMETROS DE ENTRADA
                     cmd.Parameters.AddWithValue("IdUsuario", oPresupuesto.oUsuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("IdCliente", oPresupuesto.oCliente.IdCliente);
                     cmd.Parameters.AddWithValue("NumeroPresupuesto", oPresupuesto.NumeroPresupuesto);
-                    cmd.Parameters.AddWithValue("NombreCliente", oPresupuesto.NombreCliente);
-                    cmd.Parameters.AddWithValue("TelefonoCliente", oPresupuesto.TelefonoCliente);
                     cmd.Parameters.AddWithValue("Direccion", oPresupuesto.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);
@@ -191,10 +191,9 @@ namespace CapaDatos
                     SqlCommand cmd = new SqlCommand("SP_EditarPresupuesto", conexion);
 
                     //PARAMETROS DE ENTRADA
-                    cmd.Parameters.AddWithValue("IdUsuario", oPresupuesto.oUsuario.IdUsuario);
                     cmd.Parameters.AddWithValue("IdPresupuesto", oPresupuesto.IdPresupuesto);
-                    cmd.Parameters.AddWithValue("NombreCliente", oPresupuesto.NombreCliente);
-                    cmd.Parameters.AddWithValue("TelefonoCliente", oPresupuesto.TelefonoCliente);
+                    cmd.Parameters.AddWithValue("IdUsuario", oPresupuesto.oUsuario.IdUsuario);
+                    cmd.Parameters.AddWithValue("IdCliente", oPresupuesto.oCliente.IdCliente);
                     cmd.Parameters.AddWithValue("Direccion", oPresupuesto.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);

@@ -86,9 +86,13 @@ namespace CapaPresentacion.Modals
                 {
                     IdUsuario = _usuarioActual.IdUsuario
                 },
+                oCliente = new Cliente()
+                {
+                    IdCliente = Convert.ToInt32(txtidcliente.Text),
+                    NombreCompleto = txtnombrecliente.Text,
+                    Telefono = txttelefono.Text
+                },
                 NumeroPresupuesto = numeroPresupuesto,
-                NombreCliente = txtnombrecliente.Text,
-                TelefonoCliente = txttelefono.Text,
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
@@ -143,9 +147,13 @@ namespace CapaPresentacion.Modals
                 {
                     IdUsuario = _usuarioActual.IdUsuario
                 },
+                oCliente = new Cliente()
+                {
+                    IdCliente = Convert.ToInt32(txtidcliente.Text),
+                    NombreCompleto = txtnombrecliente.Text,
+                    Telefono = txttelefono.Text
+                },
                 IdPresupuesto = _idPresupuesto,
-                NombreCliente = txtnombrecliente.Text,
-                TelefonoCliente = txttelefono.Text,
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
@@ -212,8 +220,8 @@ namespace CapaPresentacion.Modals
             btnbuscarcliente.Visible = false;
             btneliminar.Visible = false;
 
-            txtnombrecliente.Text = _oPresupuesto.NombreCliente;
-            txttelefono.Text = _oPresupuesto.TelefonoCliente;
+            txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
+            txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
@@ -235,8 +243,8 @@ namespace CapaPresentacion.Modals
             btnaccion.Text = "Editar";
             lblsubtitulo.Text = "Editar Presupuesto";
 
-            txtnombrecliente.Text = _oPresupuesto.NombreCliente;
-            txttelefono.Text = _oPresupuesto.TelefonoCliente;
+            txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
+            txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtcorreo.Text = _oPresupuesto.oUsuario.Correo;
@@ -351,11 +359,8 @@ namespace CapaPresentacion.Modals
         {
             if (txtidcliente.Text.Trim() != "")
             {
-                txtnombrecliente.Enabled = true;
-                txttelefono.Enabled = true;
                 txtdireccion.Enabled = true;
                 txtlocalidad.Enabled = true;
-                txtcorreo.Enabled = true;
             }
         }
         private void datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)

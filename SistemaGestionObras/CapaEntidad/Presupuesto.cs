@@ -12,15 +12,15 @@ namespace CapaEntidad
         public Presupuesto()
         {
             oUsuario = new Usuario();
+            oCliente = new Cliente();
         }
         #endregion
 
         #region Variables Privadas
         private int idPresupuesto;
         private Usuario usuario;
+        private Cliente cliente;
         private string numeroPresupuesto;
-        private string nombreCliente;
-        private string telefonoCliente;
         private string direccion;
         private string localidad;
         private decimal montoTotal;
@@ -30,9 +30,8 @@ namespace CapaEntidad
         #region Propiedades
         public int IdPresupuesto { get { return idPresupuesto; } set { idPresupuesto = value; } }
         public Usuario oUsuario { get { return usuario; } set { usuario = value; } }
+        public Cliente oCliente { get { return cliente; } set { cliente = value; } }
         public string NumeroPresupuesto { get { return numeroPresupuesto; } set { numeroPresupuesto = value; } }
-        public string NombreCliente { get { return nombreCliente; } set { nombreCliente = value; } }
-        public string TelefonoCliente { get { return telefonoCliente; } set { telefonoCliente = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public string Localidad { get { return localidad; } set { localidad = value; } }
         public decimal MontoTotal { get { return montoTotal; } set { montoTotal = value; } }

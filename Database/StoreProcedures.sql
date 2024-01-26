@@ -798,11 +798,10 @@ go
 
 create procedure SP_RegistrarPresupuesto(
 @IdUsuario int,
+@IdCliente int,
 @NumeroPresupuesto nvarchar(60),
-@NombreCliente nvarchar(60),
-@TelefonoCliente nvarchar(60),
 @Direccion nvarchar(100),
-@Localidad nvarchar(60),
+@Localidad nvarchar(50),
 @MontoTotal decimal(18,2),
 @FechaRegistro date,
 @DetallePresupuesto [EDetallePresupuesto] readonly,
@@ -818,8 +817,8 @@ begin
 
 		begin transaction registro
 			
-			insert into Presupuesto(IdUsuario,NumeroPresupuesto,NombreCliente,TelefonoCliente,Direccion,Localidad,MontoTotal,FechaRegistro)
-			values(@IdUsuario,@NumeroPresupuesto,@NombreCliente,@TelefonoCliente,@Direccion,@Localidad,@MontoTotal,@FechaRegistro)
+			insert into Presupuesto(IdUsuario,IdCliente,NumeroPresupuesto,Direccion,Localidad,MontoTotal,FechaRegistro)
+			values(@IdUsuario,@IdCliente,@NumeroPresupuesto,@Direccion,@Localidad,@MontoTotal,@FechaRegistro)
 
 			set @IdPresupuesto = SCOPE_IDENTITY()
 
@@ -838,14 +837,12 @@ go
 
 --PROCEDURE EDITAR PRESUPUESTO--
 create procedure SP_EditarPresupuesto(
-@IdUsuario int,
 @IdPresupuesto int,
-@NombreCliente nvarchar(60),
-@TelefonoCliente nvarchar(60),
+@IdUsuario int,
+@IdCliente int,
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
 @MontoTotal decimal(18,2),
-@FechaRegistro date,
 @DetallePresupuesto [EDetallePresupuesto] readonly,
 @Resultado bit output,
 @Mensaje nvarchar(500) output
@@ -859,7 +856,7 @@ begin
         begin transaction edicion
 
             update Presupuesto
-            set IdUsuario = @IdUsuario, NombreCliente = @NombreCliente, TelefonoCliente = @TelefonoCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
+            set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
             where IdPresupuesto = @IdPresupuesto
 
             -- Eliminar las asociaciones existentes de componentes con el grupo
@@ -893,16 +890,30 @@ begin
     begin try
         set @Resultado = 1
         set @Mensaje = ''
+		declare @NumeroComprobante nvarchar(20) = ''
 
         begin transaction eliminar
+			if not exists(
+				select *
+				from ComprobanteObra
+				where IdPresupuesto = @IdPresupuesto
+			)
+			begin
+				-- Eliminar las asociaciones existentes de componentes con el grupo
+				delete from DetallePresupuesto
+				where IdPresupuesto = @IdPresupuesto
 
-            -- Eliminar las asociaciones existentes de componentes con el grupo
-            delete from DetallePresupuesto
-            where IdPresupuesto = @IdPresupuesto
-
-            delete from Presupuesto
-            where IdPresupuesto = @IdPresupuesto
-
+				delete from Presupuesto
+				where IdPresupuesto = @IdPresupuesto
+			end
+			else
+			begin
+				select @NumeroComprobante = NumeroComprobante
+				from ComprobanteObra
+				where IdPresupuesto = @IdPresupuesto
+				set @Resultado = 0
+				set @Mensaje = 'No es posible eliminar el presupuesto, ya que esta ligado al comprobante numero ' + @NumeroComprobante
+			end
         commit transaction eliminar
     end try
     begin catch

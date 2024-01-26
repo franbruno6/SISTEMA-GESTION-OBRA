@@ -61,7 +61,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS PRESUPUESTOS
             List<Presupuesto> listaPresupuestos = oCC_Presupuesto.ListarPresupuestos();
-            listaPresupuestos = listaPresupuestos.OrderBy(p => p.NumeroPresupuesto).ToList();
+            listaPresupuestos = listaPresupuestos.OrderByDescending(p => p.NumeroPresupuesto).ToList();
 
             foreach (Presupuesto oPresupuesto in listaPresupuestos)
             {
@@ -69,9 +69,11 @@ namespace CapaPresentacion
                     "",
                     oPresupuesto.IdPresupuesto,
                     oPresupuesto.oUsuario.IdUsuario,
+                    oPresupuesto.oCliente.IdCliente,
                     oPresupuesto.NumeroPresupuesto,
-                    oPresupuesto.NombreCliente,
-                    oPresupuesto.TelefonoCliente,
+                    oPresupuesto.oCliente.NombreCompleto,
+                    oPresupuesto.oCliente.Documento,
+                    oPresupuesto.oCliente.Telefono,
                     oPresupuesto.Direccion,
                     oPresupuesto.Localidad,
                     oPresupuesto.MontoTotal,
@@ -191,7 +193,7 @@ namespace CapaPresentacion
 
                     if (eliminado)
                     {
-                        MessageBox.Show("Usuario eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Presupuesto eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         btnactualizar_Click(sender, e);
                     }
                     else

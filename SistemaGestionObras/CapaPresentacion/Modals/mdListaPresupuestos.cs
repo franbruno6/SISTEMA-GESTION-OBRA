@@ -21,7 +21,6 @@ namespace CapaPresentacion.Modals
         {
             InitializeComponent();
         }
-
         private void mdListaPresupuestos_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -44,7 +43,8 @@ namespace CapaPresentacion.Modals
                     "",
                     presupuesto.IdPresupuesto,
                     presupuesto.NumeroPresupuesto,
-                    presupuesto.NombreCliente,
+                    presupuesto.oCliente.NombreCompleto,
+                    presupuesto.oCliente.Documento,
                     presupuesto.Direccion,
                     presupuesto.Localidad,
                     presupuesto.MontoTotal
@@ -89,7 +89,6 @@ namespace CapaPresentacion.Modals
                 this.Close();
             }
         }
-
         private void btnvolver_Click(object sender, EventArgs e)
         {
             this.Close();

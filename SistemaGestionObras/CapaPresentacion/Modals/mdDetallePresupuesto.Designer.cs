@@ -76,6 +76,7 @@
             // 
             // txtnombrecliente
             // 
+            this.txtnombrecliente.Enabled = false;
             this.txtnombrecliente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtnombrecliente.Location = new System.Drawing.Point(361, 133);
             this.txtnombrecliente.Name = "txtnombrecliente";
@@ -211,7 +212,7 @@
             this.label3.Padding = new System.Windows.Forms.Padding(20, 12, 0, 0);
             this.label3.Size = new System.Drawing.Size(1106, 412);
             this.label3.TabIndex = 75;
-            this.label3.Text = "Lista de Permisos";
+            this.label3.Text = "Lista de Productos";
             // 
             // lblsubtitulo
             // 
@@ -285,6 +286,7 @@
             // 
             // txttelefono
             // 
+            this.txttelefono.Enabled = false;
             this.txttelefono.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txttelefono.Location = new System.Drawing.Point(655, 133);
             this.txttelefono.Name = "txttelefono";
@@ -408,6 +410,7 @@
             // 
             // txtcorreo
             // 
+            this.txtcorreo.Enabled = false;
             this.txtcorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtcorreo.Location = new System.Drawing.Point(922, 133);
             this.txtcorreo.Name = "txtcorreo";
