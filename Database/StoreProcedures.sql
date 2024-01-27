@@ -854,20 +854,33 @@ begin
         set @Mensaje = ''
 
         begin transaction edicion
+			if not exists(
+				select * 
+				from ComprobanteObra
+				where IdPresupuesto = @IdPresupuesto
+			)
+			begin
+				update Presupuesto
+				set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
+				where IdPresupuesto = @IdPresupuesto
 
-            update Presupuesto
-            set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
-            where IdPresupuesto = @IdPresupuesto
+				-- Eliminar las asociaciones existentes de componentes con el grupo
+				delete from DetallePresupuesto
+				where IdPresupuesto = @IdPresupuesto
 
-            -- Eliminar las asociaciones existentes de componentes con el grupo
-            delete from DetallePresupuesto
-            where IdPresupuesto = @IdPresupuesto
-
-            -- Insertar las nuevas asociaciones de componentes con el grupo
-            insert into DetallePresupuesto(IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal)
-            select @IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal
-            from @DetallePresupuesto
-
+				-- Insertar las nuevas asociaciones de componentes con el grupo
+				insert into DetallePresupuesto(IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal)
+				select @IdPresupuesto, IdProducto, Precio, Cantidad, MontoTotal
+				from @DetallePresupuesto
+			end
+			else
+			begin
+				declare @NumeroComprobante nvarchar(60)
+				select @NumeroComprobante = NumeroComprobante
+				from ComprobanteObra
+				where IdPresupuesto = @IdPresupuesto
+				set @Mensaje = 'No se puede modificar, el presupuesto está relacionado al comprobante numero ' + @NumeroComprobante
+			end
         commit transaction edicion
     end try
     begin catch
@@ -921,5 +934,57 @@ begin
         set @Mensaje = ERROR_MESSAGE()
         rollback transaction eliminar
     end catch
+end
+go
+
+--PROCEDURE REGISTRAR COMPROBANTE--
+--USO ESTO COMO UN PARAMETRO PARA CREAR UN PRESUPUESTO-- PARTE 15 MINTUO 44
+create type [dbo].[EDetalleComprobante] as table(
+	[IdProducto] int null,
+	[Precio] decimal(18,2) null,
+	[Cantidad] int null,
+	[MontoTotal] decimal(18,2) null
+)
+go
+
+create procedure SP_RegistrarComprobanteObra(
+@IdUsuario int,
+@IdCliente int,
+@IdPresupuesto int,
+@NumeroComprobante nvarchar(60),
+@Direccion nvarchar(100),
+@Localidad nvarchar(50),
+@MontoTotal decimal(18,2),
+@FechaRegistro date,
+@Adelanto decimal(18,2),
+@Saldo decimal(18,2),
+@DetalleComprobanteObra [EDetalleComprobante] readonly,
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+	begin try
+		declare @IdComprobanteObra int = 0
+		declare @EstadoObra nvarchar(60) = 'Obra a comenzar'
+		set @Resultado = 1
+		set @Mensaje = ''
+
+		begin transaction registro
+			insert into ComprobanteObra(IdUsuario,IdCliente,IdPresupuesto,NumeroComprobante,Direccion,Localidad,MontoTotal,Adelanto,Saldo,EstadoObra,FechaRegistro)
+			values (@IdUsuario,@IdCliente,@IdPresupuesto,@NumeroComprobante,@Direccion,@Localidad,@MontoTotal,@Adelanto,@Saldo,@EstadoObra,@FechaRegistro)
+
+			set @IdComprobanteObra = SCOPE_IDENTITY()
+
+			insert into DetalleComprobanteObra(IdComprobanteObra,IdProducto,Precio,Cantidad,MontoTotal)
+			select @IdComprobanteObra,IdProducto,Precio,Cantidad,MontoTotal from @DetalleComprobanteObra
+
+		commit transaction registro
+	end try
+	begin catch
+		set @Resultado = 0
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction registro
+	end catch
 end
 go

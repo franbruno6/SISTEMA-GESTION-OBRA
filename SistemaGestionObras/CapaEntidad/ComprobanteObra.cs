@@ -14,6 +14,7 @@ namespace CapaEntidad
         {
             oPresupuesto = new Presupuesto();
             oUsuario = new Usuario();
+            oCliente = new Cliente();
             observadores = new List<IObservadorCliente>();
         }
         #endregion
@@ -22,12 +23,11 @@ namespace CapaEntidad
         private int idComprobanteObra;
         private Presupuesto presupuesto;
         private Usuario usuario;
+        private Cliente cliente;
         private string numeroComprobante;
         private decimal montoTotal;
         private string estadoObra;
         private DateTime fechaRegistro;
-        private string nombreCliente;
-        private string telefonoCliente;
         private string direccion;
         private string localidad;
         private decimal adelanto;
@@ -38,15 +38,10 @@ namespace CapaEntidad
         public int IdComprobanteObra { get { return idComprobanteObra; } set { idComprobanteObra = value; } }
         public Presupuesto oPresupuesto { get { return presupuesto; } set { presupuesto = value; } }
         public Usuario oUsuario { get { return usuario; } set { usuario = value; } }
+        public Cliente oCliente { get { return cliente; } set { cliente = value; } }
         public string NumeroComprobante { get {  return numeroComprobante; } set {  numeroComprobante = value; } }
-        public string NombreCliente { get {  return nombreCliente; } set {  nombreCliente = value; } }
-        public string TelefonoCliente { get {  return telefonoCliente; } set {  telefonoCliente = value; } }
         public string Direccion { get {  return direccion; } set {  direccion = value; } }
         public string Localidad { get {  return localidad; } set {  localidad = value; } }
-        //public string NombreCliente { get {  return oPresupuesto.NombreCliente; } set {  oPresupuesto.NombreCliente = value; } }
-        //public string TelefonoCliente { get {  return oPresupuesto.TelefonoCliente; } set {  oPresupuesto.TelefonoCliente = value; } }
-        //public string Localidad { get {  return oPresupuesto.Localidad; } set {  oPresupuesto.Localidad = value; } }
-        //public string Direccion { get {  return oPresupuesto.Direccion; } set {  oPresupuesto.Direccion = value; } }
         public decimal MontoTotal { get {  return montoTotal; } set {  montoTotal = value; } }
         public decimal Adelanto { get {  return adelanto; } set {  adelanto = value; } }
         public decimal Saldo { get {  return saldo; } set {  saldo = value; } }

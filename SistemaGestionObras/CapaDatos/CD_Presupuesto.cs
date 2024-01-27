@@ -76,10 +76,10 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select count(*) + 1 from Presupuesto");
+                    query.AppendLine("select IDENT_CURRENT('Presupuesto') + 1");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandType = CommandType.Text;
 
                     idCorrelativo = Convert.ToInt32(cmd.ExecuteScalar());
                 }
@@ -256,5 +256,66 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return resultado;
         }
+        public List<Presupuesto> ListarPresupuestoSinComprobante()
+        {
+            List<Presupuesto> listaPresupuestos = new List<Presupuesto>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,");
+                    query.AppendLine("NombreCompleto, Telefono, Documento, Correo ");
+                    query.AppendLine("from Presupuesto ");
+                    query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
+                    query.AppendLine("inner join Persona on Cliente.IdPersona = Persona.IdPersona ");
+                    query.AppendLine("where not exists(");
+                    query.AppendLine("select 1");
+                    query.AppendLine("from ComprobanteObra");
+                    query.AppendLine("where ComprobanteObra.IdPresupuesto = Presupuesto.IdPresupuesto");
+                    query.AppendLine(")");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        Presupuesto presupuesto = new Presupuesto()
+                        {
+                            IdPresupuesto = Convert.ToInt32(dr["IdPresupuesto"]),
+                            NumeroPresupuesto = dr["NumeroPresupuesto"].ToString(),
+                            Direccion = dr["Direccion"].ToString(),
+                            Localidad = dr["Localidad"].ToString(),
+                            MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
+                            FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
+
+                            oUsuario = new Usuario()
+                            {
+                                IdUsuario = Convert.ToInt32(dr["IdUsuario"])
+                            },
+                            oCliente = new Cliente()
+                            {
+                                IdCliente = Convert.ToInt32(dr["IdCliente"]),
+                                NombreCompleto = dr["NombreCompleto"].ToString(),
+                                Telefono = dr["Telefono"].ToString(),
+                                Documento = dr["Documento"].ToString(),
+                                Correo = dr["Correo"].ToString()
+                            }
+                        };
+                        listaPresupuestos.Add(presupuesto);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+            }
+            DataAccessObject.CerrarConexion();
+            return listaPresupuestos;
+        }
+
     }
 }

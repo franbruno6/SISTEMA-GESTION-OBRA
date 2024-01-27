@@ -52,6 +52,19 @@ inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
 inner join Persona on Cliente.IdPersona = Persona.IdPersona
 go
 
+--SELECT LISTA PRESUPUESTOS SIN COMPROBANTES--
+select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,
+NombreCompleto, Telefono, Documento, Correo
+from Presupuesto
+inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
+inner join Persona on Cliente.IdPersona = Persona.IdPersona
+where not exists(
+	select 1
+	from ComprobanteObra
+	where ComprobanteObra.IdPresupuesto = Presupuesto.IdPresupuesto
+)
+go
+
 --SELECT LISTA DETALLE PRESUPUESTO MEDIANTE IDPRESUPUESTO--
 select DetallePresupuesto.IdProducto,DetallePresupuesto.Precio,Cantidad,MontoTotal,
 Nombre,Codigo

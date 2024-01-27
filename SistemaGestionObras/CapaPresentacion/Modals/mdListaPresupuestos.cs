@@ -35,7 +35,7 @@ namespace CapaPresentacion.Modals
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
 
-            List<Presupuesto> listaPresupuestos = oCC_Presupuesto.ListarPresupuestos().OrderByDescending(p => p.NumeroPresupuesto).ToList();
+            List<Presupuesto> listaPresupuestos = oCC_Presupuesto.ListarPresupuestoSinComprobante().OrderByDescending(p => p.NumeroPresupuesto).ToList();
 
             foreach (Presupuesto presupuesto in listaPresupuestos)
             {

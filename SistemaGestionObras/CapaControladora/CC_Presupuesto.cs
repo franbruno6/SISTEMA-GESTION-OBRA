@@ -78,5 +78,16 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public List<Presupuesto> ListarPresupuestoSinComprobante()
+        {
+            try
+            {
+                return oCD_Presupuesto.ListarPresupuestoSinComprobante();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
