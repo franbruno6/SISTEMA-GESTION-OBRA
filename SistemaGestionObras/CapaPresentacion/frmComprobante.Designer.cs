@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.menueliminarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menuagregarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menuvercomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menumodificarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.txtidusuario = new System.Windows.Forms.TextBox();
+            this.txtidpresupuesto = new System.Windows.Forms.TextBox();
             this.txtid = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnactualizar = new FontAwesome.Sharp.IconButton();
@@ -49,7 +49,9 @@
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.idComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numeroPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,7 +62,6 @@
             this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -95,6 +96,7 @@
             this.menuvercomprobante.Padding = new System.Windows.Forms.Padding(4);
             this.menuvercomprobante.Size = new System.Drawing.Size(228, 33);
             this.menuvercomprobante.Text = "Ver Detalle";
+            this.menuvercomprobante.Click += new System.EventHandler(this.menuvercomprobante_Click);
             // 
             // menu
             // 
@@ -121,12 +123,12 @@
             this.menumodificarcomprobante.Name = "menumodificarcomprobante";
             this.menumodificarcomprobante.Padding = new System.Windows.Forms.Padding(4);
             this.menumodificarcomprobante.Size = new System.Drawing.Size(228, 33);
-            this.menumodificarcomprobante.Text = "Modificar";
+            this.menumodificarcomprobante.Text = "Modificar Estado";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.panel1.Controls.Add(this.txtidusuario);
+            this.panel1.Controls.Add(this.txtidpresupuesto);
             this.panel1.Controls.Add(this.txtid);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.menu);
@@ -136,13 +138,13 @@
             this.panel1.Size = new System.Drawing.Size(235, 646);
             this.panel1.TabIndex = 5;
             // 
-            // txtidusuario
+            // txtidpresupuesto
             // 
-            this.txtidusuario.Location = new System.Drawing.Point(75, 278);
-            this.txtidusuario.Name = "txtidusuario";
-            this.txtidusuario.Size = new System.Drawing.Size(100, 20);
-            this.txtidusuario.TabIndex = 3;
-            this.txtidusuario.Visible = false;
+            this.txtidpresupuesto.Location = new System.Drawing.Point(75, 278);
+            this.txtidpresupuesto.Name = "txtidpresupuesto";
+            this.txtidpresupuesto.Size = new System.Drawing.Size(100, 20);
+            this.txtidpresupuesto.TabIndex = 3;
+            this.txtidpresupuesto.Visible = false;
             // 
             // txtid
             // 
@@ -150,7 +152,6 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 2;
-            this.txtid.Visible = false;
             // 
             // label1
             // 
@@ -261,18 +262,19 @@
             // 
             this.datagridview.AllowUserToAddRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnseleccionar,
+            this.idComprobante,
             this.idPresupuesto,
             this.idUsuario,
             this.numeroPresupuesto,
@@ -283,36 +285,51 @@
             this.montoTotal,
             this.estado,
             this.fechaRegistro});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkKhaki;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DarkKhaki;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.DefaultCellStyle = dataGridViewCellStyle6;
             this.datagridview.EnableHeadersVisualStyles = false;
             this.datagridview.GridColor = System.Drawing.SystemColors.Control;
             this.datagridview.Location = new System.Drawing.Point(250, 133);
             this.datagridview.MultiSelect = false;
             this.datagridview.Name = "datagridview";
             this.datagridview.ReadOnly = true;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3);
-            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(3);
+            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.datagridview.Size = new System.Drawing.Size(1306, 500);
             this.datagridview.TabIndex = 9;
+            this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
+            this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
+            this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
+            // 
+            // lblsubtitulo
+            // 
+            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsubtitulo.Location = new System.Drawing.Point(250, 79);
+            this.lblsubtitulo.Name = "lblsubtitulo";
+            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1306, 47);
+            this.lblsubtitulo.TabIndex = 8;
+            this.lblsubtitulo.Text = "Lista de Comprobantes de Obra";
+            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnseleccionar
             // 
@@ -321,13 +338,20 @@
             this.btnseleccionar.ReadOnly = true;
             this.btnseleccionar.Width = 50;
             // 
+            // idComprobante
+            // 
+            this.idComprobante.HeaderText = "IdComprobante";
+            this.idComprobante.Name = "idComprobante";
+            this.idComprobante.ReadOnly = true;
+            this.idComprobante.Visible = false;
+            this.idComprobante.Width = 120;
+            // 
             // idPresupuesto
             // 
-            this.idPresupuesto.HeaderText = "IdComprobante";
+            this.idPresupuesto.HeaderText = "IdPresupuesto";
             this.idPresupuesto.Name = "idPresupuesto";
             this.idPresupuesto.ReadOnly = true;
             this.idPresupuesto.Visible = false;
-            this.idPresupuesto.Width = 120;
             // 
             // idUsuario
             // 
@@ -341,7 +365,7 @@
             this.numeroPresupuesto.HeaderText = "Numero";
             this.numeroPresupuesto.Name = "numeroPresupuesto";
             this.numeroPresupuesto.ReadOnly = true;
-            this.numeroPresupuesto.Width = 110;
+            this.numeroPresupuesto.Width = 90;
             // 
             // nombreCliente
             // 
@@ -383,7 +407,7 @@
             this.estado.HeaderText = "Estado";
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
-            this.estado.Width = 120;
+            this.estado.Width = 140;
             // 
             // fechaRegistro
             // 
@@ -391,18 +415,6 @@
             this.fechaRegistro.Name = "fechaRegistro";
             this.fechaRegistro.ReadOnly = true;
             this.fechaRegistro.Width = 170;
-            // 
-            // lblsubtitulo
-            // 
-            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsubtitulo.Location = new System.Drawing.Point(250, 79);
-            this.lblsubtitulo.Name = "lblsubtitulo";
-            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1306, 47);
-            this.lblsubtitulo.TabIndex = 8;
-            this.lblsubtitulo.Text = "Lista de Comprobantes de Obra";
-            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmComprobante
             // 
@@ -433,7 +445,7 @@
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.ToolStripMenuItem menumodificarcomprobante;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.TextBox txtidusuario;
+        private System.Windows.Forms.TextBox txtidpresupuesto;
         private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton btnactualizar;
@@ -446,6 +458,7 @@
         private System.Windows.Forms.DataGridView datagridview;
         private System.Windows.Forms.Label lblsubtitulo;
         private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idComprobante;
         private System.Windows.Forms.DataGridViewTextBoxColumn idPresupuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn idUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn numeroPresupuesto;

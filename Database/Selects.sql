@@ -74,5 +74,17 @@ where IdPresupuesto = @IdPresupuesto
 go
 
 --SELECT LISTA COMPROBANTES--
-select NumeroComprobante, NombreCliente, Direccion, MontoTotal, EstadoObra, TelefonoCliente, Localidad, FechaRegistro, Saldo, Adelanto
+select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra
+NombreCompleto, Telefono, Correo
 from ComprobanteObra
+inner join Cliente on ComprobanteObra.IdCliente = Cliente.IdCliente
+inner join Persona on Cliente.IdPersona = Persona.IdPersona
+go
+
+--SELECT LISTA DETALLE COMPROBANTE MEDIANTE IDCOMPROBANTE--
+select DetalleComprobanteObra.IdProducto,DetalleComprobanteObra.Precio,Cantidad,MontoTotal,
+Nombre,Codigo
+from DetalleComprobanteObra
+inner join Producto on DetalleComprobanteObra.IdProducto = Producto.IdProducto
+where IdComprobanteObra = @IdComprobanteObra
+go

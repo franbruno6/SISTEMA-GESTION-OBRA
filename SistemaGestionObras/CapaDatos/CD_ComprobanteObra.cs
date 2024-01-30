@@ -21,25 +21,46 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.Append("select NumeroComprobante, NombreCliente, Direccion, MontoTotal, EstadoObra, TelefonoCliente, Localidad, FechaRegistro, Saldo, Adelanto ");
-                    query.Append("from ComprobanteObra ");
+                    query.AppendLine("select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra,");
+                    query.AppendLine("NombreCompleto, Telefono, Correo ");
+                    query.AppendLine("from ComprobanteObra ");
+                    query.AppendLine("inner join Cliente on ComprobanteObra.IdCliente = Cliente.IdCliente ");
+                    query.AppendLine("inner join Persona on Cliente.IdPersona = Persona.IdPersona ");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
                     SqlDataReader dr = cmd.ExecuteReader();
 
                     while (dr.Read())
                     {
-                        ComprobanteObra oComprobante = new ComprobanteObra();
-                        oComprobante.NumeroComprobante = dr["NumeroComprobante"].ToString();
-                        oComprobante.NombreCliente = dr["NombreCliente"].ToString();
-                        oComprobante.Direccion = dr["Direccion"].ToString();
-                        oComprobante.MontoTotal = Convert.ToDecimal(dr["MontoTotal"]);
-                        oComprobante.EstadoObra = dr["EstadoObra"].ToString();
-                        oComprobante.TelefonoCliente = dr["TelefonoCliente"].ToString();
-                        oComprobante.Localidad = dr["Localidad"].ToString();
-                        oComprobante.FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]);
-                        oComprobante.Saldo = Convert.ToDecimal(dr["Saldo"]);
-                        oComprobante.Adelanto = Convert.ToDecimal(dr["Adelanto"]);
+                        ComprobanteObra oComprobante = new ComprobanteObra
+                        {
+                            IdComprobanteObra = Convert.ToInt32(dr["IdComprobanteObra"]),
+                            NumeroComprobante = dr["NumeroComprobante"].ToString(),
+                            Direccion = dr["Direccion"].ToString(),
+                            MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
+                            EstadoObra = dr["EstadoObra"].ToString(),
+                            Localidad = dr["Localidad"].ToString(),
+                            FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
+                            Saldo = Convert.ToDecimal(dr["Saldo"]),
+                            Adelanto = Convert.ToDecimal(dr["Adelanto"]),
+                            oUsuario = new Usuario()
+                            {
+                                IdUsuario = Convert.ToInt32(dr["IdUsuario"])
+                            },
+                            oCliente = new Cliente()
+                            {
+                                IdCliente = Convert.ToInt32(dr["IdCliente"]),
+                                NombreCompleto = dr["NombreCompleto"].ToString(),
+                                Telefono = dr["Telefono"].ToString(),
+                                Correo = dr["Correo"].ToString()
+                            },
+                            oPresupuesto = new Presupuesto()
+                            {
+                                IdPresupuesto = Convert.ToInt32(dr["IdPresupuesto"])
+                            }
+                        };
+
+                        listaComprobantes.Add(oComprobante);
                     }
                 }
                 catch
@@ -121,5 +142,54 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return resultado;
         }
+        public List<DetalleComprobanteObra> ListarDetalle(int idComprobante)
+        {
+            List<DetalleComprobanteObra> listaDetalle = new List<DetalleComprobanteObra>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+
+                    query.AppendLine("select DetalleComprobanteObra.IdProducto,DetalleComprobanteObra.Precio,Cantidad,MontoTotal,");
+                    query.AppendLine("Nombre,Codigo ");
+                    query.AppendLine("from DetalleComprobanteObra ");
+                    query.AppendLine("inner join Producto on DetalleComprobanteObra.IdProducto = Producto.IdProducto ");
+                    query.AppendLine("where IdComprobanteObra = @IdComprobanteObra");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.Parameters.AddWithValue("@IdComprobanteObra", idComprobante);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        DetalleComprobanteObra detalle = new DetalleComprobanteObra
+                        {
+                            oProducto = new Producto()
+                            {
+                                IdProducto = Convert.ToInt32(dr["IdProducto"]),
+                                Nombre = dr["Nombre"].ToString(),
+                                Codigo = dr["Codigo"].ToString()
+                            },
+                            Precio = Convert.ToDecimal(dr["Precio"].ToString()),
+                            Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
+                            MontoTotal = Convert.ToDecimal(dr["MontoTotal"].ToString())
+                        };
+
+                        listaDetalle.Add(detalle);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    listaDetalle = new List<DetalleComprobanteObra>();
+                }
+            }
+            DataAccessObject.CerrarConexion();
+            return listaDetalle;
+        }
+
     }
 }

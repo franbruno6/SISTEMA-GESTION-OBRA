@@ -37,7 +37,7 @@ namespace CapaPresentacion.Modals
             switch (_tipoModal)
             {
                 case "VerDetalle":
-                    //ConfigurarVerDetalle();
+                    ConfigurarVerDetalle();
                     break;
                 case "Agregar":
                     ConfigurarAgregar();
@@ -46,12 +46,156 @@ namespace CapaPresentacion.Modals
                     break;
             }
         }
-        private void btnvolver_Click(object sender, EventArgs e)
+        private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("¿Está seguro que desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            switch (_tipoModal)
             {
-                this.Close();
+                case "VerDetalle":
+                    this.Close();
+                    break;
+                case "Agregar":
+                    AgregarComprobante();
+                    break;
+
             }
+        }
+        private void AgregarComprobante()
+        {
+            if (datagridview.Rows.Count == 0)
+            {
+                MessageBox.Show("Debe agregar al menos un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (Convert.ToDecimal(txtadelanto.Text) > Convert.ToDecimal(txtmontototal.Text))
+            {
+                MessageBox.Show("El adelanto de pago no puede ser mayor al monto total", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtadelanto.Focus();
+                return;
+            }
+
+            DataTable listaDetalle = new DataTable();
+
+            listaDetalle.Columns.Add("IdProducto", typeof(int));
+            listaDetalle.Columns.Add("Precio", typeof(decimal));
+            listaDetalle.Columns.Add("Cantidad", typeof(int));
+            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                listaDetalle.Rows.Add(
+                    fila.Cells["idProducto"].Value,
+                    fila.Cells["precio"].Value,
+                    fila.Cells["cantidad"].Value,
+                    fila.Cells["subTotal"].Value
+                );
+            }
+
+            int idCorrelativo = oCC_ComprobanteObra.ObtenerCorrelativo();
+            string numeroComprobante = string.Format("{0}", idCorrelativo.ToString().PadLeft(4, '0'));
+
+            ComprobanteObra oComprobanteObra = new ComprobanteObra()
+            {
+                oUsuario = _usuarioActual,
+                oCliente = _oPresupuesto.oCliente,
+                oPresupuesto = _oPresupuesto,
+                NumeroComprobante = numeroComprobante,
+                Direccion = txtdireccion.Text,
+                Localidad = txtlocalidad.Text,
+                MontoTotal = Convert.ToDecimal(txtmontototal.Text),
+                FechaRegistro = DateTime.Now,
+                Adelanto = Convert.ToDecimal(txtadelanto.Text),
+                Saldo = Convert.ToDecimal(txtsaldo.Text)
+            };
+
+            bool resultado = oCC_ComprobanteObra.AgregarComprobante(oComprobanteObra, listaDetalle, out string mensaje);
+
+            if (resultado)
+            {
+                MessageBox.Show("Comprobante de obra numero " + numeroComprobante + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void ConfigurarAgregar()
+        {
+            this.Text = "Agregar Comprobante";
+            btnaccion.Text = "Agregar";
+            lblsubtitulo.Text = "Agregar Comprobante";
+
+            datagridview.Columns["cantidad"].ReadOnly = false;
+            
+            txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
+            txttelefono.Text = _oPresupuesto.oCliente.Telefono;
+            txtcorreo.Text = _oPresupuesto.oCliente.Correo;
+            txtdireccion.Text = _oPresupuesto.Direccion;
+            txtlocalidad.Text = _oPresupuesto.Localidad;
+            txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
+
+            datagridview.Rows.Clear();
+
+            List<DetallePresupuesto> listaDetalle = oCC_Presupuesto.ListarDetalle(_oPresupuesto.IdPresupuesto);
+
+            foreach (DetallePresupuesto oDetalle in listaDetalle)
+            {
+                datagridview.Rows.Add(
+                "",
+                oDetalle.oProducto.IdProducto,
+                oDetalle.oProducto.Codigo,
+                oDetalle.oProducto.Nombre,
+                oDetalle.Precio,
+                oDetalle.Cantidad,
+                oDetalle.MontoTotal
+            );
+            }
+            datagridview.ClearSelection();
+            CalcularMontoTotal();
+        }
+        private void ConfigurarVerDetalle()
+        {
+            this.Text = "Detalle Comprobante";
+            btnaccion.Text = "Aceptar";
+            btnaccion.IconChar = FontAwesome.Sharp.IconChar.Check;
+            lblsubtitulo.Text = "Comprobante numero " + _oComprobante.NumeroComprobante;
+
+            txtnombrecliente.Text = _oComprobante.oCliente.NombreCompleto;
+            txttelefono.Text = _oComprobante.oCliente.Telefono;
+            txtcorreo.Text = _oComprobante.oCliente.Correo;
+            txtdireccion.Text = _oComprobante.Direccion;
+            txtlocalidad.Text = _oComprobante.Localidad;
+
+            txtmontototal.Text = _oComprobante.MontoTotal.ToString();
+            txtadelanto.Text = _oComprobante.Adelanto.ToString();
+            txtsaldo.Text = _oComprobante.Saldo.ToString();
+
+            txtdireccion.KeyPress += txtsaldo_KeyPress;
+            txtlocalidad.KeyPress += txtsaldo_KeyPress;
+
+            txtadelanto.KeyPress += txtsaldo_KeyPress;
+
+            btnagregar.Visible = false;
+            btneliminar.Visible = false;
+
+            datagridview.Rows.Clear();
+
+            List<DetalleComprobanteObra> listaDetalle = oCC_ComprobanteObra.ListarDetalle(_idComprobante);
+
+            foreach (DetalleComprobanteObra oDetalle in listaDetalle)
+            {
+                datagridview.Rows.Add(
+                "",
+                oDetalle.oProducto.IdProducto,
+                oDetalle.oProducto.Codigo,
+                oDetalle.oProducto.Nombre,
+                oDetalle.Precio,
+                oDetalle.Cantidad,
+                oDetalle.MontoTotal
+            );
+            }
+            datagridview.Enabled = false;
+            datagridview.ClearSelection();
         }
         private void CalcularMontoTotal()
         {
@@ -65,7 +209,7 @@ namespace CapaPresentacion.Modals
             CalcularSaldo(montoTotal);
 
         }
-        private void CalcularSaldo(decimal montoTotal)
+        private void CalcularSaldo(decimal montoTotal)  
         {
             decimal adelanto;
             decimal saldo;
@@ -121,39 +265,12 @@ namespace CapaPresentacion.Modals
             txtid.Text = "";
             CalcularMontoTotal();
         }
-        private void ConfigurarAgregar()
+        private void btnvolver_Click(object sender, EventArgs e)
         {
-            this.Text = "Agregar Comprobante";
-            btnaccion.Text = "Agregar";
-            lblsubtitulo.Text = "Agregar Comprobante";
-
-            datagridview.Columns["cantidad"].ReadOnly = false;
-            
-            txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
-            txttelefono.Text = _oPresupuesto.oCliente.Telefono;
-            txtcorreo.Text = _oPresupuesto.oCliente.Correo;
-            txtdireccion.Text = _oPresupuesto.Direccion;
-            txtlocalidad.Text = _oPresupuesto.Localidad;
-            txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
-
-            datagridview.Rows.Clear();
-
-            List<DetallePresupuesto> listaDetalle = oCC_Presupuesto.ListarDetalle(_oPresupuesto.IdPresupuesto);
-
-            foreach (DetallePresupuesto oDetalle in listaDetalle)
+            if (MessageBox.Show("¿Está seguro que desea salir?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                datagridview.Rows.Add(
-                "",
-                oDetalle.oProducto.IdProducto,
-                oDetalle.oProducto.Codigo,
-                oDetalle.oProducto.Nombre,
-                oDetalle.Precio,
-                oDetalle.Cantidad,
-                oDetalle.MontoTotal
-            );
+                this.Close();
             }
-            datagridview.ClearSelection();
-            CalcularMontoTotal();
         }
         private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
         {

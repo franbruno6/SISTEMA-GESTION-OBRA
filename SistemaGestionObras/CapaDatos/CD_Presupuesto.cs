@@ -157,16 +157,18 @@ namespace CapaDatos
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
                     {
-                        DetallePresupuesto detalle = new DetallePresupuesto();
-                        detalle.oProducto = new Producto()
+                        DetallePresupuesto detalle = new DetallePresupuesto
                         {
-                            IdProducto = Convert.ToInt32(dr["IdProducto"]),
-                            Nombre = dr["Nombre"].ToString(),
-                            Codigo = dr["Codigo"].ToString()
+                            oProducto = new Producto()
+                            {
+                                IdProducto = Convert.ToInt32(dr["IdProducto"]),
+                                Nombre = dr["Nombre"].ToString(),
+                                Codigo = dr["Codigo"].ToString()
+                            },
+                            Precio = Convert.ToDecimal(dr["Precio"].ToString()),
+                            Cantidad = Convert.ToInt32(dr["Cantidad"].ToString()),
+                            MontoTotal = Convert.ToDecimal(dr["MontoTotal"].ToString())
                         };
-                        detalle.Precio = Convert.ToDecimal(dr["Precio"].ToString());
-                        detalle.Cantidad = Convert.ToInt32(dr["Cantidad"].ToString());
-                        detalle.MontoTotal = Convert.ToDecimal(dr["MontoTotal"].ToString());
 
                         listaDetalle.Add(detalle);
                     }

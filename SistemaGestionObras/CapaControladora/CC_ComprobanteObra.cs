@@ -45,5 +45,16 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public List<DetalleComprobanteObra> ListarDetalle(int idComprobante)
+        {
+            try
+            {
+                return oCD_ComprobanteObra.ListarDetalle(idComprobante);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
