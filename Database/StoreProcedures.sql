@@ -436,9 +436,12 @@ declare @Mensaje nvarchar(500)
 --exec SP_RegistrarPermiso 'Agregar Producto','menuagregarproducto',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Producto','menumodificarproducto',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Eliminar Producto','menueliminarproducto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Agregar Presupuesto','menuagregarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Modificar Presupuesto','menumodificarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Eliminar Presupuesto','menueliminarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Agregar Presupuesto','menuagregarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Modificar Presupuesto','menumodificarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Eliminar Presupuesto','menueliminarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Agregar Comprobante','menuagregarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Modificar Comprobante','menumodificarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Cancelar Comprobante','menucancelarcomprobante',@IdPermisoRegistrado output,@Mensaje output
 
 select @IdPermisoRegistrado
 
@@ -966,7 +969,7 @@ as
 begin
 	begin try
 		declare @IdComprobanteObra int = 0
-		declare @EstadoObra nvarchar(60) = 'Obra a comenzar'
+		declare @EstadoObra nvarchar(60) = 'Pendiente'
 		set @Resultado = 1
 		set @Mensaje = ''
 
@@ -985,6 +988,41 @@ begin
 		set @Resultado = 0
 		set @Mensaje = ERROR_MESSAGE()
 		rollback transaction registro
+	end catch
+end
+go
+
+--PROCEDURE EDITAR ESTADO COMPROBANTE--
+create procedure SP_EditarEstadoComprobante(
+@IdUsuario int,
+@IdComprobanteObra int,
+@EstadoObra nvarchar(60),
+@Resultado bit output,
+@Mensaje nvarchar(500) output
+)
+as
+begin
+	begin try
+		set @Resultado = 1
+		set @Mensaje = ''
+
+		begin transaction edicion
+			update ComprobanteObra
+			set IdUsuario = @IdUsuario, EstadoObra = @EstadoObra
+			where IdComprobanteObra = @IdComprobanteObra
+
+			if (@EstadoObra = 'Cuenta saldada')
+			begin
+				update ComprobanteObra
+				set Adelanto = 0, Saldo = 0
+				where IdComprobanteObra = @IdComprobanteObra
+			end
+		commit transaction edicion
+	end try
+	begin catch
+		set @Resultado = 0
+		set @Mensaje = ERROR_MESSAGE()
+		rollback transaction edicion
 	end catch
 end
 go

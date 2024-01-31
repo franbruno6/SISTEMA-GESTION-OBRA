@@ -42,8 +42,6 @@ namespace CapaPresentacion.Modals
                 case "Agregar":
                     ConfigurarAgregar();
                     break;
-                case "EditarEstado":
-                    break;
             }
         }
         private void btnaccion_Click(object sender, EventArgs e)
@@ -125,6 +123,7 @@ namespace CapaPresentacion.Modals
             btnaccion.Text = "Agregar";
             lblsubtitulo.Text = "Agregar Comprobante";
 
+
             datagridview.Columns["cantidad"].ReadOnly = false;
             
             txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
@@ -133,6 +132,7 @@ namespace CapaPresentacion.Modals
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
+            txtestadoobra.Text = "Pendiente";
 
             datagridview.Rows.Clear();
 
@@ -165,15 +165,15 @@ namespace CapaPresentacion.Modals
             txtcorreo.Text = _oComprobante.oCliente.Correo;
             txtdireccion.Text = _oComprobante.Direccion;
             txtlocalidad.Text = _oComprobante.Localidad;
+            txtestadoobra.Text = _oComprobante.EstadoObra;
+
+            txtadelanto.Enabled = false;
+            txtdireccion.Enabled = false;
+            txtlocalidad.Enabled = false;
 
             txtmontototal.Text = _oComprobante.MontoTotal.ToString();
             txtadelanto.Text = _oComprobante.Adelanto.ToString();
             txtsaldo.Text = _oComprobante.Saldo.ToString();
-
-            txtdireccion.KeyPress += txtsaldo_KeyPress;
-            txtlocalidad.KeyPress += txtsaldo_KeyPress;
-
-            txtadelanto.KeyPress += txtsaldo_KeyPress;
 
             btnagregar.Visible = false;
             btneliminar.Visible = false;
@@ -196,6 +196,12 @@ namespace CapaPresentacion.Modals
             }
             datagridview.Enabled = false;
             datagridview.ClearSelection();
+
+            if (_oComprobante.EstadoObra == "Cuenta saldada")
+            {
+                txtadelanto.Visible = false;
+                lbladelanto.Visible = false;
+            }
         }
         private void CalcularMontoTotal()
         {

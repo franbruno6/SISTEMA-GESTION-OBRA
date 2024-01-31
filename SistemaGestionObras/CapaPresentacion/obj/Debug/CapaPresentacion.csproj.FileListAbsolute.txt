@@ -71,3 +71,4 @@ C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionOb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdAgregarProductoAPresupuesto.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdDetalleComprobante.resources
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdListaPresupuestos.resources
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\obj\Debug\CapaPresentacion.Modals.mdModificarComprobante.resources

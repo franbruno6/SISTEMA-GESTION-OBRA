@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.menueliminarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            this.menucancelarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menuagregarcomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menuvercomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menu = new System.Windows.Forms.MenuStrip();
@@ -54,7 +54,7 @@
             this.idComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -68,14 +68,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
             // 
-            // menueliminarcomprobante
+            // menucancelarcomprobante
             // 
-            this.menueliminarcomprobante.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menueliminarcomprobante.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
-            this.menueliminarcomprobante.Name = "menueliminarcomprobante";
-            this.menueliminarcomprobante.Padding = new System.Windows.Forms.Padding(4);
-            this.menueliminarcomprobante.Size = new System.Drawing.Size(228, 33);
-            this.menueliminarcomprobante.Text = "Eliminar";
+            this.menucancelarcomprobante.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menucancelarcomprobante.Margin = new System.Windows.Forms.Padding(0, 8, 0, 0);
+            this.menucancelarcomprobante.Name = "menucancelarcomprobante";
+            this.menucancelarcomprobante.Padding = new System.Windows.Forms.Padding(4);
+            this.menucancelarcomprobante.Size = new System.Drawing.Size(228, 33);
+            this.menucancelarcomprobante.Text = "Cancelar Comprobante";
+            this.menucancelarcomprobante.Click += new System.EventHandler(this.menucancelarcomprobante_Click);
             // 
             // menuagregarcomprobante
             // 
@@ -106,13 +107,13 @@
             this.menuvercomprobante,
             this.menuagregarcomprobante,
             this.menumodificarcomprobante,
-            this.menueliminarcomprobante});
+            this.menucancelarcomprobante});
             this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menu.Location = new System.Drawing.Point(0, 411);
+            this.menu.Location = new System.Drawing.Point(0, 430);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menu.Size = new System.Drawing.Size(235, 235);
+            this.menu.Size = new System.Drawing.Size(235, 216);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
@@ -124,6 +125,7 @@
             this.menumodificarcomprobante.Padding = new System.Windows.Forms.Padding(4);
             this.menumodificarcomprobante.Size = new System.Drawing.Size(228, 33);
             this.menumodificarcomprobante.Text = "Modificar Estado";
+            this.menumodificarcomprobante.Click += new System.EventHandler(this.menumodificarcomprobante_Click);
             // 
             // panel1
             // 
@@ -262,22 +264,22 @@
             // 
             this.datagridview.AllowUserToAddRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.btnseleccionar,
             this.idComprobante,
             this.idPresupuesto,
             this.idUsuario,
-            this.numeroPresupuesto,
+            this.numeroComprobante,
             this.nombreCliente,
             this.telefono,
             this.direccion,
@@ -285,31 +287,31 @@
             this.montoTotal,
             this.estado,
             this.fechaRegistro});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.DarkKhaki;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.datagridview.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(4);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkKhaki;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.EnableHeadersVisualStyles = false;
             this.datagridview.GridColor = System.Drawing.SystemColors.Control;
             this.datagridview.Location = new System.Drawing.Point(250, 133);
             this.datagridview.MultiSelect = false;
             this.datagridview.Name = "datagridview";
             this.datagridview.ReadOnly = true;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(3);
-            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.datagridview.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(3);
+            this.datagridview.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -360,12 +362,12 @@
             this.idUsuario.ReadOnly = true;
             this.idUsuario.Visible = false;
             // 
-            // numeroPresupuesto
+            // numeroComprobante
             // 
-            this.numeroPresupuesto.HeaderText = "Numero";
-            this.numeroPresupuesto.Name = "numeroPresupuesto";
-            this.numeroPresupuesto.ReadOnly = true;
-            this.numeroPresupuesto.Width = 90;
+            this.numeroComprobante.HeaderText = "Numero";
+            this.numeroComprobante.Name = "numeroComprobante";
+            this.numeroComprobante.ReadOnly = true;
+            this.numeroComprobante.Width = 90;
             // 
             // nombreCliente
             // 
@@ -439,7 +441,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ToolStripMenuItem menueliminarcomprobante;
+        private System.Windows.Forms.ToolStripMenuItem menucancelarcomprobante;
         private System.Windows.Forms.ToolStripMenuItem menuagregarcomprobante;
         private System.Windows.Forms.ToolStripMenuItem menuvercomprobante;
         private System.Windows.Forms.MenuStrip menu;
@@ -461,7 +463,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idComprobante;
         private System.Windows.Forms.DataGridViewTextBoxColumn idPresupuesto;
         private System.Windows.Forms.DataGridViewTextBoxColumn idUsuario;
-        private System.Windows.Forms.DataGridViewTextBoxColumn numeroPresupuesto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeroComprobante;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn direccion;

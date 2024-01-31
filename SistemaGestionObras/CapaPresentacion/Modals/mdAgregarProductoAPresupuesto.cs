@@ -49,6 +49,8 @@ namespace CapaPresentacion.Modals
                     oProducto.Precio
                 );
             }
+
+            txtbusqueda.Select();
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

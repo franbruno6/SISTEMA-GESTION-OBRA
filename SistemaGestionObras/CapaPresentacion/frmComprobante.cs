@@ -38,20 +38,20 @@ namespace CapaPresentacion
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
 
-            //foreach (ToolStripMenuItem menu in menu.Items)
-            //{
-            //    bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
+            foreach (ToolStripMenuItem menu in menu.Items)
+            {
+                bool encontrado = _usuarioActual.GetPermisos().Any(p => p.NombreMenu == menu.Name);
 
-            //    if (encontrado)
-            //    {
-            //        menu.Visible = true;
-            //    }
-            //    else
-            //    {
-            //        menu.Visible = false;
-            //    }
-            //}
-            //menuvercomprobante.Visible = true;
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+            menuvercomprobante.Visible = true;
 
             btnactualizar_Click(null, null);
         }
@@ -101,6 +101,15 @@ namespace CapaPresentacion
         }
         private void AbrirModal(string tipoModal, int idComprobante, int idPresupuesto)
         {
+            if (tipoModal == "Modificar")
+            {
+                using (var modal = new mdModificarComprobante(tipoModal, idComprobante, _usuarioActual))
+                {
+                    var resultado = modal.ShowDialog();
+                }
+                btnactualizar_Click(null, null);
+                return;
+            }
             using (var modal = new mdDetalleComprobante(tipoModal, idComprobante, _usuarioActual, idPresupuesto))
             {
                 var resultado = modal.ShowDialog();
@@ -157,6 +166,59 @@ namespace CapaPresentacion
             if (indiceFila >= 0 && indiceColumna >= 0)
             {
                 menuvercomprobante_Click(sender, e);
+            }
+        }
+        private void menumodificarcomprobante_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                int indiceFila = datagridview.CurrentRow.Index;
+                string estadoObra = datagridview.Rows[indiceFila].Cells["estado"].Value.ToString();
+                if (estadoObra == "Cuenta saldada")
+                {
+                    MessageBox.Show("No se puede modificar el comprobante numero " + datagridview.Rows[indiceFila].Cells["numeroComprobante"].Value.ToString() + " porque ya esta finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                else if (estadoObra == "Cancelada")
+                {
+                    MessageBox.Show("No se puede modificar el comprobante numero " + datagridview.Rows[indiceFila].Cells["numeroComprobante"].Value.ToString() + " porque ya esta cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                AbrirModal("Modificar", Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpresupuesto.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void menucancelarcomprobante_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                CancelarComprobante();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void CancelarComprobante()
+        {
+            ComprobanteObra oComprobante = oCC_ComprobanteObra.ListarComprobante().Where(c => c.IdComprobanteObra == Convert.ToInt32(txtid.Text)).FirstOrDefault();
+
+            if (MessageBox.Show("Esta seguro de cancelar el comprobante numero " + oComprobante.NumeroComprobante + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                string mensaje = string.Empty;
+
+                if (oCC_ComprobanteObra.ModificarEstadoComprobante(oComprobante.IdComprobanteObra, _usuarioActual.IdUsuario, "Cancelada", out mensaje))
+                {
+                    MessageBox.Show("El comprobante numero " + oComprobante.NumeroComprobante + " ah sido cancelado de forma correcta.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    btnactualizar_Click(null, null);
+                }
+                else
+                {
+                    MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

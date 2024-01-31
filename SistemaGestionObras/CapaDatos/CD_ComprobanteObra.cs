@@ -190,6 +190,43 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return listaDetalle;
         }
+        public bool ModificarEstadoComprobante(int idComprobante, int idUsuario, string estadoObra, out string mensaje)
+        {
+            bool resultado = false;
+            mensaje = string.Empty;
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    SqlCommand cmd = new SqlCommand("SP_EditarEstadoComprobante", conexion);
+
+                    //PARAMETROS DE ENTRADA
+                    cmd.Parameters.AddWithValue("IdComprobanteObra", idComprobante);
+                    cmd.Parameters.AddWithValue("EstadoObra", estadoObra);
+                    cmd.Parameters.AddWithValue("IdUsuario", idUsuario);
+
+                    //PARAMETROS DE SALIDA
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+
+                    //EJECUTAR COMANDO
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.ExecuteNonQuery();
+
+                    //OBTENER PARAMETROS DE SALIDA
+                    resultado = Convert.ToBoolean(cmd.Parameters["Resultado"].Value);
+                }
+                catch (Exception ex)
+                {
+                    mensaje = ex.Message;
+                    resultado = false;
+                }
+            }
+            DataAccessObject.CerrarConexion();
+            return resultado;
+        }
 
     }
 }

@@ -55,6 +55,7 @@ namespace CapaPresentacion.Modals
             datagridview.ClearSelection();
 
             txtid.Text = "";
+            txtbusqueda.Select();
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

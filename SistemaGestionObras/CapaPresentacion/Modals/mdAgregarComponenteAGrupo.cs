@@ -57,6 +57,8 @@ namespace CapaPresentacion.Modals
             datagridview.ClearSelection();
 
             txtid.Text = "";
+
+            txtbusqueda.Select();
         }
         private void btnbuscar_Click(object sender, EventArgs e)
         {

@@ -56,5 +56,16 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public bool ModificarEstadoComprobante(int idComprobante, int idUsuario , string estadoObra, out string mensaje)
+        {
+            try
+            {
+                return oCD_ComprobanteObra.ModificarEstadoComprobante(idComprobante, idUsuario, estadoObra, out mensaje);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

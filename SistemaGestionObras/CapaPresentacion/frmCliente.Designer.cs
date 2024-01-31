@@ -39,17 +39,6 @@
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.contenedor = new System.Windows.Forms.Panel();
-            this.txtidpersona = new System.Windows.Forms.TextBox();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.menu = new System.Windows.Forms.MenuStrip();
-            this.menuvercliente = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuagregarcliente = new System.Windows.Forms.ToolStripMenuItem();
-            this.menumodificarcliente = new System.Windows.Forms.ToolStripMenuItem();
-            this.menueliminarcliente = new System.Windows.Forms.ToolStripMenuItem();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdPersona = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,6 +50,17 @@
             this.localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
+            this.contenedor = new System.Windows.Forms.Panel();
+            this.txtidpersona = new System.Windows.Forms.TextBox();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.menu = new System.Windows.Forms.MenuStrip();
+            this.menuvercliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuagregarcliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.menumodificarcliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.menueliminarcliente = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -181,8 +181,8 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkKhaki;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.EnableHeadersVisualStyles = false;
@@ -209,6 +209,84 @@
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
+            // 
+            // btnseleccionar
+            // 
+            this.btnseleccionar.HeaderText = "";
+            this.btnseleccionar.Name = "btnseleccionar";
+            this.btnseleccionar.ReadOnly = true;
+            this.btnseleccionar.Width = 50;
+            // 
+            // idCliente
+            // 
+            this.idCliente.HeaderText = "IdCliente";
+            this.idCliente.Name = "idCliente";
+            this.idCliente.ReadOnly = true;
+            this.idCliente.Visible = false;
+            this.idCliente.Width = 120;
+            // 
+            // IdPersona
+            // 
+            this.IdPersona.HeaderText = "IdPersona";
+            this.IdPersona.Name = "IdPersona";
+            this.IdPersona.ReadOnly = true;
+            this.IdPersona.Visible = false;
+            // 
+            // nombreCompleto
+            // 
+            this.nombreCompleto.HeaderText = "Nombre Completo";
+            this.nombreCompleto.Name = "nombreCompleto";
+            this.nombreCompleto.ReadOnly = true;
+            this.nombreCompleto.Width = 200;
+            // 
+            // correo
+            // 
+            this.correo.HeaderText = "Correo";
+            this.correo.Name = "correo";
+            this.correo.ReadOnly = true;
+            this.correo.Width = 200;
+            // 
+            // documento
+            // 
+            this.documento.HeaderText = "Documento";
+            this.documento.Name = "documento";
+            this.documento.ReadOnly = true;
+            this.documento.Width = 120;
+            // 
+            // Telefono
+            // 
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            this.Telefono.Width = 120;
+            // 
+            // Direccion
+            // 
+            this.Direccion.HeaderText = "Direccion";
+            this.Direccion.Name = "Direccion";
+            this.Direccion.ReadOnly = true;
+            this.Direccion.Width = 180;
+            // 
+            // localidad
+            // 
+            this.localidad.HeaderText = "Localidad";
+            this.localidad.Name = "localidad";
+            this.localidad.ReadOnly = true;
+            this.localidad.Width = 140;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.Visible = false;
+            this.estado.Width = 120;
+            // 
+            // estadoValor
+            // 
+            this.estadoValor.HeaderText = "Estado";
+            this.estadoValor.Name = "estadoValor";
+            this.estadoValor.ReadOnly = true;
             // 
             // lblsubtitulo
             // 
@@ -334,84 +412,6 @@
             this.menueliminarcliente.Size = new System.Drawing.Size(228, 33);
             this.menueliminarcliente.Text = "Eliminar";
             this.menueliminarcliente.Click += new System.EventHandler(this.menueliminarcliente_Click);
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 50;
-            // 
-            // idCliente
-            // 
-            this.idCliente.HeaderText = "IdCliente";
-            this.idCliente.Name = "idCliente";
-            this.idCliente.ReadOnly = true;
-            this.idCliente.Visible = false;
-            this.idCliente.Width = 120;
-            // 
-            // IdPersona
-            // 
-            this.IdPersona.HeaderText = "IdPersona";
-            this.IdPersona.Name = "IdPersona";
-            this.IdPersona.ReadOnly = true;
-            this.IdPersona.Visible = false;
-            // 
-            // nombreCompleto
-            // 
-            this.nombreCompleto.HeaderText = "Nombre Completo";
-            this.nombreCompleto.Name = "nombreCompleto";
-            this.nombreCompleto.ReadOnly = true;
-            this.nombreCompleto.Width = 200;
-            // 
-            // correo
-            // 
-            this.correo.HeaderText = "Correo";
-            this.correo.Name = "correo";
-            this.correo.ReadOnly = true;
-            this.correo.Width = 200;
-            // 
-            // documento
-            // 
-            this.documento.HeaderText = "Documento";
-            this.documento.Name = "documento";
-            this.documento.ReadOnly = true;
-            this.documento.Width = 120;
-            // 
-            // Telefono
-            // 
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 120;
-            // 
-            // Direccion
-            // 
-            this.Direccion.HeaderText = "Direccion";
-            this.Direccion.Name = "Direccion";
-            this.Direccion.ReadOnly = true;
-            this.Direccion.Width = 180;
-            // 
-            // localidad
-            // 
-            this.localidad.HeaderText = "Localidad";
-            this.localidad.Name = "localidad";
-            this.localidad.ReadOnly = true;
-            this.localidad.Width = 140;
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.Visible = false;
-            this.estado.Width = 120;
-            // 
-            // estadoValor
-            // 
-            this.estadoValor.HeaderText = "Estado";
-            this.estadoValor.Name = "estadoValor";
-            this.estadoValor.ReadOnly = true;
             // 
             // frmCliente
             // 

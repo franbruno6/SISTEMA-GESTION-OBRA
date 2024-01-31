@@ -120,8 +120,8 @@
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(4);
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.DarkKhaki;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.EnableHeadersVisualStyles = false;
@@ -325,11 +325,11 @@
             this.menuverdetallepermisosimple,
             this.menumodificarestadopermiso});
             this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menu.Location = new System.Drawing.Point(0, 493);
+            this.menu.Location = new System.Drawing.Point(0, 512);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.menu.Size = new System.Drawing.Size(235, 153);
+            this.menu.Size = new System.Drawing.Size(235, 134);
             this.menu.TabIndex = 0;
             this.menu.Text = "menuStrip1";
             // 
