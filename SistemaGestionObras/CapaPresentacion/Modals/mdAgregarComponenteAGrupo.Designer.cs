@@ -41,13 +41,13 @@
             this.btnlimpiar = new FontAwesome.Sharp.IconButton();
             this.btnbuscar = new FontAwesome.Sharp.IconButton();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.txtid = new System.Windows.Forms.TextBox();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tipoComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtid = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -159,6 +159,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -211,6 +212,15 @@
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
+            // txtid
+            // 
+            this.txtid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtid.Location = new System.Drawing.Point(347, 58);
+            this.txtid.Name = "txtid";
+            this.txtid.Size = new System.Drawing.Size(61, 22);
+            this.txtid.TabIndex = 46;
+            this.txtid.Visible = false;
+            // 
             // btnseleccionar
             // 
             this.btnseleccionar.HeaderText = "";
@@ -227,17 +237,17 @@
             // 
             // nombre
             // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Width = 250;
             // 
             // tipoComponente
             // 
+            this.tipoComponente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.tipoComponente.HeaderText = "Tipo Componente";
             this.tipoComponente.Name = "tipoComponente";
             this.tipoComponente.ReadOnly = true;
-            this.tipoComponente.Width = 200;
             // 
             // estado
             // 
@@ -253,15 +263,6 @@
             this.estadoValor.Name = "estadoValor";
             this.estadoValor.ReadOnly = true;
             this.estadoValor.Width = 150;
-            // 
-            // txtid
-            // 
-            this.txtid.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtid.Location = new System.Drawing.Point(347, 58);
-            this.txtid.Name = "txtid";
-            this.txtid.Size = new System.Drawing.Size(61, 22);
-            this.txtid.TabIndex = 46;
-            this.txtid.Visible = false;
             // 
             // mdAgregarComponenteAGrupo
             // 
@@ -301,12 +302,12 @@
         private FontAwesome.Sharp.IconButton btnbuscar;
         private FontAwesome.Sharp.IconButton btnvolver;
         private System.Windows.Forms.DataGridView datagridview;
+        private System.Windows.Forms.TextBox txtid;
         private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoComponente;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
-        private System.Windows.Forms.TextBox txtid;
     }
 }

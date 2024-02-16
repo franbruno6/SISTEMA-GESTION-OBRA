@@ -192,6 +192,15 @@ begin
 		set @pasoreglas = 0
 	end
 
+	if exists (
+		select * from UsuarioComponente
+		where IdUsuario = @IdUsuario
+	)
+	begin
+		delete from UsuarioComponente
+		where IdUsuario = @IdUsuario
+	end
+
 	if (@pasoreglas = 1)
 	begin
 		delete from Usuario where IdUsuario = @IdUsuario

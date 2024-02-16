@@ -69,8 +69,9 @@
             // 
             // txtbusqueda
             // 
+            this.txtbusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbusqueda.Location = new System.Drawing.Point(795, 94);
+            this.txtbusqueda.Location = new System.Drawing.Point(876, 94);
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
@@ -78,6 +79,7 @@
             // 
             // btnactualizar
             // 
+            this.btnactualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -85,7 +87,7 @@
             this.btnactualizar.IconColor = System.Drawing.Color.Black;
             this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnactualizar.IconSize = 19;
-            this.btnactualizar.Location = new System.Drawing.Point(1072, 94);
+            this.btnactualizar.Location = new System.Drawing.Point(1153, 94);
             this.btnactualizar.Name = "btnactualizar";
             this.btnactualizar.Size = new System.Drawing.Size(157, 24);
             this.btnactualizar.TabIndex = 16;
@@ -97,6 +99,7 @@
             // 
             // btnlimpiar
             // 
+            this.btnlimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,7 +107,7 @@
             this.btnlimpiar.IconColor = System.Drawing.Color.Black;
             this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnlimpiar.IconSize = 19;
-            this.btnlimpiar.Location = new System.Drawing.Point(1012, 94);
+            this.btnlimpiar.Location = new System.Drawing.Point(1093, 94);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
             this.btnlimpiar.TabIndex = 15;
@@ -113,11 +116,12 @@
             // 
             // cbobusqueda
             // 
+            this.cbobusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobusqueda.BackColor = System.Drawing.SystemColors.Window;
             this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbobusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbobusqueda.FormattingEnabled = true;
-            this.cbobusqueda.Location = new System.Drawing.Point(647, 94);
+            this.cbobusqueda.Location = new System.Drawing.Point(728, 94);
             this.cbobusqueda.Name = "cbobusqueda";
             this.cbobusqueda.Size = new System.Drawing.Size(142, 24);
             this.cbobusqueda.TabIndex = 12;
@@ -125,10 +129,11 @@
             // 
             // lblbuscarpor
             // 
+            this.lblbuscarpor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblbuscarpor.AutoSize = true;
             this.lblbuscarpor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblbuscarpor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbuscarpor.Location = new System.Drawing.Point(569, 97);
+            this.lblbuscarpor.Location = new System.Drawing.Point(650, 97);
             this.lblbuscarpor.Name = "lblbuscarpor";
             this.lblbuscarpor.Size = new System.Drawing.Size(72, 16);
             this.lblbuscarpor.TabIndex = 11;
@@ -136,6 +141,7 @@
             // 
             // btnbuscar
             // 
+            this.btnbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -143,7 +149,7 @@
             this.btnbuscar.IconColor = System.Drawing.Color.Black;
             this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnbuscar.IconSize = 19;
-            this.btnbuscar.Location = new System.Drawing.Point(952, 94);
+            this.btnbuscar.Location = new System.Drawing.Point(1033, 94);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(54, 24);
             this.btnbuscar.TabIndex = 14;
@@ -153,6 +159,10 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
+            this.datagridview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -204,7 +214,7 @@
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridview.Size = new System.Drawing.Size(1228, 500);
+            this.datagridview.Size = new System.Drawing.Size(1306, 500);
             this.datagridview.TabIndex = 9;
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
@@ -234,38 +244,38 @@
             // 
             // nombreCompleto
             // 
+            this.nombreCompleto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombreCompleto.HeaderText = "Nombre Completo";
             this.nombreCompleto.Name = "nombreCompleto";
             this.nombreCompleto.ReadOnly = true;
-            this.nombreCompleto.Width = 200;
             // 
             // correo
             // 
+            this.correo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.correo.HeaderText = "Correo";
             this.correo.Name = "correo";
             this.correo.ReadOnly = true;
-            this.correo.Width = 200;
             // 
             // documento
             // 
             this.documento.HeaderText = "Documento";
             this.documento.Name = "documento";
             this.documento.ReadOnly = true;
-            this.documento.Width = 120;
+            this.documento.Width = 150;
             // 
             // Telefono
             // 
             this.Telefono.HeaderText = "Telefono";
             this.Telefono.Name = "Telefono";
             this.Telefono.ReadOnly = true;
-            this.Telefono.Width = 120;
+            this.Telefono.Width = 150;
             // 
             // Direccion
             // 
+            this.Direccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Direccion.HeaderText = "Direccion";
             this.Direccion.Name = "Direccion";
             this.Direccion.ReadOnly = true;
-            this.Direccion.Width = 180;
             // 
             // localidad
             // 
@@ -290,12 +300,14 @@
             // 
             // lblsubtitulo
             // 
+            this.lblsubtitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsubtitulo.Location = new System.Drawing.Point(16, 79);
             this.lblsubtitulo.Name = "lblsubtitulo";
             this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1228, 47);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1305, 47);
             this.lblsubtitulo.TabIndex = 8;
             this.lblsubtitulo.Text = "Lista de Clientes";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -313,7 +325,7 @@
             this.contenedor.Dock = System.Windows.Forms.DockStyle.Fill;
             this.contenedor.Location = new System.Drawing.Point(235, 0);
             this.contenedor.Name = "contenedor";
-            this.contenedor.Size = new System.Drawing.Size(1333, 584);
+            this.contenedor.Size = new System.Drawing.Size(1333, 646);
             this.contenedor.TabIndex = 4;
             // 
             // txtidpersona
@@ -352,7 +364,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 584);
+            this.panel1.Size = new System.Drawing.Size(235, 646);
             this.panel1.TabIndex = 3;
             // 
             // menu
@@ -365,7 +377,7 @@
             this.menumodificarcliente,
             this.menueliminarcliente});
             this.menu.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.VerticalStackWithOverflow;
-            this.menu.Location = new System.Drawing.Point(0, 368);
+            this.menu.Location = new System.Drawing.Point(0, 430);
             this.menu.Name = "menu";
             this.menu.Padding = new System.Windows.Forms.Padding(6, 10, 0, 40);
             this.menu.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -417,7 +429,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1568, 584);
+            this.ClientSize = new System.Drawing.Size(1568, 646);
             this.Controls.Add(this.contenedor);
             this.Controls.Add(this.panel1);
             this.Name = "frmCliente";

@@ -100,6 +100,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -167,10 +168,10 @@
             // 
             // nombre
             // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Width = 250;
             // 
             // tipoPermiso
             // 
@@ -330,6 +331,8 @@
             this.Controls.Add(this.lblsubtitulo);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetalleGrupoPermiso";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetalleGrupoPermiso";
@@ -350,15 +353,15 @@
         private System.Windows.Forms.Label lblnombre;
         private System.Windows.Forms.Label lblestado;
         private System.Windows.Forms.ComboBox cboestado;
+        private FontAwesome.Sharp.IconButton btnagregar;
+        private FontAwesome.Sharp.IconButton btneliminar;
+        private System.Windows.Forms.TextBox txtid;
+        private FontAwesome.Sharp.IconButton btnaccion;
         private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn tipoPermiso;
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
-        private FontAwesome.Sharp.IconButton btnagregar;
-        private FontAwesome.Sharp.IconButton btneliminar;
-        private System.Windows.Forms.TextBox txtid;
-        private FontAwesome.Sharp.IconButton btnaccion;
     }
 }

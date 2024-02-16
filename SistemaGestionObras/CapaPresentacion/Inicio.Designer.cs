@@ -28,23 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.menu = new System.Windows.Forms.MenuStrip();
             this.menuusuario = new FontAwesome.Sharp.IconMenuItem();
             this.menupermiso = new FontAwesome.Sharp.IconMenuItem();
             this.menupermisosimple = new System.Windows.Forms.ToolStripMenuItem();
             this.menugrupo = new System.Windows.Forms.ToolStripMenuItem();
+            this.menupermisousuario = new System.Windows.Forms.ToolStripMenuItem();
             this.menucliente = new FontAwesome.Sharp.IconMenuItem();
             this.menuproducto = new FontAwesome.Sharp.IconMenuItem();
             this.menupresupuesto = new FontAwesome.Sharp.IconMenuItem();
             this.menucomprobante = new FontAwesome.Sharp.IconMenuItem();
             this.menutitulo = new System.Windows.Forms.MenuStrip();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.menusalir = new FontAwesome.Sharp.IconMenuItem();
             this.lblusuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
-            this.menupermisousuario = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
+            this.menutitulo.SuspendLayout();
             this.contenedor.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menu
@@ -111,6 +115,13 @@
             this.menugrupo.Text = "Grupos";
             this.menugrupo.Click += new System.EventHandler(this.menugrupo_Click);
             // 
+            // menupermisousuario
+            // 
+            this.menupermisousuario.Name = "menupermisousuario";
+            this.menupermisousuario.Size = new System.Drawing.Size(217, 24);
+            this.menupermisousuario.Text = "Permisos de Usuarios";
+            this.menupermisousuario.Click += new System.EventHandler(this.menupermisousuario_Click);
+            // 
             // menucliente
             // 
             this.menucliente.AutoSize = false;
@@ -175,6 +186,8 @@
             // 
             this.menutitulo.AutoSize = false;
             this.menutitulo.BackColor = System.Drawing.Color.Khaki;
+            this.menutitulo.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menusalir});
             this.menutitulo.Location = new System.Drawing.Point(0, 0);
             this.menutitulo.Name = "menutitulo";
             this.menutitulo.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -182,35 +195,29 @@
             this.menutitulo.TabIndex = 1;
             this.menutitulo.Text = "menuStrip2";
             // 
-            // label1
+            // menusalir
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Khaki;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(12, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(263, 25);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Sistema Gestión de Obras";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Khaki;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(1330, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(64, 18);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Usuario:";
+            this.menusalir.AutoSize = false;
+            this.menusalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menusalir.IconChar = FontAwesome.Sharp.IconChar.DoorOpen;
+            this.menusalir.IconColor = System.Drawing.Color.Black;
+            this.menusalir.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menusalir.IconSize = 40;
+            this.menusalir.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menusalir.Name = "menusalir";
+            this.menusalir.Size = new System.Drawing.Size(122, 60);
+            this.menusalir.Text = "Salir";
+            this.menusalir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.menusalir.Click += new System.EventHandler(this.menusalir_Click);
             // 
             // lblusuario
             // 
+            this.lblusuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblusuario.AutoSize = true;
             this.lblusuario.BackColor = System.Drawing.Color.Khaki;
             this.lblusuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblusuario.Location = new System.Drawing.Point(1391, 31);
+            this.lblusuario.Location = new System.Drawing.Point(1245, 29);
+            this.lblusuario.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
             this.lblusuario.Name = "lblusuario";
             this.lblusuario.Size = new System.Drawing.Size(71, 18);
             this.lblusuario.TabIndex = 4;
@@ -225,32 +232,52 @@
             this.contenedor.Size = new System.Drawing.Size(1584, 687);
             this.contenedor.TabIndex = 5;
             // 
-            // menupermisousuario
+            // pictureBox1
             // 
-            this.menupermisousuario.Name = "menupermisousuario";
-            this.menupermisousuario.Size = new System.Drawing.Size(217, 24);
-            this.menupermisousuario.Text = "Permisos de Usuarios";
-            this.menupermisousuario.Click += new System.EventHandler(this.menupermisousuario_Click);
+            this.pictureBox1.BackColor = System.Drawing.Color.Khaki;
+            this.pictureBox1.Image = global::CapaPresentacion.Properties.Resources.logo_sistema;
+            this.pictureBox1.Location = new System.Drawing.Point(27, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(74, 74);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Khaki;
+            this.label1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(117, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(253, 25);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Sistema Gestión de Obras";
             // 
             // Inicio
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1584, 761);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.contenedor);
             this.Controls.Add(this.lblusuario);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.menutitulo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menu;
+            this.MinimumSize = new System.Drawing.Size(1600, 800);
             this.Name = "Inicio";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sistema Gestion de Obras";
             this.Load += new System.EventHandler(this.Inicio_Load);
             this.menu.ResumeLayout(false);
             this.menu.PerformLayout();
+            this.menutitulo.ResumeLayout(false);
+            this.menutitulo.PerformLayout();
             this.contenedor.ResumeLayout(false);
             this.contenedor.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -260,19 +287,20 @@
 
         private System.Windows.Forms.MenuStrip menu;
         private System.Windows.Forms.MenuStrip menutitulo;
-        private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconMenuItem menucomprobante;
         private FontAwesome.Sharp.IconMenuItem menuusuario;
         private FontAwesome.Sharp.IconMenuItem menupermiso;
         private FontAwesome.Sharp.IconMenuItem menucliente;
         private FontAwesome.Sharp.IconMenuItem menuproducto;
         private FontAwesome.Sharp.IconMenuItem menupresupuesto;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblusuario;
         private System.Windows.Forms.Panel contenedor;
         private System.Windows.Forms.ToolStripMenuItem menupermisosimple;
         private System.Windows.Forms.ToolStripMenuItem menugrupo;
         private System.Windows.Forms.ToolStripMenuItem menupermisousuario;
+        private FontAwesome.Sharp.IconMenuItem menusalir;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

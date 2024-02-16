@@ -19,19 +19,19 @@ namespace CapaPresentacion
         private static IconMenuItem _menuActivo = null;
         private static Form _formularioActivo = null;
 
-        public Inicio(Usuario oUsuario = null)
+        public Inicio(Usuario oUsuario)
         {
-            if (oUsuario == null)
-            {
-                _usuarioActual = new Usuario() { NombreCompleto = "Admin" , IdUsuario = 1};
-                _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
-            }
-            else
-            {
-                _usuarioActual = oUsuario;
-            }
-            //_usuarioActual = oUsuario;
-            //_usuarioActual.SetPermisos(new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario));
+            //if (oUsuario == null)
+            //{
+            //    _usuarioActual = new Usuario() { NombreCompleto = "Admin", IdUsuario = 1 };
+            //    _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
+            //}
+            //else
+            //{
+            //    _usuarioActual = oUsuario;
+            //}
+            _usuarioActual = oUsuario;
+            _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
 
             InitializeComponent();
         }
@@ -69,7 +69,7 @@ namespace CapaPresentacion
                 }
             }
 
-            lblusuario.Text = _usuarioActual.NombreCompleto;
+            lblusuario.Text = "Usuario: " + _usuarioActual.NombreCompleto;
         }
         private void AbrirFormulario(IconMenuItem menu, Form formulario)
         {
@@ -136,6 +136,10 @@ namespace CapaPresentacion
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 0, ButtonBorderStyle.None,
                 Color.Black, 1, ButtonBorderStyle.Solid);
+        }
+        private void menusalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

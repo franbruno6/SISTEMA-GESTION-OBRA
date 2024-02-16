@@ -49,7 +49,6 @@
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idComprobante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,6 +61,7 @@
             this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fechaRegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -154,6 +154,7 @@
             this.txtid.Name = "txtid";
             this.txtid.Size = new System.Drawing.Size(100, 20);
             this.txtid.TabIndex = 2;
+            this.txtid.Visible = false;
             // 
             // label1
             // 
@@ -167,6 +168,7 @@
             // 
             // btnactualizar
             // 
+            this.btnactualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -186,6 +188,7 @@
             // 
             // btnlimpiar
             // 
+            this.btnlimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -201,6 +204,7 @@
             // 
             // btnbuscar
             // 
+            this.btnbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,6 +236,7 @@
             // 
             // txtbusqueda
             // 
+            this.txtbusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbusqueda.Location = new System.Drawing.Point(1112, 93);
             this.txtbusqueda.Name = "txtbusqueda";
@@ -240,6 +245,7 @@
             // 
             // cbobusqueda
             // 
+            this.cbobusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobusqueda.BackColor = System.Drawing.SystemColors.Window;
             this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbobusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -251,6 +257,7 @@
             // 
             // lblbuscarpor
             // 
+            this.lblbuscarpor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblbuscarpor.AutoSize = true;
             this.lblbuscarpor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblbuscarpor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -263,6 +270,10 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
+            this.datagridview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -321,20 +332,9 @@
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
-            // lblsubtitulo
-            // 
-            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblsubtitulo.Location = new System.Drawing.Point(250, 79);
-            this.lblsubtitulo.Name = "lblsubtitulo";
-            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1306, 47);
-            this.lblsubtitulo.TabIndex = 8;
-            this.lblsubtitulo.Text = "Lista de Comprobantes de Obra";
-            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // btnseleccionar
             // 
+            this.btnseleccionar.FillWeight = 35.62946F;
             this.btnseleccionar.HeaderText = "";
             this.btnseleccionar.Name = "btnseleccionar";
             this.btnseleccionar.ReadOnly = true;
@@ -364,59 +364,81 @@
             // 
             // numeroComprobante
             // 
+            this.numeroComprobante.FillWeight = 68.18409F;
             this.numeroComprobante.HeaderText = "Numero";
             this.numeroComprobante.Name = "numeroComprobante";
             this.numeroComprobante.ReadOnly = true;
-            this.numeroComprobante.Width = 90;
+            this.numeroComprobante.Width = 96;
             // 
             // nombreCliente
             // 
+            this.nombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreCliente.FillWeight = 155.3674F;
             this.nombreCliente.HeaderText = "Nombre Cliente";
             this.nombreCliente.Name = "nombreCliente";
             this.nombreCliente.ReadOnly = true;
-            this.nombreCliente.Width = 200;
             // 
             // telefono
             // 
+            this.telefono.FillWeight = 94.51579F;
             this.telefono.HeaderText = "Telefono";
             this.telefono.Name = "telefono";
             this.telefono.ReadOnly = true;
-            this.telefono.Width = 130;
+            this.telefono.Width = 132;
             // 
             // direccion
             // 
+            this.direccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.direccion.FillWeight = 145.0864F;
             this.direccion.HeaderText = "Direccion";
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
-            this.direccion.Width = 200;
             // 
             // localidad
             // 
+            this.localidad.FillWeight = 95.72913F;
             this.localidad.HeaderText = "Localidad";
             this.localidad.Name = "localidad";
             this.localidad.ReadOnly = true;
-            this.localidad.Width = 140;
+            this.localidad.Width = 134;
             // 
             // montoTotal
             // 
+            this.montoTotal.FillWeight = 95.3689F;
             this.montoTotal.HeaderText = "Monto Total";
             this.montoTotal.Name = "montoTotal";
             this.montoTotal.ReadOnly = true;
-            this.montoTotal.Width = 140;
+            this.montoTotal.Width = 134;
             // 
             // estado
             // 
+            this.estado.FillWeight = 95.04862F;
             this.estado.HeaderText = "Estado";
             this.estado.Name = "estado";
             this.estado.ReadOnly = true;
-            this.estado.Width = 140;
+            this.estado.Width = 134;
             // 
             // fechaRegistro
             // 
+            this.fechaRegistro.FillWeight = 115.0703F;
             this.fechaRegistro.HeaderText = "Fecha Registro";
             this.fechaRegistro.Name = "fechaRegistro";
             this.fechaRegistro.ReadOnly = true;
-            this.fechaRegistro.Width = 170;
+            this.fechaRegistro.Width = 161;
+            // 
+            // lblsubtitulo
+            // 
+            this.lblsubtitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblsubtitulo.Location = new System.Drawing.Point(250, 79);
+            this.lblsubtitulo.Name = "lblsubtitulo";
+            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1306, 47);
+            this.lblsubtitulo.TabIndex = 8;
+            this.lblsubtitulo.Text = "Lista de Comprobantes de Obra";
+            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmComprobante
             // 

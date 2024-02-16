@@ -147,6 +147,8 @@
             this.Controls.Add(this.lblnombre);
             this.Controls.Add(this.lblsubtitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetallePermisoSimple";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Detalle del permiso";

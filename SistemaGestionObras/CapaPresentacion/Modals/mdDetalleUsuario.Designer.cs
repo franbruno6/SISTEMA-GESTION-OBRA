@@ -287,6 +287,8 @@
             this.Controls.Add(this.lblsubtitulo);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetalleUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetalleUsuario";

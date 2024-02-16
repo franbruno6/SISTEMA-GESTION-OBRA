@@ -36,6 +36,18 @@
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeroPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.documentoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblsubtitulo = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
             this.btnactualizar = new FontAwesome.Sharp.IconButton();
@@ -50,18 +62,6 @@
             this.menuagregarpresupuesto = new System.Windows.Forms.ToolStripMenuItem();
             this.menumodificarpresupuesto = new System.Windows.Forms.ToolStripMenuItem();
             this.menueliminarpresupuesto = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.idCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.numeroPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombreCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.documentoCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -70,8 +70,9 @@
             // 
             // txtbusqueda
             // 
+            this.txtbusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbusqueda.Location = new System.Drawing.Point(838, 94);
+            this.txtbusqueda.Location = new System.Drawing.Point(872, 94);
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
@@ -79,11 +80,12 @@
             // 
             // cbobusqueda
             // 
+            this.cbobusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbobusqueda.BackColor = System.Drawing.SystemColors.Window;
             this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbobusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbobusqueda.FormattingEnabled = true;
-            this.cbobusqueda.Location = new System.Drawing.Point(659, 94);
+            this.cbobusqueda.Location = new System.Drawing.Point(693, 94);
             this.cbobusqueda.Name = "cbobusqueda";
             this.cbobusqueda.Size = new System.Drawing.Size(173, 24);
             this.cbobusqueda.TabIndex = 12;
@@ -91,10 +93,11 @@
             // 
             // lblbuscarpor
             // 
+            this.lblbuscarpor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblbuscarpor.AutoSize = true;
             this.lblbuscarpor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblbuscarpor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbuscarpor.Location = new System.Drawing.Point(582, 97);
+            this.lblbuscarpor.Location = new System.Drawing.Point(616, 97);
             this.lblbuscarpor.Name = "lblbuscarpor";
             this.lblbuscarpor.Size = new System.Drawing.Size(72, 16);
             this.lblbuscarpor.TabIndex = 11;
@@ -103,6 +106,10 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
+            this.datagridview.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -155,20 +162,107 @@
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridview.Size = new System.Drawing.Size(1269, 500);
+            this.datagridview.Size = new System.Drawing.Size(1306, 500);
             this.datagridview.TabIndex = 9;
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             // 
+            // btnseleccionar
+            // 
+            this.btnseleccionar.HeaderText = "";
+            this.btnseleccionar.Name = "btnseleccionar";
+            this.btnseleccionar.ReadOnly = true;
+            this.btnseleccionar.Width = 50;
+            // 
+            // idPresupuesto
+            // 
+            this.idPresupuesto.HeaderText = "IdPresupuesto";
+            this.idPresupuesto.Name = "idPresupuesto";
+            this.idPresupuesto.ReadOnly = true;
+            this.idPresupuesto.Visible = false;
+            this.idPresupuesto.Width = 120;
+            // 
+            // idUsuario
+            // 
+            this.idUsuario.HeaderText = "IdUsuario";
+            this.idUsuario.Name = "idUsuario";
+            this.idUsuario.ReadOnly = true;
+            this.idUsuario.Visible = false;
+            // 
+            // idCliente
+            // 
+            this.idCliente.HeaderText = "IdCliente";
+            this.idCliente.Name = "idCliente";
+            this.idCliente.ReadOnly = true;
+            this.idCliente.Visible = false;
+            // 
+            // numeroPresupuesto
+            // 
+            this.numeroPresupuesto.HeaderText = "Numero";
+            this.numeroPresupuesto.Name = "numeroPresupuesto";
+            this.numeroPresupuesto.ReadOnly = true;
+            this.numeroPresupuesto.Width = 115;
+            // 
+            // nombreCliente
+            // 
+            this.nombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreCliente.HeaderText = "Nombre Cliente";
+            this.nombreCliente.Name = "nombreCliente";
+            this.nombreCliente.ReadOnly = true;
+            // 
+            // documentoCliente
+            // 
+            this.documentoCliente.HeaderText = "Documento";
+            this.documentoCliente.Name = "documentoCliente";
+            this.documentoCliente.ReadOnly = true;
+            this.documentoCliente.Width = 130;
+            // 
+            // telefono
+            // 
+            this.telefono.HeaderText = "Telefono";
+            this.telefono.Name = "telefono";
+            this.telefono.ReadOnly = true;
+            this.telefono.Width = 130;
+            // 
+            // direccion
+            // 
+            this.direccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            // 
+            // localidad
+            // 
+            this.localidad.HeaderText = "Localidad";
+            this.localidad.Name = "localidad";
+            this.localidad.ReadOnly = true;
+            this.localidad.Width = 130;
+            // 
+            // montoTotal
+            // 
+            this.montoTotal.HeaderText = "Monto Total";
+            this.montoTotal.Name = "montoTotal";
+            this.montoTotal.ReadOnly = true;
+            this.montoTotal.Width = 140;
+            // 
+            // fecha
+            // 
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            this.fecha.Width = 130;
+            // 
             // lblsubtitulo
             // 
+            this.lblsubtitulo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblsubtitulo.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsubtitulo.Location = new System.Drawing.Point(16, 79);
             this.lblsubtitulo.Name = "lblsubtitulo";
             this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1269, 47);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1305, 47);
             this.lblsubtitulo.TabIndex = 8;
             this.lblsubtitulo.Text = "Lista de Presupuestos";
             this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -191,6 +285,7 @@
             // 
             // btnactualizar
             // 
+            this.btnactualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnactualizar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnactualizar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnactualizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -198,7 +293,7 @@
             this.btnactualizar.IconColor = System.Drawing.Color.Black;
             this.btnactualizar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnactualizar.IconSize = 19;
-            this.btnactualizar.Location = new System.Drawing.Point(1115, 94);
+            this.btnactualizar.Location = new System.Drawing.Point(1149, 94);
             this.btnactualizar.Name = "btnactualizar";
             this.btnactualizar.Size = new System.Drawing.Size(157, 24);
             this.btnactualizar.TabIndex = 16;
@@ -210,6 +305,7 @@
             // 
             // btnlimpiar
             // 
+            this.btnlimpiar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnlimpiar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnlimpiar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnlimpiar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -217,7 +313,7 @@
             this.btnlimpiar.IconColor = System.Drawing.Color.Black;
             this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnlimpiar.IconSize = 19;
-            this.btnlimpiar.Location = new System.Drawing.Point(1055, 94);
+            this.btnlimpiar.Location = new System.Drawing.Point(1089, 94);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(54, 24);
             this.btnlimpiar.TabIndex = 15;
@@ -226,6 +322,7 @@
             // 
             // btnbuscar
             // 
+            this.btnbuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnbuscar.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.btnbuscar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnbuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -233,7 +330,7 @@
             this.btnbuscar.IconColor = System.Drawing.Color.Black;
             this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnbuscar.IconSize = 19;
-            this.btnbuscar.Location = new System.Drawing.Point(995, 94);
+            this.btnbuscar.Location = new System.Drawing.Point(1029, 94);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(54, 24);
             this.btnbuscar.TabIndex = 14;
@@ -337,91 +434,6 @@
             this.menueliminarpresupuesto.Size = new System.Drawing.Size(228, 33);
             this.menueliminarpresupuesto.Text = "Eliminar";
             this.menueliminarpresupuesto.Click += new System.EventHandler(this.menueliminarpresupuesto_Click);
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 50;
-            // 
-            // idPresupuesto
-            // 
-            this.idPresupuesto.HeaderText = "IdPresupuesto";
-            this.idPresupuesto.Name = "idPresupuesto";
-            this.idPresupuesto.ReadOnly = true;
-            this.idPresupuesto.Visible = false;
-            this.idPresupuesto.Width = 120;
-            // 
-            // idUsuario
-            // 
-            this.idUsuario.HeaderText = "IdUsuario";
-            this.idUsuario.Name = "idUsuario";
-            this.idUsuario.ReadOnly = true;
-            this.idUsuario.Visible = false;
-            // 
-            // idCliente
-            // 
-            this.idCliente.HeaderText = "IdCliente";
-            this.idCliente.Name = "idCliente";
-            this.idCliente.ReadOnly = true;
-            this.idCliente.Visible = false;
-            // 
-            // numeroPresupuesto
-            // 
-            this.numeroPresupuesto.HeaderText = "Numero";
-            this.numeroPresupuesto.Name = "numeroPresupuesto";
-            this.numeroPresupuesto.ReadOnly = true;
-            this.numeroPresupuesto.Width = 115;
-            // 
-            // nombreCliente
-            // 
-            this.nombreCliente.HeaderText = "Nombre Cliente";
-            this.nombreCliente.Name = "nombreCliente";
-            this.nombreCliente.ReadOnly = true;
-            this.nombreCliente.Width = 200;
-            // 
-            // documentoCliente
-            // 
-            this.documentoCliente.HeaderText = "Documento";
-            this.documentoCliente.Name = "documentoCliente";
-            this.documentoCliente.ReadOnly = true;
-            this.documentoCliente.Width = 130;
-            // 
-            // telefono
-            // 
-            this.telefono.HeaderText = "Telefono";
-            this.telefono.Name = "telefono";
-            this.telefono.ReadOnly = true;
-            this.telefono.Width = 130;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.Name = "direccion";
-            this.direccion.ReadOnly = true;
-            this.direccion.Width = 200;
-            // 
-            // localidad
-            // 
-            this.localidad.HeaderText = "Localidad";
-            this.localidad.Name = "localidad";
-            this.localidad.ReadOnly = true;
-            this.localidad.Width = 130;
-            // 
-            // montoTotal
-            // 
-            this.montoTotal.HeaderText = "Monto Total";
-            this.montoTotal.Name = "montoTotal";
-            this.montoTotal.ReadOnly = true;
-            this.montoTotal.Width = 140;
-            // 
-            // fecha
-            // 
-            this.fecha.HeaderText = "Fecha";
-            this.fecha.Name = "fecha";
-            this.fecha.ReadOnly = true;
-            this.fecha.Width = 130;
             // 
             // frmPresupuesto
             // 

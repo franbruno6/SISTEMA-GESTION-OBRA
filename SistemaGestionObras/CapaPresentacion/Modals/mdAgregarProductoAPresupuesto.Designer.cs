@@ -112,6 +112,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -188,10 +189,10 @@
             // 
             // nombre
             // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
             this.nombre.ReadOnly = true;
-            this.nombre.Width = 240;
             // 
             // categoria
             // 

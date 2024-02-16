@@ -62,44 +62,11 @@ namespace CapaPresentacion.Modals
                 return;
             }
 
-            DataTable listaDetalle = new DataTable();
+            DataTable listaDetalle = GenerarListaDetalle();
 
-            listaDetalle.Columns.Add("IdProducto", typeof(int));
-            listaDetalle.Columns.Add("Precio", typeof(decimal));
-            listaDetalle.Columns.Add("Cantidad", typeof(int));
-            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
+            string numeroPresupuesto = ObtenerNumeroPresupuesto();
 
-            foreach (DataGridViewRow fila in datagridview.Rows)
-            {
-                listaDetalle.Rows.Add(
-                    fila.Cells["idProducto"].Value,
-                    fila.Cells["precio"].Value,
-                    fila.Cells["cantidad"].Value,
-                    fila.Cells["subTotal"].Value
-                );
-            }
-
-            int idCorrelativo = oCC_Presupuesto.ObtenerCorrelativo();
-            string numeroPresupuesto = string.Format("{0}", idCorrelativo.ToString().PadLeft(4, '0'));
-
-            Presupuesto oPresupuesto = new Presupuesto()
-            {
-                oUsuario = new Usuario()
-                {
-                    IdUsuario = _usuarioActual.IdUsuario
-                },
-                oCliente = new Cliente()
-                {
-                    IdCliente = Convert.ToInt32(txtidcliente.Text),
-                    NombreCompleto = txtnombrecliente.Text,
-                    Telefono = txttelefono.Text
-                },
-                NumeroPresupuesto = numeroPresupuesto,
-                Direccion = txtdireccion.Text,
-                Localidad = txtlocalidad.Text,
-                MontoTotal = Convert.ToDecimal(txtmontototal.Text),
-                FechaRegistro = DateTime.Now
-            };
+            Presupuesto oPresupuesto = CrearPresupuesto(numeroPresupuesto);
 
             bool resultado = oCC_Presupuesto.AgregarPresupuesto(oPresupuesto, listaDetalle, out string mensaje);
 
@@ -284,6 +251,55 @@ namespace CapaPresentacion.Modals
                 txtmontototal.Text = montoTotal.ToString();
             }
         }
+        private DataTable GenerarListaDetalle()
+        {
+            DataTable listaDetalle = new DataTable();
+
+            listaDetalle.Columns.Add("IdProducto", typeof(int));
+            listaDetalle.Columns.Add("Precio", typeof(decimal));
+            listaDetalle.Columns.Add("Cantidad", typeof(int));
+            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                listaDetalle.Rows.Add(
+                fila.Cells["idProducto"].Value,
+                fila.Cells["precio"].Value,
+                fila.Cells["cantidad"].Value,
+                fila.Cells["subTotal"].Value
+                );
+            }
+            return listaDetalle;
+        }
+        private string ObtenerNumeroPresupuesto()
+        {
+            int idCorrelativo = oCC_Presupuesto.ObtenerCorrelativo();
+            string numeroPresupuesto = string.Format("{0}", idCorrelativo.ToString().PadLeft(4, '0'));
+
+            return numeroPresupuesto;
+        }
+        private Presupuesto CrearPresupuesto(string numeroPresupuesto)
+        {
+            Presupuesto oPresupuesto = new Presupuesto()
+            {
+                oUsuario = new Usuario()
+                {
+                    IdUsuario = _usuarioActual.IdUsuario
+                },
+                oCliente = new Cliente()
+                {
+                    IdCliente = Convert.ToInt32(txtidcliente.Text),
+                    NombreCompleto = txtnombrecliente.Text,
+                    Telefono = txttelefono.Text
+                },
+                NumeroPresupuesto = numeroPresupuesto,
+                Direccion = txtdireccion.Text,
+                Localidad = txtlocalidad.Text,
+                MontoTotal = Convert.ToDecimal(txtmontototal.Text),
+                FechaRegistro = DateTime.Now
+            };
+            return oPresupuesto;
+        }
         private void btnbuscarcliente_Click(object sender, EventArgs e)
         {
             using (var modal = new mdAgregarClienteAPresupuesto())
@@ -443,6 +459,18 @@ namespace CapaPresentacion.Modals
         private void txtmontototal_KeyPress(object sender, KeyPressEventArgs e)
         {
             e.Handled = true;
+        }
+
+        private void txtlocalidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Char.IsLetter(e.KeyChar) || Char.IsControl(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+            {
+                e.Handled = true;
+            }
         }
     }
 }

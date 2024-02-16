@@ -22,7 +22,7 @@ namespace CapaEntidad
         {
             this.clave = clave;
         }
-        public bool Estado { get { return estado; } set {  estado = value; } }
+        public bool Estado { get { return estado; } set { estado = value; } }
         public void SetPermisos(List<Permiso> permisos)
         {
             this.permisos = permisos;
@@ -38,7 +38,7 @@ namespace CapaEntidad
         {
             //GENERAR UN SALTO UNICO PARA LA CLAVE
             string salto = GenerarSaltoAleatorio();
-            
+
             //SUMA LA CLAVE CON EL SALTO Y GENERA UN HASH
             string claveSalto = clave + salto;
 
@@ -72,7 +72,7 @@ namespace CapaEntidad
                 salto = claveHashSplit[1];
             }
 
-            if(claveHashSplit.Length != 2)
+            if (claveHashSplit.Length != 2)
             {
                 return false;
             }
@@ -98,14 +98,18 @@ namespace CapaEntidad
         private static string GenerarSaltoAleatorio()
         {
             string salto = string.Empty;
-            //RANDOM GENERA NUMEROS ALEATORIOS
             Random r = new Random();
-            //GENERA ALEATORIAMENTE ENTRE 10 Y 19 CARACTERES
             int longitud = r.Next(10, 20);
-            //GENERA ALEATORIAMENTE ENTRE 33 Y 126 CARACTERES CARACTERES IMPRIMIBLES ASCII
+            char caracterAleatorio;
+
             for (int i = 0; i < longitud; i++)
             {
-                salto += (char)r.Next(33, 126);
+                caracterAleatorio = (char)r.Next(33, 126);
+                if (caracterAleatorio == '|')
+                {
+                    continue;
+                }
+                salto += caracterAleatorio;
             }
             return salto;
         }

@@ -11,14 +11,13 @@ namespace CapaEntidad
         #region Constructor
         public DetallePresupuesto()
         {
-            oPresupuesto = new Presupuesto();
             oProducto = new Producto();
         }
         #endregion
 
         #region Variables Privadas
         private int idDetallePresupuesto;
-        private Presupuesto presupuesto;
+        private int idPresupuesto;
         private Producto producto;
         private decimal precio;
         private int cantidad;
@@ -27,7 +26,7 @@ namespace CapaEntidad
 
         #region Propiedades
         public int IdDetallePresupuesto { get { return idDetallePresupuesto; } set { idDetallePresupuesto = value; } }
-        public Presupuesto oPresupuesto { get { return presupuesto; } set { presupuesto = value; } }
+        public int IdPresupuesto { get { return idPresupuesto; } set { idPresupuesto = value; } }
         public Producto oProducto { get { return producto; } set { producto = value; } }
         public decimal Precio { get {  return precio; } set {  precio = value; } }
         public int Cantidad { get {  return cantidad; } set {  cantidad = value; } }

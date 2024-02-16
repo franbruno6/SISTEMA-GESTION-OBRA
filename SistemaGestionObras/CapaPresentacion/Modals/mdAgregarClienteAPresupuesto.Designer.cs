@@ -54,6 +54,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -123,10 +124,10 @@
             // 
             // nombreCompleto
             // 
+            this.nombreCompleto.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombreCompleto.HeaderText = "Nombre Completo";
             this.nombreCompleto.Name = "nombreCompleto";
             this.nombreCompleto.ReadOnly = true;
-            this.nombreCompleto.Width = 200;
             // 
             // telefono
             // 

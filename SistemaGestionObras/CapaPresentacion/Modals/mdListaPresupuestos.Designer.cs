@@ -33,6 +33,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.datagridview = new System.Windows.Forms.DataGridView();
+            this.txtbusqueda = new System.Windows.Forms.TextBox();
+            this.cbobusqueda = new System.Windows.Forms.ComboBox();
+            this.lblbuscarpor = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtid = new System.Windows.Forms.TextBox();
+            this.lblsubtitulo = new System.Windows.Forms.Label();
+            this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.idPresupuesto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,19 +48,13 @@
             this.direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.montoTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtbusqueda = new System.Windows.Forms.TextBox();
-            this.cbobusqueda = new System.Windows.Forms.ComboBox();
-            this.lblbuscarpor = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtid = new System.Windows.Forms.TextBox();
-            this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.btnvolver = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
             // 
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -107,63 +108,6 @@
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
             this.datagridview.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellDoubleClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 50;
-            // 
-            // idPresupuesto
-            // 
-            this.idPresupuesto.HeaderText = "IdPresupuesto";
-            this.idPresupuesto.Name = "idPresupuesto";
-            this.idPresupuesto.ReadOnly = true;
-            this.idPresupuesto.Visible = false;
-            this.idPresupuesto.Width = 120;
-            // 
-            // numero
-            // 
-            this.numero.HeaderText = "Numero";
-            this.numero.Name = "numero";
-            this.numero.ReadOnly = true;
-            this.numero.Width = 115;
-            // 
-            // nombreCliente
-            // 
-            this.nombreCliente.HeaderText = "Nombre Cliente";
-            this.nombreCliente.Name = "nombreCliente";
-            this.nombreCliente.ReadOnly = true;
-            this.nombreCliente.Width = 200;
-            // 
-            // documento
-            // 
-            this.documento.HeaderText = "Documento";
-            this.documento.Name = "documento";
-            this.documento.ReadOnly = true;
-            this.documento.Width = 130;
-            // 
-            // direccion
-            // 
-            this.direccion.HeaderText = "Direccion";
-            this.direccion.Name = "direccion";
-            this.direccion.ReadOnly = true;
-            this.direccion.Width = 180;
-            // 
-            // localidad
-            // 
-            this.localidad.HeaderText = "Localidad";
-            this.localidad.Name = "localidad";
-            this.localidad.ReadOnly = true;
-            this.localidad.Width = 130;
-            // 
-            // montoTotal
-            // 
-            this.montoTotal.HeaderText = "Monto Total";
-            this.montoTotal.Name = "montoTotal";
-            this.montoTotal.ReadOnly = true;
-            this.montoTotal.Width = 150;
             // 
             // txtbusqueda
             // 
@@ -247,6 +191,63 @@
             this.btnvolver.UseVisualStyleBackColor = false;
             this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
+            // btnseleccionar
+            // 
+            this.btnseleccionar.HeaderText = "";
+            this.btnseleccionar.Name = "btnseleccionar";
+            this.btnseleccionar.ReadOnly = true;
+            this.btnseleccionar.Width = 50;
+            // 
+            // idPresupuesto
+            // 
+            this.idPresupuesto.HeaderText = "IdPresupuesto";
+            this.idPresupuesto.Name = "idPresupuesto";
+            this.idPresupuesto.ReadOnly = true;
+            this.idPresupuesto.Visible = false;
+            this.idPresupuesto.Width = 120;
+            // 
+            // numero
+            // 
+            this.numero.HeaderText = "Numero";
+            this.numero.Name = "numero";
+            this.numero.ReadOnly = true;
+            this.numero.Width = 115;
+            // 
+            // nombreCliente
+            // 
+            this.nombreCliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombreCliente.HeaderText = "Nombre Cliente";
+            this.nombreCliente.Name = "nombreCliente";
+            this.nombreCliente.ReadOnly = true;
+            // 
+            // documento
+            // 
+            this.documento.HeaderText = "Documento";
+            this.documento.Name = "documento";
+            this.documento.ReadOnly = true;
+            this.documento.Width = 130;
+            // 
+            // direccion
+            // 
+            this.direccion.HeaderText = "Direccion";
+            this.direccion.Name = "direccion";
+            this.direccion.ReadOnly = true;
+            this.direccion.Width = 180;
+            // 
+            // localidad
+            // 
+            this.localidad.HeaderText = "Localidad";
+            this.localidad.Name = "localidad";
+            this.localidad.ReadOnly = true;
+            this.localidad.Width = 130;
+            // 
+            // montoTotal
+            // 
+            this.montoTotal.HeaderText = "Monto Total";
+            this.montoTotal.Name = "montoTotal";
+            this.montoTotal.ReadOnly = true;
+            this.montoTotal.Width = 150;
+            // 
             // mdListaPresupuestos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -262,6 +263,8 @@
             this.Controls.Add(this.btnvolver);
             this.Controls.Add(this.lblsubtitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdListaPresupuestos";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Seleccionar un presupuesto";

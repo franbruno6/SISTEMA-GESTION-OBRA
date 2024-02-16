@@ -108,6 +108,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -182,9 +183,9 @@
             // 
             // nombre
             // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
-            this.nombre.Width = 250;
             // 
             // precio
             // 
@@ -272,6 +273,7 @@
             this.txtlocalidad.Name = "txtlocalidad";
             this.txtlocalidad.Size = new System.Drawing.Size(192, 22);
             this.txtlocalidad.TabIndex = 91;
+            this.txtlocalidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtlocalidad_KeyPress);
             // 
             // label5
             // 
@@ -458,6 +460,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblsubtitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetallePresupuesto";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetallePresupuesto";
@@ -491,6 +495,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox txtidcliente;
         private FontAwesome.Sharp.IconButton btnbuscarcliente;
+        private System.Windows.Forms.TextBox txtcorreo;
+        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
@@ -498,7 +504,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn precio;
         private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
-        private System.Windows.Forms.TextBox txtcorreo;
-        private System.Windows.Forms.Label label7;
     }
 }

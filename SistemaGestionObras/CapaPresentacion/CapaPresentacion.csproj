@@ -305,5 +305,20 @@
   <ItemGroup>
     <None Include="Resources\trash.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo sgo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lgoo completo sgo1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\lgoo completo sgo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo sgo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo sistema.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

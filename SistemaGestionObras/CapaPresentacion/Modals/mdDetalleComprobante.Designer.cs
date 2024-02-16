@@ -41,7 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtmontototal = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.subTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtdireccion = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnaccion = new FontAwesome.Sharp.IconButton();
@@ -58,6 +57,7 @@
             this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.precio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.subTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.label3 = new System.Windows.Forms.Label();
             this.lblsubtitulo = new System.Windows.Forms.Label();
@@ -158,12 +158,6 @@
             this.label4.Size = new System.Drawing.Size(78, 16);
             this.label4.TabIndex = 113;
             this.label4.Text = "Monto Total";
-            // 
-            // subTotal
-            // 
-            this.subTotal.HeaderText = "SubTotal";
-            this.subTotal.Name = "subTotal";
-            this.subTotal.Width = 130;
             // 
             // txtdireccion
             // 
@@ -282,6 +276,7 @@
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -356,9 +351,9 @@
             // 
             // nombre
             // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombre.HeaderText = "Nombre";
             this.nombre.Name = "nombre";
-            this.nombre.Width = 250;
             // 
             // precio
             // 
@@ -370,6 +365,12 @@
             // 
             this.cantidad.HeaderText = "Cantidad";
             this.cantidad.Name = "cantidad";
+            // 
+            // subTotal
+            // 
+            this.subTotal.HeaderText = "SubTotal";
+            this.subTotal.Name = "subTotal";
+            this.subTotal.Width = 130;
             // 
             // btnvolver
             // 
@@ -511,6 +512,8 @@
             this.Controls.Add(this.btnvolver);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblsubtitulo);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetalleComprobante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetalleComprobante";
@@ -532,7 +535,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtmontototal;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
         private System.Windows.Forms.TextBox txtdireccion;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconButton btnaccion;
@@ -543,12 +545,6 @@
         private System.Windows.Forms.Label lblnombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView datagridview;
-        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
-        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
         private FontAwesome.Sharp.IconButton btnvolver;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblsubtitulo;
@@ -558,5 +554,12 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtestadoobra;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idProducto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn precio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cantidad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn subTotal;
     }
 }

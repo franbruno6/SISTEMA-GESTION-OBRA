@@ -62,9 +62,9 @@ namespace CapaPresentacion
         {
             datagridview.Rows.Clear();
 
-            //MOSTRAR LOS USUARIOS
+            //MOSTRAR LOS PRODUCTOS
             List<Producto> listaProductos = oCC_Producto.ListarProductos();
-            listaProductos = listaProductos.OrderBy(p => p.Codigo).ToList();
+            listaProductos = listaProductos.OrderBy(p => p.Categoria).ToList();
 
             foreach (Producto oProducto in listaProductos)
             {

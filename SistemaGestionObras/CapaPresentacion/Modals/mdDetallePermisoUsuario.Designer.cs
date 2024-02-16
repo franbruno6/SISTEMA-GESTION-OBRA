@@ -38,19 +38,19 @@
             this.txtnombrecompleto = new System.Windows.Forms.TextBox();
             this.lblnombre = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tipoPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.datagridview = new System.Windows.Forms.DataGridView();
-            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label3 = new System.Windows.Forms.Label();
             this.lblsubtitulo = new System.Windows.Forms.Label();
             this.btnaccion = new FontAwesome.Sharp.IconButton();
             this.btneliminar = new FontAwesome.Sharp.IconButton();
             this.btnagregar = new FontAwesome.Sharp.IconButton();
             this.btnvolver = new FontAwesome.Sharp.IconButton();
+            this.btnseleccionar = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.IdComponente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipoPermiso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.estadoValor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
             // 
@@ -115,44 +115,10 @@
             this.label1.TabIndex = 78;
             this.label1.Text = "Información del Usuario";
             // 
-            // estadoValor
-            // 
-            this.estadoValor.HeaderText = "Estado";
-            this.estadoValor.Name = "estadoValor";
-            this.estadoValor.ReadOnly = true;
-            this.estadoValor.Width = 150;
-            // 
-            // tipoPermiso
-            // 
-            this.tipoPermiso.HeaderText = "Tipo de Permiso";
-            this.tipoPermiso.Name = "tipoPermiso";
-            this.tipoPermiso.ReadOnly = true;
-            this.tipoPermiso.Width = 150;
-            // 
-            // nombre
-            // 
-            this.nombre.HeaderText = "Nombre";
-            this.nombre.Name = "nombre";
-            this.nombre.ReadOnly = true;
-            this.nombre.Width = 250;
-            // 
-            // IdComponente
-            // 
-            this.IdComponente.HeaderText = "IdComponente";
-            this.IdComponente.Name = "IdComponente";
-            this.IdComponente.ReadOnly = true;
-            this.IdComponente.Visible = false;
-            // 
-            // btnseleccionar
-            // 
-            this.btnseleccionar.HeaderText = "";
-            this.btnseleccionar.Name = "btnseleccionar";
-            this.btnseleccionar.ReadOnly = true;
-            this.btnseleccionar.Width = 50;
-            // 
             // datagridview
             // 
             this.datagridview.AllowUserToAddRows = false;
+            this.datagridview.AllowUserToDeleteRows = false;
             this.datagridview.BackgroundColor = System.Drawing.Color.PaleGoldenrod;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -203,14 +169,6 @@
             this.datagridview.TabIndex = 77;
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
-            // 
-            // estado
-            // 
-            this.estado.HeaderText = "Estado";
-            this.estado.Name = "estado";
-            this.estado.ReadOnly = true;
-            this.estado.Visible = false;
-            this.estado.Width = 120;
             // 
             // label3
             // 
@@ -310,6 +268,49 @@
             this.btnvolver.UseVisualStyleBackColor = false;
             this.btnvolver.Click += new System.EventHandler(this.btnvolver_Click);
             // 
+            // btnseleccionar
+            // 
+            this.btnseleccionar.HeaderText = "";
+            this.btnseleccionar.Name = "btnseleccionar";
+            this.btnseleccionar.ReadOnly = true;
+            this.btnseleccionar.Width = 50;
+            // 
+            // IdComponente
+            // 
+            this.IdComponente.HeaderText = "IdComponente";
+            this.IdComponente.Name = "IdComponente";
+            this.IdComponente.ReadOnly = true;
+            this.IdComponente.Visible = false;
+            // 
+            // nombre
+            // 
+            this.nombre.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nombre.HeaderText = "Nombre";
+            this.nombre.Name = "nombre";
+            this.nombre.ReadOnly = true;
+            // 
+            // tipoPermiso
+            // 
+            this.tipoPermiso.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.tipoPermiso.HeaderText = "Tipo de Permiso";
+            this.tipoPermiso.Name = "tipoPermiso";
+            this.tipoPermiso.ReadOnly = true;
+            // 
+            // estado
+            // 
+            this.estado.HeaderText = "Estado";
+            this.estado.Name = "estado";
+            this.estado.ReadOnly = true;
+            this.estado.Visible = false;
+            this.estado.Width = 120;
+            // 
+            // estadoValor
+            // 
+            this.estadoValor.HeaderText = "Estado";
+            this.estadoValor.Name = "estadoValor";
+            this.estadoValor.ReadOnly = true;
+            this.estadoValor.Width = 150;
+            // 
             // mdDetallePermisoUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,6 +331,8 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lblsubtitulo);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mdDetallePermisoUsuario";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "mdDetallePermisoUsuario";
@@ -351,15 +354,15 @@
         private System.Windows.Forms.TextBox txtnombrecompleto;
         private System.Windows.Forms.Label lblnombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tipoPermiso;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
-        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
         private System.Windows.Forms.DataGridView datagridview;
-        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private FontAwesome.Sharp.IconButton btnvolver;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblsubtitulo;
+        private System.Windows.Forms.DataGridViewButtonColumn btnseleccionar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdComponente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nombre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipoPermiso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoValor;
     }
 }
