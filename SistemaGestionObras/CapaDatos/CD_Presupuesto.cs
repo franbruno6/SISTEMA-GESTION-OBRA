@@ -21,7 +21,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,");
+                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion,");
                     query.AppendLine("NombreCompleto, Telefono, Documento, Correo ");
                     query.AppendLine("from Presupuesto ");
                     query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
@@ -41,6 +41,7 @@ namespace CapaDatos
                             Localidad = dr["Localidad"].ToString(),
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
+                            Descripcion = dr["Descripcion"].ToString(),
 
                             oUsuario = new Usuario()
                             {
@@ -111,6 +112,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);
                     cmd.Parameters.AddWithValue("FechaRegistro", oPresupuesto.FechaRegistro);
+                    cmd.Parameters.AddWithValue("Descripcion", oPresupuesto.Descripcion);
                     cmd.Parameters.AddWithValue("DetallePresupuesto", listaDetalle);
 
                     //PARAMETROS DE SALIDA
@@ -200,6 +202,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Direccion", oPresupuesto.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);
+                    cmd.Parameters.AddWithValue("Descripcion", oPresupuesto.Descripcion);
                     cmd.Parameters.AddWithValue("DetallePresupuesto", listaDetalle);
 
                     //PARAMETROS DE SALIDA
@@ -268,7 +271,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,");
+                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion");
                     query.AppendLine("NombreCompleto, Telefono, Documento, Correo ");
                     query.AppendLine("from Presupuesto ");
                     query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
@@ -293,6 +296,7 @@ namespace CapaDatos
                             Localidad = dr["Localidad"].ToString(),
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
+                            Descripcion = dr["Descripcion"].ToString(),
 
                             oUsuario = new Usuario()
                             {

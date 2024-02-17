@@ -93,41 +93,9 @@ namespace CapaPresentacion.Modals
                 return;
             }
 
-            DataTable listaDetalle = new DataTable();
+            DataTable listaDetalle = GenerarListaDetalle();
 
-            listaDetalle.Columns.Add("IdProducto", typeof(int));
-            listaDetalle.Columns.Add("Precio", typeof(decimal));
-            listaDetalle.Columns.Add("Cantidad", typeof(int));
-            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
-
-            foreach (DataGridViewRow fila in datagridview.Rows)
-            {
-                listaDetalle.Rows.Add(
-                    fila.Cells["idProducto"].Value,
-                    fila.Cells["precio"].Value,
-                    fila.Cells["cantidad"].Value,
-                    fila.Cells["subTotal"].Value
-                );
-            }
-
-            Presupuesto oPresupuesto = new Presupuesto()
-            {
-                oUsuario = new Usuario()
-                {
-                    IdUsuario = _usuarioActual.IdUsuario
-                },
-                oCliente = new Cliente()
-                {
-                    IdCliente = Convert.ToInt32(txtidcliente.Text),
-                    NombreCompleto = txtnombrecliente.Text,
-                    Telefono = txttelefono.Text
-                },
-                IdPresupuesto = _idPresupuesto,
-                Direccion = txtdireccion.Text,
-                Localidad = txtlocalidad.Text,
-                MontoTotal = Convert.ToDecimal(txtmontototal.Text),
-                FechaRegistro = DateTime.Now
-            };
+            Presupuesto oPresupuesto = CrearPresupuesto(_oPresupuesto.NumeroPresupuesto);
 
             bool resultado = oCC_Presupuesto.EditarPresupuesto(oPresupuesto, listaDetalle, out string mensaje);
 
@@ -179,6 +147,7 @@ namespace CapaPresentacion.Modals
             txtlocalidad.Enabled = false;
             txtmontototal.Enabled = false;
             txtcorreo.Enabled = false;
+            txtdescripcion.Enabled = false;
 
             datagridview.Columns["cantidad"].ReadOnly = true;
             datagridview.ReadOnly = true;
@@ -193,6 +162,7 @@ namespace CapaPresentacion.Modals
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtcorreo.Text = _oPresupuesto.oCliente.Correo;
+            txtdescripcion.Text = _oPresupuesto.Descripcion;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
 
             MostrarDetalle();
@@ -212,10 +182,12 @@ namespace CapaPresentacion.Modals
             lblsubtitulo.Text = "Editar Presupuesto";
 
             txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
+            txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtcorreo.Text = _oPresupuesto.oCliente.Correo;
+            txtdescripcion.Text = _oPresupuesto.Descripcion;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
 
             MostrarDetalle();
@@ -296,8 +268,13 @@ namespace CapaPresentacion.Modals
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
-                FechaRegistro = DateTime.Now
+                FechaRegistro = DateTime.Now,
+                Descripcion = txtdescripcion.Text
             };
+            if (_tipoModal == "Editar")
+            {
+                oPresupuesto.IdPresupuesto = _idPresupuesto;
+            }
             return oPresupuesto;
         }
         private void btnbuscarcliente_Click(object sender, EventArgs e)

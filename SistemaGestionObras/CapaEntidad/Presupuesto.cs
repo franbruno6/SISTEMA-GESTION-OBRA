@@ -24,6 +24,7 @@ namespace CapaEntidad
         private string direccion;
         private string localidad;
         private decimal montoTotal;
+        private string descripcion;
         private DateTime fechaRegistro;
         #endregion
 
@@ -35,6 +36,7 @@ namespace CapaEntidad
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public string Localidad { get { return localidad; } set { localidad = value; } }
         public decimal MontoTotal { get { return montoTotal; } set { montoTotal = value; } }
+        public string Descripcion { get { return descripcion; } set { descripcion = value; } }
         public DateTime FechaRegistro { get { return fechaRegistro; } set { fechaRegistro = value; } }
         #endregion
     }

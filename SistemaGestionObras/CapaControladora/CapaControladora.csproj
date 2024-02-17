@@ -46,6 +46,7 @@
     <Compile Include="CC_GrupoPermiso.cs" />
     <Compile Include="CC_Presupuesto.cs" />
     <Compile Include="CC_Producto.cs" />
+    <Compile Include="CC_Reporte.cs" />
     <Compile Include="CC_Usuario.cs" />
     <Compile Include="CC_Permiso.cs" />
     <Compile Include="CC_UsuarioPermiso.cs" />

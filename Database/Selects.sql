@@ -45,7 +45,7 @@ where GrupoPermisoComponente.IdGrupoPermiso = @IdGrupoPermiso
 go
 
 --SELECT LISTA PRESUPUESTOS--
-select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad,
+select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion,
 NombreCompleto, Telefono, Documento, Correo
 from Presupuesto
 inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente

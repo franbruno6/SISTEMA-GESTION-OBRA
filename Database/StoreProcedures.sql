@@ -448,9 +448,12 @@ declare @Mensaje nvarchar(500)
 --exec SP_RegistrarPermiso 'Agregar Presupuesto','menuagregarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Presupuesto','menumodificarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Eliminar Presupuesto','menueliminarpresupuesto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Agregar Comprobante','menuagregarcomprobante',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Modificar Comprobante','menumodificarcomprobante',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Cancelar Comprobante','menucancelarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Agregar Comprobante','menuagregarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Modificar Comprobante','menumodificarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Cancelar Comprobante','menucancelarcomprobante',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Ver Menu Reporte','menureporte',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Ver Menu Reporte Presupuesto','menureportepresupuesto',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Ver Menu Reporte Comprobante','menureportecomprobante',@IdPermisoRegistrado output,@Mensaje output
 
 select @IdPermisoRegistrado
 
@@ -816,6 +819,7 @@ create procedure SP_RegistrarPresupuesto(
 @Localidad nvarchar(50),
 @MontoTotal decimal(18,2),
 @FechaRegistro date,
+@Descripcion nvarchar(100),
 @DetallePresupuesto [EDetallePresupuesto] readonly,
 @Resultado bit output,
 @Mensaje nvarchar(500) output
@@ -829,8 +833,8 @@ begin
 
 		begin transaction registro
 			
-			insert into Presupuesto(IdUsuario,IdCliente,NumeroPresupuesto,Direccion,Localidad,MontoTotal,FechaRegistro)
-			values(@IdUsuario,@IdCliente,@NumeroPresupuesto,@Direccion,@Localidad,@MontoTotal,@FechaRegistro)
+			insert into Presupuesto(IdUsuario,IdCliente,NumeroPresupuesto,Direccion,Localidad,MontoTotal,FechaRegistro,Descripcion)
+			values(@IdUsuario,@IdCliente,@NumeroPresupuesto,@Direccion,@Localidad,@MontoTotal,@FechaRegistro,@Descripcion)
 
 			set @IdPresupuesto = SCOPE_IDENTITY()
 
@@ -855,6 +859,7 @@ create procedure SP_EditarPresupuesto(
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
 @MontoTotal decimal(18,2),
+@Descripcion nvarchar(100),
 @DetallePresupuesto [EDetallePresupuesto] readonly,
 @Resultado bit output,
 @Mensaje nvarchar(500) output
@@ -873,7 +878,7 @@ begin
 			)
 			begin
 				update Presupuesto
-				set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal
+				set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal, Descripcion = @Descripcion
 				where IdPresupuesto = @IdPresupuesto
 
 				-- Eliminar las asociaciones existentes de componentes con el grupo
@@ -1035,3 +1040,21 @@ begin
 	end catch
 end
 go
+
+--PROCEDURE REPORTE PRESUPUESTO--
+create procedure SP_ReportePresupuesto(
+@FechaInicio varchar(20),
+@FechaFin varchar(20)
+)
+as
+begin
+	set dateformat dmy
+	select
+		convert(char(10),FechaRegistro,103)[FechaRegistro],NumeroPresupuesto,Presupuesto.Direccion,Presupuesto.Localidad,MontoTotal,Descripcion,
+		NombreCompleto, Correo
+		from Presupuesto
+		inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
+		inner join Persona on Cliente.IdPersona = Persona.IdPersona
+		where CONVERT(date,FechaRegistro) between @FechaInicio and @FechaFin
+end
+
