@@ -1057,4 +1057,3 @@ begin
 		inner join Persona on Cliente.IdPersona = Persona.IdPersona
 		where CONVERT(date,FechaRegistro) between @FechaInicio and @FechaFin
 end
-

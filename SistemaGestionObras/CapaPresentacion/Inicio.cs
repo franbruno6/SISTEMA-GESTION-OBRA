@@ -21,15 +21,6 @@ namespace CapaPresentacion
 
         public Inicio(Usuario oUsuario)
         {
-            //if (oUsuario == null)
-            //{
-            //    _usuarioActual = new Usuario() { NombreCompleto = "Admin", IdUsuario = 1 };
-            //    _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
-            //}
-            //else
-            //{
-            //    _usuarioActual = oUsuario;
-            //}
             _usuarioActual = oUsuario;
             _usuarioActual.SetPermisos(new CC_Permiso().ListarPermisosPorId(_usuarioActual.IdUsuario));
 
@@ -39,8 +30,6 @@ namespace CapaPresentacion
         {
             List<Permiso> listaPermisos = _usuarioActual.GetPermisos();
             
-            //List<Permiso> listaPermisos = new CC_Permiso().ListarPermisos(_usuarioActual.IdUsuario);
-
             foreach (IconMenuItem iconmenu in menu.Items)
             {
                 bool encontrado = listaPermisos.Any(p => p.NombreMenu == iconmenu.Name);
@@ -56,6 +45,20 @@ namespace CapaPresentacion
             }
 
             foreach (ToolStripMenuItem menu in menupermiso.DropDownItems)
+            {
+                bool encontrado = listaPermisos.Any(p => p.NombreMenu == menu.Name);
+
+                if (encontrado)
+                {
+                    menu.Visible = true;
+                }
+                else
+                {
+                    menu.Visible = false;
+                }
+            }
+
+            foreach (ToolStripMenuItem menu in menureporte.DropDownItems)
             {
                 bool encontrado = listaPermisos.Any(p => p.NombreMenu == menu.Name);
 

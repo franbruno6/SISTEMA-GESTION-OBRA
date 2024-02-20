@@ -61,7 +61,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS COMPROBANTES
             List<ComprobanteObra> listaComprobante = oCC_ComprobanteObra.ListarComprobante();
-            listaComprobante = listaComprobante.OrderBy(c => c.NumeroComprobante).ToList();
+            listaComprobante = listaComprobante.OrderByDescending(c => c.NumeroComprobante).ToList();
 
             foreach (ComprobanteObra oComprobante in listaComprobante)
             {

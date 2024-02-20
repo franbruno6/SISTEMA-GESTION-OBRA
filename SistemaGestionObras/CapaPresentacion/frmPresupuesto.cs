@@ -179,7 +179,22 @@ namespace CapaPresentacion
         }
         private void menumodificarpresupuesto_Click(object sender, EventArgs e)
         {
-            AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+            if (txtid.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Presupuesto oPresupuesto = oCC_Presupuesto.ListarPresupuestoSinComprobante().Where(p => p.IdPresupuesto == Convert.ToInt32(txtid.Text)).FirstOrDefault();
+                if (oPresupuesto != null)
+                {
+                    AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+                }
+                else
+                {
+                    MessageBox.Show("No se puede modificar el presupuesto. Esta asociado a un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
         }
         private void menueliminarpresupuesto_Click(object sender, EventArgs e)
         {
