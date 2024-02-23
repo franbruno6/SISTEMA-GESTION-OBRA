@@ -39,15 +39,15 @@
             this.menuproducto = new FontAwesome.Sharp.IconMenuItem();
             this.menupresupuesto = new FontAwesome.Sharp.IconMenuItem();
             this.menucomprobante = new FontAwesome.Sharp.IconMenuItem();
+            this.menureporte = new FontAwesome.Sharp.IconMenuItem();
+            this.menureportepresupuesto = new System.Windows.Forms.ToolStripMenuItem();
+            this.menureportecomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menutitulo = new System.Windows.Forms.MenuStrip();
             this.menusalir = new FontAwesome.Sharp.IconMenuItem();
             this.lblusuario = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.menureporte = new FontAwesome.Sharp.IconMenuItem();
-            this.menureportepresupuesto = new System.Windows.Forms.ToolStripMenuItem();
-            this.menureportecomprobante = new System.Windows.Forms.ToolStripMenuItem();
             this.menu.SuspendLayout();
             this.menutitulo.SuspendLayout();
             this.contenedor.SuspendLayout();
@@ -186,6 +186,36 @@
             this.menucomprobante.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.menucomprobante.Click += new System.EventHandler(this.menucomprobantes_Click);
             // 
+            // menureporte
+            // 
+            this.menureporte.AutoSize = false;
+            this.menureporte.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menureportepresupuesto,
+            this.menureportecomprobante});
+            this.menureporte.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.menureporte.IconChar = FontAwesome.Sharp.IconChar.LineChart;
+            this.menureporte.IconColor = System.Drawing.Color.Black;
+            this.menureporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.menureporte.IconSize = 40;
+            this.menureporte.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.menureporte.Name = "menureporte";
+            this.menureporte.Size = new System.Drawing.Size(122, 60);
+            this.menureporte.Text = "Reportes";
+            this.menureporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // menureportepresupuesto
+            // 
+            this.menureportepresupuesto.Name = "menureportepresupuesto";
+            this.menureportepresupuesto.Size = new System.Drawing.Size(176, 24);
+            this.menureportepresupuesto.Text = "Presupuestos";
+            this.menureportepresupuesto.Click += new System.EventHandler(this.menureportepresupuesto_Click);
+            // 
+            // menureportecomprobante
+            // 
+            this.menureportecomprobante.Name = "menureportecomprobante";
+            this.menureportecomprobante.Size = new System.Drawing.Size(176, 24);
+            this.menureportecomprobante.Text = "Comprobantes";
+            // 
             // menutitulo
             // 
             this.menutitulo.AutoSize = false;
@@ -257,36 +287,6 @@
             this.label1.Size = new System.Drawing.Size(253, 25);
             this.label1.TabIndex = 7;
             this.label1.Text = "Sistema Gestión de Obras";
-            // 
-            // menureporte
-            // 
-            this.menureporte.AutoSize = false;
-            this.menureporte.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menureportepresupuesto,
-            this.menureportecomprobante});
-            this.menureporte.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.menureporte.IconChar = FontAwesome.Sharp.IconChar.LineChart;
-            this.menureporte.IconColor = System.Drawing.Color.Black;
-            this.menureporte.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.menureporte.IconSize = 40;
-            this.menureporte.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.menureporte.Name = "menureporte";
-            this.menureporte.Size = new System.Drawing.Size(122, 60);
-            this.menureporte.Text = "Reportes";
-            this.menureporte.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // menureportepresupuesto
-            // 
-            this.menureportepresupuesto.Name = "menureportepresupuesto";
-            this.menureportepresupuesto.Size = new System.Drawing.Size(180, 24);
-            this.menureportepresupuesto.Text = "Presupuestos";
-            this.menureportepresupuesto.Click += new System.EventHandler(this.menureportepresupuesto_Click);
-            // 
-            // menureportecomprobante
-            // 
-            this.menureportecomprobante.Name = "menureportecomprobante";
-            this.menureportecomprobante.Size = new System.Drawing.Size(180, 24);
-            this.menureportecomprobante.Text = "Comprobantes";
             // 
             // Inicio
             // 

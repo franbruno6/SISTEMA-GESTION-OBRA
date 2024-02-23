@@ -1,6 +1,7 @@
 ﻿using CapaControladora;
 using CapaEntidad;
 using CapaPresentacion.CP_Usuario;
+using CapaPresentacion.Modals;
 using CapaPresentacion.Utilidades;
 using FontAwesome.Sharp;
 using System;
@@ -52,6 +53,7 @@ namespace CapaPresentacion
                 }
             }
             menuverusuario.Visible = true;
+            menuverpermisousuario.Visible = true;
 
             btnactualizar_Click(sender, e);
         }
@@ -186,6 +188,14 @@ namespace CapaPresentacion
             txtid.Text = "";
             txtidpersona.Text = "";
         }
+        private void AbrirModalPermisos(string tipoModal, int idUsuario)
+        {
+            using (var modal = new mdDetallePermisoUsuario(tipoModal, idUsuario))
+            {
+                var resultado = modal.ShowDialog();
+            }
+            btnactualizar_Click(null, null);
+        }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
             DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
@@ -239,6 +249,34 @@ namespace CapaPresentacion
             {
                 menuverusuario_Click(sender, e);
             }
+        }
+
+        private void menuverpermisousuario_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                AbrirModalPermisos("VerDetalle", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+        private void menueditarpermisousuario_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                AbrirModalPermisos("Editar", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

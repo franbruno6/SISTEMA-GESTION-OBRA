@@ -222,5 +222,10 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

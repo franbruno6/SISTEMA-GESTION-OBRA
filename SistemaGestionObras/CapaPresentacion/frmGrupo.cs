@@ -233,5 +233,10 @@ namespace CapaPresentacion
                 btnlimpiar_Click(sender, e);
             }
         }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -322,6 +322,5 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return listaPresupuestos;
         }
-
     }
 }

@@ -221,5 +221,58 @@ namespace CapaPresentacion
                 }
             }
         }
+
+        private void btncerrar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            btnbuscar_Click(sender, e);
+            if (txtbusqueda.Text.Trim() == "")
+            {
+                btnlimpiar_Click(sender, e);
+            }
+        }
+
+        private void btnbuscar_Click(object sender, EventArgs e)
+        {
+            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
+
+            if (datagridview.Rows.Count > 0)
+            {
+                foreach (DataGridViewRow fila in datagridview.Rows)
+                {
+                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
+                    {
+                        fila.Visible = true;
+                    }
+                    else
+                    {
+                        fila.Visible = false;
+                    }
+                }
+            }
+        }
+
+        private void btnlimpiar_Click(object sender, EventArgs e)
+        {
+            txtbusqueda.Text = "";
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                fila.Visible = true;
+            }
+
+            datagridview.ClearSelection();
+            txtid.Text = "";
+            txtidpresupuesto.Text = "";
+        }
+
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtbusqueda_TextChanged(null,null);
+        }
     }
 }

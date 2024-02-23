@@ -80,13 +80,14 @@ namespace CapaPresentacion
             {
                 _menuActivo.BackColor = Color.PaleGoldenrod;
             }
-            menu.BackColor = Color.Silver;
-            _menuActivo = menu;
 
             if (_formularioActivo != null)
             {
                 _formularioActivo.Close();
             }
+
+            menu.BackColor = Color.Silver;
+            _menuActivo = menu;
 
             //CONFIGURO EL FORMULARIO
             _formularioActivo = formulario;
@@ -98,8 +99,15 @@ namespace CapaPresentacion
             //AGREGO EL FORMULARIO AL CONTENEDOR
             contenedor.Controls.Add(formulario);
             formulario.Show();
-        }
 
+            formulario.FormClosing += Form_FormClosing;
+        }
+        private void Form_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _menuActivo.BackColor = Color.PaleGoldenrod;
+            _menuActivo = null;
+            _formularioActivo = null;
+        }
         private void menuusarios_Click(object sender, EventArgs e)
         {
             AbrirFormulario((IconMenuItem)sender, new frmUsuario(_usuarioActual));

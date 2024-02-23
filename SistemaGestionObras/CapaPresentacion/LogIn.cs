@@ -1,5 +1,6 @@
 ﻿using CapaControladora;
 using CapaEntidad;
+using CapaPresentacion.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,19 +26,27 @@ namespace CapaPresentacion
         }
         private void btningresar_Click(object sender, EventArgs e)
         {
+            if (!Validaciones.ValidarCamposVacios(Controls))
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text).FirstOrDefault();
 
             if (oUsuario != null)
             {
+                if (oUsuario.Estado == false)
+                {
+                    MessageBox.Show("El usuario se encuentra inactivo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                
                 bool claveCorrecta = oUsuario.VerificarClave(txtclave.Text);
 
                 if (claveCorrecta)
                 {
-                    if (oUsuario.Estado == false)
-                    {
-                        MessageBox.Show("El usuario se encuentra inactivo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        return;
-                    }
                     
                     Inicio inicio = new Inicio(oUsuario);
 

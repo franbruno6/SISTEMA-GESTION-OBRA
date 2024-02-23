@@ -21,7 +21,6 @@ namespace CapaPresentacion.Modals
         {
             InitializeComponent();
         }
-
         private void mdAgregarComponenteAGrupo_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR

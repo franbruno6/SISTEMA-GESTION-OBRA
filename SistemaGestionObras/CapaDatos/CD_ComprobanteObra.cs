@@ -227,6 +227,5 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return resultado;
         }
-
     }
 }
