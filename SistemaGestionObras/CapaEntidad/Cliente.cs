@@ -1,5 +1,4 @@
-﻿using CapaEntidad.Observer;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class Cliente : Persona, IObservadorCliente
+    public class Cliente : Persona
     {
         #region Variables Privadas
         private int idCliente;
@@ -25,11 +24,5 @@ namespace CapaEntidad
         public bool Estado { get { return estado; } set { estado = value; } }
         #endregion
 
-        #region Observer
-        public void Actualizar(ComprobanteObra comprobante)
-        {
-            
-        }
-        #endregion
     }
 }

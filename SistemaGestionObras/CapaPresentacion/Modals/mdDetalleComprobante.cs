@@ -71,22 +71,7 @@ namespace CapaPresentacion.Modals
                 return;
             }
 
-            DataTable listaDetalle = new DataTable();
-
-            listaDetalle.Columns.Add("IdProducto", typeof(int));
-            listaDetalle.Columns.Add("Precio", typeof(decimal));
-            listaDetalle.Columns.Add("Cantidad", typeof(int));
-            listaDetalle.Columns.Add("MontoTotal", typeof(decimal));
-
-            foreach (DataGridViewRow fila in datagridview.Rows)
-            {
-                listaDetalle.Rows.Add(
-                    fila.Cells["idProducto"].Value,
-                    fila.Cells["precio"].Value,
-                    fila.Cells["cantidad"].Value,
-                    fila.Cells["subTotal"].Value
-                );
-            }
+            DataTable listaDetalle = CrearDataTable();
 
             int idCorrelativo = oCC_ComprobanteObra.ObtenerCorrelativo();
             string numeroComprobante = string.Format("{0}", idCorrelativo.ToString().PadLeft(4, '0'));
@@ -109,6 +94,7 @@ namespace CapaPresentacion.Modals
 
             if (resultado)
             {
+                oComprobanteObra.Accion();
                 MessageBox.Show("Comprobante de obra numero " + numeroComprobante + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.DialogResult = DialogResult.OK;
             }
@@ -116,6 +102,26 @@ namespace CapaPresentacion.Modals
             {
                 MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+        private DataTable CrearDataTable()
+        {
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("IdProducto", typeof(int));
+            dt.Columns.Add("Precio", typeof(decimal));
+            dt.Columns.Add("Cantidad", typeof(int));
+            dt.Columns.Add("MontoTotal", typeof(decimal));
+
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                dt.Rows.Add(
+                    fila.Cells["idProducto"].Value,
+                    fila.Cells["precio"].Value,
+                    fila.Cells["cantidad"].Value,
+                    fila.Cells["subTotal"].Value
+                );
+            }
+            return dt;
         }
         private void ConfigurarAgregar()
         {
@@ -165,7 +171,8 @@ namespace CapaPresentacion.Modals
             txtcorreo.Text = _oComprobante.oCliente.Correo;
             txtdireccion.Text = _oComprobante.Direccion;
             txtlocalidad.Text = _oComprobante.Localidad;
-            txtestadoobra.Text = _oComprobante.EstadoObra;
+            //txtestadoobra.Text = _oComprobante.EstadoObra;
+            txtestadoobra.Text = _oComprobante.GetEstado();
 
             txtadelanto.Enabled = false;
             txtdireccion.Enabled = false;
@@ -197,7 +204,7 @@ namespace CapaPresentacion.Modals
             datagridview.Enabled = false;
             datagridview.ClearSelection();
 
-            if (_oComprobante.EstadoObra == "Cuenta saldada")
+            if (_oComprobante.GetEstado() == "Cuenta saldada")
             {
                 txtadelanto.Visible = false;
                 lbladelanto.Visible = false;

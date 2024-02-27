@@ -1,4 +1,4 @@
-﻿using CapaEntidad.Observer;
+﻿using CapaEntidad.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CapaEntidad
 {
-    public class ComprobanteObra : ISujetoComprobante
+    public class ComprobanteObra
     {
         #region Constructor
         public ComprobanteObra()
@@ -15,7 +15,7 @@ namespace CapaEntidad
             oPresupuesto = new Presupuesto();
             oUsuario = new Usuario();
             oCliente = new Cliente();
-            observadores = new List<IObservadorCliente>();
+            estadoObra = new Pendiente();
         }
         #endregion
 
@@ -26,7 +26,8 @@ namespace CapaEntidad
         private Cliente cliente;
         private string numeroComprobante;
         private decimal montoTotal;
-        private string estadoObra;
+        private Estado estadoObra;
+        //private string estadoObra;
         private DateTime fechaRegistro;
         private string direccion;
         private string localidad;
@@ -45,50 +46,26 @@ namespace CapaEntidad
         public decimal MontoTotal { get {  return montoTotal; } set {  montoTotal = value; } }
         public decimal Adelanto { get {  return adelanto; } set {  adelanto = value; } }
         public decimal Saldo { get {  return saldo; } set {  saldo = value; } }
-        public string EstadoObra { 
-            get 
-            {  
-                return estadoObra; 
-            } 
-            set
-            {  
-                estadoObra = value; 
-                this.NotificarObservadores();
-            } 
-        }
+
         public DateTime FechaRegistro { get {  return fechaRegistro; } set {  fechaRegistro = value; } }
         #endregion
 
-        #region Observer
-        private List<IObservadorCliente> observadores;
-        public void AgregarObservador(IObservadorCliente observador)
+        #region State
+        public void SetEstado(Estado estado)
         {
-            if (!observadores.Contains(observador))
-            {
-                observadores.Add(observador);
-            }
-            else
-            {
-                throw new Exception("El cliente ya se encuentra registrado");
-            }
+            estadoObra = estado;
         }
-        public void EliminarObservador(IObservadorCliente observador)
+        public string GetEstado()
         {
-            if (observadores.Contains(observador))
-            {
-                observadores.Remove(observador);
-            }
-            else
-            {
-                throw new Exception("El cliente no se encuentra registrado");
-            }
+            return estadoObra.Valor;
         }
-        public void NotificarObservadores()
+        public void CambiarEstado()
         {
-            foreach (IObservadorCliente observador in observadores)
-            {
-                observador.Actualizar(this);
-            }
+            estadoObra.CambiarEstado(this);
+        }
+        public void Accion()
+        {
+            estadoObra.Accion(this);
         }
         #endregion
 

@@ -38,7 +38,7 @@ namespace CapaPresentacion.Modals
                 new OpcionCombo("Finalizada", "Finalizada"),
                 new OpcionCombo("Cuenta saldada", "Cuenta saldada")
             };
-            switch (_oComprobanteObra.EstadoObra)
+            switch (_oComprobanteObra.GetEstado())
             {
                 case "Pendiente":
                     cboestado.SelectedIndex = 0;

@@ -33,6 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -47,14 +48,18 @@
     <Compile Include="DetalleComprobanteObra.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="GrupoPermiso.cs" />
-    <Compile Include="Observer\IObservadorCliente.cs" />
-    <Compile Include="Observer\ISujetoComprobante.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Presupuesto.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportePresupuesto.cs" />
+    <Compile Include="State\Cancelada.cs" />
+    <Compile Include="State\CuentaSaldada.cs" />
+    <Compile Include="State\EnCurso.cs" />
+    <Compile Include="State\Estado.cs" />
+    <Compile Include="State\Finalizada.cs" />
+    <Compile Include="State\Pendiente.cs" />
     <Compile Include="Usuario.cs" />
   </ItemGroup>
   <ItemGroup />

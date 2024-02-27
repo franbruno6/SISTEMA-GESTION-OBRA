@@ -103,5 +103,13 @@ namespace CapaPresentacion.Modals
         {
             this.Close();
         }
+        private void txtbusqueda_TextChanged(object sender, EventArgs e)
+        {
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
+        }
+        private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
+        }
     }
 }

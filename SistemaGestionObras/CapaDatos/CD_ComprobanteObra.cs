@@ -1,4 +1,5 @@
 ﻿using CapaEntidad;
+using CapaEntidad.State;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -38,7 +39,7 @@ namespace CapaDatos
                             NumeroComprobante = dr["NumeroComprobante"].ToString(),
                             Direccion = dr["Direccion"].ToString(),
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
-                            EstadoObra = dr["EstadoObra"].ToString(),
+                            //EstadoObra = dr["EstadoObra"].ToString(),
                             Localidad = dr["Localidad"].ToString(),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
                             Saldo = Convert.ToDecimal(dr["Saldo"]),
@@ -59,6 +60,25 @@ namespace CapaDatos
                                 IdPresupuesto = Convert.ToInt32(dr["IdPresupuesto"])
                             }
                         };
+                        string estado = dr["EstadoObra"].ToString();
+                        switch (estado)
+                        {
+                            case "Pendiente":
+                                oComprobante.SetEstado(new Pendiente());
+                                break;
+                            case "En curso":
+                                oComprobante.SetEstado(new EnCurso());
+                                break;
+                            case "Finalizada":
+                                oComprobante.SetEstado(new Finalizada());
+                                break;
+                            case "Cuenta saldada":
+                                oComprobante.SetEstado(new CuentaSaldada());
+                                break;
+                            case "Cancelada":
+                                oComprobante.SetEstado(new Cancelada());
+                                break;
+                        }
 
                         listaComprobantes.Add(oComprobante);
                     }

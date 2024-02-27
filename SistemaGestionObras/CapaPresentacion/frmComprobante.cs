@@ -98,19 +98,25 @@ namespace CapaPresentacion
         {
             if (txtid.Text.Trim() != "")
             {
+                ComprobanteObra oComprobante = oCC_ComprobanteObra.ListarComprobante().Where(c => c.IdComprobanteObra == Convert.ToInt32(txtid.Text)).FirstOrDefault();
                 int indiceFila = datagridview.CurrentRow.Index;
-                string estadoObra = datagridview.Rows[indiceFila].Cells["estado"].Value.ToString();
+                string estadoObra = oComprobante.GetEstado();
                 if (estadoObra == "Cuenta saldada")
                 {
-                    MessageBox.Show("No se puede modificar el comprobante numero " + datagridview.Rows[indiceFila].Cells["numeroComprobante"].Value.ToString() + " porque ya esta finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque ya esta finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else if (estadoObra == "Cancelada")
                 {
-                    MessageBox.Show("No se puede modificar el comprobante numero " + datagridview.Rows[indiceFila].Cells["numeroComprobante"].Value.ToString() + " porque ya esta cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque ya esta cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                AbrirModal("Modificar", Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpresupuesto.Text));
+                if (MessageBox.Show("Esta seguro de modificar el comprobante numero " + oComprobante.NumeroComprobante + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    oComprobante.CambiarEstado();
+                    oComprobante.Accion();
+                }
+                //AbrirModal("Modificar", Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpresupuesto.Text));
             }
             else
             {
@@ -149,7 +155,7 @@ namespace CapaPresentacion
                     oComprobante.Direccion,
                     oComprobante.Localidad,
                     oComprobante.MontoTotal,
-                    oComprobante.EstadoObra,
+                    oComprobante.GetEstado(),
                     oComprobante.FechaRegistro.ToString("dd-MM-yyyy")
                     );
             }
@@ -185,30 +191,11 @@ namespace CapaPresentacion
         }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
-            btnbuscar_Click(sender, e);
-            if (txtbusqueda.Text.Trim() == "")
-            {
-                btnlimpiar_Click(sender, e);
-            }
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
         }
         private void btnbuscar_Click(object sender, EventArgs e)
         {
-            string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
-
-            if (datagridview.Rows.Count > 0)
-            {
-                foreach (DataGridViewRow fila in datagridview.Rows)
-                {
-                    if (fila.Cells[columnaFiltro].Value.ToString().Trim().ToUpper().Contains(txtbusqueda.Text.Trim().ToUpper()))
-                    {
-                        fila.Visible = true;
-                    }
-                    else
-                    {
-                        fila.Visible = false;
-                    }
-                }
-            }
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
         }
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
@@ -225,7 +212,7 @@ namespace CapaPresentacion
         }
         private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtbusqueda_TextChanged(null,null);
+            DataGridViewU.FiltrarDataGridView(datagridview, cbobusqueda, txtbusqueda);
         }
         private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
