@@ -74,15 +74,22 @@ namespace CapaPresentacion
         }
         private void menuverdetallepermisosimple_Click(object sender, EventArgs e)
         {
-            AbrirModal();
+            if (txtid.Text.Trim() != "")
+            {
+                AbrirModal();
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un permiso", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
         private void menumodificarestadopermiso_Click(object sender, EventArgs e)
         {
             if (txtid.Text.Trim() != "")
             {
                 string estado = datagridview.Rows[datagridview.CurrentRow.Index].Cells["estadoValor"].Value.ToString();
-                string nuevoEstado = string.Empty;
-                bool valorEstado = true;
+                string nuevoEstado;
+                bool valorEstado;
                 if (estado == "Activo")
                 {
                     nuevoEstado = "Inactivo";
@@ -96,9 +103,7 @@ namespace CapaPresentacion
 
                 if (MessageBox.Show("¿Está seguro de cambiar el estado de permiso a " + nuevoEstado + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string mensaje = string.Empty;
-
-                    bool editado = oCCPermiso.EditarEstado(Convert.ToInt32(txtidcomponente.Text), valorEstado, out mensaje);
+                    bool editado = oCCPermiso.EditarEstado(Convert.ToInt32(txtidcomponente.Text), valorEstado, out string mensaje);
 
                     if (editado)
                     {
@@ -233,7 +238,6 @@ namespace CapaPresentacion
             }
             
         }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();

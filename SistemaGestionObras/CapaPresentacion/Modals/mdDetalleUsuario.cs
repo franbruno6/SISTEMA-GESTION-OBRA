@@ -33,13 +33,10 @@ namespace CapaPresentacion.CP_Usuario
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
-            if (_tipoModal != "RestablacerClave")
+            if (!Validaciones.ValidarCamposVacios(Controls))
             {
-                if (!Validaciones.ValidarCamposVacios(Controls))
-                {
-                    MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
             if (panelclave.Visible == true)
             {
@@ -216,6 +213,9 @@ namespace CapaPresentacion.CP_Usuario
 
             btnaccion.IconChar = FontAwesome.Sharp.IconChar.Key;
             btnaccion.Text = "Restablecer Contraseña";
+
+            this.Height = 320;
+            this.Width = 1215;
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {

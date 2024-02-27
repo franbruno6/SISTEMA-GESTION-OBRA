@@ -55,50 +55,6 @@ namespace CapaPresentacion
 
             btnactualizar_Click(null, null);
         }
-        private void btnactualizar_Click(object sender, EventArgs e)
-        {
-            datagridview.Rows.Clear();
-
-            //MOSTRAR LOS COMPROBANTES
-            List<ComprobanteObra> listaComprobante = oCC_ComprobanteObra.ListarComprobante();
-            listaComprobante = listaComprobante.OrderByDescending(c => c.NumeroComprobante).ToList();
-
-            foreach (ComprobanteObra oComprobante in listaComprobante)
-            {
-                datagridview.Rows.Add(
-                    "",
-                    oComprobante.IdComprobanteObra,
-                    oComprobante.oPresupuesto.IdPresupuesto,
-                    oComprobante.oUsuario.IdUsuario,
-                    oComprobante.NumeroComprobante,
-                    oComprobante.oCliente.NombreCompleto,
-                    oComprobante.oCliente.Telefono,
-                    oComprobante.Direccion,
-                    oComprobante.Localidad,
-                    oComprobante.MontoTotal,
-                    oComprobante.EstadoObra,
-                    oComprobante.FechaRegistro.ToString("dd-MM-yyyy")
-                    );
-            }
-
-            //CONFIGURA QUE NO ESTE SELECCIONADA NINGUNA FILA
-            datagridview.ClearSelection();
-
-            txtid.Text = "";
-            txtidpresupuesto.Text = "";
-        }
-        private void menuagregarcomprobante_Click(object sender, EventArgs e)
-        {
-            using (var modal = new mdListaPresupuestos())
-            {
-                var resultado = modal.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    AbrirModal("Agregar", 0, modal.IdPresupuesto);
-                }
-            }
-        }
         private void AbrirModal(string tipoModal, int idComprobante, int idPresupuesto)
         {
             if (tipoModal == "Modificar")
@@ -115,26 +71,16 @@ namespace CapaPresentacion
                 var resultado = modal.ShowDialog();
             }
         }
-        private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        private void menuagregarcomprobante_Click(object sender, EventArgs e)
         {
-            if (e.RowIndex < 0)
+            using (var modal = new mdListaPresupuestos())
             {
-                return;
-            }
+                var resultado = modal.ShowDialog();
 
-            if (e.ColumnIndex == 0)
-            {
-                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
-
-                e.PaintBackground(e.ClipBounds, true);
-
-                var w = Properties.Resources.check.Width;
-                var h = Properties.Resources.check.Height;
-                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
-                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
-
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
-                e.Handled = true;
+                if (resultado == DialogResult.OK)
+                {
+                    AbrirModal("Agregar", 0, modal.IdPresupuesto);
+                }
             }
         }
         private void menuvercomprobante_Click(object sender, EventArgs e)
@@ -146,26 +92,6 @@ namespace CapaPresentacion
             else
             {
                 MessageBox.Show("Debe seleccionar un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int indice = e.RowIndex;
-
-            if (indice >= 0)
-            {
-                txtid.Text = datagridview.Rows[indice].Cells["idComprobante"].Value.ToString();
-                txtidpresupuesto.Text = datagridview.Rows[indice].Cells["idPresupuesto"].Value.ToString();
-            }
-        }
-        private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            int indiceFila = e.RowIndex;
-            int indiceColumna = e.ColumnIndex;
-
-            if (indiceFila >= 0 && indiceColumna >= 0)
-            {
-                menuvercomprobante_Click(sender, e);
             }
         }
         private void menumodificarcomprobante_Click(object sender, EventArgs e)
@@ -202,6 +128,38 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+        private void btnactualizar_Click(object sender, EventArgs e)
+        {
+            datagridview.Rows.Clear();
+
+            //MOSTRAR LOS COMPROBANTES
+            List<ComprobanteObra> listaComprobante = oCC_ComprobanteObra.ListarComprobante();
+            listaComprobante = listaComprobante.OrderByDescending(c => int.Parse(c.NumeroComprobante.PadLeft(4,'0'))).ToList();
+
+            foreach (ComprobanteObra oComprobante in listaComprobante)
+            {
+                datagridview.Rows.Add(
+                    "",
+                    oComprobante.IdComprobanteObra,
+                    oComprobante.oPresupuesto.IdPresupuesto,
+                    oComprobante.oUsuario.IdUsuario,
+                    oComprobante.NumeroComprobante,
+                    oComprobante.oCliente.NombreCompleto,
+                    oComprobante.oCliente.Telefono,
+                    oComprobante.Direccion,
+                    oComprobante.Localidad,
+                    oComprobante.MontoTotal,
+                    oComprobante.EstadoObra,
+                    oComprobante.FechaRegistro.ToString("dd-MM-yyyy")
+                    );
+            }
+
+            //CONFIGURA QUE NO ESTE SELECCIONADA NINGUNA FILA
+            datagridview.ClearSelection();
+
+            txtid.Text = "";
+            txtidpresupuesto.Text = "";
+        }
         private void CancelarComprobante()
         {
             ComprobanteObra oComprobante = oCC_ComprobanteObra.ListarComprobante().Where(c => c.IdComprobanteObra == Convert.ToInt32(txtid.Text)).FirstOrDefault();
@@ -221,12 +179,10 @@ namespace CapaPresentacion
                 }
             }
         }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
             btnbuscar_Click(sender, e);
@@ -235,7 +191,6 @@ namespace CapaPresentacion
                 btnlimpiar_Click(sender, e);
             }
         }
-
         private void btnbuscar_Click(object sender, EventArgs e)
         {
             string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
@@ -255,7 +210,6 @@ namespace CapaPresentacion
                 }
             }
         }
-
         private void btnlimpiar_Click(object sender, EventArgs e)
         {
             txtbusqueda.Text = "";
@@ -269,10 +223,51 @@ namespace CapaPresentacion
             txtid.Text = "";
             txtidpresupuesto.Text = "";
         }
-
         private void cbobusqueda_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtbusqueda_TextChanged(null,null);
+        }
+        private void datagridview_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            if (e.RowIndex < 0)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == 0)
+            {
+                e.Paint(e.CellBounds, DataGridViewPaintParts.All);
+
+                e.PaintBackground(e.ClipBounds, true);
+
+                var w = Properties.Resources.check.Width;
+                var h = Properties.Resources.check.Height;
+                var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
+                var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
+
+                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Handled = true;
+            }
+        }
+        private void datagridview_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int indice = e.RowIndex;
+
+            if (indice >= 0)
+            {
+                txtid.Text = datagridview.Rows[indice].Cells["idComprobante"].Value.ToString();
+                txtidpresupuesto.Text = datagridview.Rows[indice].Cells["idPresupuesto"].Value.ToString();
+            }
+        }
+        private void datagridview_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int indiceFila = e.RowIndex;
+            int indiceColumna = e.ColumnIndex;
+
+            if (indiceFila >= 0 && indiceColumna >= 0)
+            {
+                menuvercomprobante_Click(sender, e);
+            }
         }
     }
 }

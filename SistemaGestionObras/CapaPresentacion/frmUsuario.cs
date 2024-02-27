@@ -250,7 +250,6 @@ namespace CapaPresentacion
                 menuverusuario_Click(sender, e);
             }
         }
-
         private void menuverpermisousuario_Click(object sender, EventArgs e)
         {
             if (txtid.Text.Trim() != "")
@@ -273,7 +272,6 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe seleccionar un usuario", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
         }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();

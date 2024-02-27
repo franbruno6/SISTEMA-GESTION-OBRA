@@ -19,7 +19,6 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
         private void btncancelar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -31,7 +30,6 @@ namespace CapaPresentacion
                 MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-
 
             Usuario oUsuario = new CC_Usuario().ListarUsuarios().Where(u => u.Documento == txtnumerodocumento.Text).FirstOrDefault();
 
@@ -47,7 +45,6 @@ namespace CapaPresentacion
 
                 if (claveCorrecta)
                 {
-                    
                     Inicio inicio = new Inicio(oUsuario);
 
                     inicio.Show();
@@ -72,14 +69,12 @@ namespace CapaPresentacion
             txtnumerodocumento.Select();
             this.Show();
         }
-
         private void LogIn_Paint(object sender, PaintEventArgs e)
         {
             Rectangle rect = new Rectangle(0, 0, this.Width, this.Height);
 
             ControlPaint.DrawBorder(e.Graphics, rect, Color.Black, 2, ButtonBorderStyle.Solid, Color.Black, 2, ButtonBorderStyle.Solid, Color.Black, 2, ButtonBorderStyle.Solid, Color.Black, 2, ButtonBorderStyle.Solid);
         }
-
         private void txtnumerodocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)13)

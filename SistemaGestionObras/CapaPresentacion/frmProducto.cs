@@ -24,7 +24,6 @@ namespace CapaPresentacion
             _usuarioActual = oUsuario;
             InitializeComponent();
         }
-
         private void frmProducto_Load(object sender, EventArgs e)
         {
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
@@ -57,14 +56,13 @@ namespace CapaPresentacion
 
             btnactualizar_Click(sender, e);
         }
-
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
 
             //MOSTRAR LOS PRODUCTOS
             List<Producto> listaProductos = oCC_Producto.ListarProductos();
-            listaProductos = listaProductos.OrderBy(p => p.Categoria).ToList();
+            listaProductos = listaProductos.OrderBy(p => int.Parse(p.Codigo.PadLeft(4,'0'))).ToList();
 
             foreach (Producto oProducto in listaProductos)
             {
@@ -125,9 +123,7 @@ namespace CapaPresentacion
             {
                 if (MessageBox.Show("¿Está seguro de eliminar el producto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string mensaje = string.Empty;
-
-                    bool eliminado = oCC_Producto.EliminarProducto(Convert.ToInt32(txtid.Text), out mensaje);
+                    bool eliminado = oCC_Producto.EliminarProducto(Convert.ToInt32(txtid.Text), out string mensaje);
 
                     if (eliminado)
                     {
@@ -233,7 +229,6 @@ namespace CapaPresentacion
                 menuverproducto_Click(sender, e);
             }
         }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();

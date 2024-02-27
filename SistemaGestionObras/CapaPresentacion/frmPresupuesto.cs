@@ -55,13 +55,81 @@ namespace CapaPresentacion
 
             btnactualizar_Click(sender, e);
         }
+        private void AbrirModal(string tipoModal, int idPresupuesto)
+        {
+            using (var modal = new mdDetallePresupuesto(tipoModal, idPresupuesto, _usuarioActual))
+            {
+                var resultado = modal.ShowDialog();
+            }
+            btnactualizar_Click(null, null);
+        }
+        private void menuverpresupuesto_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }   
+        }
+        private void menuagregarpresupuesto_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Agregar",0);
+        }
+        private void menumodificarpresupuesto_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() == "")
+            {
+                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            else
+            {
+                Presupuesto oPresupuesto = oCC_Presupuesto.ListarPresupuestoSinComprobante().Where(p => p.IdPresupuesto == Convert.ToInt32(txtid.Text)).FirstOrDefault();
+                if (oPresupuesto != null)
+                {
+                    AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+                }
+                else
+                {
+                    MessageBox.Show("No se puede modificar el presupuesto. Esta asociado a un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+        }
+        private void menueliminarpresupuesto_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text.Trim() != "")
+            {
+                if (MessageBox.Show("¿Está seguro de eliminar el presupuesto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string mensaje = string.Empty;
+
+                    bool eliminado = oCC_Presupuesto.EliminarPresupuesto(Convert.ToInt32(txtid.Text), out mensaje);
+
+                    if (eliminado)
+                    {
+                        MessageBox.Show("Presupuesto eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(sender, e);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
 
             //MOSTRAR LOS PRESUPUESTOS
             List<Presupuesto> listaPresupuestos = oCC_Presupuesto.ListarPresupuestos();
-            listaPresupuestos = listaPresupuestos.OrderByDescending(p => p.NumeroPresupuesto).ToList();
+            listaPresupuestos = listaPresupuestos.OrderByDescending(p => int.Parse(p.NumeroPresupuesto.PadLeft(4,'0'))).ToList();
 
             foreach (Presupuesto oPresupuesto in listaPresupuestos)
             {
@@ -154,75 +222,6 @@ namespace CapaPresentacion
                 menuverpresupuesto_Click(sender, e);
             }
         }
-        private void menuverpresupuesto_Click(object sender, EventArgs e)
-        {
-            if (txtid.Text.Trim() != "")
-            {
-                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }   
-        }
-        private void menuagregarpresupuesto_Click(object sender, EventArgs e)
-        {
-            AbrirModal("Agregar",0);
-        }
-        private void AbrirModal(string tipoModal, int idPresupuesto)
-        {
-            using (var modal = new mdDetallePresupuesto(tipoModal, idPresupuesto, _usuarioActual))
-            {
-                var resultado = modal.ShowDialog();
-            }
-            btnactualizar_Click(null, null);
-        }
-        private void menumodificarpresupuesto_Click(object sender, EventArgs e)
-        {
-            if (txtid.Text.Trim() == "")
-            {
-                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            else
-            {
-                Presupuesto oPresupuesto = oCC_Presupuesto.ListarPresupuestoSinComprobante().Where(p => p.IdPresupuesto == Convert.ToInt32(txtid.Text)).FirstOrDefault();
-                if (oPresupuesto != null)
-                {
-                    AbrirModal("Editar", Convert.ToInt32(txtid.Text));
-                }
-                else
-                {
-                    MessageBox.Show("No se puede modificar el presupuesto. Esta asociado a un comprobante", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-            }
-        }
-        private void menueliminarpresupuesto_Click(object sender, EventArgs e)
-        {
-            if (txtid.Text.Trim() != "")
-            {
-                if (MessageBox.Show("¿Está seguro de eliminar el presupuesto?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-                {
-                    string mensaje = string.Empty;
-
-                    bool eliminado = oCC_Presupuesto.EliminarPresupuesto(Convert.ToInt32(txtid.Text), out mensaje);
-
-                    if (eliminado)
-                    {
-                        MessageBox.Show("Presupuesto eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnactualizar_Click(sender, e);
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un presupuesto", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();

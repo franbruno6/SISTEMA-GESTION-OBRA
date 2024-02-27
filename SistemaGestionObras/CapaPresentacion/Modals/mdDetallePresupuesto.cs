@@ -437,7 +437,6 @@ namespace CapaPresentacion.Modals
         {
             e.Handled = true;
         }
-
         private void txtlocalidad_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsLetter(e.KeyChar) || Char.IsControl(e.KeyChar))

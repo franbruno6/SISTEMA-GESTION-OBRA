@@ -197,7 +197,7 @@ namespace CapaPresentacion.Modals
         }
         private void btnagregar_Click(object sender, EventArgs e)
         {
-            using (var modal = new mdAgregarComponenteAGrupo())
+            using (var modal = new mdAgregarComponenteAGrupo(""))
             {
                 var resultado = modal.ShowDialog();
 

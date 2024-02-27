@@ -17,12 +17,20 @@ namespace CapaPresentacion.Modals
     {
         private CC_GrupoPermiso oCC_GrupoPermiso = new CC_GrupoPermiso();
         public Componente oComponente { get; set; }
-        public mdAgregarComponenteAGrupo()
+        public string _tipoModal;
+        public mdAgregarComponenteAGrupo(string tipoModal)
         {
+            _tipoModal = tipoModal;
+            
             InitializeComponent();
         }
         private void mdAgregarComponenteAGrupo_Load(object sender, EventArgs e)
         {
+            if (_tipoModal == "Usuario")
+            {
+                lblsubtitulo.Text = "Agregar Permiso a Usuario";
+            }
+
             //CONFIGURACION DEL OPCION COMBO SELECCIONAR
             foreach (DataGridViewColumn columna in datagridview.Columns)
             {

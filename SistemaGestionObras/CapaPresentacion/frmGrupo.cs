@@ -55,6 +55,68 @@ namespace CapaPresentacion
 
             btnactualizar_Click(sender, e);
         }
+        private void AbrirModal(string tipoModal, int idGrupoPermiso)
+        {
+            using (var modal = new mdDetalleGrupoPermiso(tipoModal, idGrupoPermiso))
+            {
+                var resultado = modal.ShowDialog();
+
+                if (resultado == DialogResult.OK)
+                {
+                    btnactualizar_Click(null, null);
+                }
+            }
+        }
+        private void menuvergrupo_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "")
+            {
+                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+        private void menuagregargrupo_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Agregar", 0);
+        }
+        private void menumodificargrupo_Click(object sender, EventArgs e)
+        {
+            AbrirModal("Editar", Convert.ToInt32(txtid.Text));
+        }
+        private void menueliminargrupo_Click(object sender, EventArgs e)
+        {
+            if (txtid.Text != "" && txtidcomponente.Text != "")
+            {
+                DialogResult resultado = MessageBox.Show("¿Está seguro de eliminar el grupo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (resultado == DialogResult.Yes)
+                {
+                    GrupoPermiso oGrupoPermiso = new GrupoPermiso();
+                    oGrupoPermiso.IdGrupoPermiso = Convert.ToInt32(txtid.Text);
+                    oGrupoPermiso.IdComponente = Convert.ToInt32(txtidcomponente.Text);
+
+                    string mensaje;
+                    bool respuesta = oCC_GrupoPermiso.EliminarGrupoPermiso(oGrupoPermiso, out mensaje);
+
+                    if (respuesta)
+                    {
+                        MessageBox.Show("Grupo eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        btnactualizar_Click(null, null);
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
         private void btnactualizar_Click(object sender, EventArgs e)
         {
             datagridview.Rows.Clear();
@@ -123,37 +185,6 @@ namespace CapaPresentacion
                 menuvergrupo_Click(sender, e);
             }
         }
-        private void menuvergrupo_Click(object sender, EventArgs e)
-        {
-            if (txtid.Text != "")
-            {
-                AbrirModal("VerDetalle", Convert.ToInt32(txtid.Text));
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
-        private void menuagregargrupo_Click(object sender, EventArgs e)
-        {
-            AbrirModal("Agregar", 0);
-        }
-        private void menumodificargrupo_Click(object sender, EventArgs e)
-        {
-            AbrirModal("Editar", Convert.ToInt32(txtid.Text));
-        }
-        private void AbrirModal(string tipoModal, int idGrupoPermiso)
-        {
-            using (var modal = new mdDetalleGrupoPermiso(tipoModal, idGrupoPermiso))
-            {
-                var resultado = modal.ShowDialog();
-
-                if (resultado == DialogResult.OK)
-                {
-                    btnactualizar_Click(null, null);
-                }
-            }
-        }
         private void btnbuscar_Click(object sender, EventArgs e)
         {
             string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
@@ -186,37 +217,6 @@ namespace CapaPresentacion
             txtid.Text = "";
             txtidcomponente.Text = "";
         }
-        private void menueliminargrupo_Click(object sender, EventArgs e)
-        {
-            if (txtid.Text != "" && txtidcomponente.Text != "")
-            {
-                DialogResult resultado = MessageBox.Show("¿Está seguro de eliminar el grupo?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (resultado == DialogResult.Yes)
-                {
-                    GrupoPermiso oGrupoPermiso = new GrupoPermiso();
-                    oGrupoPermiso.IdGrupoPermiso = Convert.ToInt32(txtid.Text);
-                    oGrupoPermiso.IdComponente = Convert.ToInt32(txtidcomponente.Text);
-
-                    string mensaje;
-                    bool respuesta = oCC_GrupoPermiso.EliminarGrupoPermiso(oGrupoPermiso, out mensaje);
-
-                    if (respuesta)
-                    {
-                        MessageBox.Show("Grupo eliminado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        btnactualizar_Click(null, null);
-                    }
-                    else
-                    {
-                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Debe seleccionar un grupo", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
             btnbuscar_Click(sender, e);
@@ -233,7 +233,6 @@ namespace CapaPresentacion
                 btnlimpiar_Click(sender, e);
             }
         }
-
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();

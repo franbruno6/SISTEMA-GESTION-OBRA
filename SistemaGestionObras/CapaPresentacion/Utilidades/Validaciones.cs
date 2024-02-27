@@ -11,19 +11,23 @@ namespace CapaPresentacion.Utilidades
     {
         public static bool ValidarCamposVacios(Control.ControlCollection controls)
         {
-            var textBoxes = controls.OfType<TextBox>().Where(c => c.Visible).OrderBy(c => c.TabIndex);
-                
-            foreach (TextBox textBox in textBoxes)
+            foreach (Control control in controls)
             {
-                if (textBox.Text.Trim() == string.Empty)
+                if (control is TextBox textBox && textBox.Visible && textBox.Text.Trim() == string.Empty)
                 {
                     textBox.Focus();
                     return false;
                 }
+                else if (control.HasChildren)
+                {
+                    if (!ValidarCamposVacios(control.Controls))
+                    {
+                        return false;
+                    }
+                }
             }
             return true;
         }
-
         public static bool ValidarClaves(string clave1, string clave2)
         {
             if (clave1 != clave2)

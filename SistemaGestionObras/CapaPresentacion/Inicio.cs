@@ -29,6 +29,12 @@ namespace CapaPresentacion
         private void Inicio_Load(object sender, EventArgs e)
         {
             List<Permiso> listaPermisos = _usuarioActual.GetPermisos();
+
+            if (listaPermisos.Count == 0)
+            {
+                MessageBox.Show("El usuario no tiene permisos asignados", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+            }
             
             foreach (IconMenuItem iconmenu in menu.Items)
             {
@@ -89,14 +95,12 @@ namespace CapaPresentacion
             menu.BackColor = Color.Silver;
             _menuActivo = menu;
 
-            //CONFIGURO EL FORMULARIO
             _formularioActivo = formulario;
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;
             formulario.BackColor = Color.Khaki;
 
-            //AGREGO EL FORMULARIO AL CONTENEDOR
             contenedor.Controls.Add(formulario);
             formulario.Show();
 
@@ -135,10 +139,6 @@ namespace CapaPresentacion
         private void menugrupo_Click(object sender, EventArgs e)
         {
             AbrirFormulario(menupermiso, new frmGrupo(_usuarioActual));
-        }
-        private void menupermisousuario_Click(object sender, EventArgs e)
-        {
-            AbrirFormulario(menupermiso, new frmPermisoUsuario());
         }
         private void menu_Paint(object sender, PaintEventArgs e)
         {

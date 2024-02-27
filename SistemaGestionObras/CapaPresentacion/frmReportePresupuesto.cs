@@ -21,7 +21,6 @@ namespace CapaPresentacion
         {
             InitializeComponent();
         }
-
         private void btnbuscar_Click(object sender, EventArgs e)
         {
             List<ReportePresupuesto> listaReportePresupuesto = oCC_Reporte.ListarReportePresupuesto(dtpfechainicio.Value.ToString("dd-MM-yyyy"), dtpfechafin.Value.ToString("dd-MM-yyyy"));
@@ -53,7 +52,6 @@ namespace CapaPresentacion
             cbobusqueda.DisplayMember = "Texto";
             cbobusqueda.ValueMember = "Valor";
         }
-
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {
             string columnaFiltro = ((OpcionCombo)cbobusqueda.SelectedItem).Valor.ToString();
@@ -84,7 +82,6 @@ namespace CapaPresentacion
 
             datagridview.ClearSelection();
         }
-
         private void btnexportar_Click(object sender, EventArgs e)
         {
             if (datagridview.Rows.Count < 1)
