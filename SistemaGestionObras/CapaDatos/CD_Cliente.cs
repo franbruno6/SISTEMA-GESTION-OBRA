@@ -1,6 +1,7 @@
 ﻿using CapaEntidad;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Claims;
@@ -22,12 +23,12 @@ namespace CapaDatos
                 {
                     StringBuilder query = new StringBuilder();
                     query.AppendLine("select Persona.IdPersona, NombreCompleto, Correo, Documento,");
-                    query.AppendLine("IdCliente, Telefono, Direccion, Estado, Localidad ");
+                    query.AppendLine("IdCliente, Telefono, Direccion, Estado, Localidad, Provincia ");
                     query.AppendLine("from Persona ");
                     query.AppendLine("inner join Cliente on Persona.IdPersona = Cliente.IdPersona");
 
                     SqlCommand cmd = new SqlCommand(query.ToString(), connexion);
-                    cmd.CommandType = System.Data.CommandType.Text;
+                    cmd.CommandType = CommandType.Text;
 
                     SqlDataReader dr = cmd.ExecuteReader();
                     while (dr.Read())
@@ -41,6 +42,7 @@ namespace CapaDatos
                         cliente.Telefono = dr["Telefono"].ToString();
                         cliente.Direccion = dr["Direccion"].ToString();
                         cliente.Localidad = dr["Localidad"].ToString();
+                        cliente.Provincia = dr["Provincia"].ToString();
                         cliente.Estado = Convert.ToBoolean(dr["Estado"]);
 
                         listaClientes.Add(cliente);
@@ -73,12 +75,13 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Telefono", oCliente.Telefono);
                     cmd.Parameters.AddWithValue("Direccion", oCliente.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oCliente.Localidad);
+                    cmd.Parameters.AddWithValue("Provincia", oCliente.Provincia);
                     cmd.Parameters.AddWithValue("Estado", oCliente.Estado);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("IdClienteRegistrado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("IdClienteRegistrado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 
@@ -115,12 +118,13 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("Telefono", oCliente.Telefono);
                     cmd.Parameters.AddWithValue("Direccion", oCliente.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oCliente.Localidad);
+                    cmd.Parameters.AddWithValue("Provincia", oCliente.Provincia);
                     cmd.Parameters.AddWithValue("Estado", oCliente.Estado);
                     //PARAMETRO DE SALIDA
-                    cmd.Parameters.Add("Mensaje", System.Data.SqlDbType.VarChar, 400).Direction = System.Data.ParameterDirection.Output;
-                    cmd.Parameters.Add("Resultado", System.Data.SqlDbType.Int).Direction = System.Data.ParameterDirection.Output;
+                    cmd.Parameters.Add("Mensaje", SqlDbType.VarChar, 400).Direction = ParameterDirection.Output;
+                    cmd.Parameters.Add("Resultado", SqlDbType.Int).Direction = ParameterDirection.Output;
                     //TIPO DE COMANDO
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.ExecuteNonQuery();
 
@@ -171,5 +175,64 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return clienteEliminado;
         }
+        public List<string> ListarLocalidades()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Localidad from Cliente");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Localidad"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
+        }
+        public List<string> ListarProvincias()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Provincia from Cliente");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Provincia"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
+        }
+
     }
 }

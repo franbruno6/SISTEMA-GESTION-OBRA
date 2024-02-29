@@ -154,6 +154,7 @@ namespace CapaPresentacion
                     oComprobante.oCliente.Telefono,
                     oComprobante.Direccion,
                     oComprobante.Localidad,
+                    oComprobante.Provincia,
                     oComprobante.MontoTotal,
                     oComprobante.GetEstado(),
                     oComprobante.FechaRegistro.ToString("dd-MM-yyyy")

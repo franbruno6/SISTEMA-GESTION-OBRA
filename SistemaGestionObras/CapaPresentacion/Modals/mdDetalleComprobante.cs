@@ -1,5 +1,6 @@
 ﻿using CapaControladora;
 using CapaEntidad;
+using CapaEntidad.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,6 +41,7 @@ namespace CapaPresentacion.Modals
                     ConfigurarVerDetalle();
                     break;
                 case "Agregar":
+                    Autocompletar();
                     ConfigurarAgregar();
                     break;
             }
@@ -84,8 +86,10 @@ namespace CapaPresentacion.Modals
                 NumeroComprobante = numeroComprobante,
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
+                Provincia = txtprovincia.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
                 FechaRegistro = DateTime.Now,
+                Descripcion = txtdescripcion.Text,
                 Adelanto = Convert.ToDecimal(txtadelanto.Text),
                 Saldo = Convert.ToDecimal(txtsaldo.Text)
             };
@@ -94,8 +98,8 @@ namespace CapaPresentacion.Modals
 
             if (resultado)
             {
-                oComprobanteObra.Accion();
                 MessageBox.Show("Comprobante de obra numero " + numeroComprobante + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                oComprobanteObra.Accion();
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -137,7 +141,10 @@ namespace CapaPresentacion.Modals
             txtcorreo.Text = _oPresupuesto.oCliente.Correo;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
+            txtprovincia.Text = _oPresupuesto.Provincia;
+            txtdescripcion.Text = _oPresupuesto.Descripcion;
             txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
+            txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
             txtestadoobra.Text = "Pendiente";
 
             datagridview.Rows.Clear();
@@ -171,12 +178,16 @@ namespace CapaPresentacion.Modals
             txtcorreo.Text = _oComprobante.oCliente.Correo;
             txtdireccion.Text = _oComprobante.Direccion;
             txtlocalidad.Text = _oComprobante.Localidad;
-            //txtestadoobra.Text = _oComprobante.EstadoObra;
             txtestadoobra.Text = _oComprobante.GetEstado();
+            txtprovincia.Text = _oComprobante.Provincia;
+            txtdescripcion.Text = _oComprobante.Descripcion;
 
             txtadelanto.Enabled = false;
             txtdireccion.Enabled = false;
             txtlocalidad.Enabled = false;
+            txtdescripcion.Enabled = false;
+            txtprovincia.Enabled = false;
+            txtestadoobra.Enabled = false;
 
             txtmontototal.Text = _oComprobante.MontoTotal.ToString();
             txtadelanto.Text = _oComprobante.Adelanto.ToString();
@@ -361,15 +372,11 @@ namespace CapaPresentacion.Modals
         }
         private void txtadelanto_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (Char.IsDigit(e.KeyChar))
+            if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
             {
                 e.Handled = false;
             }
-            else if (txtadelanto.Text.Trim().Length == 0 && e.KeyChar.ToString() == ",")
-            {
-                e.Handled = true;
-            }
-            else if (Char.IsControl(e.KeyChar) || e.KeyChar.ToString() == ",")
+            else if (txtadelanto.Text.Trim().Length != 0 && e.KeyChar.ToString() == ",")
             {
                 e.Handled = false;
             }
@@ -384,7 +391,28 @@ namespace CapaPresentacion.Modals
         }
         private void txtadelanto_TextChanged(object sender, EventArgs e)
         {
+            if (txtadelanto.Text.Trim().Length == 0)
+            {
+                return;
+            }
             CalcularSaldo(Convert.ToDecimal(txtmontototal.Text));
+        }
+        private void Autocompletar()
+        {
+            List<string> localidadesDB = oCC_Presupuesto.ListarLocalidades();
+            AutoCompleteStringCollection localidades = new AutoCompleteStringCollection();
+            localidades.AddRange(localidadesDB.ToArray());
+            txtlocalidad.AutoCompleteCustomSource = localidades;
+
+            List<string> provinciasDB = oCC_Presupuesto.ListarProvincias();
+            AutoCompleteStringCollection provincias = new AutoCompleteStringCollection();
+            provincias.AddRange(provinciasDB.ToArray());
+            txtprovincia.AutoCompleteCustomSource = provincias;
+
+            List<string> descripcionDB = oCC_Presupuesto.ListarDescripcion();
+            AutoCompleteStringCollection descripcion = new AutoCompleteStringCollection();
+            descripcion.AddRange(descripcionDB.ToArray());
+            txtdescripcion.AutoCompleteCustomSource = descripcion;
         }
     }
 }

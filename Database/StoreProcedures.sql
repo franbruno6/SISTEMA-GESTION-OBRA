@@ -217,6 +217,7 @@ create procedure SP_RegistrarCliente(
 @Telefono nvarchar(60),
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
+@Provincia nvarchar(60),
 @Estado bit,
 @Mensaje nvarchar(400) output,
 @IdClienteRegistrado int output
@@ -250,8 +251,8 @@ begin
 						Correo = @Correo
 					where Documento = @Documento
 
-					insert into Cliente(Direccion,Localidad,Telefono,Estado) values
-					(@Direccion,@Localidad,@Telefono,@Estado)
+					insert into Cliente(Direccion,Localidad,Telefono,Estado,Provincia) values
+					(@Direccion,@Localidad,@Telefono,@Estado,@Provincia)
 
 					set @IdClienteRegistrado = SCOPE_IDENTITY()
 				end
@@ -269,8 +270,8 @@ begin
 
 				if (@IdPersona != 0)
 				begin
-					insert into Cliente(IdPersona,Telefono,Direccion,Estado,Localidad) values
-					(@IdPersona,@Telefono,@Direccion,@Estado,@Localidad)
+					insert into Cliente(IdPersona,Telefono,Direccion,Estado,Localidad,Provincia) values
+					(@IdPersona,@Telefono,@Direccion,@Estado,@Localidad,@Provincia)
 
 					set @IdClienteRegistrado = SCOPE_IDENTITY()
 				end
@@ -294,6 +295,7 @@ create procedure SP_EditarCliente(
 @Telefono nvarchar(60),
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
+@Provincia nvarchar(60),
 @Estado bit,
 @Mensaje nvarchar(400) output,
 @Resultado bit output
@@ -322,6 +324,7 @@ begin
             update Cliente set
 				Direccion = @Direccion,
 				Localidad = @Localidad,
+				Provincia = @Provincia,
 				Telefono = @Telefono,
                 Estado = @Estado
             where IdCliente = @IdCliente;
@@ -339,7 +342,7 @@ begin
         set @Mensaje = 'Error: ' + ERROR_MESSAGE() + ' (' + CAST(ERROR_NUMBER() AS NVARCHAR) + ')';
         rollback transaction editar;
     end catch
-end;
+end
 go
 
 --PROCEDURE ELIMINAR CLIENTE--
@@ -816,7 +819,8 @@ create procedure SP_RegistrarPresupuesto(
 @IdCliente int,
 @NumeroPresupuesto nvarchar(60),
 @Direccion nvarchar(100),
-@Localidad nvarchar(50),
+@Localidad nvarchar(60),
+@Provincia nvarchar(60),
 @MontoTotal decimal(18,2),
 @FechaRegistro date,
 @Descripcion nvarchar(100),
@@ -833,8 +837,8 @@ begin
 
 		begin transaction registro
 			
-			insert into Presupuesto(IdUsuario,IdCliente,NumeroPresupuesto,Direccion,Localidad,MontoTotal,FechaRegistro,Descripcion)
-			values(@IdUsuario,@IdCliente,@NumeroPresupuesto,@Direccion,@Localidad,@MontoTotal,@FechaRegistro,@Descripcion)
+			insert into Presupuesto(IdUsuario,IdCliente,NumeroPresupuesto,Direccion,Localidad,Provincia,MontoTotal,FechaRegistro,Descripcion)
+			values(@IdUsuario,@IdCliente,@NumeroPresupuesto,@Direccion,@Localidad,@Provincia,@MontoTotal,@FechaRegistro,@Descripcion)
 
 			set @IdPresupuesto = SCOPE_IDENTITY()
 
@@ -858,6 +862,7 @@ create procedure SP_EditarPresupuesto(
 @IdCliente int,
 @Direccion nvarchar(100),
 @Localidad nvarchar(60),
+@Provincia nvarchar(60),
 @MontoTotal decimal(18,2),
 @Descripcion nvarchar(100),
 @DetallePresupuesto [EDetallePresupuesto] readonly,
@@ -878,7 +883,7 @@ begin
 			)
 			begin
 				update Presupuesto
-				set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, MontoTotal = @MontoTotal, Descripcion = @Descripcion
+				set IdUsuario = @IdUsuario, IdCliente = @IdCliente, Direccion = @Direccion, Localidad = @Localidad, Provincia = @Provincia, MontoTotal = @MontoTotal, Descripcion = @Descripcion
 				where IdPresupuesto = @IdPresupuesto
 
 				-- Eliminar las asociaciones existentes de componentes con el grupo
@@ -971,8 +976,10 @@ create procedure SP_RegistrarComprobanteObra(
 @NumeroComprobante nvarchar(60),
 @Direccion nvarchar(100),
 @Localidad nvarchar(50),
+@Provincia nvarchar(60),
 @MontoTotal decimal(18,2),
 @FechaRegistro date,
+@Descripcion nvarchar(100),
 @Adelanto decimal(18,2),
 @Saldo decimal(18,2),
 @DetalleComprobanteObra [EDetalleComprobante] readonly,
@@ -988,8 +995,8 @@ begin
 		set @Mensaje = ''
 
 		begin transaction registro
-			insert into ComprobanteObra(IdUsuario,IdCliente,IdPresupuesto,NumeroComprobante,Direccion,Localidad,MontoTotal,Adelanto,Saldo,EstadoObra,FechaRegistro)
-			values (@IdUsuario,@IdCliente,@IdPresupuesto,@NumeroComprobante,@Direccion,@Localidad,@MontoTotal,@Adelanto,@Saldo,@EstadoObra,@FechaRegistro)
+			insert into ComprobanteObra(IdUsuario,IdCliente,IdPresupuesto,NumeroComprobante,Direccion,Localidad,Provincia,MontoTotal,Adelanto,Saldo,EstadoObra,FechaRegistro,Descripcion)
+			values (@IdUsuario,@IdCliente,@IdPresupuesto,@NumeroComprobante,@Direccion,@Localidad,@Provincia,@MontoTotal,@Adelanto,@Saldo,@EstadoObra,@FechaRegistro,@Descripcion)
 
 			set @IdComprobanteObra = SCOPE_IDENTITY()
 

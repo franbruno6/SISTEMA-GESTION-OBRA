@@ -144,6 +144,7 @@ namespace CapaPresentacion
                     oPresupuesto.oCliente.Telefono,
                     oPresupuesto.Direccion,
                     oPresupuesto.Localidad,
+                    oPresupuesto.Provincia,
                     oPresupuesto.MontoTotal,
                     oPresupuesto.FechaRegistro.ToString("dd-MM-yyyy")
                     );

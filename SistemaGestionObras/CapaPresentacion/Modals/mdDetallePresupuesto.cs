@@ -32,6 +32,7 @@ namespace CapaPresentacion.Modals
         }
         private void mdDetallePresupuesto_Load(object sender, EventArgs e)
         {
+            Autocompletar();
             ConfigurarModal();
         }
         private void btnaccion_Click(object sender, EventArgs e)
@@ -110,14 +111,8 @@ namespace CapaPresentacion.Modals
             }
         }
         private void ConfigurarModal()
-        {
+        {            
             datagridview.Rows.Clear();
-
-            txtcorreo.Enabled = false;
-            txttelefono.Enabled = false;
-            txtlocalidad.Enabled = false;
-            txtdireccion.Enabled = false;
-            txtnombrecliente.Enabled = false;
 
             switch (_tipoModal)
             {
@@ -145,6 +140,7 @@ namespace CapaPresentacion.Modals
             txtnombrecliente.Enabled = false;
             txttelefono.Enabled = false;
             txtlocalidad.Enabled = false;
+            txtprovincia.Enabled = false;
             txtmontototal.Enabled = false;
             txtcorreo.Enabled = false;
             txtdescripcion.Enabled = false;
@@ -161,6 +157,7 @@ namespace CapaPresentacion.Modals
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
             txtdireccion.Text = _oPresupuesto.Direccion;
             txtlocalidad.Text = _oPresupuesto.Localidad;
+            txtprovincia.Text = _oPresupuesto.Provincia;
             txtcorreo.Text = _oPresupuesto.oCliente.Correo;
             txtdescripcion.Text = _oPresupuesto.Descripcion;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
@@ -181,6 +178,10 @@ namespace CapaPresentacion.Modals
             btnaccion.Text = "Editar";
             lblsubtitulo.Text = "Editar Presupuesto";
 
+            txtprovincia.Enabled = true;
+            txtlocalidad.Enabled = true;
+            txtdireccion.Enabled = true;
+
             txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
             txtidcliente.Text = _oPresupuesto.oCliente.IdCliente.ToString();
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
@@ -188,6 +189,7 @@ namespace CapaPresentacion.Modals
             txtlocalidad.Text = _oPresupuesto.Localidad;
             txtcorreo.Text = _oPresupuesto.oCliente.Correo;
             txtdescripcion.Text = _oPresupuesto.Descripcion;
+            txtprovincia.Text = _oPresupuesto.Provincia;
             txtmontototal.Text = _oPresupuesto.MontoTotal.ToString();
 
             MostrarDetalle();
@@ -267,6 +269,7 @@ namespace CapaPresentacion.Modals
                 NumeroPresupuesto = numeroPresupuesto,
                 Direccion = txtdireccion.Text,
                 Localidad = txtlocalidad.Text,
+                Provincia = txtprovincia.Text,
                 MontoTotal = Convert.ToDecimal(txtmontototal.Text),
                 FechaRegistro = DateTime.Now,
                 Descripcion = txtdescripcion.Text
@@ -294,6 +297,7 @@ namespace CapaPresentacion.Modals
                     txtcorreo.Text = _oCliente.Correo;
                     txtdireccion.Text = _oCliente.Direccion;
                     txtlocalidad.Text = _oCliente.Localidad;
+                    txtprovincia.Text = _oCliente.Provincia;
                 }
             }
         }
@@ -357,6 +361,7 @@ namespace CapaPresentacion.Modals
             {
                 txtdireccion.Enabled = true;
                 txtlocalidad.Enabled = true;
+                txtprovincia.Enabled = true;
             }
         }
         private void datagridview_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -447,6 +452,23 @@ namespace CapaPresentacion.Modals
             {
                 e.Handled = true;
             }
+        }
+        private void Autocompletar()
+        {
+            List<string> localidadesDB = oCC_Presupuesto.ListarLocalidades();
+            AutoCompleteStringCollection localidades = new AutoCompleteStringCollection();
+            localidades.AddRange(localidadesDB.ToArray());
+            txtlocalidad.AutoCompleteCustomSource = localidades;
+
+            List<string> provinciasDB = oCC_Presupuesto.ListarProvincias();
+            AutoCompleteStringCollection provincias = new AutoCompleteStringCollection();
+            provincias.AddRange(provinciasDB.ToArray());
+            txtprovincia.AutoCompleteCustomSource = provincias;
+
+            List<string> descripcionDB = oCC_Presupuesto.ListarDescripcion();
+            AutoCompleteStringCollection descripcion = new AutoCompleteStringCollection();
+            descripcion.AddRange(descripcionDB.ToArray());
+            txtdescripcion.AutoCompleteCustomSource = descripcion;
         }
     }
 }

@@ -58,6 +58,7 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
@@ -273,6 +274,7 @@
     <Compile Include="frmReportePresupuesto.Designer.cs">
       <DependentUpon>frmReportePresupuesto.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\Correo.cs" />
     <Compile Include="Utilidades\DataGridViewU.cs" />
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <Compile Include="Utilidades\Validaciones.cs" />

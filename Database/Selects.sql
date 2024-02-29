@@ -24,7 +24,7 @@ go
 
 --SELECT LISTA CLIENTES--
 select Persona.IdPersona, NombreCompleto, Correo, Documento,
-IdCliente, Telefono, Direccion, Estado
+IdCliente, Telefono, Direccion, Estado, Localidad, Provincia
 from Persona
 inner join Cliente on Persona.IdPersona = Cliente.IdPersona
 go
@@ -45,7 +45,7 @@ where GrupoPermisoComponente.IdGrupoPermiso = @IdGrupoPermiso
 go
 
 --SELECT LISTA PRESUPUESTOS--
-select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion,
+select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion, Presupuesto.Provincia,
 NombreCompleto, Telefono, Documento, Correo
 from Presupuesto
 inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
@@ -74,7 +74,7 @@ where IdPresupuesto = @IdPresupuesto
 go
 
 --SELECT LISTA COMPROBANTES--
-select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra
+select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, ComprobanteObra.Provincia, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra, Descripcion,
 NombreCompleto, Telefono, Correo
 from ComprobanteObra
 inner join Cliente on ComprobanteObra.IdCliente = Cliente.IdCliente

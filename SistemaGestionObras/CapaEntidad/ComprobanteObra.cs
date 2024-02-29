@@ -27,10 +27,11 @@ namespace CapaEntidad
         private string numeroComprobante;
         private decimal montoTotal;
         private Estado estadoObra;
-        //private string estadoObra;
         private DateTime fechaRegistro;
         private string direccion;
         private string localidad;
+        private string provincia;
+        private string descripcion;
         private decimal adelanto;
         private decimal saldo;
         #endregion
@@ -43,6 +44,8 @@ namespace CapaEntidad
         public string NumeroComprobante { get {  return numeroComprobante; } set {  numeroComprobante = value; } }
         public string Direccion { get {  return direccion; } set {  direccion = value; } }
         public string Localidad { get {  return localidad; } set {  localidad = value; } }
+        public string Provincia { get {  return provincia; } set {  provincia = value; } }
+        public string Descripcion { get {  return descripcion; } set {  descripcion = value; } }
         public decimal MontoTotal { get {  return montoTotal; } set {  montoTotal = value; } }
         public decimal Adelanto { get {  return adelanto; } set {  adelanto = value; } }
         public decimal Saldo { get {  return saldo; } set {  saldo = value; } }

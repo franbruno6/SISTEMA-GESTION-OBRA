@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaEntidad.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
@@ -23,30 +24,11 @@ namespace CapaEntidad.State
         }
         public override void Accion(ComprobanteObra comprobante)
         {
-            string msge = "La obra se encuentra en curso";
-            string from = "franciscobruno_tdp@outlook.com";
-            string displayName = "Francisco Bruno";
+            string mensaje = "Estimado, este correo anuncia que la obra número " + comprobante.NumeroComprobante + " a sido señada.";
+            string asunto = "Anuncio obra número: " + comprobante.NumeroComprobante;
 
-            try
-            {
-                MailMessage mail = new MailMessage();
-                mail.From = new MailAddress(from, displayName);
-                mail.To.Add(comprobante.oCliente.Correo);
-
-                mail.Subject = "Obra " + comprobante.NumeroComprobante + "en curso";
-                mail.Body = msge;
-                mail.IsBodyHtml = true;
-
-                SmtpClient smtp = new SmtpClient("smtp-mail.outlook.com", 587);
-                smtp.Credentials = new System.Net.NetworkCredential(from, "Tdp12345");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error al enviar el correo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            
-            MessageBox.Show("La obra se encuentra en curso " + Valor, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Correo correo = new Correo();
+            correo.EnviarCorreo(comprobante.oCliente.Correo, asunto, mensaje);
         }
     }
 }

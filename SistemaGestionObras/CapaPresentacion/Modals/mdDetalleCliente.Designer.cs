@@ -46,6 +46,8 @@
             this.btnvolver = new FontAwesome.Sharp.IconButton();
             this.txtlocalidad = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.txtprovincia = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // cboestado
@@ -147,7 +149,7 @@
             this.label3.Location = new System.Drawing.Point(12, 77);
             this.label3.Name = "label3";
             this.label3.Padding = new System.Windows.Forms.Padding(20, 12, 0, 0);
-            this.label3.Size = new System.Drawing.Size(898, 233);
+            this.label3.Size = new System.Drawing.Size(898, 272);
             this.label3.TabIndex = 34;
             this.label3.Text = "Información del cliente";
             // 
@@ -200,10 +202,10 @@
             this.btnaccion.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnaccion.IconSize = 18;
             this.btnaccion.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnaccion.Location = new System.Drawing.Point(713, 250);
+            this.btnaccion.Location = new System.Drawing.Point(713, 307);
             this.btnaccion.Name = "btnaccion";
             this.btnaccion.Size = new System.Drawing.Size(173, 27);
-            this.btnaccion.TabIndex = 8;
+            this.btnaccion.TabIndex = 9;
             this.btnaccion.Text = "Accion";
             this.btnaccion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnaccion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -223,7 +225,7 @@
             this.btnvolver.Location = new System.Drawing.Point(771, 23);
             this.btnvolver.Name = "btnvolver";
             this.btnvolver.Size = new System.Drawing.Size(115, 25);
-            this.btnvolver.TabIndex = 43;
+            this.btnvolver.TabIndex = 10;
             this.btnvolver.Text = "Volver";
             this.btnvolver.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnvolver.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -232,6 +234,8 @@
             // 
             // txtlocalidad
             // 
+            this.txtlocalidad.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtlocalidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtlocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtlocalidad.Location = new System.Drawing.Point(493, 255);
             this.txtlocalidad.Name = "txtlocalidad";
@@ -249,12 +253,35 @@
             this.label4.TabIndex = 50;
             this.label4.Text = "Localidad";
             // 
+            // txtprovincia
+            // 
+            this.txtprovincia.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txtprovincia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
+            this.txtprovincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtprovincia.Location = new System.Drawing.Point(713, 255);
+            this.txtprovincia.Name = "txtprovincia";
+            this.txtprovincia.Size = new System.Drawing.Size(171, 22);
+            this.txtprovincia.TabIndex = 8;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(710, 227);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(63, 16);
+            this.label5.TabIndex = 52;
+            this.label5.Text = "Provincia";
+            // 
             // mdDetalleCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Khaki;
-            this.ClientSize = new System.Drawing.Size(928, 328);
+            this.ClientSize = new System.Drawing.Size(928, 358);
+            this.Controls.Add(this.txtprovincia);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.txtlocalidad);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtdireccion);
@@ -305,5 +332,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtlocalidad;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtprovincia;
+        private System.Windows.Forms.Label label5;
     }
 }

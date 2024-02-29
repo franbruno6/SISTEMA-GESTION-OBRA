@@ -13,6 +13,7 @@ namespace CapaEntidad
         private string telefono;
         private string direccion;
         private string localidad;
+        private string provincia;
         private bool estado;
         #endregion
 
@@ -21,6 +22,7 @@ namespace CapaEntidad
         public string Telefono { get { return telefono; } set { telefono = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public string Localidad { get { return localidad; } set { localidad = value; } }
+        public string Provincia { get { return provincia; } set { provincia = value; } }
         public bool Estado { get { return estado; } set { estado = value; } }
         #endregion
 

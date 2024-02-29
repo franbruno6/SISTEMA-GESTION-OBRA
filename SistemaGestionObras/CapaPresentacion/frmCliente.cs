@@ -125,6 +125,7 @@ namespace CapaPresentacion
 
             //MOSTRAR LOS CLIENTES
             List<Cliente> listaClientes = oCC_Cliente.ListarClientes();
+            listaClientes = listaClientes.OrderBy(c => c.NombreCompleto).ToList();
 
             foreach (Cliente oCliente in listaClientes)
             {
@@ -138,6 +139,7 @@ namespace CapaPresentacion
                     oCliente.Telefono,
                     oCliente.Direccion,
                     oCliente.Localidad,
+                    oCliente.Provincia,
                     oCliente.Estado == true ? 1 : 0,
                     oCliente.Estado == true ? "Activo" : "Inactivo"
                     );

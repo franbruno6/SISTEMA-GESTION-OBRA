@@ -89,5 +89,38 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public List<string> ListarLocalidades()
+        {
+            try
+            {
+                return oCD_Presupuesto.ListarLocalidades();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<string> ListarProvincias()
+        {
+            try
+            {
+                return oCD_Presupuesto.ListarProvincias();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<string> ListarDescripcion()
+        {
+            try
+            {
+                return oCD_Presupuesto.ListarDescripcion();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

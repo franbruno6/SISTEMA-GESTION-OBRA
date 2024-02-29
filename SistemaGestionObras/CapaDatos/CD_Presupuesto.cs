@@ -21,7 +21,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion,");
+                    query.AppendLine("select IdPresupuesto, Presupuesto.IdUsuario, Presupuesto.IdCliente, NumeroPresupuesto, Presupuesto.Direccion, MontoTotal, FechaRegistro, Presupuesto.Localidad, Descripcion, Presupuesto.Provincia,");
                     query.AppendLine("NombreCompleto, Telefono, Documento, Correo ");
                     query.AppendLine("from Presupuesto ");
                     query.AppendLine("inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente ");
@@ -42,6 +42,7 @@ namespace CapaDatos
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
                             Descripcion = dr["Descripcion"].ToString(),
+                            Provincia = dr["Provincia"].ToString(),
 
                             oUsuario = new Usuario()
                             {
@@ -110,6 +111,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("NumeroPresupuesto", oPresupuesto.NumeroPresupuesto);
                     cmd.Parameters.AddWithValue("Direccion", oPresupuesto.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
+                    cmd.Parameters.AddWithValue("Provincia", oPresupuesto.Provincia);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);
                     cmd.Parameters.AddWithValue("FechaRegistro", oPresupuesto.FechaRegistro);
                     cmd.Parameters.AddWithValue("Descripcion", oPresupuesto.Descripcion);
@@ -201,6 +203,7 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("IdCliente", oPresupuesto.oCliente.IdCliente);
                     cmd.Parameters.AddWithValue("Direccion", oPresupuesto.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oPresupuesto.Localidad);
+                    cmd.Parameters.AddWithValue("Provincia", oPresupuesto.Provincia);
                     cmd.Parameters.AddWithValue("MontoTotal", oPresupuesto.MontoTotal);
                     cmd.Parameters.AddWithValue("Descripcion", oPresupuesto.Descripcion);
                     cmd.Parameters.AddWithValue("DetallePresupuesto", listaDetalle);
@@ -321,6 +324,93 @@ namespace CapaDatos
             }
             DataAccessObject.CerrarConexion();
             return listaPresupuestos;
+        }
+        public List<string> ListarLocalidades()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Localidad from Presupuesto");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Localidad"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
+        }
+        public List<string> ListarProvincias()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Provincia from Presupuesto");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Provincia"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
+        }
+        public List<string> ListarDescripcion()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Descripcion from Presupuesto");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Descripcion"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
         }
     }
 }

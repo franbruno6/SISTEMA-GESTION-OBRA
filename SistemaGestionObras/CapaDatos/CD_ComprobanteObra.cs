@@ -22,7 +22,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra,");
+                    query.AppendLine("select NumeroComprobante, ComprobanteObra.Direccion, MontoTotal, EstadoObra, ComprobanteObra.Localidad, ComprobanteObra.Provincia, FechaRegistro, Saldo, Adelanto, IdUsuario, ComprobanteObra.IdCliente, IdPresupuesto, IdComprobanteObra, Descripcion,");
                     query.AppendLine("NombreCompleto, Telefono, Correo ");
                     query.AppendLine("from ComprobanteObra ");
                     query.AppendLine("inner join Cliente on ComprobanteObra.IdCliente = Cliente.IdCliente ");
@@ -39,8 +39,9 @@ namespace CapaDatos
                             NumeroComprobante = dr["NumeroComprobante"].ToString(),
                             Direccion = dr["Direccion"].ToString(),
                             MontoTotal = Convert.ToDecimal(dr["MontoTotal"]),
-                            //EstadoObra = dr["EstadoObra"].ToString(),
                             Localidad = dr["Localidad"].ToString(),
+                            Provincia = dr["Provincia"].ToString(),
+                            Descripcion = dr["Descripcion"].ToString(),
                             FechaRegistro = Convert.ToDateTime(dr["FechaRegistro"]),
                             Saldo = Convert.ToDecimal(dr["Saldo"]),
                             Adelanto = Convert.ToDecimal(dr["Adelanto"]),
@@ -135,8 +136,10 @@ namespace CapaDatos
                     cmd.Parameters.AddWithValue("NumeroComprobante", oComprobante.NumeroComprobante);
                     cmd.Parameters.AddWithValue("Direccion", oComprobante.Direccion);
                     cmd.Parameters.AddWithValue("Localidad", oComprobante.Localidad);
+                    cmd.Parameters.AddWithValue("Provincia", oComprobante.Provincia);
                     cmd.Parameters.AddWithValue("MontoTotal", oComprobante.MontoTotal);
                     cmd.Parameters.AddWithValue("FechaRegistro", oComprobante.FechaRegistro);
+                    cmd.Parameters.AddWithValue("Descripcion", oComprobante.Descripcion);
                     cmd.Parameters.AddWithValue("Adelanto", oComprobante.Adelanto);
                     cmd.Parameters.AddWithValue("Saldo", oComprobante.Saldo);
                     cmd.Parameters.AddWithValue("DetalleComprobanteObra", listaDetalle);

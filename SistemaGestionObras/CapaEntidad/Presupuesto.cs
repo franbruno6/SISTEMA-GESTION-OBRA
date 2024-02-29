@@ -23,6 +23,7 @@ namespace CapaEntidad
         private string numeroPresupuesto;
         private string direccion;
         private string localidad;
+        private string provincia;
         private decimal montoTotal;
         private string descripcion;
         private DateTime fechaRegistro;
@@ -35,6 +36,7 @@ namespace CapaEntidad
         public string NumeroPresupuesto { get { return numeroPresupuesto; } set { numeroPresupuesto = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public string Localidad { get { return localidad; } set { localidad = value; } }
+        public string Provincia { get { return provincia; } set { provincia = value; } }
         public decimal MontoTotal { get { return montoTotal; } set { montoTotal = value; } }
         public string Descripcion { get { return descripcion; } set { descripcion = value; } }
         public DateTime FechaRegistro { get { return fechaRegistro; } set { fechaRegistro = value; } }

@@ -30,6 +30,7 @@ namespace CapaPresentacion.Modals
         }
         private void mdDetalleCliente_Load(object sender, EventArgs e)
         {
+            Autocompletar();
             ConfigurarModal();
         }
         private void btnaccion_Click(object sender, EventArgs e)
@@ -60,6 +61,7 @@ namespace CapaPresentacion.Modals
                 Telefono = txttelefono.Text.Trim(),
                 Direccion = txtdireccion.Text.Trim(),
                 Localidad = txtlocalidad.Text.Trim(),
+                Provincia = txtprovincia.Text.Trim(),
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
             };
             int idClienteRegistrado = oCC_Cliente.AgregarCliente(cliente, out string mensaje);
@@ -88,6 +90,7 @@ namespace CapaPresentacion.Modals
                 Telefono = txttelefono.Text.Trim(),
                 Direccion = txtdireccion.Text.Trim(),
                 Localidad = txtlocalidad.Text.Trim(),
+                Provincia = txtprovincia.Text.Trim(),
                 Estado = Convert.ToInt32(((OpcionCombo)cboestado.SelectedItem).Valor) == 1 ? true : false
             }, out string mensaje);
 
@@ -133,6 +136,7 @@ namespace CapaPresentacion.Modals
             txttelefono.Enabled = false;
             txtdireccion.Enabled = false;
             txtlocalidad.Enabled = false;
+            txtprovincia.Enabled = false;
             btnaccion.Visible = false;
 
             txtnombrecompleto.Text = _oCliente.NombreCompleto.ToString();
@@ -150,6 +154,7 @@ namespace CapaPresentacion.Modals
             txttelefono.Text = _oCliente.Telefono.ToString();
             txtdireccion.Text = _oCliente.Direccion.ToString();
             txtlocalidad.Text = _oCliente.Localidad.ToString();
+            txtprovincia.Text = _oCliente.Provincia.ToString();
         }
         private void ConfigurarAgregar()
         {
@@ -178,6 +183,19 @@ namespace CapaPresentacion.Modals
             txttelefono.Text = _oCliente.Telefono.ToString();
             txtdireccion.Text = _oCliente.Direccion.ToString();
             txtlocalidad.Text = _oCliente.Localidad.ToString();
+            txtprovincia.Text = _oCliente.Provincia.ToString();
+        }
+        private void Autocompletar()
+        {
+            List<string> localidadesDB = oCC_Cliente.ListarLocalidades();
+            AutoCompleteStringCollection localidades = new AutoCompleteStringCollection();
+            localidades.AddRange(localidadesDB.ToArray());
+            txtlocalidad.AutoCompleteCustomSource = localidades;
+
+            List<string> provinciasDB = oCC_Cliente.ListarProvincias();
+            AutoCompleteStringCollection provincias = new AutoCompleteStringCollection();
+            provincias.AddRange(provinciasDB.ToArray());
+            txtprovincia.AutoCompleteCustomSource = provincias;
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {
