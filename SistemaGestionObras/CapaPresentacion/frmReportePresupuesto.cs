@@ -1,5 +1,6 @@
 ﻿using CapaControladora;
 using CapaEntidad;
+using CapaPresentacion.Modals;
 using CapaPresentacion.Utilidades;
 using ClosedXML.Excel;
 using System;
@@ -141,6 +142,15 @@ namespace CapaPresentacion
             }
 
             return dt;
+        }
+        private void btngrafico_Click(object sender, EventArgs e)
+        {
+            DataTable dt = CrearDataTable();
+            string periodo = string.Format("Del {0} al {1}", dtpfechainicio.Value.ToString("dd/MM/yyyy"), dtpfechafin.Value.ToString("dd/MM/yyyy"));
+            using (var modal = new mdReportePresupuesto(dt,periodo))
+            {
+                var resultado = modal.ShowDialog();
+            }
         }
     }
 }

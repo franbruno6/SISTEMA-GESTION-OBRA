@@ -46,6 +46,7 @@
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblsubtitulo = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
+            this.btngrafico = new FontAwesome.Sharp.IconButton();
             this.btnexportar = new FontAwesome.Sharp.IconButton();
             this.dtpfechafin = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -61,7 +62,7 @@
             // 
             this.txtbusqueda.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtbusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbusqueda.Location = new System.Drawing.Point(1115, 91);
+            this.txtbusqueda.Location = new System.Drawing.Point(906, 126);
             this.txtbusqueda.Name = "txtbusqueda";
             this.txtbusqueda.Size = new System.Drawing.Size(142, 22);
             this.txtbusqueda.TabIndex = 13;
@@ -77,7 +78,7 @@
             this.btnlimpiar.IconColor = System.Drawing.Color.Black;
             this.btnlimpiar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnlimpiar.IconSize = 19;
-            this.btnlimpiar.Location = new System.Drawing.Point(1263, 91);
+            this.btnlimpiar.Location = new System.Drawing.Point(1054, 126);
             this.btnlimpiar.Name = "btnlimpiar";
             this.btnlimpiar.Size = new System.Drawing.Size(118, 24);
             this.btnlimpiar.TabIndex = 15;
@@ -97,7 +98,7 @@
             this.btnbuscar.IconColor = System.Drawing.Color.Black;
             this.btnbuscar.IconFont = FontAwesome.Sharp.IconFont.Solid;
             this.btnbuscar.IconSize = 19;
-            this.btnbuscar.Location = new System.Drawing.Point(768, 91);
+            this.btnbuscar.Location = new System.Drawing.Point(541, 126);
             this.btnbuscar.Name = "btnbuscar";
             this.btnbuscar.Size = new System.Drawing.Size(105, 24);
             this.btnbuscar.TabIndex = 14;
@@ -145,7 +146,7 @@
             this.datagridview.DefaultCellStyle = dataGridViewCellStyle2;
             this.datagridview.EnableHeadersVisualStyles = false;
             this.datagridview.GridColor = System.Drawing.SystemColors.Control;
-            this.datagridview.Location = new System.Drawing.Point(16, 146);
+            this.datagridview.Location = new System.Drawing.Point(16, 172);
             this.datagridview.MultiSelect = false;
             this.datagridview.Name = "datagridview";
             this.datagridview.ReadOnly = true;
@@ -162,7 +163,7 @@
             this.datagridview.RowTemplate.Height = 28;
             this.datagridview.RowTemplate.ReadOnly = true;
             this.datagridview.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.datagridview.Size = new System.Drawing.Size(1541, 487);
+            this.datagridview.Size = new System.Drawing.Size(1541, 461);
             this.datagridview.TabIndex = 9;
             // 
             // fecharegistro
@@ -229,14 +230,14 @@
             this.lblsubtitulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblsubtitulo.Location = new System.Drawing.Point(16, 79);
             this.lblsubtitulo.Name = "lblsubtitulo";
-            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 0, 0, 0);
-            this.lblsubtitulo.Size = new System.Drawing.Size(1541, 47);
+            this.lblsubtitulo.Padding = new System.Windows.Forms.Padding(20, 10, 0, 0);
+            this.lblsubtitulo.Size = new System.Drawing.Size(1541, 79);
             this.lblsubtitulo.TabIndex = 8;
-            this.lblsubtitulo.Text = "Lista de Usuarios";
-            this.lblsubtitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblsubtitulo.Text = "Reportes de Presupuestos";
             // 
             // contenedor
             // 
+            this.contenedor.Controls.Add(this.btngrafico);
             this.contenedor.Controls.Add(this.btnexportar);
             this.contenedor.Controls.Add(this.dtpfechafin);
             this.contenedor.Controls.Add(this.label2);
@@ -255,6 +256,27 @@
             this.contenedor.Size = new System.Drawing.Size(1568, 646);
             this.contenedor.TabIndex = 4;
             // 
+            // btngrafico
+            // 
+            this.btngrafico.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btngrafico.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btngrafico.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btngrafico.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btngrafico.IconChar = FontAwesome.Sharp.IconChar.ChartSimple;
+            this.btngrafico.IconColor = System.Drawing.Color.Black;
+            this.btngrafico.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btngrafico.IconSize = 19;
+            this.btngrafico.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.btngrafico.Location = new System.Drawing.Point(1377, 126);
+            this.btngrafico.Name = "btngrafico";
+            this.btngrafico.Size = new System.Drawing.Size(165, 25);
+            this.btngrafico.TabIndex = 22;
+            this.btngrafico.Text = "Generear Gráfico";
+            this.btngrafico.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.btngrafico.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btngrafico.UseVisualStyleBackColor = false;
+            this.btngrafico.Click += new System.EventHandler(this.btngrafico_Click);
+            // 
             // btnexportar
             // 
             this.btnexportar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -266,12 +288,12 @@
             this.btnexportar.IconFont = FontAwesome.Sharp.IconFont.Regular;
             this.btnexportar.IconSize = 19;
             this.btnexportar.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnexportar.Location = new System.Drawing.Point(1423, 89);
+            this.btnexportar.Location = new System.Drawing.Point(1222, 126);
             this.btnexportar.Name = "btnexportar";
-            this.btnexportar.Size = new System.Drawing.Size(125, 29);
+            this.btnexportar.Size = new System.Drawing.Size(140, 25);
             this.btnexportar.TabIndex = 21;
-            this.btnexportar.Text = "Exportar";
-            this.btnexportar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnexportar.Text = "Exportar Excel";
+            this.btnexportar.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.btnexportar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnexportar.UseVisualStyleBackColor = false;
             this.btnexportar.Click += new System.EventHandler(this.btnexportar_Click);
@@ -282,7 +304,7 @@
             this.dtpfechafin.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpfechafin.CustomFormat = "dd/MM/yyyy";
             this.dtpfechafin.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpfechafin.Location = new System.Drawing.Point(636, 93);
+            this.dtpfechafin.Location = new System.Drawing.Point(409, 128);
             this.dtpfechafin.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.dtpfechafin.Name = "dtpfechafin";
             this.dtpfechafin.Size = new System.Drawing.Size(107, 20);
@@ -294,7 +316,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(551, 95);
+            this.label2.Location = new System.Drawing.Point(324, 130);
             this.label2.Margin = new System.Windows.Forms.Padding(20, 0, 3, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(77, 18);
@@ -307,7 +329,7 @@
             this.dtpfechainicio.CalendarFont = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpfechainicio.CustomFormat = "dd/MM/yyyy";
             this.dtpfechainicio.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpfechainicio.Location = new System.Drawing.Point(402, 93);
+            this.dtpfechainicio.Location = new System.Drawing.Point(175, 128);
             this.dtpfechainicio.Margin = new System.Windows.Forms.Padding(5, 3, 3, 3);
             this.dtpfechainicio.Name = "dtpfechainicio";
             this.dtpfechainicio.Size = new System.Drawing.Size(115, 20);
@@ -319,7 +341,7 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(304, 95);
+            this.label1.Location = new System.Drawing.Point(77, 130);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(91, 18);
             this.label1.TabIndex = 17;
@@ -332,7 +354,7 @@
             this.cbobusqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbobusqueda.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbobusqueda.FormattingEnabled = true;
-            this.cbobusqueda.Location = new System.Drawing.Point(967, 91);
+            this.cbobusqueda.Location = new System.Drawing.Point(758, 126);
             this.cbobusqueda.Name = "cbobusqueda";
             this.cbobusqueda.Size = new System.Drawing.Size(142, 24);
             this.cbobusqueda.TabIndex = 12;
@@ -344,7 +366,7 @@
             this.lblbuscarpor.AutoSize = true;
             this.lblbuscarpor.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.lblbuscarpor.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblbuscarpor.Location = new System.Drawing.Point(914, 94);
+            this.lblbuscarpor.Location = new System.Drawing.Point(705, 129);
             this.lblbuscarpor.Margin = new System.Windows.Forms.Padding(3, 0, 10, 0);
             this.lblbuscarpor.Name = "lblbuscarpor";
             this.lblbuscarpor.Size = new System.Drawing.Size(40, 16);
@@ -390,5 +412,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn montototal;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
         private FontAwesome.Sharp.IconButton btnexportar;
+        private FontAwesome.Sharp.IconButton btngrafico;
     }
 }
