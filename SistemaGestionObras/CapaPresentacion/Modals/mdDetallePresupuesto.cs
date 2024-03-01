@@ -10,6 +10,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.xml;
+using System.IO;
 
 namespace CapaPresentacion.Modals
 {
@@ -152,6 +156,7 @@ namespace CapaPresentacion.Modals
             btnagregar.Visible = false;
             btnbuscarcliente.Visible = false;
             btneliminar.Visible = false;
+            btnexportar.Visible = true;
 
             txtnombrecliente.Text = _oPresupuesto.oCliente.NombreCompleto;
             txttelefono.Text = _oPresupuesto.oCliente.Telefono;
@@ -412,7 +417,7 @@ namespace CapaPresentacion.Modals
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Graphics.DrawImage(Properties.Resources.check, new System.Drawing.Rectangle(x, y, w, h));
                 e.Handled = true;
             }
         }
@@ -469,6 +474,62 @@ namespace CapaPresentacion.Modals
             AutoCompleteStringCollection descripcion = new AutoCompleteStringCollection();
             descripcion.AddRange(descripcionDB.ToArray());
             txtdescripcion.AutoCompleteCustomSource = descripcion;
+        }
+        private void btnexportar_Click(object sender, EventArgs e)
+        {
+            string textoHtml = Properties.Resources.PlantillaPresupuesto.ToString();
+            textoHtml = textoHtml.Replace("@numeropresupuesto", _oPresupuesto.NumeroPresupuesto);
+            textoHtml = textoHtml.Replace("@nombrecliente", _oPresupuesto.oCliente.NombreCompleto);
+            textoHtml = textoHtml.Replace("@telefonocliente", _oPresupuesto.oCliente.Telefono);
+            textoHtml = textoHtml.Replace("@fecharegistro", _oPresupuesto.FechaRegistro.ToString("dd/MM/yyyy"));
+            textoHtml = textoHtml.Replace("@descripcion", _oPresupuesto.Descripcion);
+
+            string filas = "";
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + fila.Cells["nombre"].Value + "</td>";
+                filas += "<td>" + fila.Cells["codigo"].Value + "</td>";
+                filas += "<td>" + fila.Cells["precio"].Value + "</td>";
+                filas += "<td>" + fila.Cells["cantidad"].Value + "</td>";
+                filas += "<td>" + fila.Cells["subTotal"].Value + "</td>";
+                filas += "</tr>";
+            }
+            textoHtml = textoHtml.Replace("@filas", filas);
+            textoHtml = textoHtml.Replace("@montototal", _oPresupuesto.MontoTotal.ToString());
+
+            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string nombreArchivo = "Presupuesto_" + _oPresupuesto.NumeroPresupuesto + ".pdf";
+            string rutaCarpeta = Path.Combine(escritorio, "Presupuestos");
+            string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
+
+            if (!Directory.Exists(rutaCarpeta))
+            {
+                Directory.CreateDirectory(rutaCarpeta);
+            }
+            if (File.Exists(rutaArchivo))
+            {
+                File.Delete(rutaArchivo);
+            }
+
+            using (FileStream fs = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                using (Document doc = new Document(PageSize.A4, 10f, 10f, 10f, 10f))
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (TextReader reader = new StringReader(textoHtml))
+                        {
+                            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, reader);
+                        }
+                    }
+                    doc.Close();
+                }
+            }
+            MessageBox.Show("Presupuesto exportado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

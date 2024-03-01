@@ -93,3 +93,7 @@ C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionOb
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\System.Memory.xml
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\System.Numerics.Vectors.xml
 C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\itextsharp.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\itextsharp.xmlworker.dll
+C:\Users\franb\Documents\Fran\UAI\Ingeniería de Software\Final\SistemaGestionObras\CapaPresentacion\bin\Debug\itextsharp.xml
