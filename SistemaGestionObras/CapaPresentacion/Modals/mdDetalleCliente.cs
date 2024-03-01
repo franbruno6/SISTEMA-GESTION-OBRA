@@ -40,6 +40,11 @@ namespace CapaPresentacion.Modals
                 MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+            if (!Validaciones.ValidarCorreo(txtcorreo.Text))
+            {
+                txtcorreo.Focus();
+                return;
+            }
 
             switch (_tipoModal)
             {

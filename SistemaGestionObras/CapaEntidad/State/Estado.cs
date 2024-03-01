@@ -9,6 +9,7 @@ namespace CapaEntidad.State
     public abstract class Estado
     {
         public abstract string Valor { get; }
+        public abstract string ProximoEstado { get; }
         public abstract void CambiarEstado(ComprobanteObra comprobante);
         public abstract void Accion(ComprobanteObra comprobante);
     }

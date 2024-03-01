@@ -13,7 +13,7 @@ namespace CapaEntidad.Utilidades
     {
         public static readonly string correoElectronico = ConfigurationManager.AppSettings["CorreoElectronico"].ToString();
         public static readonly string claveCorreo = ConfigurationManager.AppSettings["ClaveCorreo"].ToString();
-        public void EnviarCorreo(string correoDestino, string asunto, string mensaje)
+        public void EnviarCorreo(string correoDestino, string asunto, string mensaje, string pathArchivo)
         {
             try
             {
@@ -27,6 +27,12 @@ namespace CapaEntidad.Utilidades
                 mail.To.Add(correoDestino);
                 mail.Subject = asunto;
                 mail.Body = mensaje;
+
+                if (pathArchivo != "")
+                {
+                    Attachment archivo = new Attachment(pathArchivo);
+                    mail.Attachments.Add(archivo);
+                }
 
                 smtp.Send(mail);
 

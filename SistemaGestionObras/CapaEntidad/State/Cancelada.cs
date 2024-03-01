@@ -16,6 +16,13 @@ namespace CapaEntidad.State
                 return "Cancelada";
             }
         }
+        public override string ProximoEstado
+        {
+            get
+            {
+                return "Cancelada";
+            }
+        }
         public override void CambiarEstado(ComprobanteObra comprobante)
         {
             MessageBox.Show("No se puede cambiar el estado de un comprobante cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);

@@ -111,10 +111,22 @@ namespace CapaPresentacion
                     MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque ya esta cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                if (MessageBox.Show("Esta seguro de modificar el comprobante numero " + oComprobante.NumeroComprobante + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Esta seguro de modificar el estado del comprobante numero " + oComprobante.NumeroComprobante + " a " + oComprobante.GetProximoEstado() + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    oComprobante.CambiarEstado();
-                    oComprobante.Accion();
+                    bool resultado = oCC_ComprobanteObra.ModificarEstadoComprobante(oComprobante.IdComprobanteObra, _usuarioActual.IdUsuario, oComprobante.GetProximoEstado(), out string mensaje);
+                    if (resultado)
+                    {
+                        oComprobante.CambiarEstado();
+                        if (MessageBox.Show("El comprobante numero " + oComprobante.NumeroComprobante + " ah sido modificado de forma correcta.\nDesea enviarle una notificación al cliente?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                        {
+                            oComprobante.Accion();
+                        }
+                        datagridview.Rows[indiceFila].Cells["estado"].Value = oComprobante.GetEstado();
+                    }
+                    else
+                    {
+                        MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 //AbrirModal("Modificar", Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpresupuesto.Text));
             }

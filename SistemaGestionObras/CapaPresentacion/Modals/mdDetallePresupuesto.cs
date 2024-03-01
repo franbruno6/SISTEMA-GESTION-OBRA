@@ -14,6 +14,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.xml;
 using System.IO;
+using System.Diagnostics;
 
 namespace CapaPresentacion.Modals
 {
@@ -77,7 +78,11 @@ namespace CapaPresentacion.Modals
 
             if (resultado)
             {
-                MessageBox.Show("Presupuesto numero " + numeroPresupuesto + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (MessageBox.Show("Presupuesto numero " + numeroPresupuesto + " registrado correctamente\n\nDesea exportarlo como PDF?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    _oPresupuesto = oPresupuesto;
+                    btnexportar_Click(null, null);
+                }
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -488,8 +493,8 @@ namespace CapaPresentacion.Modals
             foreach (DataGridViewRow fila in datagridview.Rows)
             {
                 filas += "<tr>";
-                filas += "<td>" + fila.Cells["nombre"].Value + "</td>";
                 filas += "<td>" + fila.Cells["codigo"].Value + "</td>";
+                filas += "<td>" + fila.Cells["nombre"].Value + "</td>";
                 filas += "<td>" + fila.Cells["precio"].Value + "</td>";
                 filas += "<td>" + fila.Cells["cantidad"].Value + "</td>";
                 filas += "<td>" + fila.Cells["subTotal"].Value + "</td>";
@@ -530,6 +535,7 @@ namespace CapaPresentacion.Modals
                 }
             }
             MessageBox.Show("Presupuesto exportado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start(rutaArchivo);
         }
     }
 }

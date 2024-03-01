@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Presupuesto</title>
+    <title>Comprobante de Obra</title>
     <style>
         table.border {
             border-collapse: collapse;
@@ -15,6 +15,9 @@
             text-align: center;
             padding: 5px;
             border: 1px solid black;
+        }
+        th {
+            background-color: #eee8aa;
         }
     </style>
 </head>
@@ -33,12 +36,12 @@
                 <table style="width:100%" class="border">
                     <tr>
                         <td align="center" style="background-color: #eee8aa">
-                            <label style="font-size:15px;font-weight:bold">Presupuesto</label>
+                            <label style="font-size:15px;font-weight:bold">Comprobante</label>
                         </td>
                     </tr>
                     <tr>
                         <td align="center">
-                            <label style="font-size:15px;font-weight:bold">@numeropresupuesto</label>
+                            <label style="font-size:15px;font-weight:bold">@numerocomprobante</label>
                         </td>
                     </tr>
                 </table>
@@ -62,7 +65,7 @@
             <td style="width:80%"><label style="font-size:12px;">@fecharegistro</label></td>
         </tr>
         <tr>
-            <td style="width:20%"><label style="font-size:12px;font-weight:bold">Descripción Presupuesto:</label></td>
+            <td style="width:20%"><label style="font-size:12px;font-weight:bold">Descripción de Obra:</label></td>
             <td style="width:80%"><label style="font-size:12px;">@descripcion</label></td>
         </tr>
 
@@ -84,15 +87,23 @@
         </tbody>
     </table>
 
-    <div style="height:15px !important"></div>
-    <table style="width:20%;font-size:12px;" class="border">
-        <thead>
-            <tr style="background-color: #eee8aa">
-                <th>Monto Total</th>
-            </tr>
-        </thead>
+    <div style="height:25px !important"></div>
+    <table style="width:30%;font-size:12px;" class="border"; align="right">
+        <!--<thead>
+        </thead>-->
         <tbody>
-            <tr><td>@montototal</td></tr>
+            <tr>
+                <th>Adelanto</th>
+                <td>@adelanto</td>
+            </tr>
+            <tr>
+                <th>Saldo</th>
+                <td>@saldo</td>
+            </tr>
+            <tr>
+                <th>Monto Total</th>
+                <td>@montototal</td>
+            </tr>
         </tbody>
     </table>
 </body>

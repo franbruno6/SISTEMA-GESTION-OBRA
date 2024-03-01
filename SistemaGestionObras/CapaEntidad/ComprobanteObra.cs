@@ -34,6 +34,7 @@ namespace CapaEntidad
         private string descripcion;
         private decimal adelanto;
         private decimal saldo;
+        private string pathArchivo;
         #endregion
 
         #region Propiedades
@@ -49,7 +50,7 @@ namespace CapaEntidad
         public decimal MontoTotal { get {  return montoTotal; } set {  montoTotal = value; } }
         public decimal Adelanto { get {  return adelanto; } set {  adelanto = value; } }
         public decimal Saldo { get {  return saldo; } set {  saldo = value; } }
-
+        public string PathArchivo { get {  return pathArchivo; } set {  pathArchivo = value; } }
         public DateTime FechaRegistro { get {  return fechaRegistro; } set {  fechaRegistro = value; } }
         #endregion
 
@@ -61,6 +62,10 @@ namespace CapaEntidad
         public string GetEstado()
         {
             return estadoObra.Valor;
+        }
+        public string GetProximoEstado()
+        {
+            return estadoObra.ProximoEstado;
         }
         public void CambiarEstado()
         {

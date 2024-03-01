@@ -1,12 +1,16 @@
 ﻿using CapaControladora;
 using CapaEntidad;
 using CapaEntidad.State;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Text;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -98,8 +102,12 @@ namespace CapaPresentacion.Modals
 
             if (resultado)
             {
-                MessageBox.Show("Comprobante de obra numero " + numeroComprobante + " registrado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                oComprobanteObra.Accion();
+                _oComprobante = oComprobanteObra;
+                btnexportar_Click(null, null);
+                if (MessageBox.Show("Comprobante de obra numero " + numeroComprobante + " registrado correctamente.\n\nDesea enviarle el comprobante al cliente por email?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    _oComprobante.Accion();
+                }
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -195,6 +203,7 @@ namespace CapaPresentacion.Modals
 
             btnagregar.Visible = false;
             btneliminar.Visible = false;
+            btnexportar.Visible = true;
 
             datagridview.Rows.Clear();
 
@@ -231,7 +240,6 @@ namespace CapaPresentacion.Modals
             }
             txtmontototal.Text = montoTotal.ToString();
             CalcularSaldo(montoTotal);
-
         }
         private void CalcularSaldo(decimal montoTotal)  
         {
@@ -344,7 +352,7 @@ namespace CapaPresentacion.Modals
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Graphics.DrawImage(Properties.Resources.check, new System.Drawing.Rectangle(x, y, w, h));
                 e.Handled = true;
             }
         }
@@ -413,6 +421,78 @@ namespace CapaPresentacion.Modals
             AutoCompleteStringCollection descripcion = new AutoCompleteStringCollection();
             descripcion.AddRange(descripcionDB.ToArray());
             txtdescripcion.AutoCompleteCustomSource = descripcion;
+        }
+        private void btnexportar_Click(object sender, EventArgs e)
+        {
+            string textoHtml = Properties.Resources.PlantillaComprobante.ToString();
+            textoHtml = textoHtml.Replace("@numerocomprobante", _oComprobante.NumeroComprobante);
+            textoHtml = textoHtml.Replace("@nombrecliente", _oComprobante.oCliente.NombreCompleto);
+            textoHtml = textoHtml.Replace("@telefonocliente", _oComprobante.oCliente.Telefono);
+            textoHtml = textoHtml.Replace("@fecharegistro", _oComprobante.FechaRegistro.ToString("dd/MM/yyyy"));
+            textoHtml = textoHtml.Replace("@descripcion", _oComprobante.Descripcion);
+
+            string filas = "";
+            foreach (DataGridViewRow fila in datagridview.Rows)
+            {
+                filas += "<tr>";
+                filas += "<td>" + fila.Cells["codigo"].Value + "</td>";
+                filas += "<td>" + fila.Cells["nombre"].Value + "</td>";
+                filas += "<td>" + fila.Cells["precio"].Value + "</td>";
+                filas += "<td>" + fila.Cells["cantidad"].Value + "</td>";
+                filas += "<td>" + fila.Cells["subTotal"].Value + "</td>";
+                filas += "</tr>";
+            }
+            textoHtml = textoHtml.Replace("@filas", filas);
+            textoHtml = textoHtml.Replace("@adelanto", _oComprobante.Adelanto.ToString());
+            textoHtml = textoHtml.Replace("@saldo", _oComprobante.Saldo.ToString());
+            textoHtml = textoHtml.Replace("@montototal", _oComprobante.MontoTotal.ToString());
+
+            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string nombreArchivo = "Comprobante_" + _oComprobante.NumeroComprobante + ".pdf";
+            string rutaCarpeta = Path.Combine(escritorio, "Comprobantes");
+            string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
+
+            if (!Directory.Exists(rutaCarpeta))
+            {
+                Directory.CreateDirectory(rutaCarpeta);
+            }
+            try
+            {
+                if (File.Exists(rutaArchivo))
+                {
+                    File.Delete(rutaArchivo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar el comprobante: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (FileStream fs = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                using (Document doc = new Document(PageSize.A4, 10f, 10f, 10f, 10f))
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (TextReader reader = new StringReader(textoHtml))
+                        {
+                            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, reader);
+                        }
+                    }
+                    doc.Close();
+                }
+            }
+            _oComprobante.PathArchivo = rutaArchivo;
+            if (sender == null)
+            {
+                return;
+            }
+            MessageBox.Show("Comprobante exportado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Process.Start(rutaArchivo);
         }
     }
 }

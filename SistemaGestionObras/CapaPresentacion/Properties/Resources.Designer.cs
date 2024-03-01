@@ -114,23 +114,57 @@ namespace CapaPresentacion.Properties {
         ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
         ///&lt;head&gt;
-        ///    &lt;!--sistema creado por el canal yt codigo estudiante--&gt;
-        ///    &lt;title&gt;Web Page Design&lt;/title&gt;
+        ///    &lt;title&gt;Comprobante de Obra&lt;/title&gt;
         ///    &lt;style&gt;
         ///        table.border {
         ///            border-collapse: collapse;
         ///        }
-        ///
-        ///            table.border th {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid black;
-        ///            }
-        ///
-        ///            table.border td {
-        ///                text-align: center;
-        ///                padding: 5px;
-        ///                border: 1px solid b [resto de la cadena truncado]&quot;;.
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt;
+        ///      [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string PlantillaComprobante {
+            get {
+                return ResourceManager.GetString("PlantillaComprobante", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Presupuesto&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt;
+        ///        &lt;tr&gt;        /// [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string PlantillaPresupuesto {
             get {

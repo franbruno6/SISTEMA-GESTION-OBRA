@@ -16,6 +16,13 @@ namespace CapaEntidad.State
                 return "Cuenta Saldada";
             }
         }
+        public override string ProximoEstado
+        {
+            get
+            {
+                return "Cuenta Saldada";
+            }
+        }
         public override void CambiarEstado(ComprobanteObra comprobante)
         {
             MessageBox.Show("La cuenta ya se encuentra saldada", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

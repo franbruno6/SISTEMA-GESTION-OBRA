@@ -67,13 +67,13 @@ namespace CapaDatos
                             case "Pendiente":
                                 oComprobante.SetEstado(new Pendiente());
                                 break;
-                            case "En curso":
+                            case "En Curso":
                                 oComprobante.SetEstado(new EnCurso());
                                 break;
                             case "Finalizada":
                                 oComprobante.SetEstado(new Finalizada());
                                 break;
-                            case "Cuenta saldada":
+                            case "Cuenta Saldada":
                                 oComprobante.SetEstado(new CuentaSaldada());
                                 break;
                             case "Cancelada":
