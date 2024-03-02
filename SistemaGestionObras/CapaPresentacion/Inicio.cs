@@ -160,5 +160,9 @@ namespace CapaPresentacion
         {
             AbrirFormulario(menureporte, new frmReporteComprobante());
         }
+        private void menuauditoria_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menuauditoria, new frmAuditoria());
+        }
     }
 }

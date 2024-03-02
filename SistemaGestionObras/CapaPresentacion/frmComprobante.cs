@@ -57,19 +57,11 @@ namespace CapaPresentacion
         }
         private void AbrirModal(string tipoModal, int idComprobante, int idPresupuesto)
         {
-            if (tipoModal == "Modificar")
-            {
-                using (var modal = new mdModificarComprobante(tipoModal, idComprobante, _usuarioActual))
-                {
-                    var resultado = modal.ShowDialog();
-                }
-                btnactualizar_Click(null, null);
-                return;
-            }
             using (var modal = new mdDetalleComprobante(tipoModal, idComprobante, _usuarioActual, idPresupuesto))
             {
                 var resultado = modal.ShowDialog();
             }
+            btnactualizar_Click(null, null);
         }
         private void menuagregarcomprobante_Click(object sender, EventArgs e)
         {
@@ -128,7 +120,6 @@ namespace CapaPresentacion
                         MessageBox.Show(mensaje, "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
-                //AbrirModal("Modificar", Convert.ToInt32(txtid.Text), Convert.ToInt32(txtidpresupuesto.Text));
             }
             else
             {

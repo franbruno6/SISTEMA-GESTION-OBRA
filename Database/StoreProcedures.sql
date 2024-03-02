@@ -454,9 +454,10 @@ declare @Mensaje nvarchar(500)
 --exec SP_RegistrarPermiso 'Agregar Comprobante','menuagregarcomprobante',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Modificar Comprobante','menumodificarcomprobante',@IdPermisoRegistrado output,@Mensaje output
 --exec SP_RegistrarPermiso 'Cancelar Comprobante','menucancelarcomprobante',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Ver Menu Reporte','menureporte',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Ver Menu Reporte Presupuesto','menureportepresupuesto',@IdPermisoRegistrado output,@Mensaje output
-exec SP_RegistrarPermiso 'Ver Menu Reporte Comprobante','menureportecomprobante',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Ver Menu Reporte','menureporte',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Ver Menu Reporte Presupuesto','menureportepresupuesto',@IdPermisoRegistrado output,@Mensaje output
+--exec SP_RegistrarPermiso 'Ver Menu Reporte Comprobante','menureportecomprobante',@IdPermisoRegistrado output,@Mensaje output
+exec SP_RegistrarPermiso 'Ver Menu Auditoria', 'menuauditoria', @IdPermisoRegistrado output,@Mensaje output
 
 select @IdPermisoRegistrado
 

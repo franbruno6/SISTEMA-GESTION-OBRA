@@ -138,6 +138,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmAuditoria.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAuditoria.Designer.cs">
+      <DependentUpon>frmAuditoria.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPermiso.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,12 @@
     </Compile>
     <Compile Include="Modals\mdAgregarComponenteAGrupo.Designer.cs">
       <DependentUpon>mdAgregarComponenteAGrupo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modals\mdListaComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\mdListaComprobante.Designer.cs">
+      <DependentUpon>mdListaComprobante.cs</DependentUpon>
     </Compile>
     <Compile Include="Modals\mdAgregarProductoAPresupuesto.cs">
       <SubType>Form</SubType>
@@ -306,6 +318,9 @@
     <Compile Include="Utilidades\DataGridViewU.cs" />
     <Compile Include="Utilidades\OpcionCombo.cs" />
     <Compile Include="Utilidades\Validaciones.cs" />
+    <EmbeddedResource Include="frmAuditoria.resx">
+      <DependentUpon>frmAuditoria.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmPermiso.resx">
       <DependentUpon>frmPermiso.cs</DependentUpon>
     </EmbeddedResource>
@@ -323,6 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdAgregarComponenteAGrupo.resx">
       <DependentUpon>mdAgregarComponenteAGrupo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\mdListaComprobante.resx">
+      <DependentUpon>mdListaComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdAgregarProductoAPresupuesto.resx">
       <DependentUpon>mdAgregarProductoAPresupuesto.cs</DependentUpon>

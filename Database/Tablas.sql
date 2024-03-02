@@ -152,3 +152,22 @@ foreign key (IdComprobanteObra) references ComprobanteObra(IdComprobanteObra),
 foreign key (IdProducto) references Producto(IdProducto)
 )
 go
+
+--TABLA PARA AUDITORIA--
+create table Hist_ComprobanteObra(
+IdHist_ComprobanteObra int primary key identity,
+IdComprobanteObra int,
+IdPresupuesto int,
+IdCliente int,
+IdUsuario int,
+Adelanto decimal(18,2),
+Saldo decimal(18,2),
+MontoTotal decimal(18,2),
+EstadoObraActual nvarchar(60),
+EstadoObraPrevio nvarchar(60),
+FechaRegistro date default getdate(),
+foreign key (IdComprobanteObra) references ComprobanteObra(IdComprobanteObra),
+foreign key (IdPresupuesto) references Presupuesto(IdPresupuesto),
+foreign key (IdUsuario) references Usuario(IdUsuario),
+foreign key (IdCliente) references Cliente(IdCliente)
+)

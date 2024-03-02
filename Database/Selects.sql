@@ -88,3 +88,17 @@ from DetalleComprobanteObra
 inner join Producto on DetalleComprobanteObra.IdProducto = Producto.IdProducto
 where IdComprobanteObra = @IdComprobanteObra
 go
+
+--SELECT HISTORICO COMPROBANTE OBRA--
+select Hist_ComprobanteObra.Adelanto, Hist_ComprobanteObra.Saldo, Hist_ComprobanteObra.MontoTotal, EstadoObraActual, EstadoObraPrevio, Hist_ComprobanteObra.FechaRegistro,
+ComprobanteObra.Direccion, ComprobanteObra.Localidad, ComprobanteObra.Provincia, ComprobanteObra.Descripcion,
+Cliente.Telefono, pcliente.NombreCompleto, pcliente.Correo,
+pusuario.NombreCompleto[NombreUsuario]
+from Hist_ComprobanteObra
+inner join ComprobanteObra on Hist_ComprobanteObra.IdComprobanteObra = ComprobanteObra.IdComprobanteObra
+inner join Cliente on Hist_ComprobanteObra.IdCliente = Cliente.IdCliente
+inner join Persona pcliente on Cliente.IdPersona = pcliente.IdPersona
+inner join Usuario on Hist_ComprobanteObra.IdUsuario = Usuario.IdUsuario
+inner join Persona pusuario on Usuario.IdPersona = pusuario.IdPersona
+where Hist_ComprobanteObra.IdComprobanteObra = @IdComprobanteObra
+go

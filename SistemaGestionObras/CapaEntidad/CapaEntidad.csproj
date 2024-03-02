@@ -49,6 +49,7 @@
     <Compile Include="DetalleComprobanteObra.cs" />
     <Compile Include="DetallePresupuesto.cs" />
     <Compile Include="GrupoPermiso.cs" />
+    <Compile Include="Hist_ComprobanteObra.cs" />
     <Compile Include="Permiso.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="Presupuesto.cs" />
