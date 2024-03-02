@@ -150,6 +150,12 @@
     <Compile Include="frmPermisoUsuario.Designer.cs">
       <DependentUpon>frmPermisoUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmReporteComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmReporteComprobante.Designer.cs">
+      <DependentUpon>frmReporteComprobante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\mdAgregarClienteAPresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -276,6 +282,12 @@
     <Compile Include="Modals\mdModificarComprobante.Designer.cs">
       <DependentUpon>mdModificarComprobante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Modals\mdReporteComprobante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modals\mdReporteComprobante.Designer.cs">
+      <DependentUpon>mdReporteComprobante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Modals\mdReportePresupuesto.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +311,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPermisoUsuario.resx">
       <DependentUpon>frmPermisoUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmReporteComprobante.resx">
+      <DependentUpon>frmReporteComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmReportePresupuesto.resx">
       <DependentUpon>frmReportePresupuesto.cs</DependentUpon>
@@ -365,6 +380,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdModificarComprobante.resx">
       <DependentUpon>mdModificarComprobante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modals\mdReporteComprobante.resx">
+      <DependentUpon>mdReporteComprobante.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Modals\mdReportePresupuesto.resx">
       <DependentUpon>mdReportePresupuesto.cs</DependentUpon>

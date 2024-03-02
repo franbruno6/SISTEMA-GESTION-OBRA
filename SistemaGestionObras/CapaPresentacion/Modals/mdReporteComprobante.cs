@@ -1,7 +1,6 @@
-﻿using CapaEntidad;
-using CapaPresentacion.Utilidades;
-using iTextSharp.text;
+﻿using CapaPresentacion.Utilidades;
 using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,23 +13,24 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Controls;
 
 namespace CapaPresentacion.Modals
 {
-    public partial class mdReportePresupuesto : Form
+    public partial class mdReporteComprobante : Form
     {
         private DataTable _dataTable;
         private string _periodo;
-        public mdReportePresupuesto(DataTable dataTable, string periodo)
+        public mdReporteComprobante(DataTable dataTable, string periodo)
         {
             _dataTable = dataTable;
             _periodo = periodo;
             InitializeComponent();
         }
-        private void mdReportePresupuesto_Load(object sender, EventArgs e)
+        private void mdReporteComprobante_Load(object sender, EventArgs e)
         {
             lblperiodo.Text = _periodo;
-            
+
             foreach (DataColumn columna in _dataTable.Columns)
             {
                 cbocolumna.Items.Add(new OpcionCombo(columna.ColumnName, columna.ColumnName));
@@ -46,7 +46,7 @@ namespace CapaPresentacion.Modals
             chartreporte.Series.Clear();
             chartreporte.Titles.Clear();
             chartreporte.BackColor = Color.PaleGoldenrod;
-            chartreporte.Titles.Add("Reporte de Presupuestos");
+            chartreporte.Titles.Add("Reporte de Comprobantes de Obra");
             chartreporte.Titles[0].Font = new System.Drawing.Font("Arial", 16, FontStyle.Bold);
             chartreporte.ChartAreas[0].AxisX.TitleFont = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
             chartreporte.ChartAreas[0].AxisY.TitleFont = new System.Drawing.Font("Arial", 12, FontStyle.Bold);
@@ -108,15 +108,14 @@ namespace CapaPresentacion.Modals
             Document doc = new Document(PageSize.A4.Rotate());
 
             string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string nombreArchivo = String.Format("ReportePresupuestos_{0}_{1}.pdf", cbocolumna.Text, DateTime.Now.ToString("dd-MM-yyyy"));
-            string rutaCarpeta = Path.Combine(escritorio, "Reportes Presupuestos");
-            string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
+            string nombreArchivo = String.Format("ReporteComprobantes_{0}_{1}.pdf", cbocolumna.Text, DateTime.Now.ToString("dd-MM-yyyy"));
+            string rutaCarpeta = Path.Combine(escritorio, "Reportes Comprobantes");
 
             if (!Directory.Exists(rutaCarpeta))
             {
                 Directory.CreateDirectory(rutaCarpeta);
             }
-            
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = nombreArchivo;
             saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
@@ -131,7 +130,7 @@ namespace CapaPresentacion.Modals
                     doc.Open();
 
                     // Encabezado
-                    Paragraph titulo = new Paragraph("Reporte de Presupuestos", FontFactory.GetFont("Arial", 16));
+                    Paragraph titulo = new Paragraph("Reporte de Comprobantes", FontFactory.GetFont("Arial", 16));
                     titulo.Alignment = Element.ALIGN_CENTER;
                     doc.Add(titulo);
 
@@ -146,7 +145,7 @@ namespace CapaPresentacion.Modals
                     doc.NewPage();
 
                     AgregarTabla(doc);
-                    
+
                     doc.Close();
                     CargarChart();
                     MessageBox.Show("Archivo exportado correctamente", "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);

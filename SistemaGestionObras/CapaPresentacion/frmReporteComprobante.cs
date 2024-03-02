@@ -17,14 +17,14 @@ using System.Windows.Forms;
 
 namespace CapaPresentacion
 {
-    public partial class frmReportePresupuesto : Form
+    public partial class frmReporteComprobante : Form
     {
         private CC_Reporte oCC_Reporte = new CC_Reporte();
-        public frmReportePresupuesto()
+        public frmReporteComprobante()
         {
             InitializeComponent();
         }
-        private void frmReportePresupuesto_Load(object sender, EventArgs e)
+        private void frmReporteComprobante_Load(object sender, EventArgs e)
         {
             foreach (DataGridViewColumn columna in datagridview.Columns)
             {
@@ -48,27 +48,28 @@ namespace CapaPresentacion
                 MessageBox.Show("La fecha de fin no puede ser menor a la fecha de inicio", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            
-            List<ReportePresupuesto> listaReportePresupuesto = oCC_Reporte.ListarReportePresupuesto(dtpfechainicio.Value.ToString("dd-MM-yyyy"), dtpfechafin.Value.ToString("dd-MM-yyyy"));
 
-            if (listaReportePresupuesto.Count < 1)
+            List<ReporteComprobante> listaReporteComprobante = oCC_Reporte.ListarReporteComprobante(dtpfechainicio.Value.ToString("dd-MM-yyyy"), dtpfechafin.Value.ToString("dd-MM-yyyy"));
+
+            if (listaReporteComprobante.Count < 1)
             {
                 MessageBox.Show("No se encontraron registros", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            foreach (ReportePresupuesto reportePresupuesto in listaReportePresupuesto)
+            foreach (ReporteComprobante reporteComprobante in listaReporteComprobante)
             {
                 datagridview.Rows.Add(
-                    reportePresupuesto.FechaRegistro.ToString("dd-MM-yyyy"), 
-                    reportePresupuesto.NumeroPresupuesto, 
-                    reportePresupuesto.NombreCliente, 
-                    reportePresupuesto.Correo,
-                    reportePresupuesto.Direccion, 
-                    reportePresupuesto.Localidad,
-                    reportePresupuesto.Provincia,
-                    reportePresupuesto.MontoTotal, 
-                    reportePresupuesto.Descripcion
+                    reporteComprobante.FechaRegistro.ToString("dd-MM-yyyy"),
+                    reporteComprobante.NumeroComprobante,
+                    reporteComprobante.NombreCliente,
+                    reporteComprobante.Correo,
+                    reporteComprobante.Direccion,
+                    reporteComprobante.Localidad,
+                    reporteComprobante.Provincia,
+                    reporteComprobante.Estado,
+                    reporteComprobante.MontoTotal,
+                    reporteComprobante.Descripcion
                     );
             }
         }
@@ -102,6 +103,7 @@ namespace CapaPresentacion
 
             datagridview.ClearSelection();
         }
+
         private void btnexportar_Click(object sender, EventArgs e)
         {
             if (datagridview.Rows.Count < 1)
@@ -111,8 +113,8 @@ namespace CapaPresentacion
             }
 
             string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-            string nombreArchivo = String.Format("ReportePresupuestos_{0}.xlsx", DateTime.Now.ToString("dd-MM-yyyy"));
-            string rutaCarpeta = Path.Combine(escritorio, "Reportes Presupuestos");
+            string nombreArchivo = String.Format("ReporteComprobantes_{0}.xlsx", DateTime.Now.ToString("dd-MM-yyyy"));
+            string rutaCarpeta = Path.Combine(escritorio, "Reportes Comprobantes");
 
             if (!Directory.Exists(rutaCarpeta))
             {
@@ -132,7 +134,8 @@ namespace CapaPresentacion
                 try
                 {
                     XLWorkbook libro = new XLWorkbook();
-                    var hoja = libro.Worksheets.Add(dt, "ReportePresupuesto");
+                    var hoja = libro.Worksheets.Add(dt, "ReporteComprobante");
+                    var rango = hoja.Range(hoja.FirstCellUsed(), hoja.LastCellUsed());
 
                     hoja.Row(1).Style.Font.Bold = true;
                     hoja.ColumnsUsed().AdjustToContents();
@@ -153,7 +156,7 @@ namespace CapaPresentacion
 
             foreach (DataGridViewColumn columna in datagridview.Columns)
             {
-                dt.Columns.Add(columna.HeaderText,typeof(string));
+                dt.Columns.Add(columna.HeaderText, typeof(string));
             }
 
             foreach (DataGridViewRow fila in datagridview.Rows)
@@ -183,7 +186,7 @@ namespace CapaPresentacion
 
             DataTable dt = CrearDataTable();
             string periodo = string.Format("Del {0} al {1}", dtpfechainicio.Value.ToString("dd/MM/yyyy"), dtpfechafin.Value.ToString("dd/MM/yyyy"));
-            using (var modal = new mdReportePresupuesto(dt,periodo))
+            using (var modal = new mdReporteComprobante(dt, periodo))
             {
                 var resultado = modal.ShowDialog();
             }

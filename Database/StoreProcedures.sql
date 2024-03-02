@@ -1057,10 +1057,28 @@ as
 begin
 	set dateformat dmy
 	select
-		convert(char(10),FechaRegistro,103)[FechaRegistro],NumeroPresupuesto,Presupuesto.Direccion,Presupuesto.Localidad,MontoTotal,Descripcion,
+		convert(char(10),FechaRegistro,103)[FechaRegistro],NumeroPresupuesto,Presupuesto.Direccion,Presupuesto.Localidad,Presupuesto.Provincia,MontoTotal,Descripcion,
 		NombreCompleto, Correo
 		from Presupuesto
 		inner join Cliente on Presupuesto.IdCliente = Cliente.IdCliente
+		inner join Persona on Cliente.IdPersona = Persona.IdPersona
+		where CONVERT(date,FechaRegistro) between @FechaInicio and @FechaFin
+end
+go
+
+--PROCEDURE REPORTE COMPROBANTE--
+create procedure SP_ReporteComprobante(
+@FechaInicio varchar(20),
+@FechaFin varchar(20)
+)
+as
+begin
+	set dateformat dmy
+	select
+		convert(char(10),FechaRegistro,103)[FechaRegistro],NumeroComprobante,ComprobanteObra.Direccion,ComprobanteObra.Localidad,ComprobanteObra.Provincia,MontoTotal,Descripcion,EstadoObra,
+		NombreCompleto, Correo
+		from ComprobanteObra
+		inner join Cliente on ComprobanteObra.IdCliente = Cliente.IdCliente
 		inner join Persona on Cliente.IdPersona = Persona.IdPersona
 		where CONVERT(date,FechaRegistro) between @FechaInicio and @FechaFin
 end

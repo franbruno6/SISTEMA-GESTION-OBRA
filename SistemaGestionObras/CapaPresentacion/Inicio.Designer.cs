@@ -197,15 +197,16 @@
             // menureportepresupuesto
             // 
             this.menureportepresupuesto.Name = "menureportepresupuesto";
-            this.menureportepresupuesto.Size = new System.Drawing.Size(176, 24);
+            this.menureportepresupuesto.Size = new System.Drawing.Size(180, 24);
             this.menureportepresupuesto.Text = "Presupuestos";
             this.menureportepresupuesto.Click += new System.EventHandler(this.menureportepresupuesto_Click);
             // 
             // menureportecomprobante
             // 
             this.menureportecomprobante.Name = "menureportecomprobante";
-            this.menureportecomprobante.Size = new System.Drawing.Size(176, 24);
+            this.menureportecomprobante.Size = new System.Drawing.Size(180, 24);
             this.menureportecomprobante.Text = "Comprobantes";
+            this.menureportecomprobante.Click += new System.EventHandler(this.menureportecomprobante_Click);
             // 
             // menutitulo
             // 

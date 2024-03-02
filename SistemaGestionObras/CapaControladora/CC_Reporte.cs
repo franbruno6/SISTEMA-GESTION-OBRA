@@ -22,5 +22,16 @@ namespace CapaControladora
                 throw new Exception(ex.Message);
             }
         }
+        public List<ReporteComprobante> ListarReporteComprobante(string fechaInicio, string fechaFin)
+        {
+            try
+            {
+                return oCD_Reporte.ListarReporteComprobante(fechaInicio, fechaFin);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

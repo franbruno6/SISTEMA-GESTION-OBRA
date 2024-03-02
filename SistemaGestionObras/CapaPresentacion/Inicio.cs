@@ -156,5 +156,9 @@ namespace CapaPresentacion
         {
             AbrirFormulario(menureporte, new frmReportePresupuesto());
         }
+        private void menureportecomprobante_Click(object sender, EventArgs e)
+        {
+            AbrirFormulario(menureporte, new frmReporteComprobante());
+        }
     }
 }
