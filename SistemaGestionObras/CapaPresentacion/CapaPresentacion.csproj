@@ -467,5 +467,8 @@
   <ItemGroup>
     <None Include="Resources\PlantillaComprobante.html" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlantillaAuditoria.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

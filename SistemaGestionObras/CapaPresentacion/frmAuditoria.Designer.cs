@@ -52,12 +52,12 @@
             this.txtnombrecliente = new System.Windows.Forms.TextBox();
             this.lblnombre = new System.Windows.Forms.Label();
             this.lblsubtitulo = new System.Windows.Forms.Label();
-            this.fecharegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fecha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoactual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.estadoprevio = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.montototal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.adelanto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.montototal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreusuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
@@ -142,12 +142,12 @@
             this.datagridview.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.datagridview.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.datagridview.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.fecharegistro,
+            this.fecha,
             this.estadoactual,
             this.estadoprevio,
+            this.montototal,
             this.adelanto,
             this.saldo,
-            this.montototal,
             this.nombreusuario});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -370,12 +370,12 @@
             this.lblsubtitulo.TabIndex = 8;
             this.lblsubtitulo.Text = "Auditoría de Comprobantes";
             // 
-            // fecharegistro
+            // fecha
             // 
-            this.fecharegistro.HeaderText = "Fecha";
-            this.fecharegistro.Name = "fecharegistro";
-            this.fecharegistro.ReadOnly = true;
-            this.fecharegistro.Width = 150;
+            this.fecha.HeaderText = "Fecha";
+            this.fecha.Name = "fecha";
+            this.fecha.ReadOnly = true;
+            this.fecha.Width = 150;
             // 
             // estadoactual
             // 
@@ -391,6 +391,14 @@
             this.estadoprevio.Name = "estadoprevio";
             this.estadoprevio.ReadOnly = true;
             // 
+            // montototal
+            // 
+            this.montototal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.montototal.HeaderText = "Monto Total";
+            this.montototal.Name = "montototal";
+            this.montototal.ReadOnly = true;
+            this.montototal.Width = 180;
+            // 
             // adelanto
             // 
             this.adelanto.HeaderText = "Adelanto";
@@ -404,14 +412,6 @@
             this.saldo.Name = "saldo";
             this.saldo.ReadOnly = true;
             this.saldo.Width = 180;
-            // 
-            // montototal
-            // 
-            this.montototal.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
-            this.montototal.HeaderText = "Monto Total";
-            this.montototal.Name = "montototal";
-            this.montototal.ReadOnly = true;
-            this.montototal.Width = 180;
             // 
             // nombreusuario
             // 
@@ -456,12 +456,12 @@
         private System.Windows.Forms.Label lblnombre;
         private System.Windows.Forms.TextBox txtdescripcion;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fecharegistro;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fecha;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoactual;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoprevio;
+        private System.Windows.Forms.DataGridViewTextBoxColumn montototal;
         private System.Windows.Forms.DataGridViewTextBoxColumn adelanto;
         private System.Windows.Forms.DataGridViewTextBoxColumn saldo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn montototal;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreusuario;
     }
 }
