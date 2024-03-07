@@ -129,11 +129,11 @@ namespace CapaPresentacion.Properties {
         ///            padding: 5px;
         ///            border: 1px solid black;
         ///        }
+        ///        th {
+        ///            background-color: #eee8aa;
+        ///        }
         ///    &lt;/style&gt;
-        ///&lt;/head&gt;
-        ///&lt;body&gt;
-        ///    &lt;table border=&quot;0&quot; style=&quot;width:100%&quot;&gt;
-        ///      [resto de la cadena truncado]&quot;;.
+        /// [resto de la cadena truncado]&quot;;.
         /// </summary>
         internal static string PlantillaAuditoria {
             get {
@@ -200,6 +200,129 @@ namespace CapaPresentacion.Properties {
         internal static string PlantillaPresupuesto {
             get {
                 return ResourceManager.GetString("PlantillaPresupuesto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Recibo de Cuenta Saldada&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        th {
+        ///            background-color: #eee8aa;
+        ///        }
+        ///    &lt;/sty [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string PlantillaRecibo {
+            get {
+                return ResourceManager.GetString("PlantillaRecibo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Comprobante de Obra&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///
+        ///            table.border th {
+        ///                text-align: center;
+        ///                padding: 5px;
+        ///                border: 1px solid black;
+        ///            }
+        ///
+        ///            table.border td {
+        ///                text-align: center;
+        ///                padding: 5px;
+        ///                border: 1px solid black;
+        ///            }
+        ///
+        ///        th {
+        ///            backgro [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string PlantillaReporte {
+            get {
+                return ResourceManager.GetString("PlantillaReporte", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Comprobante de Obra&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        th {
+        ///            background-color: #eee8aa;
+        ///        }
+        ///    &lt;/style&gt;
+        /// [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string TablaReporteComprobante {
+            get {
+                return ResourceManager.GetString("TablaReporteComprobante", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Busca una cadena traducida similar a &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;title&gt;Comprobante de Obra&lt;/title&gt;
+        ///    &lt;style&gt;
+        ///        table.border {
+        ///            border-collapse: collapse;
+        ///        }
+        ///        table.border th {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        table.border td {
+        ///            text-align: center;
+        ///            padding: 5px;
+        ///            border: 1px solid black;
+        ///        }
+        ///        th {
+        ///            background-color: #eee8aa;
+        ///        }
+        ///    &lt;/style&gt;
+        /// [resto de la cadena truncado]&quot;;.
+        /// </summary>
+        internal static string TablaReportePresupuesto {
+            get {
+                return ResourceManager.GetString("TablaReportePresupuesto", resourceCulture);
             }
         }
         

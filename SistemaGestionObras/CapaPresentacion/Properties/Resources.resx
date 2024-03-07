@@ -145,4 +145,16 @@
   <data name="PlantillaAuditoria" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\PlantillaAuditoria.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
+  <data name="PlantillaRecibo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlantillaRecibo.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="PlantillaReporte" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\PlantillaReporte.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TablaReportePresupuesto" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TablaReportePresupuesto.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="TablaReporteComprobante" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\TablaReporteComprobante.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
 </root>

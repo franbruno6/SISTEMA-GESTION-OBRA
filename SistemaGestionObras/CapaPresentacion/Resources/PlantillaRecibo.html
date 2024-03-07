@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recibo de Cuenta Saldada</title>
+    <style>
+        table.border {
+            border-collapse: collapse;
+        }
+        table.border th {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid black;
+        }
+        table.border td {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #eee8aa;
+        }
+    </style>
+</head>
+<body>
+    <table border="0" style="width:100%">
+        <tr>
+            <td style="width:15%" valign="top"></td>
+            <td style="width:60%" valign="top" align="center">
+                <label style="font-size:20px;font-weight:bold;margin-bottom:10px">Bruno Cercos</label><br />
+                <div style="height:12px !important"></div>
+            </td>
+            <td style="width:25%;" align="right" valign="top">
+                <table style="width:100%" class="border">
+                    <tr>
+                        <td align="center" style="background-color: #eee8aa">
+                            <label style="font-size:15px;font-weight:bold">Recibo de Saldo Comprobante</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="center">
+                            <label style="font-size:15px;font-weight:bold">@numerocomprobante</label>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <div style="height:15px !important"></div>
+    <hr />
+
+    <table border="0" style="width:100%">
+        <tbody>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Nombre Cliente:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@nombrecliente</label></td>
+            </tr>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Telefono:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@telefonocliente</label></td>
+            </tr>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Dirección:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@direccion</label></td>
+            </tr>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Localidad:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@localidad</label></td>
+            </tr>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Provincia:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@provincia</label></td>
+            </tr>
+            <tr>
+                <td style="width:20%"><label style="font-size:12px;font-weight:bold">Descripción de Obra:</label></td>
+                <td style="width:80%"><label style="font-size:12px;">@descripcion</label></td>
+            </tr>
+        </tbody>
+    </table>
+    <div style="height:15px !important"></div>
+    
+    <table style="width:40%;font-size:12px;" class="border" ; align="right">
+        <tbody>
+            <tr>
+                <th>Fecha de Pago</th>
+                <td>@fechapago</td>
+            </tr>
+            <tr>
+                <th>Saldo</th>
+                <td>Cuenta Saldada</td>
+            </tr>
+            <tr>
+                <th>Monto Total</th>
+                <td>@montototal</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>

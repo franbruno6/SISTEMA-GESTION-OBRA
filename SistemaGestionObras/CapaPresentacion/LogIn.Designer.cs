@@ -37,6 +37,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btncancelar = new FontAwesome.Sharp.IconButton();
             this.btningresar = new FontAwesome.Sharp.IconButton();
+            this.btnverclave = new FontAwesome.Sharp.IconButton();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -77,13 +78,14 @@
             this.txtnumerodocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtnumerodocumento.Location = new System.Drawing.Point(360, 56);
             this.txtnumerodocumento.Name = "txtnumerodocumento";
-            this.txtnumerodocumento.Size = new System.Drawing.Size(272, 24);
+            this.txtnumerodocumento.Size = new System.Drawing.Size(319, 24);
             this.txtnumerodocumento.TabIndex = 4;
             this.txtnumerodocumento.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtnumerodocumento_KeyPress);
             // 
             // txtclave
             // 
             this.txtclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtclave.ForeColor = System.Drawing.SystemColors.WindowText;
             this.txtclave.Location = new System.Drawing.Point(360, 120);
             this.txtclave.Name = "txtclave";
             this.txtclave.PasswordChar = '*';
@@ -115,7 +117,7 @@
             this.btncancelar.IconSize = 20;
             this.btncancelar.Location = new System.Drawing.Point(360, 240);
             this.btncancelar.Name = "btncancelar";
-            this.btncancelar.Size = new System.Drawing.Size(272, 36);
+            this.btncancelar.Size = new System.Drawing.Size(319, 36);
             this.btncancelar.TabIndex = 8;
             this.btncancelar.Text = "Cancelar";
             this.btncancelar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -137,7 +139,7 @@
             this.btningresar.IconSize = 20;
             this.btningresar.Location = new System.Drawing.Point(360, 184);
             this.btningresar.Name = "btningresar";
-            this.btningresar.Size = new System.Drawing.Size(272, 36);
+            this.btningresar.Size = new System.Drawing.Size(319, 36);
             this.btningresar.TabIndex = 7;
             this.btningresar.Text = "Ingresar";
             this.btningresar.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -145,18 +147,40 @@
             this.btningresar.UseVisualStyleBackColor = false;
             this.btningresar.Click += new System.EventHandler(this.btningresar_Click);
             // 
+            // btnverclave
+            // 
+            this.btnverclave.BackColor = System.Drawing.SystemColors.Control;
+            this.btnverclave.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnverclave.FlatAppearance.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnverclave.FlatAppearance.BorderSize = 0;
+            this.btnverclave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnverclave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnverclave.IconChar = FontAwesome.Sharp.IconChar.Eye;
+            this.btnverclave.IconColor = System.Drawing.Color.Black;
+            this.btnverclave.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btnverclave.IconSize = 18;
+            this.btnverclave.Location = new System.Drawing.Point(638, 120);
+            this.btnverclave.Name = "btnverclave";
+            this.btnverclave.Size = new System.Drawing.Size(41, 24);
+            this.btnverclave.TabIndex = 33;
+            this.btnverclave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnverclave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnverclave.UseVisualStyleBackColor = false;
+            this.btnverclave.Click += new System.EventHandler(this.btnverclave_Click);
+            // 
             // LogIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(673, 300);
+            this.ClientSize = new System.Drawing.Size(713, 300);
+            this.Controls.Add(this.btnverclave);
             this.Controls.Add(this.btncancelar);
             this.Controls.Add(this.btningresar);
-            this.Controls.Add(this.txtclave);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtnumerodocumento);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.txtclave);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LogIn";
@@ -180,5 +204,6 @@
         private FontAwesome.Sharp.IconButton btningresar;
         private FontAwesome.Sharp.IconButton btncancelar;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private FontAwesome.Sharp.IconButton btnverclave;
     }
 }

@@ -55,5 +55,16 @@ namespace CapaControladora
                 throw ex;
             }
         }
+        public List<string> ListarCategorias()
+        {
+            try
+            {
+                return oCD_Producto.ListarCategorias();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -2,11 +2,15 @@
 using CapaEntidad;
 using CapaPresentacion.Modals;
 using CapaPresentacion.Utilidades;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -95,12 +99,12 @@ namespace CapaPresentacion
                 string estadoObra = oComprobante.GetEstado();
                 if (estadoObra == "Cuenta saldada")
                 {
-                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque ya esta finalizado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque la obra se encuentra finalizada y el saldo a sido pagado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 else if (estadoObra == "Cancelada")
                 {
-                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque ya esta cancelado", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("No se puede modificar el comprobante numero " + oComprobante.NumeroComprobante + " porque está cancelado.", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
                 if (MessageBox.Show("Esta seguro de modificar el estado del comprobante numero " + oComprobante.NumeroComprobante + " a " + oComprobante.GetProximoEstado() + "?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -111,9 +115,13 @@ namespace CapaPresentacion
                         oComprobante.CambiarEstado();
                         if (MessageBox.Show("El comprobante numero " + oComprobante.NumeroComprobante + " ah sido modificado de forma correcta.\nDesea enviarle una notificación al cliente?", "Mensaje", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                         {
+                            if (oComprobante.GetEstado() == "Cuenta Saldada")
+                            {
+                                CrearRecibo(oComprobante);
+                            }
                             oComprobante.Accion();
                         }
-                        datagridview.Rows[indiceFila].Cells["estado"].Value = oComprobante.GetEstado();
+                        btnactualizar_Click(null, null);
                     }
                     else
                     {
@@ -189,6 +197,61 @@ namespace CapaPresentacion
                 }
             }
         }
+        private void CrearRecibo(ComprobanteObra oComprobante)
+        {
+            string textoHtml = Properties.Resources.PlantillaRecibo.ToString();
+            textoHtml = textoHtml.Replace("@numerocomprobante", oComprobante.NumeroComprobante);
+            textoHtml = textoHtml.Replace("@nombrecliente", oComprobante.oCliente.NombreCompleto);
+            textoHtml = textoHtml.Replace("@telefonocliente", oComprobante.oCliente.Telefono);
+            textoHtml = textoHtml.Replace("@direccion", oComprobante.Direccion);
+            textoHtml = textoHtml.Replace("@localidad", oComprobante.Localidad);
+            textoHtml = textoHtml.Replace("@provincia", oComprobante.Provincia);
+            textoHtml = textoHtml.Replace("@descripcion", oComprobante.Descripcion);
+            
+            textoHtml = textoHtml.Replace("@fechapago", DateTime.Now.ToString("dd/MM/yyyy"));
+            textoHtml = textoHtml.Replace("@montototal", oComprobante.MontoTotal.ToString());
+
+            string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string nombreArchivo = "Recibo_" + oComprobante.NumeroComprobante + ".pdf";
+            string rutaCarpeta = Path.Combine(escritorio, "Recibos");
+            string rutaArchivo = Path.Combine(rutaCarpeta, nombreArchivo);
+
+            if (!Directory.Exists(rutaCarpeta))
+            {
+                Directory.CreateDirectory(rutaCarpeta);
+            }
+            try
+            {
+                if (File.Exists(rutaArchivo))
+                {
+                    File.Delete(rutaArchivo);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al exportar el recibo: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            using (FileStream fs = new FileStream(rutaArchivo, FileMode.Create))
+            {
+                using (Document doc = new Document(PageSize.A4, 10f, 10f, 10f, 10f))
+                {
+                    PdfWriter writer = PdfWriter.GetInstance(doc, fs);
+                    doc.Open();
+
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        using (TextReader reader = new StringReader(textoHtml))
+                        {
+                            iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, reader);
+                        }
+                    }
+                    doc.Close();
+                }
+            }
+            oComprobante.PathArchivo = rutaArchivo;
+        }
         private void btncerrar_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -236,7 +299,7 @@ namespace CapaPresentacion
                 var x = e.CellBounds.Left + (e.CellBounds.Width - w) / 2;
                 var y = e.CellBounds.Top + (e.CellBounds.Height - h) / 2;
 
-                e.Graphics.DrawImage(Properties.Resources.check, new Rectangle(x, y, w, h));
+                e.Graphics.DrawImage(Properties.Resources.check, new System.Drawing.Rectangle(x, y, w, h));
                 e.Handled = true;
             }
         }

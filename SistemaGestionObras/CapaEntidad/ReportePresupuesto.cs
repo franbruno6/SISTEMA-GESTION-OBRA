@@ -11,6 +11,7 @@ namespace CapaEntidad
         #region Variables Privadas
         private string numeroPresupuesto;
         private string nombreCliente;
+        private string nombreUsuario;
         private string correo;
         private string direccion;
         private string localidad;
@@ -23,6 +24,7 @@ namespace CapaEntidad
         #region Propiedades
         public string NumeroPresupuesto { get { return numeroPresupuesto; } set { numeroPresupuesto = value; } }
         public string NombreCliente { get { return nombreCliente; } set { nombreCliente = value; } }
+        public string NombreUsuario { get { return nombreUsuario; } set { nombreUsuario = value; } }
         public string Correo { get { return correo; } set { correo = value; } }
         public string Direccion { get { return direccion; } set { direccion = value; } }
         public string Localidad { get { return localidad; } set { localidad = value; } }

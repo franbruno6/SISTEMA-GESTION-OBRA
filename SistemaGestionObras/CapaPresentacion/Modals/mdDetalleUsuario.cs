@@ -224,16 +224,6 @@ namespace CapaPresentacion.CP_Usuario
                 this.Close();
             }
         }
-        private void btnverclave_MouseDown(object sender, MouseEventArgs e)
-        {
-            txtclave.PasswordChar = '\0';
-            txtconfirmarclave.PasswordChar = '\0';
-        }
-        private void btnverclave_MouseUp(object sender, MouseEventArgs e)
-        {
-            txtclave.PasswordChar = '*';
-            txtconfirmarclave.PasswordChar = '*';
-        }
         private void txtdocumento_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (Char.IsDigit(e.KeyChar) || Char.IsControl(e.KeyChar))
@@ -243,6 +233,20 @@ namespace CapaPresentacion.CP_Usuario
             else
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnverclave_Click(object sender, EventArgs e)
+        {
+            if (txtclave.PasswordChar == '*')
+            {
+                txtclave.PasswordChar = '\0';
+                txtconfirmarclave.PasswordChar = '\0';
+            }
+            else
+            {
+                txtclave.PasswordChar = '*';
+                txtconfirmarclave.PasswordChar = '*';
             }
         }
     }

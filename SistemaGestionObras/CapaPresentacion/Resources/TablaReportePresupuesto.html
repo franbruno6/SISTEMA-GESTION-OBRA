@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reporte</title>
+    <style>
+        table.border {
+            border-collapse: collapse;
+        }
+        table.border th {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid black;
+        }
+        table.border td {
+            text-align: center;
+            padding: 5px;
+            border: 1px solid black;
+        }
+        th {
+            background-color: #eee8aa;
+        }
+    </style>
+</head>
+<body>
+    <table style="width:100%;font-size:12px;" class="border">
+        <thead>
+            <tr style="background-color: #eee8aa">
+                <th style="width:8%">Fecha</th>
+                <th style="width:8%">Número</th>
+                <th style="width:11%">Nombre Cliente</th>
+                <th style="width:10%">Correo</th>
+                <th style="width:11%">Dirección</th>
+                <th style="width:10%">Localidad</th>
+                <th style="width:8%">Provincia</th>
+                <th style="width:10%">Monto Total</th>
+                <th style="width:13%">Descripción</th>
+                <th style="width:11%">Nombre de Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            @filas
+        </tbody>
+    </table>
+</body>
+</html>

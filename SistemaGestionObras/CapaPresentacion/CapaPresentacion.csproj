@@ -470,5 +470,17 @@
   <ItemGroup>
     <None Include="Resources\PlantillaAuditoria.html" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlantillaRecibo.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TablaReportePresupuesto.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\PlantillaReporte.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\TablaReporteComprobante.html" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

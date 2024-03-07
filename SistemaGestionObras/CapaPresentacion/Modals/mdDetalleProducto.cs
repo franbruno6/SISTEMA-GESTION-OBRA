@@ -33,6 +33,7 @@ namespace CapaPresentacion.Modals
             cboestado.SelectedIndex = 0;
             cboestado.DisplayMember = "Texto";
             cboestado.ValueMember = "Valor";
+            AutoCompletar();
 
             switch (_tipoModal)
             {
@@ -201,6 +202,13 @@ namespace CapaPresentacion.Modals
             {
                 e.Handled = true;
             }
+        }
+        private void AutoCompletar()
+        {
+            List<string> categoriasDB = oCC_Producto.ListarCategorias();
+            AutoCompleteStringCollection categorias = new AutoCompleteStringCollection();
+            categorias.AddRange(categoriasDB.ToArray());
+            txtcategoria.AutoCompleteCustomSource = categorias;
         }
     }
 }

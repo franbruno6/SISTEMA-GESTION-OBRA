@@ -35,7 +35,8 @@ namespace CapaDatos
                         lista.Add(new ReportePresupuesto
                         {
                             NumeroPresupuesto = dr["NumeroPresupuesto"].ToString(),
-                            NombreCliente = dr["NombreCompleto"].ToString(),
+                            NombreCliente = dr["NombreCliente"].ToString(),
+                            NombreUsuario = dr["NombreUsuario"].ToString(),
                             Correo = dr["Correo"].ToString(),
                             Direccion = dr["Direccion"].ToString(),
                             Localidad = dr["Localidad"].ToString(),
@@ -79,7 +80,8 @@ namespace CapaDatos
                         lista.Add(new ReporteComprobante
                         {
                             NumeroComprobante = dr["NumeroComprobante"].ToString(),
-                            NombreCliente = dr["NombreCompleto"].ToString(),
+                            NombreCliente = dr["NombreCliente"].ToString(),
+                            NombreUsuario = dr["NombreUsuario"].ToString(),
                             Correo = dr["Correo"].ToString(),
                             Direccion = dr["Direccion"].ToString(),
                             Localidad = dr["Localidad"].ToString(),

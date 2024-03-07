@@ -166,5 +166,34 @@ namespace CapaDatos
             DataAccessObject.CerrarConexion();
             return productoEliminado;
         }
+        public List<string> ListarCategorias()
+        {
+            List<string> lista = new List<string>();
+
+            using (SqlConnection conexion = DataAccessObject.ObtenerConexion())
+            {
+                DataAccessObject.ObtenerConexion();
+                try
+                {
+                    StringBuilder query = new StringBuilder();
+                    query.AppendLine("select distinct Categoria from Producto");
+
+                    SqlCommand cmd = new SqlCommand(query.ToString(), conexion);
+                    cmd.CommandType = CommandType.Text;
+
+                    SqlDataReader dr = cmd.ExecuteReader();
+                    while (dr.Read())
+                    {
+                        lista.Add(dr["Categoria"].ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                DataAccessObject.CerrarConexion();
+            }
+            return lista;
+        }
     }
 }

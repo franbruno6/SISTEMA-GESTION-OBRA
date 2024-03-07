@@ -38,6 +38,7 @@
             this.datagridview = new System.Windows.Forms.DataGridView();
             this.lblsubtitulo = new System.Windows.Forms.Label();
             this.contenedor = new System.Windows.Forms.Panel();
+            this.btncerrar = new FontAwesome.Sharp.IconButton();
             this.btngrafico = new FontAwesome.Sharp.IconButton();
             this.btnexportar = new FontAwesome.Sharp.IconButton();
             this.dtpfechafin = new System.Windows.Forms.DateTimePicker();
@@ -46,7 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cbobusqueda = new System.Windows.Forms.ComboBox();
             this.lblbuscarpor = new System.Windows.Forms.Label();
-            this.btncerrar = new FontAwesome.Sharp.IconButton();
             this.fecharegistro = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombrecliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -56,6 +56,7 @@
             this.provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.montototal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
             this.SuspendLayout();
@@ -137,7 +138,8 @@
             this.localidad,
             this.provincia,
             this.montototal,
-            this.descripcion});
+            this.descripcion,
+            this.usuario});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -203,6 +205,24 @@
             this.contenedor.Name = "contenedor";
             this.contenedor.Size = new System.Drawing.Size(1568, 646);
             this.contenedor.TabIndex = 4;
+            // 
+            // btncerrar
+            // 
+            this.btncerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btncerrar.BackColor = System.Drawing.Color.PaleGoldenrod;
+            this.btncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btncerrar.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.btncerrar.IconColor = System.Drawing.Color.Black;
+            this.btncerrar.IconFont = FontAwesome.Sharp.IconFont.Solid;
+            this.btncerrar.IconSize = 19;
+            this.btncerrar.Location = new System.Drawing.Point(1463, 96);
+            this.btncerrar.Name = "btncerrar";
+            this.btncerrar.Size = new System.Drawing.Size(79, 24);
+            this.btncerrar.TabIndex = 19;
+            this.btncerrar.Text = "Cerrar";
+            this.btncerrar.UseVisualStyleBackColor = false;
+            this.btncerrar.Click += new System.EventHandler(this.btncerrar_Click);
             // 
             // btngrafico
             // 
@@ -321,24 +341,6 @@
             this.lblbuscarpor.TabIndex = 11;
             this.lblbuscarpor.Text = "Filtrar";
             // 
-            // btncerrar
-            // 
-            this.btncerrar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btncerrar.BackColor = System.Drawing.Color.PaleGoldenrod;
-            this.btncerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btncerrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btncerrar.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.btncerrar.IconColor = System.Drawing.Color.Black;
-            this.btncerrar.IconFont = FontAwesome.Sharp.IconFont.Solid;
-            this.btncerrar.IconSize = 19;
-            this.btncerrar.Location = new System.Drawing.Point(1463, 96);
-            this.btncerrar.Name = "btncerrar";
-            this.btncerrar.Size = new System.Drawing.Size(79, 24);
-            this.btncerrar.TabIndex = 19;
-            this.btncerrar.Text = "Cerrar";
-            this.btncerrar.UseVisualStyleBackColor = false;
-            this.btncerrar.Click += new System.EventHandler(this.btncerrar_Click);
-            // 
             // fecharegistro
             // 
             this.fecharegistro.HeaderText = "Fecha";
@@ -357,14 +359,14 @@
             this.nombrecliente.HeaderText = "Nombre Cliente";
             this.nombrecliente.Name = "nombrecliente";
             this.nombrecliente.ReadOnly = true;
-            this.nombrecliente.Width = 230;
+            this.nombrecliente.Width = 200;
             // 
             // correo
             // 
             this.correo.HeaderText = "Correo";
             this.correo.Name = "correo";
             this.correo.ReadOnly = true;
-            this.correo.Width = 230;
+            this.correo.Width = 180;
             // 
             // direccion
             // 
@@ -400,6 +402,12 @@
             this.descripcion.HeaderText = "Descripcion";
             this.descripcion.Name = "descripcion";
             this.descripcion.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
             // 
             // frmReportePresupuesto
             // 
@@ -443,5 +451,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn provincia;
         private System.Windows.Forms.DataGridViewTextBoxColumn montototal;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
     }
 }

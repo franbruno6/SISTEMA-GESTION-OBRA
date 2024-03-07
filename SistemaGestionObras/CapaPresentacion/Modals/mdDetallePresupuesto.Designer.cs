@@ -164,6 +164,7 @@
             this.datagridview.Size = new System.Drawing.Size(884, 336);
             this.datagridview.TabIndex = 77;
             this.datagridview.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellClick);
+            this.datagridview.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellEndEdit);
             this.datagridview.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.datagridview_CellPainting);
             this.datagridview.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.datagridview_CellValueChanged);
             this.datagridview.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.datagridview_EditingControlShowing);
@@ -277,7 +278,7 @@
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(676, 168);
+            this.label5.Location = new System.Drawing.Point(393, 171);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(67, 16);
             this.label5.TabIndex = 92;
@@ -453,7 +454,7 @@
             this.label9.AutoSize = true;
             this.label9.BackColor = System.Drawing.Color.PaleGoldenrod;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(393, 171);
+            this.label9.Location = new System.Drawing.Point(676, 171);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(63, 16);
             this.label9.TabIndex = 102;
@@ -465,7 +466,7 @@
             this.txtlocalidad.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtlocalidad.Enabled = false;
             this.txtlocalidad.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtlocalidad.Location = new System.Drawing.Point(749, 165);
+            this.txtlocalidad.Location = new System.Drawing.Point(462, 168);
             this.txtlocalidad.Name = "txtlocalidad";
             this.txtlocalidad.Size = new System.Drawing.Size(192, 22);
             this.txtlocalidad.TabIndex = 89;
@@ -476,7 +477,7 @@
             this.txtprovincia.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtprovincia.Enabled = false;
             this.txtprovincia.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtprovincia.Location = new System.Drawing.Point(463, 168);
+            this.txtprovincia.Location = new System.Drawing.Point(749, 165);
             this.txtprovincia.Name = "txtprovincia";
             this.txtprovincia.Size = new System.Drawing.Size(192, 22);
             this.txtprovincia.TabIndex = 88;

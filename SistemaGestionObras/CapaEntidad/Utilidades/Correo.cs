@@ -17,6 +17,7 @@ namespace CapaEntidad.Utilidades
         {
             try
             {
+                Cursor.Current = Cursors.WaitCursor;
                 SmtpClient smtp = new SmtpClient("smtp.office365.com");
                 smtp.Port = 587;
                 smtp.EnableSsl = true;
@@ -35,6 +36,7 @@ namespace CapaEntidad.Utilidades
                 }
 
                 smtp.Send(mail);
+                Cursor.Current = Cursors.Default;
 
                 MessageBox.Show("Correo enviado correctamente", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }

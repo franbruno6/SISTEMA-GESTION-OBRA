@@ -89,5 +89,16 @@ namespace CapaPresentacion
                 btningresar_Click(sender, e);
             }
         }
+        private void btnverclave_Click(object sender, EventArgs e)
+        {
+            if (txtclave.PasswordChar == '*')
+            {
+                txtclave.PasswordChar = '\0';
+            }
+            else
+            {
+                txtclave.PasswordChar = '*';
+            }
+        }
     }
 }

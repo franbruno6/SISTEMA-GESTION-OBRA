@@ -482,6 +482,7 @@ namespace CapaPresentacion.Modals
         }
         private void btnexportar_Click(object sender, EventArgs e)
         {
+            Cursor.Current = Cursors.WaitCursor;
             string textoHtml = Properties.Resources.PlantillaPresupuesto.ToString();
             textoHtml = textoHtml.Replace("@numeropresupuesto", _oPresupuesto.NumeroPresupuesto);
             textoHtml = textoHtml.Replace("@nombrecliente", _oPresupuesto.oCliente.NombreCompleto);
@@ -534,8 +535,30 @@ namespace CapaPresentacion.Modals
                     doc.Close();
                 }
             }
+            Cursor.Current = Cursors.Default;
             MessageBox.Show("Presupuesto exportado correctamente", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Process.Start(rutaArchivo);
+        }
+        private void datagridview_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                if (datagridview.Columns[e.ColumnIndex].Name == "cantidad")
+                {
+                    string value = datagridview.Rows[e.RowIndex].Cells[e.ColumnIndex].Value?.ToString();
+                    if (!int.TryParse(value, out int cantidad) || cantidad == 0)
+                    {
+                        datagridview.Rows[e.RowIndex].Cells["cantidad"].Value = 1;
+                        return;
+                    }
+                    int cantidadC = Convert.ToInt32(datagridview.Rows[e.RowIndex].Cells["cantidad"].Value);
+                    decimal precio = Convert.ToDecimal(datagridview.Rows[e.RowIndex].Cells["precio"].Value);
+
+                    datagridview.Rows[e.RowIndex].Cells["subTotal"].Value = cantidadC * precio;
+
+                    CalcularMontoTotal();
+                }
+            }
         }
     }
 }

@@ -57,6 +57,7 @@
             this.estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.montototal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.descripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contenedor.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.SuspendLayout();
@@ -295,7 +296,8 @@
             this.provincia,
             this.estado,
             this.montototal,
-            this.descripcion});
+            this.descripcion,
+            this.usuario});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -355,38 +357,38 @@
             // 
             // nombrecliente
             // 
+            this.nombrecliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.nombrecliente.HeaderText = "Nombre Cliente";
             this.nombrecliente.Name = "nombrecliente";
             this.nombrecliente.ReadOnly = true;
-            this.nombrecliente.Width = 200;
             // 
             // correo
             // 
+            this.correo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.correo.HeaderText = "Correo";
             this.correo.Name = "correo";
             this.correo.ReadOnly = true;
-            this.correo.Width = 200;
             // 
             // direccion
             // 
+            this.direccion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.direccion.HeaderText = "Direccion";
             this.direccion.Name = "direccion";
             this.direccion.ReadOnly = true;
-            this.direccion.Width = 180;
             // 
             // localidad
             // 
             this.localidad.HeaderText = "Localidad";
             this.localidad.Name = "localidad";
             this.localidad.ReadOnly = true;
-            this.localidad.Width = 165;
+            this.localidad.Width = 140;
             // 
             // provincia
             // 
             this.provincia.HeaderText = "Provincia";
             this.provincia.Name = "provincia";
             this.provincia.ReadOnly = true;
-            this.provincia.Width = 165;
+            this.provincia.Width = 140;
             // 
             // estado
             // 
@@ -407,6 +409,13 @@
             this.descripcion.HeaderText = "Descripcion";
             this.descripcion.Name = "descripcion";
             this.descripcion.ReadOnly = true;
+            // 
+            // usuario
+            // 
+            this.usuario.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.usuario.HeaderText = "Usuario";
+            this.usuario.Name = "usuario";
+            this.usuario.ReadOnly = true;
             // 
             // frmReporteComprobante
             // 
@@ -450,5 +459,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn estado;
         private System.Windows.Forms.DataGridViewTextBoxColumn montototal;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usuario;
     }
 }

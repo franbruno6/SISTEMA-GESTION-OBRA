@@ -69,9 +69,23 @@ namespace CapaPresentacion
                     reporteComprobante.Provincia,
                     reporteComprobante.Estado,
                     reporteComprobante.MontoTotal,
-                    reporteComprobante.Descripcion
+                    reporteComprobante.Descripcion,
+                    reporteComprobante.NombreUsuario
                     );
             }
+            foreach (DataGridViewColumn columna in datagridview.Columns)
+            {
+                if (columna.HeaderText == "Descripcion" || columna.HeaderText == "Usuario")
+                {
+                    columna.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+                else
+                {
+                    columna.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    columna.Width = columna.GetPreferredWidth(DataGridViewAutoSizeColumnMode.AllCells, true);
+                }
+            }
+            datagridview.ClearSelection();
         }
         private void txtbusqueda_TextChanged(object sender, EventArgs e)
         {

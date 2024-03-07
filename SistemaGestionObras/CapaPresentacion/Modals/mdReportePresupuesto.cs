@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
+using System.Windows.Input;
 
 namespace CapaPresentacion.Modals
 {
@@ -105,8 +106,24 @@ namespace CapaPresentacion.Modals
         }
         private void btnexportar_Click(object sender, EventArgs e)
         {
-            Document doc = new Document(PageSize.A4.Rotate());
+            string headerHtml = Properties.Resources.PlantillaReporte.ToString();
+            headerHtml = headerHtml.Replace("@tiporeporte", "Reporte de Presupuestos");
+            headerHtml = headerHtml.Replace("@periodo", _periodo);
 
+            string tablaHtml = Properties.Resources.TablaReportePresupuesto.ToString();
+            string filas = "";
+            foreach (DataRow fila in _dataTable.Rows)
+            {
+                filas += "<tr>";
+                foreach (DataColumn columna in _dataTable.Columns)
+                {
+                    filas += "<td>" + fila[columna].ToString() + "</td>";
+                }
+                filas += "</tr>";
+            }
+            tablaHtml = tablaHtml.Replace("@filas", filas);
+
+            Document doc = new Document(PageSize.A4.Rotate());
             string escritorio = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string nombreArchivo = String.Format("ReportePresupuestos_{0}_{1}.pdf", cbocolumna.Text, DateTime.Now.ToString("dd-MM-yyyy"));
             string rutaCarpeta = Path.Combine(escritorio, "Reportes Presupuestos");
@@ -116,7 +133,7 @@ namespace CapaPresentacion.Modals
             {
                 Directory.CreateDirectory(rutaCarpeta);
             }
-            
+
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             saveFileDialog.FileName = nombreArchivo;
             saveFileDialog.Filter = "Archivo PDF (*.pdf)|*.pdf";
@@ -127,26 +144,25 @@ namespace CapaPresentacion.Modals
             {
                 try
                 {
-                    PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create));
+                    PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(saveFileDialog.FileName, FileMode.Create));
                     doc.Open();
 
                     // Encabezado
-                    Paragraph titulo = new Paragraph("Reporte de Presupuestos", FontFactory.GetFont("Arial", 16));
-                    titulo.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(titulo);
-
-                    Paragraph periodo = new Paragraph("Periodo: " + _periodo, FontFactory.GetFont("Arial", 12));
-                    periodo.Alignment = Element.ALIGN_CENTER;
-                    doc.Add(periodo);
-
-                    doc.Add(new Paragraph("\n"));
+                    MemoryStream ms = new MemoryStream();
+                    using (TextReader reader = new StringReader(headerHtml))
+                    {
+                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, reader);
+                    }
 
                     AgregarGrafico(doc);
-
                     doc.NewPage();
 
-                    AgregarTabla(doc);
-                    
+                    //Tabla
+                    using (TextReader reader = new StringReader(tablaHtml))
+                    {
+                        iTextSharp.tool.xml.XMLWorkerHelper.GetInstance().ParseXHtml(writer, doc, reader);
+                    }
+
                     doc.Close();
                     CargarChart();
                     MessageBox.Show("Archivo exportado correctamente", "Exportar", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -169,34 +185,6 @@ namespace CapaPresentacion.Modals
             chart.ScaleToFit(doc.PageSize.Width - 50, doc.PageSize.Height - 50); // Ajustar tamaño
             chart.Alignment = Element.ALIGN_CENTER;
             doc.Add(chart);
-        }
-        private void AgregarTabla(Document doc)
-        {
-            // Tabla
-            PdfPTable tabla = new PdfPTable(_dataTable.Columns.Count);
-            tabla.WidthPercentage = 100;
-
-            // Encabezados
-            foreach (DataColumn columna in _dataTable.Columns)
-            {
-                PdfPCell celda = new PdfPCell(new Phrase(columna.ColumnName, FontFactory.GetFont("Arial", 12)));
-                celda.BackgroundColor = new BaseColor(240, 240, 240);
-                celda.HorizontalAlignment = Element.ALIGN_CENTER;
-                tabla.AddCell(celda);
-            }
-
-            // Filas
-            foreach (DataRow fila in _dataTable.Rows)
-            {
-                foreach (DataColumn columna in _dataTable.Columns)
-                {
-                    PdfPCell celda = new PdfPCell(new Phrase(fila[columna].ToString(), FontFactory.GetFont("Arial", 10)));
-                    celda.HorizontalAlignment = Element.ALIGN_CENTER;
-                    tabla.AddCell(celda);
-                }
-            }
-
-            doc.Add(tabla);
         }
         private void btnvolver_Click(object sender, EventArgs e)
         {

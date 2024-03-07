@@ -193,8 +193,7 @@
             this.btnverclave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnverclave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnverclave.UseVisualStyleBackColor = false;
-            this.btnverclave.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnverclave_MouseDown);
-            this.btnverclave.MouseUp += new System.Windows.Forms.MouseEventHandler(this.btnverclave_MouseUp);
+            this.btnverclave.Click += new System.EventHandler(this.btnverclave_Click);
             // 
             // txtconfirmarclave
             // 
