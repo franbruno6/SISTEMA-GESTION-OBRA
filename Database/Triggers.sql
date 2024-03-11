@@ -8,10 +8,11 @@ as
 begin
     declare @IdComprobanteObra int,
             @EstadoObraPrevio nvarchar(60),
-            @EstadoObraNuevo nvarchar(60);
+            @EstadoObraNuevo nvarchar(60),
+			@Operacion nvarchar(10);
 
     -- Insertar registros cuando se actualiza el estado de la obra
-    if update(EstadoObra)
+    if exists(select * from inserted i inner join deleted d on i.IdComprobanteObra = d.IdComprobanteObra)
     begin
         -- Obtener los valores actualizados y anteriores
         select @IdComprobanteObra = i.IdComprobanteObra,
@@ -20,9 +21,10 @@ begin
         from inserted i
         left join deleted d on i.IdComprobanteObra = d.IdComprobanteObra;
 
+		set @Operacion = 'Update'
         -- Insertar el registro en la tabla histórica
-        insert into Hist_ComprobanteObra (IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, EstadoObraActual, EstadoObraPrevio, FechaRegistro)
-        select IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, @EstadoObraNuevo, @EstadoObraPrevio, getdate()
+        insert into Hist_ComprobanteObra (IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, EstadoObraActual, EstadoObraPrevio, Operacion, FechaRegistro)
+        select IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, @EstadoObraNuevo, @EstadoObraPrevio, @Operacion, getdate()
         from ComprobanteObra
         where IdComprobanteObra = @IdComprobanteObra;
     end
@@ -35,9 +37,10 @@ begin
                @EstadoObraNuevo = i.EstadoObra
         from inserted i;
 
+		set @Operacion = 'Insert'
         -- Insertar el registro en la tabla de historial con estado previo NULL
-        insert into Hist_ComprobanteObra (IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, EstadoObraActual, EstadoObraPrevio, FechaRegistro)
-        select IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, @EstadoObraNuevo, null, getdate()
+        insert into Hist_ComprobanteObra (IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, EstadoObraActual, EstadoObraPrevio, Operacion, FechaRegistro)
+        select IdComprobanteObra, IdPresupuesto, IdCliente, IdUsuario, Adelanto, Saldo, MontoTotal, @EstadoObraNuevo, null, @Operacion, getdate()
         from ComprobanteObra
         where IdComprobanteObra = @IdComprobanteObra;
     end

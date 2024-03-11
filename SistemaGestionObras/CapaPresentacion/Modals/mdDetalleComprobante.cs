@@ -77,6 +77,11 @@ namespace CapaPresentacion.Modals
                 txtadelanto.Focus();
                 return;
             }
+            if (!Validaciones.ValidarCamposVacios(Controls))
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             DataTable listaDetalle = CrearDataTable();
 

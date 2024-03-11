@@ -90,7 +90,7 @@ where IdComprobanteObra = @IdComprobanteObra
 go
 
 --SELECT HISTORICO COMPROBANTE OBRA--
-select Hist_ComprobanteObra.Adelanto, Hist_ComprobanteObra.Saldo, Hist_ComprobanteObra.MontoTotal, EstadoObraActual, EstadoObraPrevio, Hist_ComprobanteObra.FechaRegistro,
+select Hist_ComprobanteObra.Adelanto, Hist_ComprobanteObra.Saldo, Hist_ComprobanteObra.MontoTotal, EstadoObraActual, EstadoObraPrevio, Hist_ComprobanteObra.FechaRegistro, Operacion,
 ComprobanteObra.Direccion, ComprobanteObra.Localidad, ComprobanteObra.Provincia, ComprobanteObra.Descripcion,
 Cliente.Telefono, pcliente.NombreCompleto, pcliente.Correo,
 pusuario.NombreCompleto[NombreUsuario]

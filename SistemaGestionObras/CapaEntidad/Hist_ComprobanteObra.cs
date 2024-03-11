@@ -18,6 +18,7 @@ namespace CapaEntidad
         private decimal adelanto;
         private decimal saldo;
         private decimal montoTotal;
+        private string operacion;
         #endregion
 
         #region Propiedades
@@ -29,6 +30,7 @@ namespace CapaEntidad
         public decimal MontoTotal { get { return montoTotal; } set { montoTotal = value; } }
         public decimal Adelanto { get { return adelanto; } set { adelanto = value; } }
         public decimal Saldo { get { return saldo; } set { saldo = value; } }
+        public string Operacion { get { return operacion; } set { operacion = value; } }
         #endregion
     }
 }

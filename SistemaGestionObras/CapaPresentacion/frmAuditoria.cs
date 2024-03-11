@@ -58,7 +58,8 @@ namespace CapaPresentacion
                         historico.Adelanto,
                         historico.Saldo,
                         historico.MontoTotal,
-                        historico.oComprobanteObra.oUsuario.NombreCompleto
+                        historico.oComprobanteObra.oUsuario.NombreCompleto,
+                        historico.Operacion
                         );
                     }
 
@@ -87,6 +88,7 @@ namespace CapaPresentacion
                 filas += "<td>" + fila.Cells["adelanto"].Value + "</td>";
                 filas += "<td>" + fila.Cells["saldo"].Value + "</td>";
                 filas += "<td>" + fila.Cells["nombreusuario"].Value + "</td>";
+                filas += "<td>" + fila.Cells["operacion"].Value + "</td>";
                 filas += "</tr>";
             }
             textoHtml = textoHtml.Replace("@filas", filas);

@@ -59,6 +59,7 @@
             this.adelanto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.saldo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nombreusuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.operacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.datagridview)).BeginInit();
             this.contenedor.SuspendLayout();
             this.SuspendLayout();
@@ -148,7 +149,8 @@
             this.montototal,
             this.adelanto,
             this.saldo,
-            this.nombreusuario});
+            this.nombreusuario,
+            this.operacion});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -420,6 +422,13 @@
             this.nombreusuario.ReadOnly = true;
             this.nombreusuario.Width = 190;
             // 
+            // operacion
+            // 
+            this.operacion.HeaderText = "Operacion";
+            this.operacion.Name = "operacion";
+            this.operacion.ReadOnly = true;
+            this.operacion.Width = 140;
+            // 
             // frmAuditoria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -428,7 +437,6 @@
             this.Controls.Add(this.contenedor);
             this.Name = "frmAuditoria";
             this.Text = "frmAuditoria";
-            ((System.ComponentModel.ISupportInitialize)(this.datagridview)).EndInit();
             this.contenedor.ResumeLayout(false);
             this.contenedor.PerformLayout();
             this.ResumeLayout(false);
@@ -463,5 +471,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn adelanto;
         private System.Windows.Forms.DataGridViewTextBoxColumn saldo;
         private System.Windows.Forms.DataGridViewTextBoxColumn nombreusuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn operacion;
     }
 }

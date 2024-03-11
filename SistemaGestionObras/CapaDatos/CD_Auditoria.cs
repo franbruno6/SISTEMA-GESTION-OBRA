@@ -21,7 +21,7 @@ namespace CapaDatos
                 try
                 {
                     StringBuilder query = new StringBuilder();
-                    query.AppendLine("select Hist_ComprobanteObra.Adelanto, Hist_ComprobanteObra.Saldo, Hist_ComprobanteObra.MontoTotal, EstadoObraActual, EstadoObraPrevio, Hist_ComprobanteObra.FechaRegistro,");
+                    query.AppendLine("select Hist_ComprobanteObra.Adelanto, Hist_ComprobanteObra.Saldo, Hist_ComprobanteObra.MontoTotal, EstadoObraActual, EstadoObraPrevio, Hist_ComprobanteObra.FechaRegistro, Operacion,");
                     query.AppendLine("ComprobanteObra.Direccion, ComprobanteObra.Localidad, ComprobanteObra.Provincia, ComprobanteObra.Descripcion,");
                     query.AppendLine("Cliente.Telefono, pcliente.NombreCompleto, pcliente.Correo,");
                     query.AppendLine("pusuario.NombreCompleto[NombreUsuario] ");
@@ -47,6 +47,7 @@ namespace CapaDatos
                             EstadoActual = dr["EstadoObraActual"].ToString(),
                             EstadoPrevio = dr["EstadoObraPrevio"].ToString(),
                             Fecha = Convert.ToDateTime(dr["FechaRegistro"]),
+                            Operacion = dr["Operacion"].ToString(),
                             oComprobanteObra = new ComprobanteObra
                             {
                                 Direccion = dr["Direccion"].ToString(),

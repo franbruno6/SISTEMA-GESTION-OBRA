@@ -42,6 +42,12 @@ namespace CapaPresentacion.Modals
         }
         private void btnaccion_Click(object sender, EventArgs e)
         {
+            if (!Validaciones.ValidarCamposVacios(Controls))
+            {
+                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             switch (_tipoModal)
             {
                 case "VerDetalle":
@@ -95,11 +101,6 @@ namespace CapaPresentacion.Modals
             if (datagridview.Rows.Count == 0)
             {
                 MessageBox.Show("Debe agregar al menos un producto", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            if (!Validaciones.ValidarCamposVacios(Controls))
-            {
-                MessageBox.Show("Debe completar todos los campos", "Mensaje", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
