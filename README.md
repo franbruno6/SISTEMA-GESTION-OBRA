@@ -18,4 +18,4 @@ La arquitectura es de 4 capas las cuales son:
 
 | Nombre | Mail     | Github                | LinkedIn                |
 | :-------- | :------- | :------------------------- | :------------------------- |
-| Francisco Bruno | franbruno99@gmail.com | [@franbruno6](https://github.com/franbruno6) | [Francisco Bruno](https://www.linkedin.com/in/franbruno6/) |
+| Francisco Bruno | dev.franciscobruno@gmail.com | [@franbruno6](https://github.com/franbruno6) | [Francisco Bruno](https://www.linkedin.com/in/franbruno6/) |
